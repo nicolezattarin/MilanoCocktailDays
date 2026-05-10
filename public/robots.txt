@@ -1,3 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 Sitemap: https://milancocktailweek.it/sitemap-index.xml
+
+# Block AI scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background fumo -->
+  <rect width="1200" height="630" fill="#1A1410"/>
+
+  <!-- Dot grid texture -->
+  <defs>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.5" fill="#C4850D" opacity="0.18"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Border hairline oro -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#C4850D" stroke-width="0.5" opacity="0.5"/>
+  <rect x="52" y="52" width="1096" height="526" fill="none" stroke="#C4850D" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- Star decorativo -->
+  <text x="600" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="48" fill="#C4850D" opacity="0.6">✶</text>
+
+  <!-- Titolo principale -->
+  <text x="600" y="320" text-anchor="middle" font-family="Georgia,'Didot','Playfair Display',serif" font-size="72" font-weight="700" fill="#F5EDE0" letter-spacing="4">MILAN COCKTAIL WEEK</text>
+
+  <!-- Anno -->
+  <text x="600" y="390" text-anchor="middle" font-family="'Arial','Helvetica',sans-serif" font-size="28" font-weight="700" fill="#C4850D" letter-spacing="12">2027</text>
+
+  <!-- Sottotitolo -->
+  <text x="600" y="450" text-anchor="middle" font-family="'Arial','Helvetica',sans-serif" font-size="16" font-weight="400" fill="#B8AC9A" letter-spacing="6" opacity="0.7">MILANO · APRILE–MAGGIO</text>
+
+  <!-- NOTE: sostituire con immagine reale prima del lancio -->
+</svg>

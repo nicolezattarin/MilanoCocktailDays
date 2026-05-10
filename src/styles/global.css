@@ -177,3 +177,56 @@ body {
   right: 0;
   border-width: 0 1px 1px 0;
 }
+
+/* ============================================================
+   Accessibilità
+   ============================================================ */
+
+/* Skip link — visibile su focus tastiera */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--color-oro);
+  color: var(--color-fumo);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Focus visibile su tutti gli elementi interattivi */
+:focus-visible {
+  outline: 2px solid var(--color-oro);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Print
+   ============================================================ */
+
+@media print {
+  .skip-link,
+  nav,
+  .ticker-outer,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+}

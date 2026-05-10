@@ -1,10 +1,4 @@
 ---
-/**
- * BaseLayout — layout radice MCW
- * SEO completo: title, description, canonical, OG, Twitter Card, JSON-LD Event.
- * Accessibilità: lang="it", skip link, main#main-content.
- * Performance: preconnect font, inline critical CSS above-fold.
- */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -12,144 +6,159 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  ogImage?: string;
   canonicalUrl?: string;
-  /** 'event' aggiunge JSON-LD schema.org/Event */
-  pageType?: 'event' | 'website';
+  ogImage?: string;
+  ogType?: string;
+  pageType?: 'event' | 'page';
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
   ogImage = '/og-default.jpg',
-  canonicalUrl = Astro.url.href,
-  pageType = 'website',
+  canonicalUrl,
+  ogType = 'website',
+  pageType = 'page',
+  noindex = false,
 } = Astro.props;
 
-const siteName  = 'Milan Cocktail Week';
 const siteUrl   = 'https://milancocktailweek.it';
-const fullTitle = `${title} | Milan Cocktail Week 2027`;
+const fullTitle = title.includes('Milan Cocktail Week')
+  ? title
+  : `${title} | Milan Cocktail Week 2027`;
+const canonical = canonicalUrl
+  ? (canonicalUrl.startsWith('http') ? canonicalUrl : `${siteUrl}${canonicalUrl}`)
+  : `${siteUrl}${Astro.url.pathname}`;
+const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
-/* Canonical: preferisce prop esplicita, fallback a Astro.url */
-const canonical = canonicalUrl.startsWith('http')
-  ? canonicalUrl
-  : `${siteUrl}${canonicalUrl}`;
-
-/* OG image: URL assoluto richiesto da Facebook/Twitter */
-const ogImageAbsolute = ogImage.startsWith('http')
-  ? ogImage
-  : `${siteUrl}${ogImage}`;
-
-/* JSON-LD Event — incluso solo se pageType === 'event' */
-const jsonLd = {
+const jsonLdEvent = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'Milan Cocktail Week 2027',
-  description: 'La prima settimana dedicata alla cultura del cocktail a Milano.',
+  alternateName: 'MCW 2027',
+  description: 'La prima settimana dedicata alla cultura del cocktail a Milano. 10 serate, i migliori bar della città, cocktail signature esclusivi.',
   startDate: '2027-04-01',
   endDate: '2027-05-31',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  image: `${siteUrl}/og-default.jpg`,
+  url: siteUrl,
   location: {
     '@type': 'City',
     name: 'Milano',
-    addressCountry: 'IT',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Milano',
+      addressRegion: 'MI',
+      addressCountry: 'IT',
+    },
   },
   organizer: {
     '@type': 'Organization',
     name: 'Milan Cocktail Week',
     url: siteUrl,
   },
-  image: ogImageAbsolute,
+  offers: {
+    '@type': 'Offer',
+    name: 'Pass Festival',
+    availability: 'https://schema.org/InStock',
+    validFrom: '2026-01-01',
+    url: `${siteUrl}/contatti`,
+  },
+};
+
+const jsonLdOrg = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Milan Cocktail Week',
   url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  sameAs: [
+    'https://www.instagram.com/milancocktailweek',
+    'https://www.linkedin.com/company/milancocktailweek',
+  ],
 };
 ---
 
 <!doctype html>
 <html lang="it">
   <head>
-    <meta charset="UTF-8" />
+    <!-- 1. CHARSET + VIEWPORT -->
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#1A1410" />
 
-    <!-- Titolo e description -->
-    <title>{fullTitle}</title>
-    <meta name="description" content={description} />
-
-    <!-- Canonical -->
-    <link rel="canonical" href={canonical} />
-
-    <!-- Open Graph -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:locale"      content="it_IT" />
-    <meta property="og:site_name"   content={siteName} />
-    <meta property="og:title"       content={fullTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image"       content={ogImageAbsolute} />
-    <meta property="og:url"         content={canonical} />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={fullTitle} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={ogImageAbsolute} />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-
-    <!-- Google Fonts: preconnect per ridurre latenza -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Solo pesi necessari: Bodoni 700+900 + italic · PJS 400+500+700 -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
-    />
-
-    <!-- CSS critico inline: evita FOUC sul body above-the-fold -->
+    <!-- 2. CRITICAL INLINE CSS: prevent FOUC -->
     <style>
-      body { background: #1A1410; color: #B8AC9A; }
-      .skip-link {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 9999;
-        padding: 12px 20px;
-        background: #C4850D;
-        color: #1A1410;
-        font-weight: 700;
-        text-decoration: none;
-        font-size: 0.875rem;
-        transform: translateY(-100%);
-        transition: transform 0.2s ease;
-      }
-      .skip-link:focus {
-        transform: translateY(0);
-      }
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth}
+      body{background:#1A1410;color:#B8AC9A;font-family:Arial,sans-serif}
+      .skip-link{position:absolute;top:-100%;left:1rem;background:#C4850D;color:#1A1410;padding:.5rem 1rem;font-weight:700;font-size:.875rem;text-decoration:none;z-index:9999;transition:top .2s}
+      .skip-link:focus{top:1rem}
     </style>
 
-    <!-- JSON-LD Event: solo su pagine evento -->
-    {pageType === 'event' && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    )}
+    <!-- 3. PRECONNECT FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Slot per script aggiuntivi (GTM, analytics) -->
+    <!-- 4. GOOGLE FONTS — solo pesi necessari, opsz axis -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,700;1,6..96,900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+    />
+
+    <!-- 5. TITLE + META BASE -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Milan Cocktail Week" />
+    <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- 6. CANONICAL -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- 7. OPEN GRAPH -->
+    <meta property="og:site_name" content="Milan Cocktail Week" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="it_IT" />
+
+    <!-- 8. TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <!-- 9. FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- 10. JSON-LD — condizionale su pageType -->
+    {pageType === 'event'
+      ? <script type="application/ld+json" set:html={JSON.stringify(jsonLdEvent)} />
+      : <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
+    }
+
+    <!-- 11. GTM placeholder -->
+    <!-- GTM: inserire snippet GTM qui -->
     <slot name="head-scripts" />
   </head>
 
   <body>
-    <!-- Skip link: accessibilità tastiera, visibile su focus -->
-    <a href="#main-content" class="skip-link">
-      Vai al contenuto principale
-    </a>
-
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
     <Header />
-
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
-
     <Footer />
+    <slot name="body-scripts" />
   </body>
 </html>
