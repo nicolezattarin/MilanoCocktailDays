@@ -1,0 +1,565 @@
+---
+/**
+ * Festival — pagina descrittiva dell'evento MCW
+ * Struttura: Hero · Cos'è MCW · Numeri · Come funziona · Quartieri · CTA
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { n: 'TBA',   l: 'Bar' },
+  { n: '10',    l: 'Serate' },
+  { n: '30+',   l: 'Bartender' },
+  { n: 'TBA',   l: 'Cocktail Signature' },
+  { n: '1.000', l: 'Posti' },
+  { n: '1ª',    l: 'Edizione' },
+];
+
+const steps = [
+  { n: '01', title: 'ISCRIVITI', desc: 'Acquista il Pass Festival o il Pass VIP sul sito ufficiale. Il pass ti dà accesso a tutte e 10 le serate.' },
+  { n: '02', title: 'SCOPRI BAR E COCKTAIL', desc: 'Ogni bar partner crea un cocktail signature esclusivo per MCW. Sfoglia il catalogo e scegli le tue serate.' },
+  { n: '03', title: 'PRENOTA E DEGUSTA', desc: 'Prenota il tuo slot nel bar preferito e degusta il cocktail signature al prezzo speciale MCW.' },
+  { n: '04', title: 'COLLEZIONA ESPERIENZE', desc: 'Esplora quartieri diversi, conosci nuovi bartender, colleziona 10 esperienze uniche in 10 serate consecutive.' },
+];
+
+const quartieri = [
+  { nome: 'Navigli', desc: "L'anima notturna di Milano. Canali, bar storici e l'aperitivo più autentico della città." },
+  { nome: 'Brera', desc: 'Eleganza e cultura nel cuore di Milano. Vie lastricate, gallerie d\'arte e cocktail bar raffinati.' },
+  { nome: 'Isola', desc: 'Il quartiere creativo in evoluzione. Design, musica e una scena cocktail in continua crescita.' },
+  { nome: 'Porta Romana', desc: 'La nuova frontiera del cocktail milanese. Locale ricercati, carta dei drink di alto livello.' },
+];
+---
+
+<BaseLayout
+  title="Il Festival"
+  description="Milan Cocktail Week: la prima settimana dedicata alla cultura del cocktail a Milano. 10 serate, i migliori bar, cocktail signature esclusivi. Aprile–Maggio 2027."
+>
+
+  <!-- ======================================================
+       HERO — dark, compatta
+       ====================================================== -->
+  <section class="s-hero mcw-dot-grid" aria-label="Il Festival MCW">
+    <div class="wrap">
+      <p class="overline">Milano · Aprile–Maggio 2027</p>
+      <div class="h1-wrap mcw-bracket">
+        <h1 class="page-h1">Il Festival</h1>
+      </div>
+      <p class="hero-sub">
+        Milano <span aria-hidden="true">✶</span> Aprile–Maggio 2027
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       COS'È MCW — chiara, 2 colonne
+       ====================================================== -->
+  <section class="s-what" aria-labelledby="what-heading">
+    <div class="wrap what-inner">
+      <div class="what-text">
+        <div class="filetto-wrap mcw-filetto-doppio"></div>
+        <h2 id="what-heading" class="section-h2">
+          Cos'è Milan<br />Cocktail Week
+        </h2>
+        <p class="body-text">
+          Milan Cocktail Week è la prima settimana dedicata alla cultura del cocktail a Milano.
+          Per 10 serate, i migliori bar della città aprono le porte con cocktail signature
+          creati appositamente per l'evento: ricette esclusive, ingredienti selezionati,
+          bartender d'eccezione.
+        </p>
+        <p class="body-text">
+          Non è una semplice degustazione. È un percorso tra i quartieri di Milano,
+          un'esplorazione della scena cocktail italiana attraverso i suoi protagonisti.
+          Ogni serata è un'esperienza autonoma. Insieme, sono qualcosa di unico.
+        </p>
+        <a href="/contatti" class="btn btn--dark">Iscriviti ora →</a>
+      </div>
+      <!-- Placeholder immagine 4/3 -->
+      <div class="what-img" aria-hidden="true">
+        <div class="img-placeholder">
+          <span class="img-star">✶</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       NUMERI — dark, 6 colonne
+       ====================================================== -->
+  <section class="s-numbers" aria-labelledby="numbers-heading">
+    <div class="wrap">
+      <div class="numbers-inner mcw-filetto">
+        <h2 id="numbers-heading" class="sr-only">I numeri del festival</h2>
+        <div class="numbers-grid">
+          {stats.map(({ n, l }) => (
+            <div class="stat-col">
+              <span class="stat-n">{n}</span>
+              <span class="stat-l">{l}</span>
+            </div>
+          ))}
+        </div>
+        <div class="numbers-bottom"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       COME FUNZIONA — chiara, 4 step con testo esteso
+       ====================================================== -->
+  <section class="s-how" aria-labelledby="how-heading">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="overline--dark">Come funziona</p>
+        <h2 id="how-heading" class="section-h2">
+          Il tuo percorso<br />tra i bar di Milano
+        </h2>
+      </div>
+      <ol class="step-list" role="list">
+        {steps.map(({ n, title, desc }) => (
+          <li class="step">
+            <div class="step-n-wrap">
+              <span class="step-n" aria-hidden="true">{n}</span>
+            </div>
+            <div class="step-body">
+              <h3 class="step-title">{title}</h3>
+              <p class="step-desc">{desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       QUARTIERI — dark
+       ====================================================== -->
+  <section class="s-quartieri" aria-labelledby="quartieri-heading">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="overline--light">Il festival si svolge in tutta Milano</p>
+        <h2 id="quartieri-heading" class="section-h2--light">I Quartieri</h2>
+      </div>
+      <div class="quartieri-grid">
+        {quartieri.map(({ nome, desc }) => (
+          <article class="quartiere-card">
+            <div class="quartiere-top mcw-filetto">
+              <h3 class="quartiere-nome">{nome}</h3>
+            </div>
+            <p class="quartiere-desc">{desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       CTA — borgogna
+       ====================================================== -->
+  <section class="s-cta mcw-dot-grid" aria-labelledby="cta-heading">
+    <div class="wrap cta-inner">
+      <span class="cta-star" aria-hidden="true">✶</span>
+      <h2 id="cta-heading" class="cta-title">
+        Posti limitati.<br />Iscriviti ora.
+      </h2>
+      <a href="/contatti" class="btn btn--avorio">Iscriviti →</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; margin: -1px;
+  }
+
+  /* ---- Tipografia --------------------------------------- */
+  .overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-oro);
+    margin: 0 0 var(--space-xs);
+    opacity: 0.8;
+  }
+
+  .overline--dark {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-grafite);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .overline--light {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-oro);
+    opacity: 0.65;
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-fumo);
+    line-height: 1.05;
+  }
+
+  .section-h2--light {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .body-text {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-grafite);
+    line-height: 1.8;
+    margin: 0 0 var(--space-sm);
+  }
+
+  /* ---- Bottoni ------------------------------------------ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn--dark {
+    background-color: var(--color-fumo);
+    color: var(--color-avorio);
+    border: 1px solid var(--color-fumo);
+    margin-top: var(--space-sm);
+  }
+
+  .btn--dark:hover {
+    background-color: transparent;
+    color: var(--color-fumo);
+  }
+
+  .btn--avorio {
+    background-color: var(--color-avorio);
+    color: var(--color-borgogna);
+    border: 1px solid var(--color-avorio);
+  }
+
+  .btn--avorio:hover {
+    background-color: transparent;
+    color: var(--color-avorio);
+  }
+
+  /* ---- HERO --------------------------------------------- */
+  .s-hero {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    min-height: 50svh;
+    display: flex;
+    align-items: center;
+  }
+
+  .page-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .h1-wrap {
+    padding: var(--space-sm) var(--space-md);
+    margin: var(--space-xs) 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--color-pietra);
+    letter-spacing: 0.1em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .hero-sub span {
+    color: var(--color-oro);
+    font-size: 0.45rem;
+    line-height: 1.8;
+  }
+
+  /* ---- COS'È MCW --------------------------------------- */
+  .s-what {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .what-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .what-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .filetto-wrap {
+    width: 60px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .what-img {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-lino);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img-star {
+    color: var(--color-oro);
+    font-size: 3rem;
+    opacity: 0.25;
+  }
+
+  /* ---- NUMERI ------------------------------------------- */
+  .s-numbers {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .numbers-inner {
+    padding-top: var(--space-md);
+  }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-sm);
+    padding: var(--space-lg) 0;
+  }
+
+  .stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stat-n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    color: var(--color-oro);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-l {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-pietra);
+  }
+
+  .numbers-bottom {
+    border-top: var(--border-hairline);
+  }
+
+  /* ---- COME FUNZIONA ------------------------------------ */
+  .s-how {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md) var(--space-xl);
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 0.5px solid var(--color-grafite);
+    border-top-color: color-mix(in srgb, var(--color-grafite) 30%, transparent);
+  }
+
+  .step-n-wrap {
+    flex-shrink: 0;
+  }
+
+  .step-n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: color-mix(in srgb, var(--color-oro) 50%, transparent);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    display: block;
+    width: 70px;
+  }
+
+  .step-body {
+    padding-top: 4px;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-fumo);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-xs);
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-grafite);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---- QUARTIERI --------------------------------------- */
+  .s-quartieri {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .quartieri-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .quartiere-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .quartiere-top {
+    padding-top: var(--space-sm);
+  }
+
+  .quartiere-nome {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h2);
+    color: var(--color-avorio);
+    line-height: 1.05;
+    margin: var(--space-xs) 0 0;
+  }
+
+  .quartiere-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pietra);
+    line-height: 1.65;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  /* ---- CTA --------------------------------------------- */
+  .s-cta {
+    background-color: var(--color-borgogna);
+    padding: var(--section-py) 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .cta-star {
+    color: var(--color-oro);
+    font-size: 1.8rem;
+    opacity: 0.5;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+  }
+
+  /* ---- RESPONSIVE -------------------------------------- */
+  @media (max-width: 768px) {
+    .what-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .numbers-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .step-list {
+      grid-template-columns: 1fr;
+    }
+
+    .quartieri-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .numbers-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quartieri-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

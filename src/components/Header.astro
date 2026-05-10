@@ -1,58 +1,67 @@
 ---
 /**
  * Header — navigazione principale MCW
- * Desktop: nav orizzontale · Mobile: hamburger CSS-only (no JS)
+ * Desktop: logo · nav links · CTA "ISCRIVITI"
+ * Mobile: hamburger CSS-only, nessun JS
  */
 
 const navLinks = [
-  { href: '/',           label: 'Home' },
-  { href: '/programma',  label: 'Programma' },
-  { href: '/speakers',   label: 'Speakers' },
-  { href: '/location',   label: 'Location' },
-  { href: '/contatti',   label: 'Contatti' },
+  { href: '/festival',  label: 'Festival' },
+  { href: '/bars',      label: 'Bars' },
+  { href: '/programma', label: 'Programma' },
+  { href: '/contatti',  label: 'Contatti' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header mcw-filetto">
-  <!-- Checkbox nascosta per menu mobile CSS-only -->
+<header class="site-header">
+  <!-- Checkbox nascosta: gestisce apertura menu mobile via CSS -->
   <input type="checkbox" id="menu-toggle" class="menu-toggle-input" aria-hidden="true" />
 
   <div class="header-inner">
     <!-- Logo -->
     <a href="/" class="site-logo" aria-label="Milan Cocktail Week — torna alla home">
-      <span class="logo-mcw">MCW</span><span class="logo-star" aria-hidden="true">✶</span>
+      <span class="logo-text">MCW</span><span class="logo-star" aria-hidden="true">✶</span>
     </a>
 
-    <!-- Hamburger label (mobile) -->
-    <label for="menu-toggle" class="hamburger" aria-label="Apri menu di navigazione">
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
+    <!-- Hamburger (visibile solo mobile) -->
+    <label for="menu-toggle" class="hamburger" aria-label="Apri il menu di navigazione">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </label>
 
-    <!-- Navigazione -->
+    <!-- Nav principale + CTA -->
     <nav class="site-nav" aria-label="Navigazione principale">
       <ul class="nav-list" role="list">
         {navLinks.map(({ href, label }) => (
           <li class="nav-item">
             <a
               href={href}
-              class:list={['nav-link', { 'nav-link--active': currentPath === href }]}
+              class:list={['nav-link', { 'is-active': currentPath === href || currentPath.startsWith(href + '/') }]}
               aria-current={currentPath === href ? 'page' : undefined}
             >
               {label}
             </a>
           </li>
         ))}
+        <!-- CTA visibile nel menu mobile -->
+        <li class="nav-item nav-item--cta-mobile">
+          <a href="/contatti" class="nav-cta-mobile">Iscriviti</a>
+        </li>
       </ul>
     </nav>
+
+    <!-- CTA bottone desktop -->
+    <a href="/contatti" class="nav-cta" aria-label="Iscriviti a Milan Cocktail Week">
+      Iscriviti
+    </a>
   </div>
 </header>
 
 <style>
-  /* ---- Header container ---------------------------------- */
+  /* ---- Header ---------------------------------------------- */
   .site-header {
     position: sticky;
     top: 0;
@@ -62,58 +71,58 @@ const currentPath = Astro.url.pathname;
   }
 
   .header-inner {
-    max-width: 1200px;
+    max-width: var(--container);
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 2rem;
     height: 64px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-md);
   }
 
-  /* ---- Logo ---------------------------------------------- */
+  /* ---- Logo ------------------------------------------------ */
   .site-logo {
     display: flex;
     align-items: baseline;
-    gap: 4px;
+    gap: 3px;
     text-decoration: none;
-    line-height: 1;
+    margin-right: auto;
   }
 
-  .logo-mcw {
+  .logo-text {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--color-avorio);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
 
   .logo-star {
     color: var(--color-oro);
-    font-size: 1rem;
-    line-height: 1;
+    font-size: 0.9rem;
   }
 
-  /* ---- Navigazione desktop ------------------------------- */
+  /* ---- Nav links ------------------------------------------- */
   .nav-list {
     display: flex;
     align-items: center;
     gap: var(--space-md);
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   .nav-link {
     font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 500;
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--color-pietra);
     text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
     position: relative;
     padding-bottom: 2px;
+    transition: color 0.2s ease;
   }
 
   .nav-link::after {
@@ -127,23 +136,38 @@ const currentPath = Astro.url.pathname;
     transition: width 0.25s ease;
   }
 
-  .nav-link:hover {
-    color: var(--color-avorio);
-  }
-
+  .nav-link:hover { color: var(--color-avorio); }
   .nav-link:hover::after,
-  .nav-link--active::after {
-    width: 100%;
+  .nav-link.is-active::after { width: 100%; }
+  .nav-link.is-active { color: var(--color-oro); }
+
+  /* ---- CTA desktop ----------------------------------------- */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-fumo);
+    background-color: var(--color-oro);
+    border: 1px solid var(--color-oro);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .nav-link--active {
+  .nav-cta:hover {
+    background-color: transparent;
     color: var(--color-oro);
   }
 
-  /* ---- Hamburger (solo mobile) --------------------------- */
-  .menu-toggle-input {
-    display: none;
-  }
+  /* ---- Hamburger ------------------------------------------- */
+  .menu-toggle-input { display: none; }
 
   .hamburger {
     display: none;
@@ -154,9 +178,10 @@ const currentPath = Astro.url.pathname;
     height: 32px;
     cursor: pointer;
     padding: 4px;
+    flex-shrink: 0;
   }
 
-  .hamburger-bar {
+  .bar {
     display: block;
     width: 100%;
     height: 1px;
@@ -165,22 +190,31 @@ const currentPath = Astro.url.pathname;
     transform-origin: center;
   }
 
-  /* Animazione hamburger → X quando menu aperto */
-  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+  /* Animazione hamburger → X */
+  .menu-toggle-input:checked ~ .header-inner .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle-input:checked ~ .header-inner .bar:nth-child(2) { opacity: 0; }
+  .menu-toggle-input:checked ~ .header-inner .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* CTA mobile nascosto in desktop */
+  .nav-item--cta-mobile { display: none; }
+  .nav-cta-mobile {
+    display: inline-flex;
+    padding: 8px 20px;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-fumo);
+    background-color: var(--color-oro);
+    border-radius: var(--radius-sm);
   }
 
-  /* ---- Responsive mobile --------------------------------- */
+  /* ---- Mobile ≤ 768px ------------------------------------- */
   @media (max-width: 768px) {
-    .hamburger {
-      display: flex;
-    }
+    .hamburger { display: flex; }
+    .nav-cta   { display: none; }
 
     .site-nav {
       position: absolute;
@@ -194,7 +228,6 @@ const currentPath = Astro.url.pathname;
       transition: max-height 0.3s ease;
     }
 
-    /* Menu aperto via checkbox */
     .menu-toggle-input:checked ~ .header-inner .site-nav {
       max-height: 400px;
     }
@@ -203,7 +236,7 @@ const currentPath = Astro.url.pathname;
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      padding: var(--space-sm) var(--space-md);
+      padding: var(--space-sm) 2rem;
     }
 
     .nav-item {
@@ -211,9 +244,8 @@ const currentPath = Astro.url.pathname;
       border-bottom: var(--border-hairline);
     }
 
-    .nav-item:last-child {
-      border-bottom: none;
-    }
+    .nav-item:last-child { border-bottom: none; }
+    .nav-item--cta-mobile { display: block; padding: var(--space-sm) 0; }
 
     .nav-link {
       display: block;

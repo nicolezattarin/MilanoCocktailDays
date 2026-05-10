@@ -67,6 +67,10 @@ select {
   --text-small: 0.875rem;
   --text-label: 0.75rem;                      /* usare con uppercase + tracking */
 
+  /* --- Layout ------------------------------------------- */
+  --container: 1200px;
+  --section-py: clamp(4rem, 8vw, 8rem);
+
   /* --- Spaziatura --------------------------------------- */
   --space-xs: 0.5rem;
   --space-sm: 1rem;

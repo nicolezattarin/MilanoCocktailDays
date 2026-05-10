@@ -1,177 +1,294 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+/* Dati ticker partner — duplicati nel template per scroll infinito CSS */
+const partners = [
+  'Tanqueray', 'Campari', 'Amaro Montenegro',
+  'Fever-Tree', 'Martini', "Hendrick's",
+  'Bulleit', 'Aperol', 'Cynar', 'Santa Teresa',
+];
+
+/* Testimonial */
+const testimonials = [
+  { quote: "Un'esperienza unica nel suo genere. Ho scoperto cocktail bar di Milano che non conoscevo affatto.", name: 'Giulia M.', age: 28, initials: 'GM' },
+  { quote: "Finalmente un evento che unisce qualità, socialità e la scoperta autentica della città.", name: 'Marco T.', age: 34, initials: 'MT' },
+  { quote: "I cocktail signature erano tutti eccezionali. Il format bar-hopping è perfetto.", name: 'Sofia R.', age: 26, initials: 'SR' },
+  { quote: "La qualità dei bartender e dei drink era da vera capitale europea del cocktail.", name: 'Chiara V.', age: 29, initials: 'CV' },
+  { quote: "Un'idea brillante per valorizzare la scena cocktail milanese. Assolutamente consigliato.", name: 'Luca F.', age: 35, initials: 'LF' },
+  { quote: "Dieci serate, dieci bar diversi: ogni sera era una sorpresa. Non vedo l'ora della prossima edizione.", name: 'Andrea B.', age: 31, initials: 'AB' },
+];
+
+/* Per chi è MCW — 4 card */
+const audience = [
+  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCW, degustazioni guidate e accesso ai migliori bar della città.' },
+  { tag: 'Amici', title: 'SERATE TRA AMICI', desc: 'Il perfetto pretesto per esplorare Milano by night: 10 serate, 10 bar diversi, un pass che apre tutte le porte.' },
+  { tag: 'Date', title: 'DATE NIGHT', desc: 'Locali selezionati con cura, atmosfera unica, cocktail d\'autore. La serata perfetta per stupire.' },
+  { tag: 'Esploratori', title: 'ESPLORATORI', desc: 'Navigli · Brera · Isola · Porta Romana. Scopri angoli di Milano che non sapevi di amare.' },
+];
+
+/* Come funziona — 4 step */
+const steps = [
+  { n: '01', title: 'ISCRIVITI', desc: 'Acquista il Pass Festival e accedi a tutte le serate.' },
+  { n: '02', title: 'SCOPRI BAR E COCKTAIL', desc: 'Ogni bar crea un cocktail signature esclusivo per MCW.' },
+  { n: '03', title: 'PRENOTA E DEGUSTA', desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCW.' },
+  { n: '04', title: 'COLLEZIONA ESPERIENZE', desc: '10 serate, 10 bar diversi: costruisci il tuo percorso tra i quartieri di Milano.' },
+];
 ---
 
 <BaseLayout
   title="Milan Cocktail Week"
-  description="La settimana dedicata alla cocktail culture milanese. Masterclass, distillati, bartender d'eccellenza. Milano, Aprile–Maggio 2027."
+  description="La prima Milan Cocktail Week: 10 serate nei migliori cocktail bar di Milano. Aprile–Maggio 2027. Iscriviti ora."
 >
-  <!-- Hero section -->
-  <section class="hero mcw-dot-grid">
-    <div class="hero-inner mcw-bracket">
-      <!-- Filetto decorativo sopra il titolo -->
-      <div class="hero-filetto mcw-filetto-doppio"></div>
 
-      <!-- Etichetta edizione -->
-      <p class="hero-label">Edizione 2027</p>
+  <!-- ======================================================
+       S1 · HERO — full viewport, dark, dot-grid
+       ====================================================== -->
+  <section class="s-hero mcw-dot-grid" aria-label="Milan Cocktail Week — Prima Edizione">
+    <div class="wrap hero-inner">
+      <p class="hero-overline">Milano · Aprile–Maggio 2027</p>
 
-      <!-- Titolo principale -->
-      <h1 class="hero-title">
-        Milan<br />
-        <em>Cocktail</em><br />
-        Week
-      </h1>
+      <div class="hero-h1-wrap mcw-bracket">
+        <h1 class="hero-h1">
+          La Prima<br /><em>Milan Cocktail</em><br />Week.
+        </h1>
+      </div>
 
-      <!-- Stella decorativa -->
-      <span class="hero-star" aria-hidden="true">✶</span>
+      <p class="hero-sub">Prima edizione · Iscrizioni aperte</p>
 
-      <!-- Tagline -->
-      <p class="hero-tagline">
-        La settimana che trasforma Milano nella capitale<br />
-        della cocktail culture italiana.
-      </p>
-
-      <!-- Dettagli evento -->
-      <p class="hero-meta">
-        <span>Milano</span>
-        <span class="meta-sep" aria-hidden="true">✶</span>
-        <span>25 Aprile — 4 Maggio 2027</span>
-      </p>
-
-      <!-- CTA -->
       <div class="hero-cta">
-        <a href="/programma" class="btn btn--primary">
-          Scopri il Programma
-        </a>
-        <a href="/contatti" class="btn btn--ghost">
-          Rimani Aggiornato
-        </a>
+        <a href="/contatti" class="btn btn--primary">Iscriviti ora</a>
+        <a href="/festival" class="btn btn--ghost">Scopri il festival →</a>
       </div>
     </div>
   </section>
+
+  <!-- ======================================================
+       S2 · TICKER PARTNER — CSS animation, no JS
+       ====================================================== -->
+  <div class="ticker-outer" aria-hidden="true" role="presentation">
+    <div class="ticker-track">
+      <!-- Prima copia -->
+      {partners.map((p) => (
+        <>
+          <span class="ticker-name">{p}</span>
+          <span class="ticker-sep">✶</span>
+        </>
+      ))}
+      <!-- Seconda copia identica: necessaria per loop senza JS -->
+      {partners.map((p) => (
+        <>
+          <span class="ticker-name">{p}</span>
+          <span class="ticker-sep">✶</span>
+        </>
+      ))}
+    </div>
+  </div>
+
+  <!-- ======================================================
+       S3 · STATISTICHE — dark, filetto sopra e sotto
+       ====================================================== -->
+  <section class="s-stats" aria-labelledby="stats-heading">
+    <div class="wrap">
+      <div class="stats-inner mcw-filetto">
+        <h2 id="stats-heading" class="sr-only">I numeri di MCW</h2>
+        <div class="stats-grid">
+          <div class="stat-col">
+            <span class="stat-n">TBA</span>
+            <span class="stat-l">Bar Partner</span>
+          </div>
+          <div class="stat-col">
+            <span class="stat-n">10</span>
+            <span class="stat-l">Serate</span>
+          </div>
+          <div class="stat-col">
+            <span class="stat-n">30<sup>+</sup></span>
+            <span class="stat-l">Bartender</span>
+          </div>
+          <div class="stat-col">
+            <span class="stat-n">1.000</span>
+            <span class="stat-l">Posti disponibili</span>
+          </div>
+        </div>
+        <div class="stats-bottom-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       S4 · PER CHI È MCW — chiara, avorio
+       ====================================================== -->
+  <section class="s-audience" aria-labelledby="audience-heading">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="section-overline">Per chi è MCW</p>
+        <h2 id="audience-heading" class="section-h2">Un festival<br />per tutti</h2>
+      </div>
+      <div class="audience-grid">
+        {audience.map(({ tag, title, desc }) => (
+          <article class="audience-card">
+            <!-- Placeholder immagine 16/9 -->
+            <div class="card-img-wrap">
+              <div class="card-img-placeholder" aria-hidden="true">
+                <span class="card-tag">{tag}</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{title}</h3>
+              <p class="card-desc">{desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       S5 · COME FUNZIONA — dark
+       Layout: mockup app sinistra, 4 step destra
+       ====================================================== -->
+  <section class="s-how" aria-labelledby="how-heading">
+    <div class="wrap how-inner">
+      <!-- Mockup app placeholder -->
+      <div class="app-mock" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header-bar"></div>
+            <div class="phone-card-lg"></div>
+            <div class="phone-card-row">
+              <div class="phone-card-sm"></div>
+              <div class="phone-card-sm"></div>
+            </div>
+            <div class="phone-card-lg phone-card-lg--xs"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="how-steps">
+        <p class="section-overline--light">Come funziona</p>
+        <h2 id="how-heading" class="section-h2--light">
+          Il tuo percorso<br />tra i cocktail bar di Milano
+        </h2>
+        <ol class="step-list" role="list">
+          {steps.map(({ n, title, desc }) => (
+            <li class="step">
+              <span class="step-n" aria-hidden="true">{n}</span>
+              <div class="step-body">
+                <h3 class="step-title">{title}</h3>
+                <p class="step-desc">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       S6 · BAR PARTECIPANTI PREVIEW — chiara, avorio
+       ====================================================== -->
+  <section class="s-bars" aria-labelledby="bars-heading">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="section-overline">I bar partecipanti</p>
+        <h2 id="bars-heading" class="section-h2">
+          I Bar<br />Partecipanti
+        </h2>
+        <p class="section-tba">TBA · I bar partner saranno annunciati presto</p>
+      </div>
+
+      <div class="bars-grid">
+        {[1, 2, 3, 4].map((i) => (
+          <article class="bar-card">
+            <div class="bar-img-wrap" aria-hidden="true">
+              <div class="bar-img-placeholder">
+                <span class="bar-star">✶</span>
+              </div>
+            </div>
+            <div class="bar-info">
+              <p class="bar-name">Bar Partner MCW</p>
+              <p class="bar-city">Milano</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="bars-cta">
+        <a href="/bars" class="link-more">Vedi tutti →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       S7 · TESTIMONIAL — dark, CSS scroll-snap
+       ====================================================== -->
+  <section class="s-testimonials" aria-labelledby="test-heading">
+    <div class="wrap">
+      <p class="section-overline--light">Cosa dicono</p>
+      <h2 id="test-heading" class="section-h2--light">
+        Voci dalla<br />prima edizione <span aria-hidden="true">✶</span>
+      </h2>
+    </div>
+    <div class="test-track-outer">
+      <div class="test-track" role="list">
+        {testimonials.map(({ quote, name, age, initials }) => (
+          <article class="test-card" role="listitem">
+            <blockquote class="test-quote">"{quote}"</blockquote>
+            <div class="test-author">
+              <div class="test-avatar" aria-hidden="true">{initials}</div>
+              <div>
+                <p class="test-name">{name}</p>
+                <p class="test-age">{age} anni</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       S8 · CTA FINALE — borgogna, dot-grid
+       ====================================================== -->
+  <section class="s-final-cta mcw-dot-grid" aria-labelledby="cta-heading">
+    <div class="wrap cta-inner">
+      <h2 id="cta-heading" class="cta-title">
+        Posti limitati.<br />Iscriviti ora.
+      </h2>
+      <a href="/contatti" class="btn btn--cta-avorio">Iscriviti →</a>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
-  /* ---- Hero -------------------------------------------- */
-  .hero {
-    min-height: calc(100svh - 64px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl) var(--space-md);
-    position: relative;
-    overflow: hidden;
+  /* ---- Utilities ----------------------------------------- */
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  /* Sfumatura radiale scura al centro per leggibilità */
-  .hero::before {
-    content: '';
+  /* Screen-reader only */
+  .sr-only {
     position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 60% 70% at 50% 50%,
-      transparent 0%,
-      color-mix(in srgb, var(--color-fumo) 40%, transparent) 100%
-    );
-    pointer-events: none;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    width: 100%;
-    padding: var(--space-lg);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  /* Filetto doppio sopra il titolo */
-  .hero-filetto {
-    width: 80px;
-    margin-bottom: var(--space-sm);
-  }
-
-  /* Etichetta edizione */
-  .hero-label {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-oro);
-  }
-
-  /* Titolo hero in Bodoni Moda */
-  .hero-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-hero);
-    line-height: 0.95;
-    color: var(--color-avorio);
-    letter-spacing: -0.01em;
-    margin: var(--space-sm) 0;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--color-oro);
-  }
-
-  /* Stella separatrice */
-  .hero-star {
-    display: block;
-    color: var(--color-oro);
-    font-size: 1.5rem;
-    opacity: 0.7;
-    margin: var(--space-xs) 0;
-  }
-
-  /* Tagline */
-  .hero-tagline {
-    font-size: var(--text-h3);
-    color: var(--color-pietra);
-    line-height: 1.5;
-    max-width: 560px;
-  }
-
-  /* Meta dati evento */
-  .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-pietra);
-    margin: var(--space-xs) 0;
-    opacity: 0.7;
-  }
-
-  .meta-sep {
-    color: var(--color-oro);
-    font-size: 0.6rem;
-  }
-
-  /* ---- CTA buttons -------------------------------------- */
-  .hero-cta {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: var(--space-sm);
-  }
-
+  /* ---- Bottoni ------------------------------------------- */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.875rem var(--space-md);
+    padding: 0.875rem 2rem;
     font-family: var(--font-body);
     font-size: var(--text-small);
     font-weight: 700;
@@ -180,10 +297,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-decoration: none;
     border-radius: var(--radius-sm);
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    cursor: pointer;
   }
 
-  /* Bottone primario: sfondo oro */
   .btn--primary {
     background-color: var(--color-oro);
     color: var(--color-fumo);
@@ -191,11 +306,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .btn--primary:hover {
-    background-color: color-mix(in srgb, var(--color-oro) 85%, white);
-    border-color: color-mix(in srgb, var(--color-oro) 85%, white);
+    background-color: transparent;
+    color: var(--color-oro);
   }
 
-  /* Bottone ghost: trasparente con bordo oro */
   .btn--ghost {
     background-color: transparent;
     color: var(--color-pietra);
@@ -207,14 +321,643 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border-color: var(--color-avorio);
   }
 
-  /* ---- Responsive -------------------------------------- */
-  @media (max-width: 600px) {
-    .hero-inner {
-      padding: var(--space-md);
+  .btn--cta-avorio {
+    background-color: var(--color-avorio);
+    color: var(--color-borgogna);
+    border: 1px solid var(--color-avorio);
+    font-size: var(--text-body);
+  }
+
+  .btn--cta-avorio:hover {
+    background-color: transparent;
+    color: var(--color-avorio);
+  }
+
+  /* ---- Tipografia comune sezioni ------------------------- */
+  .section-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-grafite);
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-overline--light {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-oro);
+    opacity: 0.7;
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-fumo);
+    line-height: 1.05;
+  }
+
+  .section-h2--light {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+  }
+
+  .section-h2--light span {
+    color: var(--color-oro);
+    font-size: 0.55em;
+    vertical-align: middle;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* ---- S1 · HERO ----------------------------------------- */
+  .s-hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-py) 0;
+    background-color: var(--color-fumo);
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-oro);
+    margin: 0;
+  }
+
+  .hero-h1-wrap {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-avorio);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--color-oro);
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--color-pietra);
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+
+  /* ---- S2 · TICKER --------------------------------------- */
+  .ticker-outer {
+    overflow: hidden;
+    background-color: var(--color-fumo);
+    border-top: var(--border-hairline);
+    border-bottom: var(--border-hairline);
+    padding: var(--space-sm) 0;
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: ticker-scroll 50s linear infinite;
+    padding-right: 2.5rem; /* gap finale prima del loop */
+  }
+
+  .ticker-name {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: color-mix(in srgb, var(--color-oro) 60%, transparent);
+  }
+
+  .ticker-sep {
+    color: color-mix(in srgb, var(--color-oro) 30%, transparent);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  /* ---- S3 · STATISTICHE ---------------------------------- */
+  .s-stats {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .stats-inner {
+    padding-top: var(--space-md);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+  }
+
+  .stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+  }
+
+  .stat-n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    color: var(--color-oro);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-n sup {
+    font-size: 0.55em;
+    vertical-align: super;
+  }
+
+  .stat-l {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-pietra);
+  }
+
+  /* Linea dorata sotto le statistiche */
+  .stats-bottom-line {
+    border-top: var(--border-hairline);
+  }
+
+  /* ---- S4 · AUDIENCE ------------------------------------- */
+  .s-audience {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    align-items: start;
+  }
+
+  .audience-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  /* Placeholder immagine 16/9 */
+  .card-img-wrap {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-lino);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-xs);
+  }
+
+  .card-tag {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-grafite);
+    background-color: var(--color-avorio);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-small);
+    color: var(--color-fumo);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-grafite);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---- S5 · COME FUNZIONA -------------------------------- */
+  .s-how {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .how-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  /* Mockup telefono stilizzato */
+  .app-mock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-frame {
+    width: 240px;
+    height: 480px;
+    border: 1.5px solid color-mix(in srgb, var(--color-oro) 30%, transparent);
+    border-radius: 28px;
+    background-color: var(--color-marmo);
+    padding: 16px 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 60px;
+    height: 8px;
+    background-color: color-mix(in srgb, var(--color-oro) 20%, transparent);
+    border-radius: 4px;
+    margin: 0 auto 6px;
+  }
+
+  .phone-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .phone-header-bar {
+    height: 24px;
+    background-color: color-mix(in srgb, var(--color-oro) 15%, transparent);
+    border-radius: var(--radius-sm);
+  }
+
+  .phone-card-lg {
+    flex: 1;
+    background-color: color-mix(in srgb, var(--color-borgogna) 40%, transparent);
+    border-radius: var(--radius-sm);
+    border: 0.5px solid color-mix(in srgb, var(--color-oro) 20%, transparent);
+  }
+
+  .phone-card-lg--xs {
+    flex: 0 0 40px;
+    background-color: color-mix(in srgb, var(--color-oro) 10%, transparent);
+  }
+
+  .phone-card-row {
+    display: flex;
+    gap: 8px;
+    height: 60px;
+  }
+
+  .phone-card-sm {
+    flex: 1;
+    background-color: color-mix(in srgb, var(--color-grafite) 60%, transparent);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Steps */
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .how-steps .section-h2--light {
+    margin-bottom: var(--space-md);
+  }
+
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: var(--border-hairline);
+  }
+
+  .step-n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    color: color-mix(in srgb, var(--color-oro) 60%, transparent);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px;
+    letter-spacing: -0.03em;
+  }
+
+  .step-body {
+    padding-top: 6px;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-avorio);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pietra);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---- S6 · BAR PREVIEW ---------------------------------- */
+  .s-bars {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .section-tba {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-grafite);
+    margin-top: var(--space-xs);
+    opacity: 0.7;
+  }
+
+  .bars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .bar-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .bar-img-wrap {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .bar-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-lino);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bar-star {
+    color: var(--color-oro);
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+
+  .bar-info {
+    padding: var(--space-xs) 0;
+  }
+
+  .bar-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-fumo);
+    margin: 0 0 2px;
+  }
+
+  .bar-city {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--color-oro) 80%, transparent);
+    margin: 0;
+  }
+
+  .bars-cta {
+    margin-top: var(--space-lg);
+    text-align: center;
+  }
+
+  .link-more {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-fumo);
+    text-decoration: none;
+    border-bottom: var(--border-hairline);
+    border-bottom-color: var(--color-fumo);
+    padding-bottom: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .link-more:hover { opacity: 0.6; }
+
+  /* ---- S7 · TESTIMONIAL ---------------------------------- */
+  .s-testimonials {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    overflow: hidden;
+  }
+
+  .s-testimonials .wrap {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Scroll orizzontale con snap CSS — nessun JS */
+  .test-track-outer {
+    overflow-x: auto;
+    padding: 0 2rem var(--space-sm);
+    scrollbar-width: none;
+  }
+
+  .test-track-outer::-webkit-scrollbar { display: none; }
+
+  .test-track {
+    display: flex;
+    gap: var(--space-md);
+    width: max-content;
+    scroll-snap-type: x mandatory;
+  }
+
+  .test-card {
+    scroll-snap-align: start;
+    flex: 0 0 360px;
+    background-color: var(--color-marmo);
+    border: var(--border-hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .test-quote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: var(--text-body);
+    color: var(--color-pietra);
+    line-height: 1.7;
+    quotes: none;
+    margin: 0;
+  }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .test-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-borgogna);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--color-avorio);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .test-name {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    color: var(--color-avorio);
+    margin: 0 0 2px;
+  }
+
+  .test-age {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    color: var(--color-pietra);
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  /* ---- S8 · CTA FINALE ----------------------------------- */
+  .s-final-cta {
+    background-color: var(--color-borgogna);
+    padding: var(--section-py) 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+    max-width: 700px;
+  }
+
+  /* ---- RESPONSIVE ---------------------------------------- */
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .hero-tagline {
-      font-size: var(--text-body);
+    .audience-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .how-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .app-mock { display: none; }
+
+    .bars-grid {
+      grid-template-columns: 1fr 1fr;
     }
 
     .hero-cta {
@@ -224,6 +967,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .btn {
       width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .audience-grid,
+    .bars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>
