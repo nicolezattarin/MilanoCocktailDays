@@ -2,8 +2,30 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+const SITE = 'https://milancocktailweek.it';
+
+const pagePriority = {
+  [`${SITE}/`]:          { priority: 1.0, changefreq: 'monthly' },
+  [`${SITE}/festival/`]: { priority: 0.9, changefreq: 'monthly' },
+  [`${SITE}/bars/`]:     { priority: 0.8, changefreq: 'monthly' },
+  [`${SITE}/programma/`]:{ priority: 0.8, changefreq: 'monthly' },
+  [`${SITE}/contatti/`]: { priority: 0.7, changefreq: 'monthly' },
+};
+
 export default defineConfig({
-  site: 'https://milancocktailweek.it',
-  integrations: [sitemap()],
+  site: SITE,
+  integrations: [
+    sitemap({
+      serialize(item) {
+        const meta = pagePriority[item.url];
+        if (meta) {
+          item.priority   = meta.priority;
+          item.changefreq = meta.changefreq;
+        }
+        item.lastmod = new Date().toISOString().split('T')[0];
+        return item;
+      },
+    }),
+  ],
   compressHTML: true,
 });
