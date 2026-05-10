@@ -1,0 +1,223 @@
+---
+/**
+ * Header — navigazione principale MCW
+ * Desktop: nav orizzontale · Mobile: hamburger CSS-only (no JS)
+ */
+
+const navLinks = [
+  { href: '/',           label: 'Home' },
+  { href: '/programma',  label: 'Programma' },
+  { href: '/speakers',   label: 'Speakers' },
+  { href: '/location',   label: 'Location' },
+  { href: '/contatti',   label: 'Contatti' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header mcw-filetto">
+  <!-- Checkbox nascosta per menu mobile CSS-only -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-input" aria-hidden="true" />
+
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="/" class="site-logo" aria-label="Milan Cocktail Week — torna alla home">
+      <span class="logo-mcw">MCW</span><span class="logo-star" aria-hidden="true">✶</span>
+    </a>
+
+    <!-- Hamburger label (mobile) -->
+    <label for="menu-toggle" class="hamburger" aria-label="Apri menu di navigazione">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </label>
+
+    <!-- Navigazione -->
+    <nav class="site-nav" aria-label="Navigazione principale">
+      <ul class="nav-list" role="list">
+        {navLinks.map(({ href, label }) => (
+          <li class="nav-item">
+            <a
+              href={href}
+              class:list={['nav-link', { 'nav-link--active': currentPath === href }]}
+              aria-current={currentPath === href ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* ---- Header container ---------------------------------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-fumo);
+    border-bottom: var(--border-hairline);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ---- Logo ---------------------------------------------- */
+  .site-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .logo-mcw {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-avorio);
+    letter-spacing: 0.05em;
+  }
+
+  .logo-star {
+    color: var(--color-oro);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  /* ---- Navigazione desktop ------------------------------- */
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--color-pietra);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.5px;
+    background-color: var(--color-oro);
+    transition: width 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-avorio);
+  }
+
+  .nav-link:hover::after,
+  .nav-link--active::after {
+    width: 100%;
+  }
+
+  .nav-link--active {
+    color: var(--color-oro);
+  }
+
+  /* ---- Hamburger (solo mobile) --------------------------- */
+  .menu-toggle-input {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-pietra);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+
+  /* Animazione hamburger → X quando menu aperto */
+  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-input:checked ~ .header-inner .hamburger .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ---- Responsive mobile --------------------------------- */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .site-nav {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background-color: var(--color-fumo);
+      border-bottom: var(--border-hairline);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    /* Menu aperto via checkbox */
+    .menu-toggle-input:checked ~ .header-inner .site-nav {
+      max-height: 400px;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .nav-item {
+      width: 100%;
+      border-bottom: var(--border-hairline);
+    }
+
+    .nav-item:last-child {
+      border-bottom: none;
+    }
+
+    .nav-link {
+      display: block;
+      padding: var(--space-sm) 0;
+    }
+  }
+</style>

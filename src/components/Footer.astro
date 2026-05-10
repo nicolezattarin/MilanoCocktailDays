@@ -1,0 +1,228 @@
+---
+/**
+ * Footer — tre colonne: logo/tagline, link rapidi, social + legal
+ */
+
+const linkRapidi = [
+  { href: '/programma', label: 'Programma' },
+  { href: '/speakers',  label: 'Speakers' },
+  { href: '/location',  label: 'Location' },
+  { href: '/contatti',  label: 'Contatti' },
+];
+
+const social = [
+  { href: '#', label: 'Instagram' },
+  { href: '#', label: 'Facebook' },
+  { href: '#', label: 'LinkedIn' },
+];
+
+const annoCorrente = new Date().getFullYear();
+---
+
+<footer class="site-footer mcw-filetto">
+  <div class="footer-inner">
+    <!-- Colonna sinistra: logo + tagline -->
+    <div class="footer-col footer-col--brand">
+      <a href="/" class="footer-logo" aria-label="Milan Cocktail Week">
+        <span class="footer-logo-mcw">MCW</span>
+        <span class="footer-logo-star" aria-hidden="true">✶</span>
+      </a>
+      <p class="footer-tagline">Milano ✶ Aprile–Maggio 2027</p>
+      <p class="footer-desc">
+        La settimana della cocktail culture milanese.<br />
+        Distillati, bartender, masterclass e molto altro.
+      </p>
+    </div>
+
+    <!-- Colonna centrale: link rapidi -->
+    <div class="footer-col footer-col--nav">
+      <h3 class="footer-heading">Link Rapidi</h3>
+      <ul class="footer-nav-list" role="list">
+        {linkRapidi.map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer-nav-link">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Colonna destra: social + legale -->
+    <div class="footer-col footer-col--social">
+      <h3 class="footer-heading">Seguici</h3>
+      <ul class="footer-social-list" role="list">
+        {social.map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer-nav-link" target="_blank" rel="noopener noreferrer">
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="footer-legal">
+        <a href="#" class="footer-legal-link">Privacy Policy</a>
+        <span class="footer-legal-sep" aria-hidden="true">·</span>
+        <a href="#" class="footer-legal-link">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firma di chiusura -->
+  <div class="footer-bottom">
+    <span class="footer-copyright">
+      &copy; {annoCorrente} Milan Cocktail Week. Tutti i diritti riservati.
+    </span>
+    <span class="footer-signature" aria-hidden="true">✶</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-marmo);
+    padding-top: var(--space-lg);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* ---- Logo colonna sinistra ----------------------------- */
+  .footer-logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-logo-mcw {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--color-avorio);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-logo-star {
+    color: var(--color-oro);
+    font-size: 0.9rem;
+  }
+
+  .footer-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-small);
+    color: var(--color-oro);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer-desc {
+    font-size: var(--text-small);
+    color: var(--color-pietra);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ---- Intestazioni colonne ------------------------------ */
+  .footer-heading {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-oro);
+    margin-bottom: var(--space-sm);
+  }
+
+  /* ---- Liste link --------------------------------------- */
+  .footer-nav-list,
+  .footer-social-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .footer-nav-link {
+    font-size: var(--text-small);
+    color: var(--color-pietra);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--color-avorio);
+  }
+
+  /* ---- Social + legale ----------------------------------- */
+  .footer-social-list {
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+
+  .footer-legal-link {
+    font-size: var(--text-label);
+    color: var(--color-grafite);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.2s ease;
+  }
+
+  .footer-legal-link:hover {
+    color: var(--color-pietra);
+  }
+
+  .footer-legal-sep {
+    color: var(--color-grafite);
+    font-size: var(--text-label);
+  }
+
+  /* ---- Firma di chiusura --------------------------------- */
+  .footer-bottom {
+    border-top: var(--border-hairline);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copyright {
+    font-size: var(--text-label);
+    color: var(--color-grafite);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-signature {
+    color: var(--color-oro);
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+
+  /* ---- Responsive mobile --------------------------------- */
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .footer-col--brand {
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-md);
+    }
+  }
+</style>

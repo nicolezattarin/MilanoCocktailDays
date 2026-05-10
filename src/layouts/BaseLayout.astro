@@ -1,0 +1,108 @@
+---
+/**
+ * BaseLayout — layout radice per tutte le pagine MCW
+ * Gestisce <head> completo, SEO, Open Graph, JSON-LD e font Google.
+ */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-default.jpg',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const siteName = 'Milan Cocktail Week';
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+
+/* JSON-LD Event — sostituire con dati reali in produzione */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Milan Cocktail Week 2027',
+  startDate: '2027-04-25',
+  endDate: '2027-05-04',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'City',
+    name: 'Milano',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Milano',
+      addressCountry: 'IT',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Milan Cocktail Week',
+    url: canonicalUrl,
+  },
+  description,
+  image: ogImage,
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="event" />
+    <meta property="og:site_name"   content={siteName} />
+    <meta property="og:title"       content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:url"         content={canonicalUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Google Fonts: preconnect per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Bodoni Moda 700+900 upright+italic · Plus Jakarta Sans 400+500+700 -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+    />
+
+    <!-- JSON-LD Event Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Slot per script aggiuntivi (GTM, analytics, ecc.) -->
+    <slot name="head-scripts" />
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

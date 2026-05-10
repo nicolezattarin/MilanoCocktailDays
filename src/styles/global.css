@@ -1,0 +1,175 @@
+/* ============================================================
+   Milan Cocktail Week — Design System Tokens
+   Fase 0: Custom Properties + Reset + Utility Classes
+   ============================================================ */
+
+/* --- Reset minimo ----------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* --- Tokens: Colori primari -------------------------------- */
+:root {
+  --color-fumo:     #1A1410;   /* sfondo principale */
+  --color-borgogna: #6B1A2A;   /* accento rosso scuro */
+  --color-oro:      #C4850D;   /* accento dorato */
+  --color-pietra:   #B8AC9A;   /* testo su scuro */
+
+  /* Colori neutri */
+  --color-marmo:    #231C19;   /* card su sfondo scuro */
+  --color-avorio:   #F5EDE0;   /* sfondo sezione chiara */
+  --color-lino:     #E8D9C0;   /* card su sfondo chiaro */
+  --color-grafite:  #4A3F38;   /* testo su chiaro */
+
+  /* Accenti vivaci — usare con parsimonia */
+  --color-navigli:  #1B8C7D;   /* teal Navigli */
+  --color-spritz:   #E8520A;   /* arancione Spritz */
+
+  /* --- Tipografia --------------------------------------- */
+  --font-display: 'Bodoni Moda', Didot, 'Playfair Display', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans', Inter, 'DM Sans', Arial, sans-serif;
+  --font-mono:    'Courier New', Courier, monospace;
+
+  /* Scala tipografica mobile-first con clamp */
+  --text-hero:  clamp(3rem, 8vw, 7rem);       /* Bodoni, titoli hero */
+  --text-h1:    clamp(2.2rem, 5vw, 4rem);
+  --text-h2:    clamp(1.6rem, 3.5vw, 2.8rem);
+  --text-h3:    clamp(1.2rem, 2.5vw, 1.8rem);
+  --text-body:  1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;                      /* usare con uppercase + tracking */
+
+  /* --- Spaziatura --------------------------------------- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* --- Bordi e raggi ------------------------------------ */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Filetto dorato stile distilleria */
+  --border-hairline: 0.5px solid var(--color-oro);
+}
+
+/* --- Stili base body -------------------------------------- */
+body {
+  background-color: var(--color-fumo);
+  color: var(--color-pietra);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   Utility Classes — Elementi Grafici MCW
+   ============================================================ */
+
+/* Filetto semplice — linea oro in cima */
+.mcw-filetto {
+  border-top: var(--border-hairline);
+}
+
+/* Doppio filetto — due linee oro con spazio tra */
+.mcw-filetto-doppio {
+  position: relative;
+  padding-top: 6px;
+}
+
+.mcw-filetto-doppio::before,
+.mcw-filetto-doppio::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: var(--border-hairline);
+}
+
+.mcw-filetto-doppio::before {
+  top: 0;
+}
+
+.mcw-filetto-doppio::after {
+  top: 4px;
+}
+
+/* Dot-grid — texture puntini dorati */
+.mcw-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-oro) 20%, transparent) 1.25px,
+    transparent 1.25px
+  );
+  background-size: 14px 14px;
+}
+
+/* Stella decorativa MCW — glifo U+2736 */
+.mcw-star::before {
+  content: '✶';
+  color: var(--color-oro);
+  display: inline;
+}
+
+/* Cornici a L agli angoli — bracket ornamentale */
+.mcw-bracket {
+  position: relative;
+}
+
+.mcw-bracket::before,
+.mcw-bracket::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--color-oro);
+  border-style: solid;
+  opacity: 0.6;
+}
+
+/* Angolo in alto a sinistra */
+.mcw-bracket::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+
+/* Angolo in basso a destra */
+.mcw-bracket::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}

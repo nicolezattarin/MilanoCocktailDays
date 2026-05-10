@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Milan Cocktail Week"
+  description="La settimana dedicata alla cocktail culture milanese. Masterclass, distillati, bartender d'eccellenza. Milano, Aprile–Maggio 2027."
+>
+  <!-- Hero section -->
+  <section class="hero mcw-dot-grid">
+    <div class="hero-inner mcw-bracket">
+      <!-- Filetto decorativo sopra il titolo -->
+      <div class="hero-filetto mcw-filetto-doppio"></div>
+
+      <!-- Etichetta edizione -->
+      <p class="hero-label">Edizione 2027</p>
+
+      <!-- Titolo principale -->
+      <h1 class="hero-title">
+        Milan<br />
+        <em>Cocktail</em><br />
+        Week
+      </h1>
+
+      <!-- Stella decorativa -->
+      <span class="hero-star" aria-hidden="true">✶</span>
+
+      <!-- Tagline -->
+      <p class="hero-tagline">
+        La settimana che trasforma Milano nella capitale<br />
+        della cocktail culture italiana.
+      </p>
+
+      <!-- Dettagli evento -->
+      <p class="hero-meta">
+        <span>Milano</span>
+        <span class="meta-sep" aria-hidden="true">✶</span>
+        <span>25 Aprile — 4 Maggio 2027</span>
+      </p>
+
+      <!-- CTA -->
+      <div class="hero-cta">
+        <a href="/programma" class="btn btn--primary">
+          Scopri il Programma
+        </a>
+        <a href="/contatti" class="btn btn--ghost">
+          Rimani Aggiornato
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---- Hero -------------------------------------------- */
+  .hero {
+    min-height: calc(100svh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl) var(--space-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Sfumatura radiale scura al centro per leggibilità */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 70% at 50% 50%,
+      transparent 0%,
+      color-mix(in srgb, var(--color-fumo) 40%, transparent) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    width: 100%;
+    padding: var(--space-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  /* Filetto doppio sopra il titolo */
+  .hero-filetto {
+    width: 80px;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Etichetta edizione */
+  .hero-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-oro);
+  }
+
+  /* Titolo hero in Bodoni Moda */
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    line-height: 0.95;
+    color: var(--color-avorio);
+    letter-spacing: -0.01em;
+    margin: var(--space-sm) 0;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--color-oro);
+  }
+
+  /* Stella separatrice */
+  .hero-star {
+    display: block;
+    color: var(--color-oro);
+    font-size: 1.5rem;
+    opacity: 0.7;
+    margin: var(--space-xs) 0;
+  }
+
+  /* Tagline */
+  .hero-tagline {
+    font-size: var(--text-h3);
+    color: var(--color-pietra);
+    line-height: 1.5;
+    max-width: 560px;
+  }
+
+  /* Meta dati evento */
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-pietra);
+    margin: var(--space-xs) 0;
+    opacity: 0.7;
+  }
+
+  .meta-sep {
+    color: var(--color-oro);
+    font-size: 0.6rem;
+  }
+
+  /* ---- CTA buttons -------------------------------------- */
+  .hero-cta {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--space-sm);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  /* Bottone primario: sfondo oro */
+  .btn--primary {
+    background-color: var(--color-oro);
+    color: var(--color-fumo);
+    border: 1px solid var(--color-oro);
+  }
+
+  .btn--primary:hover {
+    background-color: color-mix(in srgb, var(--color-oro) 85%, white);
+    border-color: color-mix(in srgb, var(--color-oro) 85%, white);
+  }
+
+  /* Bottone ghost: trasparente con bordo oro */
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-pietra);
+    border: 1px solid var(--color-pietra);
+  }
+
+  .btn--ghost:hover {
+    color: var(--color-avorio);
+    border-color: var(--color-avorio);
+  }
+
+  /* ---- Responsive -------------------------------------- */
+  @media (max-width: 600px) {
+    .hero-inner {
+      padding: var(--space-md);
+    }
+
+    .hero-tagline {
+      font-size: var(--text-body);
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
