@@ -1,14 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TickerBand from '../components/TickerBand.astro';
+import StatGrid from '../components/StatGrid.astro';
+import CtaBanner from '../components/CtaBanner.astro';
 
-/* Dati ticker partner — duplicati nel template per scroll infinito CSS */
 const partners = [
   'Tanqueray', 'Campari', 'Amaro Montenegro',
   'Fever-Tree', 'Martini', "Hendrick's",
   'Bulleit', 'Aperol', 'Cynar', 'Santa Teresa',
 ];
 
-/* Testimonial */
+const stats = [
+  { value: 'TBA',   label: 'Bar Partner' },
+  { value: '10',    label: 'Serate' },
+  { value: '30+',   label: 'Bartender' },
+  { value: '1.000', label: 'Posti disponibili' },
+];
+
+const audience = [
+  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCW, degustazioni guidate e accesso ai migliori bar della città.' },
+  { tag: 'Amici',        title: 'SERATE TRA AMICI',         desc: 'Il pretesto perfetto per esplorare Milano by night: 10 serate, 10 bar diversi, un pass che apre tutte le porte.' },
+  { tag: 'Date',         title: 'DATE NIGHT',               desc: "Locali selezionati con cura, atmosfera unica, cocktail d'autore. La serata perfetta per stupire." },
+  { tag: 'Esploratori',  title: 'ESPLORATORI',              desc: 'Navigli · Brera · Isola · Porta Romana. Scopri angoli di Milano che non sapevi di amare.' },
+];
+
+const steps = [
+  { n: '01', title: 'ISCRIVITI',                desc: 'Acquista il Pass Festival e accedi a tutte le serate.' },
+  { n: '02', title: 'SCOPRI BAR E COCKTAIL',   desc: 'Ogni bar crea un cocktail signature esclusivo per MCW.' },
+  { n: '03', title: 'PRENOTA E DEGUSTA',       desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCW.' },
+  { n: '04', title: 'COLLEZIONA ESPERIENZE',   desc: '10 serate, 10 bar diversi: costruisci il tuo percorso tra i quartieri di Milano.' },
+];
+
 const testimonials = [
   { quote: "Un'esperienza unica nel suo genere. Ho scoperto cocktail bar di Milano che non conoscevo affatto.", name: 'Giulia M.', age: 28, initials: 'GM' },
   { quote: "Finalmente un evento che unisce qualità, socialità e la scoperta autentica della città.", name: 'Marco T.', age: 34, initials: 'MT' },
@@ -17,38 +39,21 @@ const testimonials = [
   { quote: "Un'idea brillante per valorizzare la scena cocktail milanese. Assolutamente consigliato.", name: 'Luca F.', age: 35, initials: 'LF' },
   { quote: "Dieci serate, dieci bar diversi: ogni sera era una sorpresa. Non vedo l'ora della prossima edizione.", name: 'Andrea B.', age: 31, initials: 'AB' },
 ];
-
-/* Per chi è MCW — 4 card */
-const audience = [
-  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCW, degustazioni guidate e accesso ai migliori bar della città.' },
-  { tag: 'Amici', title: 'SERATE TRA AMICI', desc: 'Il perfetto pretesto per esplorare Milano by night: 10 serate, 10 bar diversi, un pass che apre tutte le porte.' },
-  { tag: 'Date', title: 'DATE NIGHT', desc: 'Locali selezionati con cura, atmosfera unica, cocktail d\'autore. La serata perfetta per stupire.' },
-  { tag: 'Esploratori', title: 'ESPLORATORI', desc: 'Navigli · Brera · Isola · Porta Romana. Scopri angoli di Milano che non sapevi di amare.' },
-];
-
-/* Come funziona — 4 step */
-const steps = [
-  { n: '01', title: 'ISCRIVITI', desc: 'Acquista il Pass Festival e accedi a tutte le serate.' },
-  { n: '02', title: 'SCOPRI BAR E COCKTAIL', desc: 'Ogni bar crea un cocktail signature esclusivo per MCW.' },
-  { n: '03', title: 'PRENOTA E DEGUSTA', desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCW.' },
-  { n: '04', title: 'COLLEZIONA ESPERIENZE', desc: '10 serate, 10 bar diversi: costruisci il tuo percorso tra i quartieri di Milano.' },
-];
 ---
 
 <BaseLayout
-  title="Milan Cocktail Week"
-  description="La prima Milan Cocktail Week: 10 serate nei migliori cocktail bar di Milano. Aprile–Maggio 2027. Iscriviti ora."
+  title="Milan Cocktail Week 2027"
+  description="La prima Milan Cocktail Week. 10 serate, i migliori bar di Milano, cocktail signature esclusivi. Aprile–Maggio 2027."
+  pageType="event"
 >
 
-  <!-- ======================================================
-       S1 · HERO — full viewport, dark, dot-grid
-       ====================================================== -->
-  <section class="s-hero mcw-dot-grid" aria-label="Milan Cocktail Week — Prima Edizione">
+  <!-- S1 · HERO ------------------------------------------- -->
+  <section class="s-hero mcw-dot-grid" aria-labelledby="home-h1">
     <div class="wrap hero-inner">
-      <p class="hero-overline">Milano · Aprile–Maggio 2027</p>
+      <p class="hero-overline" aria-hidden="true">Milano · Aprile–Maggio 2027</p>
 
       <div class="hero-h1-wrap mcw-bracket">
-        <h1 class="hero-h1">
+        <h1 id="home-h1" class="hero-h1">
           La Prima<br /><em>Milan Cocktail</em><br />Week.
         </h1>
       </div>
@@ -62,78 +67,35 @@ const steps = [
     </div>
   </section>
 
-  <!-- ======================================================
-       S2 · TICKER PARTNER — CSS animation, no JS
-       ====================================================== -->
-  <div class="ticker-outer" aria-hidden="true" role="presentation">
-    <div class="ticker-track">
-      <!-- Prima copia -->
-      {partners.map((p) => (
-        <>
-          <span class="ticker-name">{p}</span>
-          <span class="ticker-sep">✶</span>
-        </>
-      ))}
-      <!-- Seconda copia identica: necessaria per loop senza JS -->
-      {partners.map((p) => (
-        <>
-          <span class="ticker-name">{p}</span>
-          <span class="ticker-sep">✶</span>
-        </>
-      ))}
-    </div>
-  </div>
+  <!-- S2 · TICKER ----------------------------------------- -->
+  <TickerBand items={partners} />
 
-  <!-- ======================================================
-       S3 · STATISTICHE — dark, filetto sopra e sotto
-       ====================================================== -->
-  <section class="s-stats" aria-labelledby="stats-heading">
+  <!-- S3 · STATISTICHE ------------------------------------ -->
+  <section class="s-stats" aria-label="I numeri di Milan Cocktail Week">
     <div class="wrap">
-      <div class="stats-inner mcw-filetto">
-        <h2 id="stats-heading" class="sr-only">I numeri di MCW</h2>
-        <div class="stats-grid">
-          <div class="stat-col">
-            <span class="stat-n">TBA</span>
-            <span class="stat-l">Bar Partner</span>
-          </div>
-          <div class="stat-col">
-            <span class="stat-n">10</span>
-            <span class="stat-l">Serate</span>
-          </div>
-          <div class="stat-col">
-            <span class="stat-n">30<sup>+</sup></span>
-            <span class="stat-l">Bartender</span>
-          </div>
-          <div class="stat-col">
-            <span class="stat-n">1.000</span>
-            <span class="stat-l">Posti disponibili</span>
-          </div>
-        </div>
-        <div class="stats-bottom-line"></div>
-      </div>
+      <StatGrid stats={stats} />
     </div>
   </section>
 
-  <!-- ======================================================
-       S4 · PER CHI È MCW — chiara, avorio
-       ====================================================== -->
-  <section class="s-audience" aria-labelledby="audience-heading">
+  <!-- S4 · PER CHI È MCW ---------------------------------- -->
+  <section class="s-audience" aria-labelledby="audience-h2">
     <div class="wrap">
       <div class="section-header">
         <p class="section-overline">Per chi è MCW</p>
-        <h2 id="audience-heading" class="section-h2">Un festival<br />per tutti</h2>
+        <h2 id="audience-h2" class="section-h2">Un festival<br />per tutti</h2>
       </div>
       <div class="audience-grid">
-        {audience.map(({ tag, title, desc }) => (
+        {audience.map(({ tag, title: cardTitle, desc }) => (
           <article class="audience-card">
-            <!-- Placeholder immagine 16/9 -->
-            <div class="card-img-wrap">
-              <div class="card-img-placeholder" aria-hidden="true">
-                <span class="card-tag">{tag}</span>
-              </div>
+            <div
+              class="card-img"
+              role="img"
+              aria-label={`Illustrazione: ${cardTitle}`}
+            >
+              <span class="card-tag" aria-hidden="true">{tag}</span>
             </div>
             <div class="card-body">
-              <h3 class="card-title">{title}</h3>
+              <h3 class="card-title">{cardTitle}</h3>
               <p class="card-desc">{desc}</p>
             </div>
           </article>
@@ -142,13 +104,10 @@ const steps = [
     </div>
   </section>
 
-  <!-- ======================================================
-       S5 · COME FUNZIONA — dark
-       Layout: mockup app sinistra, 4 step destra
-       ====================================================== -->
-  <section class="s-how" aria-labelledby="how-heading">
+  <!-- S5 · COME FUNZIONA ---------------------------------- -->
+  <section class="s-how" aria-labelledby="how-h2">
     <div class="wrap how-inner">
-      <!-- Mockup app placeholder -->
+      <!-- Mockup stilizzato: aria-hidden perché decorativo -->
       <div class="app-mock" aria-hidden="true">
         <div class="phone-frame">
           <div class="phone-notch"></div>
@@ -164,18 +123,17 @@ const steps = [
         </div>
       </div>
 
-      <!-- Steps -->
       <div class="how-steps">
         <p class="section-overline--light">Come funziona</p>
-        <h2 id="how-heading" class="section-h2--light">
-          Il tuo percorso<br />tra i cocktail bar di Milano
+        <h2 id="how-h2" class="section-h2--light">
+          Il tuo percorso<br />tra i bar di Milano
         </h2>
         <ol class="step-list" role="list">
-          {steps.map(({ n, title, desc }) => (
+          {steps.map(({ n, title: stepTitle, desc }) => (
             <li class="step">
               <span class="step-n" aria-hidden="true">{n}</span>
               <div class="step-body">
-                <h3 class="step-title">{title}</h3>
+                <h3 class="step-title">{stepTitle}</h3>
                 <p class="step-desc">{desc}</p>
               </div>
             </li>
@@ -185,26 +143,23 @@ const steps = [
     </div>
   </section>
 
-  <!-- ======================================================
-       S6 · BAR PARTECIPANTI PREVIEW — chiara, avorio
-       ====================================================== -->
-  <section class="s-bars" aria-labelledby="bars-heading">
+  <!-- S6 · BAR PREVIEW ------------------------------------ -->
+  <section class="s-bars" aria-labelledby="bars-h2">
     <div class="wrap">
       <div class="section-header">
         <p class="section-overline">I bar partecipanti</p>
-        <h2 id="bars-heading" class="section-h2">
-          I Bar<br />Partecipanti
-        </h2>
+        <h2 id="bars-h2" class="section-h2">I Bar<br />Partecipanti</h2>
         <p class="section-tba">TBA · I bar partner saranno annunciati presto</p>
       </div>
-
       <div class="bars-grid">
         {[1, 2, 3, 4].map((i) => (
           <article class="bar-card">
-            <div class="bar-img-wrap" aria-hidden="true">
-              <div class="bar-img-placeholder">
-                <span class="bar-star">✶</span>
-              </div>
+            <div
+              class="bar-img"
+              role="img"
+              aria-label={`Bar partner MCW ${i} — coming soon`}
+            >
+              <span class="bar-star" aria-hidden="true">✶</span>
             </div>
             <div class="bar-info">
               <p class="bar-name">Bar Partner MCW</p>
@@ -213,24 +168,21 @@ const steps = [
           </article>
         ))}
       </div>
-
       <div class="bars-cta">
         <a href="/bars" class="link-more">Vedi tutti →</a>
       </div>
     </div>
   </section>
 
-  <!-- ======================================================
-       S7 · TESTIMONIAL — dark, CSS scroll-snap
-       ====================================================== -->
-  <section class="s-testimonials" aria-labelledby="test-heading">
+  <!-- S7 · TESTIMONIAL ------------------------------------ -->
+  <section class="s-test" aria-labelledby="test-h2">
     <div class="wrap">
       <p class="section-overline--light">Cosa dicono</p>
-      <h2 id="test-heading" class="section-h2--light">
-        Voci dalla<br />prima edizione <span aria-hidden="true">✶</span>
+      <h2 id="test-h2" class="section-h2--light">
+        Voci dalla prima edizione <span aria-hidden="true">✶</span>
       </h2>
     </div>
-    <div class="test-track-outer">
+    <div class="test-outer">
       <div class="test-track" role="list">
         {testimonials.map(({ quote, name, age, initials }) => (
           <article class="test-card" role="listitem">
@@ -248,140 +200,24 @@ const steps = [
     </div>
   </section>
 
-  <!-- ======================================================
-       S8 · CTA FINALE — borgogna, dot-grid
-       ====================================================== -->
-  <section class="s-final-cta mcw-dot-grid" aria-labelledby="cta-heading">
-    <div class="wrap cta-inner">
-      <h2 id="cta-heading" class="cta-title">
-        Posti limitati.<br />Iscriviti ora.
-      </h2>
-      <a href="/contatti" class="btn btn--cta-avorio">Iscriviti →</a>
-    </div>
-  </section>
+  <!-- S8 · CTA FINALE ------------------------------------- -->
+  <CtaBanner
+    title="Posti limitati. Iscriviti ora."
+    ctaText="Iscriviti →"
+    ctaHref="/contatti"
+    variant="borgogna"
+  />
 
 </BaseLayout>
 
 <style>
-  /* ---- Utilities ----------------------------------------- */
   .wrap {
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 2rem;
   }
 
-  /* Screen-reader only */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-
-  /* ---- Bottoni ------------------------------------------- */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .btn--primary {
-    background-color: var(--color-oro);
-    color: var(--color-fumo);
-    border: 1px solid var(--color-oro);
-  }
-
-  .btn--primary:hover {
-    background-color: transparent;
-    color: var(--color-oro);
-  }
-
-  .btn--ghost {
-    background-color: transparent;
-    color: var(--color-pietra);
-    border: 1px solid var(--color-pietra);
-  }
-
-  .btn--ghost:hover {
-    color: var(--color-avorio);
-    border-color: var(--color-avorio);
-  }
-
-  .btn--cta-avorio {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
-    font-size: var(--text-body);
-  }
-
-  .btn--cta-avorio:hover {
-    background-color: transparent;
-    color: var(--color-avorio);
-  }
-
-  /* ---- Tipografia comune sezioni ------------------------- */
-  .section-overline {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-grafite);
-    margin-bottom: var(--space-xs);
-  }
-
-  .section-overline--light {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-oro);
-    opacity: 0.7;
-    margin-bottom: var(--space-xs);
-  }
-
-  .section-h2 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-fumo);
-    line-height: 1.05;
-  }
-
-  .section-h2--light {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-  }
-
-  .section-h2--light span {
-    color: var(--color-oro);
-    font-size: 0.55em;
-    vertical-align: middle;
-  }
-
-  .section-header {
-    margin-bottom: var(--space-lg);
-  }
-
-  /* ---- S1 · HERO ----------------------------------------- */
+  /* ---- HERO --------------------------------------------- */
   .s-hero {
     min-height: 100svh;
     display: flex;
@@ -442,100 +278,106 @@ const steps = [
     margin-top: var(--space-sm);
   }
 
-  /* ---- S2 · TICKER --------------------------------------- */
-  .ticker-outer {
-    overflow: hidden;
-    background-color: var(--color-fumo);
-    border-top: var(--border-hairline);
-    border-bottom: var(--border-hairline);
-    padding: var(--space-sm) 0;
-  }
-
-  @keyframes ticker-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  .ticker-track {
+  .btn {
     display: inline-flex;
     align-items: center;
-    gap: 2.5rem;
-    white-space: nowrap;
-    animation: ticker-scroll 50s linear infinite;
-    padding-right: 2.5rem; /* gap finale prima del loop */
-  }
-
-  .ticker-name {
+    justify-content: center;
+    padding: 0.875rem 2rem;
     font-family: var(--font-body);
     font-size: var(--text-small);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: color-mix(in srgb, var(--color-oro) 60%, transparent);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
 
-  .ticker-sep {
-    color: color-mix(in srgb, var(--color-oro) 30%, transparent);
-    font-size: 0.6rem;
-    flex-shrink: 0;
+  .btn--primary {
+    background-color: var(--color-oro);
+    color: var(--color-fumo);
+    border: 1px solid var(--color-oro);
   }
 
-  /* ---- S3 · STATISTICHE ---------------------------------- */
+  .btn--primary:hover {
+    background-color: transparent;
+    color: var(--color-oro);
+  }
+
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-pietra);
+    border: 1px solid var(--color-pietra);
+  }
+
+  .btn--ghost:hover {
+    color: var(--color-avorio);
+    border-color: var(--color-avorio);
+  }
+
+  /* ---- STATISTICHE -------------------------------------- */
   .s-stats {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
   }
 
-  .stats-inner {
-    padding-top: var(--space-md);
+  /* ---- AUDIENCE (avorio) -------------------------------- */
+  .s-audience {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
   }
 
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-    padding: var(--space-lg) 0;
-  }
-
-  .stat-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: flex-start;
-  }
-
-  .stat-n {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    color: var(--color-oro);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-n sup {
-    font-size: 0.55em;
-    vertical-align: super;
-  }
-
-  .stat-l {
+  .section-overline {
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-pietra);
+    letter-spacing: 0.18em;
+    color: var(--color-grafite);
+    margin: 0 0 var(--space-xs);
   }
 
-  /* Linea dorata sotto le statistiche */
-  .stats-bottom-line {
-    border-top: var(--border-hairline);
+  .section-overline--light {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-oro);
+    opacity: 0.7;
+    margin: 0 0 var(--space-xs);
   }
 
-  /* ---- S4 · AUDIENCE ------------------------------------- */
-  .s-audience {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-fumo);
+    line-height: 1.05;
+  }
+
+  .section-h2--light {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+  }
+
+  .section-h2--light span {
+    color: var(--color-oro);
+    font-size: 0.5em;
+    vertical-align: middle;
+  }
+
+  .section-header { margin-bottom: var(--space-lg); }
+
+  .section-tba {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-grafite);
+    margin-top: var(--space-xs);
+    opacity: 0.7;
   }
 
   .audience-grid {
@@ -551,20 +393,16 @@ const steps = [
     gap: var(--space-sm);
   }
 
-  /* Placeholder immagine 16/9 */
-  .card-img-wrap {
+  /* Placeholder 16/9: dimensioni esplicite per evitare CLS */
+  .card-img {
     aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: var(--radius-sm);
-  }
-
-  .card-img-placeholder {
     width: 100%;
-    height: 100%;
     background-color: var(--color-lino);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: flex-end;
     padding: var(--space-xs);
+    overflow: hidden;
   }
 
   .card-tag {
@@ -579,11 +417,7 @@ const steps = [
     border-radius: var(--radius-sm);
   }
 
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .card-body { display: flex; flex-direction: column; gap: 6px; }
 
   .card-title {
     font-family: var(--font-display);
@@ -602,7 +436,7 @@ const steps = [
     margin: 0;
   }
 
-  /* ---- S5 · COME FUNZIONA -------------------------------- */
+  /* ---- COME FUNZIONA (dark) ------------------------------ */
   .s-how {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
@@ -615,7 +449,6 @@ const steps = [
     align-items: center;
   }
 
-  /* Mockup telefono stilizzato */
   .app-mock {
     display: flex;
     justify-content: center;
@@ -632,7 +465,6 @@ const steps = [
     display: flex;
     flex-direction: column;
     gap: 10px;
-    position: relative;
   }
 
   .phone-notch {
@@ -663,16 +495,9 @@ const steps = [
     border: 0.5px solid color-mix(in srgb, var(--color-oro) 20%, transparent);
   }
 
-  .phone-card-lg--xs {
-    flex: 0 0 40px;
-    background-color: color-mix(in srgb, var(--color-oro) 10%, transparent);
-  }
+  .phone-card-lg--xs { flex: 0 0 40px; background-color: color-mix(in srgb, var(--color-oro) 10%, transparent); }
 
-  .phone-card-row {
-    display: flex;
-    gap: 8px;
-    height: 60px;
-  }
+  .phone-card-row { display: flex; gap: 8px; height: 60px; }
 
   .phone-card-sm {
     flex: 1;
@@ -680,16 +505,13 @@ const steps = [
     border-radius: var(--radius-sm);
   }
 
-  /* Steps */
   .how-steps {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
   }
 
-  .how-steps .section-h2--light {
-    margin-bottom: var(--space-md);
-  }
+  .how-steps .section-h2--light { margin-bottom: var(--space-md); }
 
   .step-list {
     list-style: none;
@@ -717,11 +539,10 @@ const steps = [
     flex-shrink: 0;
     width: 80px;
     letter-spacing: -0.03em;
+    display: block;
   }
 
-  .step-body {
-    padding-top: 6px;
-  }
+  .step-body { padding-top: 6px; }
 
   .step-title {
     font-family: var(--font-display);
@@ -740,18 +561,10 @@ const steps = [
     margin: 0;
   }
 
-  /* ---- S6 · BAR PREVIEW ---------------------------------- */
+  /* ---- BAR PREVIEW (avorio) ------------------------------ */
   .s-bars {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
-  }
-
-  .section-tba {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-grafite);
-    margin-top: var(--space-xs);
-    opacity: 0.7;
   }
 
   .bars-grid {
@@ -760,25 +573,18 @@ const steps = [
     gap: var(--space-md);
   }
 
-  .bar-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
+  .bar-card { display: flex; flex-direction: column; gap: var(--space-xs); }
 
-  .bar-img-wrap {
+  /* Placeholder 3/2: dimensioni esplicite anti-CLS */
+  .bar-img {
     aspect-ratio: 3 / 2;
-    overflow: hidden;
-    border-radius: var(--radius-sm);
-  }
-
-  .bar-img-placeholder {
     width: 100%;
-    height: 100%;
     background-color: var(--color-lino);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .bar-star {
@@ -787,9 +593,7 @@ const steps = [
     opacity: 0.3;
   }
 
-  .bar-info {
-    padding: var(--space-xs) 0;
-  }
+  .bar-info { padding: var(--space-xs) 0 0; }
 
   .bar-name {
     font-family: var(--font-display);
@@ -809,10 +613,7 @@ const steps = [
     margin: 0;
   }
 
-  .bars-cta {
-    margin-top: var(--space-lg);
-    text-align: center;
-  }
+  .bars-cta { margin-top: var(--space-lg); text-align: center; }
 
   .link-more {
     font-family: var(--font-body);
@@ -830,25 +631,22 @@ const steps = [
 
   .link-more:hover { opacity: 0.6; }
 
-  /* ---- S7 · TESTIMONIAL ---------------------------------- */
-  .s-testimonials {
+  /* ---- TESTIMONIAL (dark) -------------------------------- */
+  .s-test {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
     overflow: hidden;
   }
 
-  .s-testimonials .wrap {
-    margin-bottom: var(--space-lg);
-  }
+  .s-test .wrap { margin-bottom: var(--space-lg); }
 
-  /* Scroll orizzontale con snap CSS — nessun JS */
-  .test-track-outer {
+  .test-outer {
     overflow-x: auto;
     padding: 0 2rem var(--space-sm);
     scrollbar-width: none;
   }
 
-  .test-track-outer::-webkit-scrollbar { display: none; }
+  .test-outer::-webkit-scrollbar { display: none; }
 
   .test-track {
     display: flex;
@@ -918,67 +716,18 @@ const steps = [
     opacity: 0.7;
   }
 
-  /* ---- S8 · CTA FINALE ----------------------------------- */
-  .s-final-cta {
-    background-color: var(--color-borgogna);
-    padding: var(--section-py) 0;
-  }
-
-  .cta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-    max-width: 700px;
-  }
-
-  /* ---- RESPONSIVE ---------------------------------------- */
+  /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .audience-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .how-inner {
-      grid-template-columns: 1fr;
-    }
-
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+    .how-inner { grid-template-columns: 1fr; }
     .app-mock { display: none; }
-
-    .bars-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .hero-cta {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .btn {
-      width: 100%;
-      justify-content: center;
-    }
+    .bars-grid { grid-template-columns: 1fr 1fr; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .btn { width: 100%; justify-content: center; }
   }
 
   @media (max-width: 480px) {
     .audience-grid,
-    .bars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .stats-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+    .bars-grid { grid-template-columns: 1fr; }
   }
 </style>

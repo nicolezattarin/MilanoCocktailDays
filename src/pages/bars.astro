@@ -1,67 +1,49 @@
 ---
-/**
- * Bars — pagina TBA dei bar partner MCW
- * Struttura: Hero · Annuncio TBA · Placeholder Grid · Quartieri · CTA
- */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/SectionHero.astro';
+import TbaBox from '../components/TbaBox.astro';
+import CtaBanner from '../components/CtaBanner.astro';
 
-/* 12 card placeholder — tutto anonimo, TBA */
 const placeholders = Array.from({ length: 12 }, (_, i) => i + 1);
-
 const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 ---
 
 <BaseLayout
-  title="I Bar"
-  description="I bar partner di Milan Cocktail Week 2027. TBA: i migliori cocktail bar di Milano saranno annunciati presto."
+  title="I Bar Partner"
+  description="I migliori bar di Milano partecipano a MCW 2027. Navigli, Brera, Isola, Porta Romana. Bar partner TBA."
 >
 
-  <!-- ======================================================
-       HERO — dark
-       ====================================================== -->
-  <section class="s-hero mcw-dot-grid" aria-label="I bar partner MCW">
-    <div class="wrap">
-      <p class="overline">Bar Partner</p>
-      <div class="h1-wrap mcw-bracket">
-        <h1 class="page-h1">I Bar</h1>
-      </div>
-      <p class="hero-sub">TBA · I bar partner saranno annunciati presto</p>
-    </div>
-  </section>
+  <SectionHero
+    title="I Bar"
+    subtitle="TBA · I bar partner saranno annunciati presto"
+    overline="Bar Partner"
+  />
 
-  <!-- ======================================================
-       ANNUNCIO TBA — chiara, centrata
-       ====================================================== -->
-  <section class="s-tba" aria-labelledby="tba-heading">
-    <div class="wrap tba-inner">
-      <div class="tba-box mcw-bracket">
-        <span class="tba-star" aria-hidden="true">✶</span>
-        <h2 id="tba-heading" class="tba-title">Bar partner in arrivo</h2>
-        <p class="tba-text">
-          Stiamo selezionando i migliori bar di Milano per la prima edizione di MCW.
-          Ogni bar creerà un cocktail signature esclusivo per il festival.
-          L'annuncio ufficiale è previsto per i prossimi mesi.
-        </p>
-        <a href="/contatti" class="btn btn--dark">Ricevi l'annuncio →</a>
-      </div>
-    </div>
-  </section>
+  <TbaBox
+    title="Bar partner in arrivo"
+    body="Stiamo selezionando i migliori bar di Milano per la prima edizione di MCW. Ogni bar creerà un cocktail signature esclusivo per il festival. L'annuncio ufficiale è previsto per i prossimi mesi."
+    ctaText="Ricevi l'annuncio →"
+    ctaHref="/contatti"
+  />
 
-  <!-- ======================================================
-       PLACEHOLDER GRID — dark, 12 card TBA
-       ====================================================== -->
-  <section class="s-grid" aria-labelledby="grid-heading">
+  <!-- PLACEHOLDER GRID (dark) ----------------------------- -->
+  <section class="s-grid" aria-labelledby="grid-h2">
     <div class="wrap">
       <div class="grid-header">
-        <h2 id="grid-heading" class="section-h2--light">I Bar Partecipanti</h2>
-        <p class="grid-tba">TBA</p>
+        <h2 id="grid-h2" class="section-h2--light">I Bar Partecipanti</h2>
+        <span class="grid-tba" aria-label="Da annunciare">TBA</span>
       </div>
 
       <div class="bars-grid">
-        {placeholders.map(() => (
+        {placeholders.map((i) => (
           <article class="bar-card">
-            <div class="bar-img mcw-dot-grid" aria-hidden="true">
-              <span class="bar-star">✶</span>
+            <!-- Placeholder 3/2: dimensioni esplicite anti-CLS -->
+            <div
+              class="bar-img mcw-dot-grid"
+              role="img"
+              aria-label={`Bar partner MCW ${i} — in arrivo`}
+            >
+              <span class="bar-star" aria-hidden="true">✶</span>
             </div>
             <div class="bar-info">
               <p class="bar-coming">Coming soon</p>
@@ -73,16 +55,14 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     </div>
   </section>
 
-  <!-- ======================================================
-       QUARTIERI — chiara
-       ====================================================== -->
-  <section class="s-quartieri" aria-labelledby="quartieri-heading">
+  <!-- QUARTIERI (chiara) ---------------------------------- -->
+  <section class="s-quartieri" aria-labelledby="quartieri-h2">
     <div class="wrap">
-      <p class="overline--dark">I bar selezionati coprono tutta Milano</p>
+      <p class="overline">I bar selezionati coprono tutta Milano</p>
       <div
-        class="quartieri-pills"
+        class="pills"
         role="list"
-        aria-label="Quartieri di Milano coinvolti"
+        aria-label="Quartieri di Milano coinvolti nel festival"
       >
         {quartieri.map((q) => (
           <span class="pill" role="listitem">{q}</span>
@@ -91,20 +71,13 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     </div>
   </section>
 
-  <!-- ======================================================
-       CTA — borgogna
-       ====================================================== -->
-  <section class="s-cta mcw-dot-grid" aria-labelledby="cta-heading">
-    <div class="wrap cta-inner">
-      <h2 id="cta-heading" class="cta-title">
-        Vuoi portare<br />il tuo bar a MCW?
-      </h2>
-      <p class="cta-sub">
-        Siamo alla ricerca di cocktail bar di qualità per la prima edizione.
-      </p>
-      <a href="/contatti" class="btn btn--avorio">Diventa partner →</a>
-    </div>
-  </section>
+  <CtaBanner
+    title="Vuoi portare il tuo bar a MCW?"
+    subtitle="Siamo alla ricerca di cocktail bar di qualità per la prima edizione."
+    ctaText="Diventa partner →"
+    ctaHref="/contatti"
+    variant="borgogna"
+  />
 
 </BaseLayout>
 
@@ -115,28 +88,6 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     padding: 0 2rem;
   }
 
-  /* ---- Tipografia --------------------------------------- */
-  .overline {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-oro);
-    opacity: 0.8;
-    margin: 0 0 var(--space-xs);
-  }
-
-  .overline--dark {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-grafite);
-    margin: 0 0 var(--space-md);
-  }
-
   .section-h2--light {
     font-family: var(--font-display);
     font-weight: 900;
@@ -145,132 +96,17 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     line-height: 1.05;
   }
 
-  /* ---- Bottoni ------------------------------------------ */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 2rem;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .btn--dark {
-    background-color: var(--color-fumo);
-    color: var(--color-avorio);
-    border: 1px solid var(--color-fumo);
-    margin-top: var(--space-sm);
-  }
-
-  .btn--dark:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
-  }
-
-  .btn--avorio {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
-  }
-
-  .btn--avorio:hover {
-    background-color: transparent;
-    color: var(--color-avorio);
-  }
-
-  /* ---- HERO -------------------------------------------- */
-  .s-hero {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    min-height: 50svh;
-    display: flex;
-    align-items: center;
-  }
-
-  .page-h1 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-    margin: 0;
-  }
-
-  .h1-wrap {
-    padding: var(--space-sm) var(--space-md);
-    margin: var(--space-xs) 0;
-  }
-
-  .hero-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-pietra);
-    letter-spacing: 0.06em;
-    margin: 0;
-    opacity: 0.8;
-  }
-
-  /* ---- TBA --------------------------------------------- */
-  .s-tba {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
-  }
-
-  .tba-inner {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tba-box {
-    max-width: 600px;
-    width: 100%;
-    padding: var(--space-lg);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .tba-star {
-    color: var(--color-oro);
-    font-size: 2rem;
-    opacity: 0.5;
-  }
-
-  .tba-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h2);
-    color: var(--color-fumo);
-    line-height: 1.1;
-  }
-
-  .tba-text {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-grafite);
-    line-height: 1.75;
-    max-width: 460px;
-    margin: 0;
-  }
-
-  /* ---- GRID -------------------------------------------- */
+  /* ---- GRID (dark) -------------------------------------- */
   .s-grid {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
   }
 
   .grid-header {
-    margin-bottom: var(--space-lg);
     display: flex;
     align-items: baseline;
     gap: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
   .grid-tba {
@@ -281,7 +117,6 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     letter-spacing: 0.14em;
     color: var(--color-oro);
     opacity: 0.5;
-    margin: 0;
   }
 
   .bars-grid {
@@ -296,15 +131,17 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     gap: var(--space-xs);
   }
 
-  /* Placeholder 3/2 con dot-grid e stella */
+  /* Placeholder 3/2: dimensioni esplicite anti-CLS */
   .bar-img {
     aspect-ratio: 3 / 2;
+    width: 100%;
     background-color: var(--color-marmo);
     border: var(--border-hairline);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .bar-star {
@@ -313,9 +150,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     opacity: 0.25;
   }
 
-  .bar-info {
-    padding: var(--space-xs) 0 0;
-  }
+  .bar-info { padding: var(--space-xs) 0 0; }
 
   .bar-coming {
     font-family: var(--font-body);
@@ -335,19 +170,29 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     margin: 0;
   }
 
-  /* ---- QUARTIERI --------------------------------------- */
+  /* ---- QUARTIERI (avorio) -------------------------------- */
   .s-quartieri {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
   }
 
-  .quartieri-pills {
+  .overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-grafite);
+    margin: 0 0 var(--space-md);
+  }
+
+  .pills {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
   }
 
-  /* Pill stile: bordo hairline oro, PJS uppercase oro, radius 2px */
+  /* Pill: bordo hairline oro, radius 2px, PJS uppercase */
   .pill {
     display: inline-flex;
     align-items: center;
@@ -363,52 +208,13 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     background-color: transparent;
   }
 
-  /* ---- CTA --------------------------------------------- */
-  .s-cta {
-    background-color: var(--color-borgogna);
-    padding: var(--section-py) 0;
-  }
-
-  .cta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-sm);
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-  }
-
-  .cta-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-pietra);
-    line-height: 1.65;
-    max-width: 480px;
-    margin: 0;
-    opacity: 0.85;
-  }
-
-  /* ---- RESPONSIVE -------------------------------------- */
+  /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .bars-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .grid-header {
-      flex-direction: column;
-      gap: var(--space-xs);
-    }
+    .bars-grid { grid-template-columns: 1fr 1fr; }
+    .grid-header { flex-direction: column; gap: var(--space-xs); }
   }
 
   @media (max-width: 480px) {
-    .bars-grid {
-      grid-template-columns: 1fr;
-    }
+    .bars-grid { grid-template-columns: 1fr; }
   }
 </style>

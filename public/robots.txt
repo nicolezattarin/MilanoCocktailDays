@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://milancocktailweek.it/sitemap-index.xml

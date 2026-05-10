@@ -1,7 +1,9 @@
 ---
 /**
- * BaseLayout — layout radice per tutte le pagine MCW
- * Gestisce <head> completo, SEO, Open Graph, JSON-LD e font Google.
+ * BaseLayout — layout radice MCW
+ * SEO completo: title, description, canonical, OG, Twitter Card, JSON-LD Event.
+ * Accessibilità: lang="it", skip link, main#main-content.
+ * Performance: preconnect font, inline critical CSS above-fold.
  */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,6 +14,8 @@ interface Props {
   description: string;
   ogImage?: string;
   canonicalUrl?: string;
+  /** 'event' aggiunge JSON-LD schema.org/Event */
+  pageType?: 'event' | 'website';
 }
 
 const {
@@ -19,36 +23,45 @@ const {
   description,
   ogImage = '/og-default.jpg',
   canonicalUrl = Astro.url.href,
+  pageType = 'website',
 } = Astro.props;
 
-const siteName = 'Milan Cocktail Week';
-const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const siteName  = 'Milan Cocktail Week';
+const siteUrl   = 'https://milancocktailweek.it';
+const fullTitle = `${title} | Milan Cocktail Week 2027`;
 
-/* JSON-LD Event — sostituire con dati reali in produzione */
+/* Canonical: preferisce prop esplicita, fallback a Astro.url */
+const canonical = canonicalUrl.startsWith('http')
+  ? canonicalUrl
+  : `${siteUrl}${canonicalUrl}`;
+
+/* OG image: URL assoluto richiesto da Facebook/Twitter */
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
+
+/* JSON-LD Event — incluso solo se pageType === 'event' */
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'Milan Cocktail Week 2027',
-  startDate: '2027-04-25',
-  endDate: '2027-05-04',
+  description: 'La prima settimana dedicata alla cultura del cocktail a Milano.',
+  startDate: '2027-04-01',
+  endDate: '2027-05-31',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {
     '@type': 'City',
     name: 'Milano',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Milano',
-      addressCountry: 'IT',
-    },
+    addressCountry: 'IT',
   },
   organizer: {
     '@type': 'Organization',
     name: 'Milan Cocktail Week',
-    url: canonicalUrl,
+    url: siteUrl,
   },
-  description,
-  image: ogImage,
+  image: ogImageAbsolute,
+  url: siteUrl,
 };
 ---
 
@@ -57,52 +70,86 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
 
+    <!-- Titolo e description -->
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
 
     <!-- Canonical -->
-    <link rel="canonical" href={canonicalUrl} />
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
-    <meta property="og:type"        content="event" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:locale"      content="it_IT" />
     <meta property="og:site_name"   content={siteName} />
     <meta property="og:title"       content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image"       content={ogImage} />
-    <meta property="og:url"         content={canonicalUrl} />
+    <meta property="og:image"       content={ogImageAbsolute} />
+    <meta property="og:url"         content={canonical} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={ogImage} />
+    <meta name="twitter:image"       content={ogImageAbsolute} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Google Fonts: preconnect per performance -->
+    <!-- Google Fonts: preconnect per ridurre latenza -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Bodoni Moda 700+900 upright+italic · Plus Jakarta Sans 400+500+700 -->
+    <!-- Solo pesi necessari: Bodoni 700+900 + italic · PJS 400+500+700 -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
     />
 
-    <!-- JSON-LD Event Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- CSS critico inline: evita FOUC sul body above-the-fold -->
+    <style>
+      body { background: #1A1410; color: #B8AC9A; }
+      .skip-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        padding: 12px 20px;
+        background: #C4850D;
+        color: #1A1410;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transform: translateY(-100%);
+        transition: transform 0.2s ease;
+      }
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+    </style>
 
-    <!-- Slot per script aggiuntivi (GTM, analytics, ecc.) -->
+    <!-- JSON-LD Event: solo su pagine evento -->
+    {pageType === 'event' && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    <!-- Slot per script aggiuntivi (GTM, analytics) -->
     <slot name="head-scripts" />
   </head>
 
   <body>
+    <!-- Skip link: accessibilità tastiera, visibile su focus -->
+    <a href="#main-content" class="skip-link">
+      Vai al contenuto principale
+    </a>
+
     <Header />
-    <main>
+
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
+
     <Footer />
   </body>
 </html>

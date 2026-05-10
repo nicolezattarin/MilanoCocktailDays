@@ -1,0 +1,128 @@
+---
+/**
+ * CtaBanner — sezione CTA finale ripetuta in fondo a ogni pagina.
+ * variant 'borgogna': sfondo borgogna, bottone avorio.
+ * variant 'dark': sfondo fumo, bottone oro.
+ */
+interface Props {
+  title: string;
+  ctaText: string;
+  ctaHref: string;
+  variant?: 'borgogna' | 'dark';
+  subtitle?: string;
+}
+
+const { title, ctaText, ctaHref, variant = 'borgogna', subtitle } = Astro.props;
+---
+
+<section
+  class:list={['cta-banner mcw-dot-grid', `cta-banner--${variant}`]}
+  aria-labelledby="cta-banner-heading"
+>
+  <div class="wrap">
+    <span class="cta-star" aria-hidden="true">✶</span>
+    <h2 id="cta-banner-heading" class="cta-title">{title}</h2>
+    {subtitle && <p class="cta-sub">{subtitle}</p>}
+    <a href={ctaHref} class="cta-btn">{ctaText}</a>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    padding: var(--section-py) 0;
+  }
+
+  .cta-banner--borgogna {
+    background-color: var(--color-borgogna);
+  }
+
+  .cta-banner--dark {
+    background-color: var(--color-fumo);
+  }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .cta-star {
+    color: var(--color-oro);
+    font-size: 1.8rem;
+    opacity: 0.5;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    line-height: 1.05;
+  }
+
+  .cta-banner--borgogna .cta-title {
+    color: var(--color-avorio);
+  }
+
+  .cta-banner--dark .cta-title {
+    color: var(--color-avorio);
+  }
+
+  .cta-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .cta-banner--borgogna .cta-sub {
+    color: var(--color-pietra);
+  }
+
+  .cta-banner--dark .cta-sub {
+    color: var(--color-pietra);
+  }
+
+  /* Bottone: avorio su borgogna, oro su dark */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    margin-top: var(--space-xs);
+  }
+
+  .cta-banner--borgogna .cta-btn {
+    background-color: var(--color-avorio);
+    color: var(--color-borgogna);
+    border: 1px solid var(--color-avorio);
+  }
+
+  .cta-banner--borgogna .cta-btn:hover {
+    background-color: transparent;
+    color: var(--color-avorio);
+  }
+
+  .cta-banner--dark .cta-btn {
+    background-color: var(--color-oro);
+    color: var(--color-fumo);
+    border: 1px solid var(--color-oro);
+  }
+
+  .cta-banner--dark .cta-btn:hover {
+    background-color: transparent;
+    color: var(--color-oro);
+  }
+</style>

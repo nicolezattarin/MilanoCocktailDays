@@ -1,0 +1,84 @@
+---
+/**
+ * SectionHero — hero compatta riutilizzabile per le pagine interne.
+ * Renderizza: sezione con dot-grid + H1 in mcw-bracket + sottotitolo.
+ * NB: contiene l'H1 della pagina — non usare se la pagina ha già un H1.
+ */
+interface Props {
+  title: string;
+  subtitle: string;
+  overline?: string;
+  dark?: boolean;
+}
+
+const { title, subtitle, overline, dark = true } = Astro.props;
+---
+
+<section
+  class:list={['section-hero', { 'mcw-dot-grid': dark }]}
+  aria-label={title}
+>
+  <div class="wrap">
+    {overline && <p class="hero-overline">{overline}</p>}
+
+    <div class="h1-wrap mcw-bracket">
+      <h1 class="hero-h1">{title}</h1>
+    </div>
+
+    <p class="hero-sub">{subtitle}</p>
+  </div>
+</section>
+
+<style>
+  .section-hero {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    min-height: 50svh;
+    display: flex;
+    align-items: center;
+  }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-oro);
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  .h1-wrap {
+    padding: var(--space-sm) var(--space-md);
+    margin: var(--space-xs) 0;
+    align-self: flex-start;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pietra);
+    letter-spacing: 0.06em;
+    margin: 0;
+    opacity: 0.8;
+  }
+</style>

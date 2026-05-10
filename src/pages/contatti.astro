@@ -1,9 +1,6 @@
 ---
-/**
- * Contatti / Iscrizione — pagina principale conversioni MCW
- * Struttura: Hero · Opzioni Pass · Form Tally placeholder · Info contatti
- */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/SectionHero.astro';
 
 const passFeatures = [
   'Accesso a tutti i bar partner',
@@ -21,46 +18,34 @@ const vipFeatures = [
 ];
 
 const contatti = [
-  { label: 'Generale', email: 'info@milancocktailweek.it' },
-  { label: 'Press', email: 'press@milancocktailweek.it' },
+  { label: 'Generale',    email: 'info@milancocktailweek.it' },
+  { label: 'Press',       email: 'press@milancocktailweek.it' },
   { label: 'Partnership', email: 'partner@milancocktailweek.it' },
 ];
 
 const social = [
   { label: 'Instagram', href: '#', handle: '@milancocktailweek' },
-  { label: 'LinkedIn', href: '#', handle: 'Milan Cocktail Week' },
+  { label: 'LinkedIn',  href: '#', handle: 'Milan Cocktail Week' },
 ];
 ---
 
 <BaseLayout
   title="Iscriviti"
-  description="Iscriviti a Milan Cocktail Week 2027. Pass Festival e Pass VIP disponibili. 10 serate nei migliori cocktail bar di Milano."
+  description="Iscriviti a Milan Cocktail Week 2027. Pass Festival e Pass VIP disponibili. Posti limitati."
 >
 
-  <!-- ======================================================
-       HERO — dark, compatta
-       ====================================================== -->
-  <section class="s-hero mcw-dot-grid" aria-label="Iscriviti a Milan Cocktail Week">
-    <div class="wrap">
-      <p class="overline">Prima Edizione · 2027</p>
-      <div class="h1-wrap mcw-bracket">
-        <h1 class="page-h1">Iscriviti</h1>
-      </div>
-      <p class="hero-sub">
-        Accedi alle 10 serate MCW nei migliori bar di Milano
-        <span aria-hidden="true">✶</span>
-      </p>
-    </div>
-  </section>
+  <SectionHero
+    title="Iscriviti"
+    subtitle="Accedi alle 10 serate MCW nei migliori bar di Milano ✶"
+    overline="Prima Edizione · 2027"
+  />
 
-  <!-- ======================================================
-       OPZIONI PASS — chiara, 2 card affiancate
-       ====================================================== -->
-  <section class="s-pass" aria-labelledby="pass-heading">
+  <!-- OPZIONI PASS (avorio) -------------------------------- -->
+  <section class="s-pass" aria-labelledby="pass-h2">
     <div class="wrap">
       <div class="pass-header">
-        <div class="filetto-wrap mcw-filetto-doppio"></div>
-        <h2 id="pass-heading" class="section-h2">Scegli il tuo pass</h2>
+        <div class="filetto mcw-filetto-doppio"></div>
+        <h2 id="pass-h2" class="section-h2">Scegli il tuo pass</h2>
         <p class="pass-intro">
           Posti limitati. Lista d'attesa aperta — il prezzo definitivo sarà comunicato
           all'apertura ufficiale delle vendite.
@@ -69,71 +54,67 @@ const social = [
 
       <div class="pass-grid">
         <!-- Card 1: Pass Festival -->
-        <article class="pass-card mcw-bracket" aria-labelledby="pass-festival-title">
+        <article class="pass-card mcw-bracket" aria-labelledby="pass-festival-h3">
           <div class="pass-top">
-            <p class="pass-badge">Pass Festival</p>
+            <p class="pass-type">Pass Festival</p>
             <div class="pass-price-wrap">
-              <span class="pass-price">TBA</span>
-              <span class="pass-price-sub">Prezzo da confermare</span>
+              <span class="pass-price" aria-label="Prezzo da annunciare">TBA</span>
+              <span class="pass-price-note">Prezzo da confermare</span>
             </div>
           </div>
 
-          <ul class="pass-features" role="list">
+          <ul class="feature-list" role="list" aria-labelledby="pass-festival-h3">
             {passFeatures.map((f) => (
               <li class="feature">
-                <span class="feature-star" aria-hidden="true">✶</span>
+                <span class="f-star" aria-hidden="true">✶</span>
                 <span>{f}</span>
               </li>
             ))}
           </ul>
 
-          <a href="#form" class="btn btn--dark pass-cta">
+          <h3 id="pass-festival-h3" class="sr-only">Pass Festival</h3>
+          <a href="#form" class="pass-btn pass-btn--dark">
             Iscriviti alla lista d'attesa
           </a>
-          <p class="pass-note" id="pass-festival-title">
-            Prenotazione non vincolante. Nessun addebito ora.
-          </p>
+          <p class="pass-note">Prenotazione non vincolante. Nessun addebito ora.</p>
         </article>
 
         <!-- Card 2: Pass VIP (borgogna) -->
-        <article class="pass-card pass-card--vip mcw-bracket" aria-labelledby="pass-vip-title">
+        <article class="pass-card pass-card--vip mcw-bracket" aria-labelledby="pass-vip-h3">
           <div class="pass-top">
-            <div class="vip-header-row">
-              <p class="pass-badge pass-badge--vip">Pass VIP</p>
+            <div class="vip-top-row">
+              <p class="pass-type pass-type--vip">Pass VIP</p>
               <span class="badge-limited">Posti Limitatissimi</span>
             </div>
             <div class="pass-price-wrap">
-              <span class="pass-price">TBA</span>
-              <span class="pass-price-sub">Prezzo da confermare</span>
+              <span class="pass-price pass-price--vip" aria-label="Prezzo da annunciare">TBA</span>
+              <span class="pass-price-note pass-price-note--vip">Prezzo da confermare</span>
             </div>
           </div>
 
-          <ul class="pass-features" role="list">
+          <ul class="feature-list" role="list" aria-labelledby="pass-vip-h3">
             {vipFeatures.map((f, i) => (
               <li class:list={['feature', { 'feature--intro': i === 0 }]}>
-                {i > 0 && <span class="feature-star" aria-hidden="true">✶</span>}
+                {i > 0 && <span class="f-star" aria-hidden="true">✶</span>}
                 <span>{f}</span>
               </li>
             ))}
           </ul>
 
-          <a href="#form" class="btn btn--avorio pass-cta">
+          <h3 id="pass-vip-h3" class="sr-only">Pass VIP</h3>
+          <a href="#form" class="pass-btn pass-btn--avorio">
             Iscriviti alla lista VIP
           </a>
-          <p class="pass-note pass-note--vip" id="pass-vip-title">
-            Prenotazione non vincolante. Nessun addebito ora.
-          </p>
+          <p class="pass-note pass-note--vip">Prenotazione non vincolante. Nessun addebito ora.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ======================================================
-       FORM — dark, placeholder Tally.so
-       ====================================================== -->
-  <section class="s-form" id="form" aria-labelledby="form-heading">
+  <!-- FORM TALLY PLACEHOLDER (dark) ----------------------- -->
+  <section class="s-form" id="form" aria-labelledby="form-h2">
     <div class="wrap">
-      <h2 id="form-heading" class="section-h2--light">
+      <h2 id="form-h2" class="form-heading">
         Lascia i tuoi dati <span aria-hidden="true">✶</span>
       </h2>
       <p class="form-intro">
@@ -142,7 +123,7 @@ const social = [
       </p>
 
       <!-- Sostituire con embed Tally.so quando pronto -->
-      <div class="tally-placeholder" role="region" aria-label="Form iscrizione">
+      <div class="tally-placeholder" role="region" aria-label="Form iscrizione — in arrivo">
         <p class="tally-label">Form iscrizione</p>
         <div class="tally-fields" aria-hidden="true">
           <div class="tally-field">
@@ -159,27 +140,22 @@ const social = [
           </div>
           <div class="tally-field tally-field--full">
             <span class="tally-field-label">Messaggio (opzionale)</span>
-            <div class="tally-field-input tally-field-input--textarea"></div>
+            <div class="tally-field-input tally-field-input--tall"></div>
           </div>
         </div>
         <p class="tally-note">
-          ⬆ Configurare su
-          <a href="https://tally.so" target="_blank" rel="noopener noreferrer" class="tally-link">
-            tally.so
-          </a>
-          e sostituire questo div con lo snippet embed.
+          Configurare su <a href="https://tally.so" target="_blank" rel="noopener noreferrer" class="tally-link">tally.so</a>
+          e sostituire questo blocco con lo snippet embed.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ======================================================
-       INFO CONTATTI — chiara, 3 colonne
-       ====================================================== -->
-  <section class="s-info" aria-labelledby="info-heading">
+  <!-- CONTATTI DIRETTI (avorio) ---------------------------- -->
+  <section class="s-info" aria-labelledby="info-h2">
     <div class="wrap">
-      <div class="info-header mcw-filetto-doppio"></div>
-      <h2 id="info-heading" class="section-h2">Contatti diretti</h2>
+      <div class="info-filetto mcw-filetto-doppio"></div>
+      <h2 id="info-h2" class="section-h2">Contatti diretti</h2>
 
       <div class="info-grid">
         {contatti.map(({ label, email }) => (
@@ -190,11 +166,10 @@ const social = [
         ))}
       </div>
 
-      <!-- Social -->
       <div class="social-row">
         {social.map(({ label, href, handle }) => (
-          <a href={href} class="social-link" target="_blank" rel="noopener noreferrer">
-            <span class="social-platform">{label}</span>
+          <a href={href} class="social-link" target="_blank" rel="noopener noreferrer" aria-label={`Seguici su ${label}: ${handle}`}>
+            <span class="social-platform" aria-hidden="true">{label}</span>
             <span class="social-handle">{handle}</span>
           </a>
         ))}
@@ -211,18 +186,12 @@ const social = [
     padding: 0 2rem;
   }
 
-  /* ---- Tipografia --------------------------------------- */
-  .overline {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-oro);
-    opacity: 0.8;
-    margin: 0 0 var(--space-xs);
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; margin: -1px;
   }
 
+  /* ---- Tipografia --------------------------------------- */
   .section-h2 {
     font-family: var(--font-display);
     font-weight: 900;
@@ -231,111 +200,15 @@ const social = [
     line-height: 1.05;
   }
 
-  .section-h2--light {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-    margin-bottom: var(--space-sm);
-  }
-
-  .section-h2--light span {
-    color: var(--color-oro);
-    font-size: 0.5em;
-    vertical-align: middle;
-  }
-
-  /* ---- Bottoni ------------------------------------------ */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    width: 100%;
-  }
-
-  .btn--dark {
-    background-color: var(--color-fumo);
-    color: var(--color-avorio);
-    border: 1px solid var(--color-fumo);
-  }
-
-  .btn--dark:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
-  }
-
-  .btn--avorio {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
-  }
-
-  .btn--avorio:hover {
-    background-color: transparent;
-    color: var(--color-avorio);
-  }
-
-  /* ---- HERO -------------------------------------------- */
-  .s-hero {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    min-height: 50svh;
-    display: flex;
-    align-items: center;
-  }
-
-  .page-h1 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-    margin: 0;
-  }
-
-  .h1-wrap {
-    padding: var(--space-sm) var(--space-md);
-    margin: var(--space-xs) 0;
-  }
-
-  .hero-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-pietra);
-    letter-spacing: 0.06em;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-  }
-
-  .hero-sub span {
-    color: var(--color-oro);
-    font-size: 0.45rem;
-    line-height: 1.8;
-  }
-
-  /* ---- PASS -------------------------------------------- */
+  /* ---- PASS (avorio) ------------------------------------ */
   .s-pass {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
   }
 
-  .pass-header {
-    margin-bottom: var(--space-lg);
-  }
+  .pass-header { margin-bottom: var(--space-lg); }
 
-  .filetto-wrap {
+  .filetto {
     width: 60px;
     margin-bottom: var(--space-md);
   }
@@ -356,7 +229,6 @@ const social = [
     align-items: start;
   }
 
-  /* Card base: sfondo lino */
   .pass-card {
     background-color: var(--color-lino);
     border-radius: var(--radius-md);
@@ -366,18 +238,13 @@ const social = [
     gap: var(--space-md);
   }
 
-  /* Card VIP: sfondo borgogna */
   .pass-card--vip {
     background-color: var(--color-borgogna);
   }
 
-  .pass-top {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
+  .pass-top { display: flex; flex-direction: column; gap: var(--space-xs); }
 
-  .pass-badge {
+  .pass-type {
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
@@ -387,12 +254,9 @@ const social = [
     margin: 0;
   }
 
-  .pass-badge--vip {
-    color: var(--color-avorio);
-    opacity: 0.7;
-  }
+  .pass-type--vip { color: var(--color-avorio); opacity: 0.7; }
 
-  .vip-header-row {
+  .vip-top-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -427,35 +291,29 @@ const social = [
     letter-spacing: -0.02em;
   }
 
-  .pass-card--vip .pass-price {
-    color: var(--color-avorio);
-  }
+  .pass-price--vip { color: var(--color-avorio); }
 
-  .pass-price-sub {
+  .pass-price-note {
     font-family: var(--font-body);
     font-size: var(--text-label);
     color: var(--color-grafite);
     opacity: 0.7;
   }
 
-  .pass-card--vip .pass-price-sub {
-    color: var(--color-avorio);
-    opacity: 0.6;
-  }
+  .pass-price-note--vip { color: var(--color-avorio); opacity: 0.6; }
 
-  /* Feature list */
-  .pass-features {
+  .feature-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 30%, transparent);
+    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 25%, transparent);
     padding-top: var(--space-sm);
   }
 
-  .pass-card--vip .pass-features {
+  .pass-card--vip .feature-list {
     border-top-color: color-mix(in srgb, var(--color-avorio) 20%, transparent);
   }
 
@@ -469,26 +327,52 @@ const social = [
     line-height: 1.5;
   }
 
-  .pass-card--vip .feature {
-    color: var(--color-avorio);
-    opacity: 0.9;
-  }
+  .pass-card--vip .feature { color: var(--color-avorio); opacity: 0.9; }
+  .feature--intro { font-style: italic; opacity: 0.7; }
 
-  .feature--intro {
-    font-weight: 700;
-    opacity: 0.7;
-    font-style: italic;
-  }
-
-  .feature-star {
+  .f-star {
     color: var(--color-oro);
     font-size: 0.5rem;
     line-height: 1.8;
     flex-shrink: 0;
   }
 
-  .pass-cta {
-    margin-top: auto;
+  .pass-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    width: 100%;
+  }
+
+  .pass-btn--dark {
+    background-color: var(--color-fumo);
+    color: var(--color-avorio);
+    border: 1px solid var(--color-fumo);
+  }
+
+  .pass-btn--dark:hover {
+    background-color: transparent;
+    color: var(--color-fumo);
+  }
+
+  .pass-btn--avorio {
+    background-color: var(--color-avorio);
+    color: var(--color-borgogna);
+    border: 1px solid var(--color-avorio);
+  }
+
+  .pass-btn--avorio:hover {
+    background-color: transparent;
+    color: var(--color-avorio);
   }
 
   .pass-note {
@@ -500,15 +384,28 @@ const social = [
     margin: 0;
   }
 
-  .pass-note--vip {
-    color: var(--color-avorio);
-  }
+  .pass-note--vip { color: var(--color-avorio); }
 
-  /* ---- FORM -------------------------------------------- */
+  /* ---- FORM TALLY (dark) -------------------------------- */
   .s-form {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
-    scroll-margin-top: 64px; /* compensa l'header sticky */
+    scroll-margin-top: 64px;
+  }
+
+  .form-heading {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-avorio);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .form-heading span {
+    color: var(--color-oro);
+    font-size: 0.5em;
+    vertical-align: middle;
   }
 
   .form-intro {
@@ -521,7 +418,6 @@ const social = [
     opacity: 0.85;
   }
 
-  /* Placeholder Tally.so — sostituire con snippet embed */
   .tally-placeholder {
     border: var(--border-hairline);
     border-radius: var(--radius-md);
@@ -549,15 +445,8 @@ const social = [
     gap: var(--space-sm);
   }
 
-  .tally-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .tally-field--full {
-    grid-column: 1 / -1;
-  }
+  .tally-field { display: flex; flex-direction: column; gap: 6px; }
+  .tally-field--full { grid-column: 1 / -1; }
 
   .tally-field-label {
     font-family: var(--font-body);
@@ -576,9 +465,7 @@ const social = [
     border-radius: var(--radius-sm);
   }
 
-  .tally-field-input--textarea {
-    height: 100px;
-  }
+  .tally-field-input--tall { height: 100px; }
 
   .tally-note {
     font-family: var(--font-body);
@@ -588,21 +475,16 @@ const social = [
     margin: 0;
   }
 
-  .tally-link {
-    color: var(--color-oro);
-    opacity: 0.6;
-    text-decoration: none;
-  }
-
+  .tally-link { color: var(--color-oro); opacity: 0.6; text-decoration: none; }
   .tally-link:hover { opacity: 1; }
 
-  /* ---- INFO CONTATTI ----------------------------------- */
+  /* ---- INFO CONTATTI (avorio) --------------------------- */
   .s-info {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
   }
 
-  .info-header {
+  .info-filetto {
     width: 60px;
     margin-bottom: var(--space-lg);
   }
@@ -616,11 +498,7 @@ const social = [
     border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 25%, transparent);
   }
 
-  .info-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
+  .info-col { display: flex; flex-direction: column; gap: var(--space-xs); }
 
   .info-label {
     font-family: var(--font-body);
@@ -641,9 +519,7 @@ const social = [
     transition: color 0.2s ease;
   }
 
-  .info-email:hover {
-    color: var(--color-borgogna);
-  }
+  .info-email:hover { color: var(--color-borgogna); }
 
   .social-row {
     display: flex;
@@ -679,27 +555,12 @@ const social = [
     color: var(--color-fumo);
   }
 
-  /* ---- RESPONSIVE -------------------------------------- */
+  /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .pass-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .info-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-
-    .tally-fields {
-      grid-template-columns: 1fr;
-    }
-
-    .tally-field--full {
-      grid-column: 1;
-    }
-
-    .tally-placeholder {
-      padding: var(--space-md);
-    }
+    .pass-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .tally-fields { grid-template-columns: 1fr; }
+    .tally-field--full { grid-column: 1; }
+    .tally-placeholder { padding: var(--space-md); }
   }
 </style>

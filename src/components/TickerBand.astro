@@ -1,0 +1,75 @@
+---
+/**
+ * TickerBand — ticker orizzontale infinito CSS-only.
+ * La lista è duplicata per garantire il loop senza JS.
+ * L'animazione usa translateX(-50%) sul contenuto raddoppiato.
+ */
+interface Props {
+  items: string[];
+  separator?: string;
+}
+
+const { items, separator = '✶' } = Astro.props;
+
+/* Duplica l'array per il loop senza JS */
+const doubled = [...items, ...items];
+---
+
+<div class="ticker-outer" aria-hidden="true" role="presentation">
+  <div class="ticker-track">
+    {doubled.map((item) => (
+      <>
+        <span class="ticker-item">{item}</span>
+        <span class="ticker-sep">{separator}</span>
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ticker-outer {
+    overflow: hidden;
+    background-color: var(--color-fumo);
+    border-top: var(--border-hairline);
+    border-bottom: var(--border-hairline);
+    padding: var(--space-sm) 0;
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* La traccia ha larghezza doppia: -50% = torna all'inizio */
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: ticker-scroll 50s linear infinite;
+    /* Aggiunge gap finale prima del loop */
+    padding-right: 2.5rem;
+  }
+
+  .ticker-item {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: color-mix(in srgb, var(--color-oro) 60%, transparent);
+  }
+
+  .ticker-sep {
+    color: color-mix(in srgb, var(--color-oro) 30%, transparent);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  /* Rispetta preferenza utente per no-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
+  }
+</style>

@@ -1,11 +1,9 @@
 ---
-/**
- * Programma — lista 10 serate placeholder (TBA)
- * Struttura: Hero · Annuncio TBA · Calendario placeholder · CTA
- */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHero from '../components/SectionHero.astro';
+import TbaBox from '../components/TbaBox.astro';
+import CtaBanner from '../components/CtaBanner.astro';
 
-/* 10 serate placeholder */
 const serate = Array.from({ length: 10 }, (_, i) => ({
   num: String(i + 1).padStart(2, '0'),
 }));
@@ -13,48 +11,26 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
 
 <BaseLayout
   title="Il Programma"
-  description="Il programma di Milan Cocktail Week 2027: 10 serate nei migliori cocktail bar di Milano. TBA — annuncio prossimamente."
+  description="Il programma di Milan Cocktail Week 2027. 10 serate, date e venue TBA. Iscriviti per ricevere gli aggiornamenti."
 >
 
-  <!-- ======================================================
-       HERO — dark
-       ====================================================== -->
-  <section class="s-hero mcw-dot-grid" aria-label="Programma Milan Cocktail Week">
-    <div class="wrap">
-      <p class="overline">Milano · Aprile–Maggio 2027</p>
-      <div class="h1-wrap mcw-bracket">
-        <h1 class="page-h1">Il Programma</h1>
-      </div>
-      <p class="hero-sub">10 serate · TBA</p>
-    </div>
-  </section>
+  <SectionHero
+    title="Il Programma"
+    subtitle="10 serate · TBA"
+    overline="Milano · Aprile–Maggio 2027"
+  />
 
-  <!-- ======================================================
-       ANNUNCIO TBA — chiara, centrata
-       ====================================================== -->
-  <section class="s-tba" aria-labelledby="tba-heading">
-    <div class="wrap tba-inner">
-      <div class="tba-box mcw-bracket">
-        <span class="tba-star" aria-hidden="true">✶</span>
-        <h2 id="tba-heading" class="tba-title">
-          Il programma<br />sarà annunciato presto
-        </h2>
-        <p class="tba-text">
-          Stiamo definendo il calendario delle 10 serate con i bar partner.
-          Il programma dettagliato — date, venue, cocktail signature e bartender —
-          sarà pubblicato nei prossimi mesi.
-        </p>
-        <a href="/contatti" class="btn btn--dark">Ricevi gli aggiornamenti →</a>
-      </div>
-    </div>
-  </section>
+  <TbaBox
+    title="Il programma sarà annunciato presto"
+    body="Stiamo definendo il calendario delle 10 serate con i bar partner. Il programma dettagliato — date, venue, cocktail signature e bartender — sarà pubblicato nei prossimi mesi."
+    ctaText="Ricevi gli aggiornamenti →"
+    ctaHref="/contatti"
+  />
 
-  <!-- ======================================================
-       CALENDARIO PLACEHOLDER — dark, 10 serate
-       ====================================================== -->
-  <section class="s-calendario" aria-labelledby="cal-heading">
+  <!-- CALENDARIO PLACEHOLDER (dark) ----------------------- -->
+  <section class="s-cal" aria-labelledby="cal-h2">
     <div class="wrap">
-      <h2 id="cal-heading" class="section-h2--light">
+      <h2 id="cal-h2" class="cal-heading">
         Le 10 Serate <span aria-hidden="true">✶</span>
       </h2>
 
@@ -65,7 +41,7 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
               <div class="serata-top mcw-filetto">
                 <div class="serata-meta">
                   <span class="serata-num">SERATA {num}</span>
-                  <span class="badge-tba" aria-label="Prossimamente">Prossimamente</span>
+                  <span class="badge-soon" aria-label="Prossimamente">Prossimamente</span>
                 </div>
               </div>
 
@@ -80,7 +56,6 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
                 </p>
               </div>
 
-              <!-- Bottone disabilitato: prenotazione non ancora aperta -->
               <button
                 class="btn-prenota"
                 disabled
@@ -96,21 +71,13 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     </div>
   </section>
 
-  <!-- ======================================================
-       CTA — borgogna
-       ====================================================== -->
-  <section class="s-cta mcw-dot-grid" aria-labelledby="cta-heading">
-    <div class="wrap cta-inner">
-      <span class="cta-star" aria-hidden="true">✶</span>
-      <h2 id="cta-heading" class="cta-title">
-        Vuoi essere<br />tra i primi a sapere?
-      </h2>
-      <p class="cta-sub">
-        Iscriviti alla lista d'attesa e ricevi il programma in anteprima.
-      </p>
-      <a href="/contatti" class="btn btn--avorio">Iscriviti →</a>
-    </div>
-  </section>
+  <CtaBanner
+    title="Vuoi essere tra i primi a sapere?"
+    subtitle="Iscriviti alla lista d'attesa e ricevi il programma in anteprima."
+    ctaText="Iscriviti →"
+    ctaHref="/contatti"
+    variant="borgogna"
+  />
 
 </BaseLayout>
 
@@ -121,19 +88,13 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     padding: 0 2rem;
   }
 
-  /* ---- Tipografia --------------------------------------- */
-  .overline {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-oro);
-    opacity: 0.8;
-    margin: 0 0 var(--space-xs);
+  /* ---- CALENDARIO (dark) -------------------------------- */
+  .s-cal {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
   }
 
-  .section-h2--light {
+  .cal-heading {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
@@ -142,156 +103,29 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     margin-bottom: var(--space-lg);
   }
 
-  .section-h2--light span {
+  .cal-heading span {
     color: var(--color-oro);
     font-size: 0.5em;
     vertical-align: middle;
-  }
-
-  /* ---- Bottoni ------------------------------------------ */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 2rem;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .btn--dark {
-    background-color: var(--color-fumo);
-    color: var(--color-avorio);
-    border: 1px solid var(--color-fumo);
-    margin-top: var(--space-sm);
-  }
-
-  .btn--dark:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
-  }
-
-  .btn--avorio {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
-  }
-
-  .btn--avorio:hover {
-    background-color: transparent;
-    color: var(--color-avorio);
-  }
-
-  /* ---- HERO -------------------------------------------- */
-  .s-hero {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    min-height: 50svh;
-    display: flex;
-    align-items: center;
-  }
-
-  .page-h1 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-    margin: 0;
-  }
-
-  .h1-wrap {
-    padding: var(--space-sm) var(--space-md);
-    margin: var(--space-xs) 0;
-  }
-
-  .hero-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-pietra);
-    letter-spacing: 0.06em;
-    margin: 0;
-    opacity: 0.8;
-  }
-
-  /* ---- TBA --------------------------------------------- */
-  .s-tba {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
-  }
-
-  .tba-inner {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tba-box {
-    max-width: 600px;
-    width: 100%;
-    padding: var(--space-lg);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .tba-star {
-    color: var(--color-oro);
-    font-size: 2rem;
-    opacity: 0.5;
-  }
-
-  .tba-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h2);
-    color: var(--color-fumo);
-    line-height: 1.1;
-  }
-
-  .tba-text {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-grafite);
-    line-height: 1.75;
-    max-width: 460px;
-    margin: 0;
-  }
-
-  /* ---- CALENDARIO -------------------------------------- */
-  .s-calendario {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
   }
 
   .serate-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
   }
 
   .serata {
     border-bottom: var(--border-hairline);
   }
 
-  .serata:last-child {
-    border-bottom: none;
-  }
+  .serata:last-child { border-bottom: none; }
 
   .serata-inner {
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    gap: var(--space-xs) var(--space-md);
     align-items: center;
+    gap: var(--space-xs) var(--space-md);
     padding: var(--space-md) 0;
   }
 
@@ -316,7 +150,7 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     letter-spacing: -0.02em;
   }
 
-  .badge-tba {
+  .badge-soon {
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
@@ -330,10 +164,10 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
   }
 
   .serata-body {
+    grid-column: 1;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    grid-column: 1;
   }
 
   .serata-title {
@@ -362,7 +196,6 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     line-height: 1.8;
   }
 
-  /* Bottone prenotazione disabilitato */
   .btn-prenota {
     grid-column: 2;
     grid-row: 2;
@@ -381,57 +214,10 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
     pointer-events: none;
   }
 
-  /* ---- CTA --------------------------------------------- */
-  .s-cta {
-    background-color: var(--color-borgogna);
-    padding: var(--section-py) 0;
-  }
-
-  .cta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-sm);
-  }
-
-  .cta-star {
-    color: var(--color-oro);
-    font-size: 1.8rem;
-    opacity: 0.5;
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-avorio);
-    line-height: 1.05;
-  }
-
-  .cta-sub {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-pietra);
-    line-height: 1.65;
-    max-width: 440px;
-    margin: 0;
-    opacity: 0.85;
-  }
-
-  /* ---- RESPONSIVE -------------------------------------- */
+  /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .serata-inner {
-      grid-template-columns: 1fr;
-    }
-
-    .serata-top {
-      grid-column: 1;
-    }
-
-    .btn-prenota {
-      grid-column: 1;
-      grid-row: auto;
-      align-self: flex-start;
-    }
+    .serata-inner { grid-template-columns: 1fr; }
+    .serata-top { grid-column: 1; }
+    .btn-prenota { grid-column: 1; grid-row: auto; align-self: flex-start; }
   }
 </style>

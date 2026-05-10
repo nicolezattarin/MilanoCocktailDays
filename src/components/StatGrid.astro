@@ -1,0 +1,85 @@
+---
+/**
+ * StatGrid — griglia numeri MCW con filetto oro sopra e sotto.
+ * Scalabile: 4 colonne (home) o 6 colonne (festival).
+ * Il numero di colonne si adatta automaticamente alla lunghezza di stats[].
+ */
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="stat-grid-wrap mcw-filetto">
+  <div
+    class="stat-grid"
+    style={`--stat-cols: ${Math.min(stats.length, 6)}`}
+  >
+    {stats.map(({ value, label }) => (
+      <div class="stat-col">
+        <span class="stat-value">{value}</span>
+        <span class="stat-label">{label}</span>
+      </div>
+    ))}
+  </div>
+  <div class="stat-bottom-rule" aria-hidden="true"></div>
+</div>
+
+<style>
+  .stat-grid-wrap {
+    padding-top: var(--space-md);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--stat-cols, 4), 1fr);
+    gap: var(--space-sm) var(--space-md);
+    padding: var(--space-lg) 0;
+  }
+
+  .stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 4rem);
+    color: var(--color-oro);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-pietra);
+  }
+
+  .stat-bottom-rule {
+    border-top: var(--border-hairline);
+  }
+
+  @media (max-width: 768px) {
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
