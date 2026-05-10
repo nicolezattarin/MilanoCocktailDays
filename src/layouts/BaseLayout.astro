@@ -147,12 +147,53 @@ const jsonLdOrg = {
       : <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
     }
 
-    <!-- 11. GTM placeholder -->
-    <!-- GTM: inserire snippet GTM qui -->
+    <!-- ============================================================
+         TRACKING — Fase 4
+         Ordine critico: iubenda PRIMA di GTM
+         ============================================================ -->
+
+    <!-- SLOT 1: iubenda Cookie Solution -->
+    <!-- Incolla qui lo snippet iubenda CS quando disponibile -->
+    <!--
+    <script type="text/javascript">
+      var _iub = _iub || [];
+      _iub.csConfiguration = {
+        "siteId": INSERIRE_SITE_ID,
+        "cookiePolicyId": INSERIRE_POLICY_ID,
+        "lang": "it",
+        "storage": { "useSiteId": true }
+      };
+    </script>
+    <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/INSERIRE_SITE_ID.js"></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+    -->
+
+    <!-- SLOT 2: Google Tag Manager <head> snippet -->
+    <!-- Incolla qui lo snippet GTM quando disponibile -->
+    <!--
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','INSERIRE_GTM_ID');</script>
+    -->
+
     <slot name="head-scripts" />
   </head>
 
   <body>
+    <!-- GTM noscript fallback — va subito dopo <body> -->
+    <!--
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=INSERIRE_GTM_ID"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden">
+      </iframe>
+    </noscript>
+    -->
+
     <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
     <Header />
     <main id="main-content" tabindex="-1">

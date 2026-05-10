@@ -230,3 +230,13 @@ body {
     content: ' (' attr(href) ')';
   }
 }
+
+/* ============================================================
+   Tracking — classi identifier per GTM trigger
+   Nessuno stile visivo — solo identificatori
+   ============================================================ */
+.cta-iscrizione { }
+.cta-partner    { }
+.cta-newsletter { }
+.cta-pass-festival { }
+.cta-pass-vip   { }

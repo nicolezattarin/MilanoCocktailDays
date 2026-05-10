@@ -8,9 +8,10 @@ interface Props {
   body: string;
   ctaText: string;
   ctaHref: string;
+  ctaClass?: string;
 }
 
-const { title, body, ctaText, ctaHref } = Astro.props;
+const { title, body, ctaText, ctaHref, ctaClass } = Astro.props;
 ---
 
 <section class="tba-section" aria-labelledby="tba-box-title">
@@ -19,7 +20,7 @@ const { title, body, ctaText, ctaHref } = Astro.props;
       <span class="tba-star" aria-hidden="true">✶</span>
       <h2 id="tba-box-title" class="tba-title">{title}</h2>
       <p class="tba-body">{body}</p>
-      <a href={ctaHref} class="tba-btn">
+      <a href={ctaHref} class:list={['tba-btn', ctaClass]}>
         {ctaText}
       </a>
     </div>

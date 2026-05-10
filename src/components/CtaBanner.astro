@@ -10,9 +10,10 @@ interface Props {
   ctaHref: string;
   variant?: 'borgogna' | 'dark';
   subtitle?: string;
+  ctaClass?: string;
 }
 
-const { title, ctaText, ctaHref, variant = 'borgogna', subtitle } = Astro.props;
+const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = Astro.props;
 ---
 
 <section
@@ -23,7 +24,7 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle } = Astro.props;
     <span class="cta-star" aria-hidden="true">✶</span>
     <h2 id="cta-banner-heading" class="cta-title">{title}</h2>
     {subtitle && <p class="cta-sub">{subtitle}</p>}
-    <a href={ctaHref} class="cta-btn">{ctaText}</a>
+    <a href={ctaHref} class:list={['cta-btn', ctaClass]}>{ctaText}</a>
   </div>
 </section>
 
