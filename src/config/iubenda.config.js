@@ -1,5 +1,5 @@
 /**
- * Configurazione iubenda Cookie Solution per MCW
+ * Configurazione iubenda Cookie Solution per MCD
  *
  * SETUP IUBENDA:
  * 1. Vai su iubenda.com → crea account
@@ -27,7 +27,7 @@ export const iubendaConfig = {
     acceptButtonCaptionColor: '#1A1410',
     customizeButtonColor: '#231C19',
     customizeButtonCaptionColor: '#B8AC9A',
-    content: 'Utilizziamo cookie per migliorare la tua esperienza su Milan Cocktail Week.',
+    content: 'Utilizziamo cookie per migliorare la tua esperienza su Milan Cocktail Days.',
     acceptButtonCaption: 'Accetta',
     customizeButtonCaption: 'Preferenze',
   },

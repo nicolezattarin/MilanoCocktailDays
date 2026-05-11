@@ -1,5 +1,5 @@
 /**
- * MCW — DataLayer Events Reference
+ * MCD — DataLayer Events Reference
  * Da configurare come trigger personalizzati in GTM.
  * NON includere direttamente nelle pagine Astro —
  * questo file è documentazione per la configurazione GTM.

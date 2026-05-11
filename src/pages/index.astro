@@ -18,7 +18,7 @@ const stats = [
 ];
 
 const audience = [
-  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCW, degustazioni guidate e accesso ai migliori bar della città.' },
+  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCD, degustazioni guidate e accesso ai migliori bar della città.' },
   { tag: 'Amici',        title: 'SERATE TRA AMICI',         desc: 'Il pretesto perfetto per esplorare Milano by night: 10 serate, 10 bar diversi, un pass che apre tutte le porte.' },
   { tag: 'Date',         title: 'DATE NIGHT',               desc: "Locali selezionati con cura, atmosfera unica, cocktail d'autore. La serata perfetta per stupire." },
   { tag: 'Esploratori',  title: 'ESPLORATORI',              desc: 'Navigli · Brera · Isola · Porta Romana. Scopri angoli di Milano che non sapevi di amare.' },
@@ -26,8 +26,8 @@ const audience = [
 
 const steps = [
   { n: '01', title: 'ISCRIVITI',                desc: 'Acquista il Pass Festival e accedi a tutte le serate.' },
-  { n: '02', title: 'SCOPRI BAR E COCKTAIL',   desc: 'Ogni bar crea un cocktail signature esclusivo per MCW.' },
-  { n: '03', title: 'PRENOTA E DEGUSTA',       desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCW.' },
+  { n: '02', title: 'SCOPRI BAR E COCKTAIL',   desc: 'Ogni bar crea un cocktail signature esclusivo per MCD.' },
+  { n: '03', title: 'PRENOTA E DEGUSTA',       desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCD.' },
   { n: '04', title: 'COLLEZIONA ESPERIENZE',   desc: '10 serate, 10 bar diversi: costruisci il tuo percorso tra i quartieri di Milano.' },
 ];
 
@@ -42,8 +42,8 @@ const testimonials = [
 ---
 
 <BaseLayout
-  title="Milan Cocktail Week 2027"
-  description="La prima Milan Cocktail Week. 10 serate nei migliori bar di Milano, cocktail signature esclusivi. Aprile–Maggio 2027. Iscriviti ora."
+  title="Milan Cocktail Days 2027"
+  description="La prima Milan Cocktail Days. 10 serate nei migliori bar di Milano, cocktail signature esclusivi. Aprile–Maggio 2027. Iscriviti ora."
   pageType="event"
 >
 
@@ -71,17 +71,17 @@ const testimonials = [
   <TickerBand items={partners} />
 
   <!-- S3 · STATISTICHE ------------------------------------ -->
-  <section class="s-stats" aria-label="I numeri di Milan Cocktail Week">
+  <section class="s-stats" aria-label="I numeri di Milan Cocktail Days">
     <div class="wrap">
       <StatGrid stats={stats} />
     </div>
   </section>
 
-  <!-- S4 · PER CHI È MCW ---------------------------------- -->
+  <!-- S4 · PER CHI È MCD ---------------------------------- -->
   <section class="s-audience" aria-labelledby="audience-h2">
     <div class="wrap">
       <div class="section-header">
-        <p class="section-overline">Per chi è MCW</p>
+        <p class="section-overline">Per chi è MCD</p>
         <h2 id="audience-h2" class="section-h2">Un festival<br />per tutti</h2>
       </div>
       <div class="audience-grid">
@@ -157,12 +157,12 @@ const testimonials = [
             <div
               class="bar-img"
               role="img"
-              aria-label={`Bar partner MCW ${i} — coming soon`}
+              aria-label={`Bar partner MCD ${i} — coming soon`}
             >
               <span class="bar-star" aria-hidden="true">✶</span>
             </div>
             <div class="bar-info">
-              <p class="bar-name">Bar Partner MCW</p>
+              <p class="bar-name">Bar Partner MCD</p>
               <p class="bar-city">Milano</p>
             </div>
           </article>

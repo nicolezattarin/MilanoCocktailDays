@@ -18,7 +18,7 @@
   <text x="600" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="48" fill="#C4850D" opacity="0.6">✶</text>
 
   <!-- Titolo principale -->
-  <text x="600" y="320" text-anchor="middle" font-family="Georgia,'Didot','Playfair Display',serif" font-size="72" font-weight="700" fill="#F5EDE0" letter-spacing="4">MILAN COCKTAIL WEEK</text>
+  <text x="600" y="320" text-anchor="middle" font-family="Georgia,'Didot','Playfair Display',serif" font-size="72" font-weight="700" fill="#F5EDE0" letter-spacing="4">MILAN COCKTAIL DAYS</text>
 
   <!-- Anno -->
   <text x="600" y="390" text-anchor="middle" font-family="'Arial','Helvetica',sans-serif" font-size="28" font-weight="700" fill="#C4850D" letter-spacing="12">2027</text>

@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-const SITE = 'https://milancocktailweek.it';
+const SITE = 'https://milancocktaildays.it';
 
 const pagePriority = {
   [`${SITE}/`]:          { priority: 1.0, changefreq: 'monthly' },

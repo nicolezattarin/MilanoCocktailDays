@@ -1,9 +1,9 @@
 /**
- * Configurazione Google Tag Manager per MCW
+ * Configurazione Google Tag Manager per MCD
  *
  * SETUP GTM:
- * 1. Vai su tagmanager.google.com → crea account "MCW"
- * 2. Crea container "milancocktailweek.it" → Web
+ * 1. Vai su tagmanager.google.com → crea account "MCD"
+ * 2. Crea container "milancocktaildays.it" → Web
  * 3. Copia GTM-XXXXXXX ID
  * 4. Sostituisci INSERIRE_GTM_ID in BaseLayout.astro
  *

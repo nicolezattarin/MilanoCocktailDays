@@ -1,6 +1,6 @@
-# Milan Cocktail Week 2027 — Site
+# Milan Cocktail Days 2027 — Site
 
-Sito statico Astro 6. Deploy target: `https://milancocktailweek.it`
+Sito statico Astro 6. Deploy target: `https://milancocktaildays.it`
 
 ## Comandi
 
@@ -21,7 +21,7 @@ Completale nell'ordine indicato.
 
 ### 1. Dominio + DNS
 
-- Acquista `milancocktailweek.it` (es. Namecheap, Aruba, Register.it)
+- Acquista `milancocktaildays.it` (es. Namecheap, Aruba, Register.it)
 - Configura DNS verso il provider di deploy (Vercel/Netlify)
 - Verifica HTTPS attivo prima di fare qualsiasi altra cosa
 
@@ -62,7 +62,7 @@ Facebook e Twitter non renderizzano SVG — serve un JPG.
 ### 5. Google Search Console
 
 1. Vai su [search.google.com/search-console](https://search.google.com/search-console)
-2. Aggiungi proprietà → tipo URL → `https://milancocktailweek.it`
+2. Aggiungi proprietà → tipo URL → `https://milancocktaildays.it`
 3. Scegli verifica via meta tag → copia il codice `content="XXXX"`
 4. **Dimmi il codice** — lo inserisco in `BaseLayout.astro` in 30 secondi:
    ```html
@@ -70,7 +70,7 @@ Facebook e Twitter non renderizzano SVG — serve un JPG.
    ```
 5. Dopo verifica → Sitemaps → incolla:
    ```
-   https://milancocktailweek.it/sitemap-index.xml
+   https://milancocktaildays.it/sitemap-index.xml
    ```
 
 ---
@@ -156,7 +156,7 @@ cp .env.example .env
 Solo eseguibile su sito live. Dopo deploy:
 
 ```bash
-npx lighthouse https://milancocktailweek.it --output html --view
+npx lighthouse https://milancocktaildays.it --output html --view
 ```
 
 Oppure Chrome DevTools → Lighthouse tab → target 90+ su tutte le categorie.
