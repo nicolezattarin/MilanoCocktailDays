@@ -92,13 +92,17 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
         Ti contatteremo per valutare insieme la partnership.
       </p>
 
-      <!-- Sostituire con embed Tally quando il form bar è pronto -->
-      <div class="tally-tbd" role="region" aria-label="Form bar partner — in arrivo">
-        <p class="tbd-label">Form in arrivo</p>
-        <p class="tbd-note">
-          Nel frattempo scrivi a
-          <a href="mailto:partner@milancocktaildays.it" class="tbd-link">partner@milancocktaildays.it</a>
-        </p>
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/vGEKJQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
+          loading="lazy"
+          width="100%"
+          height="564"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Vuoi far parte dei Milano Cocktail Days con il tuo Cocktail Bar?"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -264,44 +268,9 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     opacity: 0.85;
   }
 
-  .tally-tbd {
-    border: var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 48px;
+  .tally-wrap {
     max-width: 760px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    align-items: flex-start;
   }
-
-  .tbd-label {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-oro);
-    opacity: 0.6;
-    margin: 0;
-  }
-
-  .tbd-note {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-pietra);
-    opacity: 0.7;
-    margin: 0;
-  }
-
-  .tbd-link {
-    color: var(--color-oro);
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .tbd-link:hover { opacity: 1; }
 
   /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
