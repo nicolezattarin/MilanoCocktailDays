@@ -122,31 +122,17 @@ const social = [
         Ti contatteremo appena le vendite saranno aperte.
       </p>
 
-      <!-- Sostituire con embed Tally.so quando pronto -->
-      <div class="tally-placeholder" role="region" aria-label="Form iscrizione — in arrivo">
-        <p class="tally-label">Form iscrizione</p>
-        <div class="tally-fields" aria-hidden="true">
-          <div class="tally-field">
-            <span class="tally-field-label">Nome</span>
-            <div class="tally-field-input"></div>
-          </div>
-          <div class="tally-field">
-            <span class="tally-field-label">Email</span>
-            <div class="tally-field-input"></div>
-          </div>
-          <div class="tally-field">
-            <span class="tally-field-label">Tipo di pass</span>
-            <div class="tally-field-input"></div>
-          </div>
-          <div class="tally-field tally-field--full">
-            <span class="tally-field-label">Messaggio (opzionale)</span>
-            <div class="tally-field-input tally-field-input--tall"></div>
-          </div>
-        </div>
-        <p class="tally-note">
-          Configurare su <a href="https://tally.so" target="_blank" rel="noopener noreferrer" class="tally-link">tally.so</a>
-          e sostituire questo blocco con lo snippet embed.
-        </p>
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="689"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Milano Cocktail Days — Iscrizione"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -418,65 +404,9 @@ const social = [
     opacity: 0.85;
   }
 
-  .tally-placeholder {
-    border: var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 48px;
+  .tally-wrap {
     max-width: 760px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
   }
-
-  .tally-label {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-oro);
-    opacity: 0.6;
-    margin: 0;
-  }
-
-  .tally-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-sm);
-  }
-
-  .tally-field { display: flex; flex-direction: column; gap: 6px; }
-  .tally-field--full { grid-column: 1 / -1; }
-
-  .tally-field-label {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-pietra);
-    opacity: 0.5;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .tally-field-input {
-    height: 40px;
-    background-color: var(--color-marmo);
-    border: var(--border-hairline);
-    border-color: color-mix(in srgb, var(--color-pietra) 20%, transparent);
-    border-radius: var(--radius-sm);
-  }
-
-  .tally-field-input--tall { height: 100px; }
-
-  .tally-note {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-pietra);
-    opacity: 0.4;
-    margin: 0;
-  }
-
-  .tally-link { color: var(--color-oro); opacity: 0.6; text-decoration: none; }
-  .tally-link:hover { opacity: 1; }
 
   /* ---- INFO CONTATTI (avorio) --------------------------- */
   .s-info {
@@ -559,8 +489,5 @@ const social = [
   @media (max-width: 768px) {
     .pass-grid { grid-template-columns: 1fr; }
     .info-grid { grid-template-columns: 1fr; gap: var(--space-md); }
-    .tally-fields { grid-template-columns: 1fr; }
-    .tally-field--full { grid-column: 1; }
-    .tally-placeholder { padding: var(--space-md); }
   }
 </style>
