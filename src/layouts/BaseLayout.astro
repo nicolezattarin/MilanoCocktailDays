@@ -84,6 +84,9 @@ const jsonLdOrg = {
 <!doctype html>
 <html lang="it">
   <head>
+    <!-- iubenda Privacy Controls & Cookie Solution — deve essere primo in <head> -->
+    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/85649d7a-11b6-46ec-8877-b5040bed6205.js"></script>
+
     <!-- 1. CHARSET + VIEWPORT -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -151,22 +154,6 @@ const jsonLdOrg = {
          TRACKING — Fase 4
          Ordine critico: iubenda PRIMA di GTM
          ============================================================ -->
-
-    <!-- SLOT 1: iubenda Cookie Solution -->
-    <!-- Incolla qui lo snippet iubenda CS quando disponibile -->
-    <!--
-    <script type="text/javascript">
-      var _iub = _iub || [];
-      _iub.csConfiguration = {
-        "siteId": INSERIRE_SITE_ID,
-        "cookiePolicyId": INSERIRE_POLICY_ID,
-        "lang": "it",
-        "storage": { "useSiteId": true }
-      };
-    </script>
-    <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/INSERIRE_SITE_ID.js"></script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
-    -->
 
     <!-- SLOT 2: Google Tag Manager <head> snippet -->
     <!-- Incolla qui lo snippet GTM quando disponibile -->
