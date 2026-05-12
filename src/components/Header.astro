@@ -22,7 +22,7 @@ const currentPath = Astro.url.pathname;
   <div class="header-inner">
     <!-- Logo -->
     <a href="/" class="site-logo" aria-label="Milan Cocktail Days — torna alla home">
-      <span class="logo-text">MCD</span><span class="logo-star" aria-hidden="true">✶</span>
+      <img src="/logos/MCD_Logo_2.svg" alt="Milan Cocktail Days" width="160" height="44" />
     </a>
 
     <!-- Hamburger (visibile solo mobile) -->
@@ -66,8 +66,8 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: var(--color-fumo);
-    border-bottom: var(--border-hairline);
+    background-color: var(--color-basilico);
+    border-bottom: 0.5px solid var(--color-basilico-600);
   }
 
   .header-inner {
@@ -83,23 +83,9 @@ const currentPath = Astro.url.pathname;
   /* ---- Logo ------------------------------------------------ */
   .site-logo {
     display: flex;
-    align-items: baseline;
-    gap: 3px;
+    align-items: center;
     text-decoration: none;
     margin-right: auto;
-  }
-
-  .logo-text {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--color-avorio);
-    letter-spacing: 0.06em;
-  }
-
-  .logo-star {
-    color: var(--color-oro);
-    font-size: 0.9rem;
   }
 
   /* ---- Nav links ------------------------------------------- */
@@ -114,11 +100,9 @@ const currentPath = Astro.url.pathname;
 
   .nav-link {
     font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-pietra);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-panna);
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
@@ -132,14 +116,14 @@ const currentPath = Astro.url.pathname;
     left: 0;
     width: 0;
     height: 0.5px;
-    background-color: var(--color-oro);
+    background-color: var(--color-bitter);
     transition: width 0.25s ease;
   }
 
-  .nav-link:hover { color: var(--color-avorio); }
+  .nav-link:hover { color: var(--color-panna); }
   .nav-link:hover::after,
   .nav-link.is-active::after { width: 100%; }
-  .nav-link.is-active { color: var(--color-oro); }
+  .nav-link.is-active { color: var(--color-panna); text-decoration: underline; text-decoration-color: var(--color-bitter); }
 
   /* ---- CTA desktop ----------------------------------------- */
   .nav-cta {
@@ -152,9 +136,9 @@ const currentPath = Astro.url.pathname;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-decoration: none;
-    color: var(--color-fumo);
-    background-color: var(--color-oro);
-    border: 1px solid var(--color-oro);
+    color: var(--color-panna);
+    background-color: var(--color-bitter);
+    border: 1px solid var(--color-bitter);
     border-radius: var(--radius-sm);
     transition: background-color 0.2s ease, color 0.2s ease;
     white-space: nowrap;
@@ -162,8 +146,9 @@ const currentPath = Astro.url.pathname;
   }
 
   .nav-cta:hover {
-    background-color: transparent;
-    color: var(--color-oro);
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    color: var(--color-panna);
   }
 
   /* ---- Hamburger ------------------------------------------- */
@@ -185,7 +170,7 @@ const currentPath = Astro.url.pathname;
     display: block;
     width: 100%;
     height: 1px;
-    background-color: var(--color-pietra);
+    background-color: var(--color-panna);
     transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center;
   }
@@ -206,8 +191,8 @@ const currentPath = Astro.url.pathname;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-decoration: none;
-    color: var(--color-fumo);
-    background-color: var(--color-oro);
+    color: var(--color-panna);
+    background-color: var(--color-bitter);
     border-radius: var(--radius-sm);
   }
 
@@ -221,8 +206,8 @@ const currentPath = Astro.url.pathname;
       top: 64px;
       left: 0;
       right: 0;
-      background-color: var(--color-fumo);
-      border-bottom: var(--border-hairline);
+      background-color: var(--color-basilico);
+      border-bottom: 0.5px solid var(--color-basilico-600);
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;

@@ -29,7 +29,7 @@ const { title, body, ctaText, ctaHref, ctaClass } = Astro.props;
 
 <style>
   .tba-section {
-    background-color: var(--color-avorio);
+    background-color: var(--color-panna);
     padding: var(--section-py) 0;
   }
 
@@ -53,23 +53,23 @@ const { title, body, ctaText, ctaHref, ctaClass } = Astro.props;
   }
 
   .tba-star {
-    color: var(--color-oro);
+    color: var(--color-basilico);
     font-size: 2rem;
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   .tba-title {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h2);
-    color: var(--color-fumo);
+    color: var(--color-basilico);
     line-height: 1.1;
   }
 
   .tba-body {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-grafite);
+    color: var(--color-mora);
     line-height: 1.75;
     max-width: 460px;
     margin: 0;
@@ -85,16 +85,17 @@ const { title, body, ctaText, ctaHref, ctaClass } = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-decoration: none;
-    color: var(--color-avorio);
-    background-color: var(--color-fumo);
-    border: 1px solid var(--color-fumo);
+    color: var(--color-panna);
+    background-color: var(--color-bitter);
+    border: 1px solid var(--color-bitter);
     border-radius: var(--radius-sm);
     margin-top: var(--space-xs);
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .tba-btn:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    color: var(--color-panna);
   }
 </style>

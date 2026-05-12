@@ -144,7 +144,7 @@ const quartieri = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
-    color: var(--color-fumo);
+    color: var(--color-mora);
     line-height: 1.05;
   }
 
@@ -152,7 +152,7 @@ const quartieri = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
-    color: var(--color-avorio);
+    color: var(--color-panna);
     line-height: 1.05;
   }
 
@@ -162,7 +162,7 @@ const quartieri = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--color-grafite);
+    color: var(--color-basilico);
     margin: 0 0 var(--space-xs);
   }
 
@@ -172,7 +172,7 @@ const quartieri = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--color-oro);
+    color: var(--color-panna);
     opacity: 0.65;
     margin: 0 0 var(--space-xs);
   }
@@ -182,7 +182,7 @@ const quartieri = [
   .body-text {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro);
     line-height: 1.8;
     margin: 0 0 var(--space-sm);
   }
@@ -224,7 +224,7 @@ const quartieri = [
   }
 
   .img-star {
-    color: var(--color-oro);
+    color: var(--color-basilico);
     font-size: 3rem;
     opacity: 0.25;
   }
@@ -239,18 +239,19 @@ const quartieri = [
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-decoration: none;
-    color: var(--color-avorio);
-    background-color: var(--color-fumo);
-    border: 1px solid var(--color-fumo);
+    color: var(--color-panna);
+    background-color: var(--color-bitter);
+    border: 1px solid var(--color-bitter);
     border-radius: var(--radius-sm);
     margin-top: var(--space-sm);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     align-self: flex-start;
   }
 
   .btn:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    color: var(--color-panna);
   }
 
   /* ---- NUMERI (dark) ------------------------------------- */
@@ -279,14 +280,14 @@ const quartieri = [
     align-items: flex-start;
     gap: var(--space-sm);
     padding-top: var(--space-sm);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 30%, transparent);
+    border-top: 0.5px solid var(--color-panna-300);
   }
 
   .step-n {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: clamp(2.5rem, 4vw, 3.5rem);
-    color: color-mix(in srgb, var(--color-oro) 50%, transparent);
+    color: var(--color-bitter);
     line-height: 1;
     letter-spacing: -0.03em;
     display: block;
@@ -300,7 +301,7 @@ const quartieri = [
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-body);
-    color: var(--color-fumo);
+    color: var(--color-mora);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-xs);
   }
@@ -308,7 +309,7 @@ const quartieri = [
   .step-desc {
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro-500);
     line-height: 1.65;
     margin: 0;
   }

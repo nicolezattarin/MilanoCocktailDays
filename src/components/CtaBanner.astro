@@ -1,8 +1,8 @@
 ---
 /**
  * CtaBanner — sezione CTA finale ripetuta in fondo a ogni pagina.
- * variant 'borgogna': sfondo borgogna, bottone avorio.
- * variant 'dark': sfondo fumo, bottone oro.
+ * variant 'borgogna'/'bitter': sfondo Bitter, bottone Panna.
+ * variant 'dark': sfondo Mora, bottone Bitter.
  */
 interface Props {
   title: string;
@@ -33,12 +33,14 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = As
     padding: var(--section-py) 0;
   }
 
-  .cta-banner--borgogna {
-    background-color: var(--color-borgogna);
+  /* borgogna variant (backward compat) = bitter variant */
+  .cta-banner--borgogna,
+  .cta-banner--bitter {
+    background-color: var(--color-bitter);
   }
 
   .cta-banner--dark {
-    background-color: var(--color-fumo);
+    background-color: var(--color-mora);
   }
 
   .wrap {
@@ -52,7 +54,7 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = As
   }
 
   .cta-star {
-    color: var(--color-oro);
+    color: var(--color-panna);
     font-size: 1.8rem;
     opacity: 0.5;
   }
@@ -64,12 +66,13 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = As
     line-height: 1.05;
   }
 
-  .cta-banner--borgogna .cta-title {
-    color: var(--color-avorio);
+  .cta-banner--borgogna .cta-title,
+  .cta-banner--bitter .cta-title {
+    color: var(--color-panna);
   }
 
   .cta-banner--dark .cta-title {
-    color: var(--color-avorio);
+    color: var(--color-panna);
   }
 
   .cta-sub {
@@ -81,15 +84,16 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = As
     opacity: 0.85;
   }
 
-  .cta-banner--borgogna .cta-sub {
-    color: var(--color-pietra);
+  .cta-banner--borgogna .cta-sub,
+  .cta-banner--bitter .cta-sub {
+    color: var(--color-panna);
   }
 
   .cta-banner--dark .cta-sub {
-    color: var(--color-pietra);
+    color: var(--color-pesco-300);
   }
 
-  /* Bottone: avorio su borgogna, oro su dark */
+  /* Bottone: Panna su Bitter; Bitter su Mora */
   .cta-btn {
     display: inline-flex;
     align-items: center;
@@ -105,25 +109,28 @@ const { title, ctaText, ctaHref, variant = 'borgogna', subtitle, ctaClass } = As
     margin-top: var(--space-xs);
   }
 
-  .cta-banner--borgogna .cta-btn {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
+  .cta-banner--borgogna .cta-btn,
+  .cta-banner--bitter .cta-btn {
+    background-color: var(--color-panna);
+    color: var(--color-bitter);
+    border: 1px solid var(--color-panna);
   }
 
-  .cta-banner--borgogna .cta-btn:hover {
+  .cta-banner--borgogna .cta-btn:hover,
+  .cta-banner--bitter .cta-btn:hover {
     background-color: transparent;
-    color: var(--color-avorio);
+    color: var(--color-panna);
   }
 
   .cta-banner--dark .cta-btn {
-    background-color: var(--color-oro);
-    color: var(--color-fumo);
-    border: 1px solid var(--color-oro);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
   }
 
   .cta-banner--dark .cta-btn:hover {
-    background-color: transparent;
-    color: var(--color-oro);
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    color: var(--color-panna);
   }
 </style>

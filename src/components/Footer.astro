@@ -24,8 +24,7 @@ const annoCorrente = new Date().getFullYear();
     <!-- Colonna sinistra: logo + tagline -->
     <div class="footer-col footer-col--brand">
       <a href="/" class="footer-logo" aria-label="Milan Cocktail Days">
-        <span class="footer-logo-mcw">MCD</span>
-        <span class="footer-logo-star" aria-hidden="true">✶</span>
+        <img src="/logos/MCD_Logo_2.svg" alt="Milan Cocktail Days" width="140" height="38" />
       </a>
       <p class="footer-tagline">Milano ✶ Aprile–Maggio 2027</p>
       <p class="footer-desc">
@@ -92,7 +91,7 @@ const annoCorrente = new Date().getFullYear();
 
 <style>
   .site-footer {
-    background-color: var(--color-marmo);
+    background-color: var(--color-mora);
     padding-top: var(--space-lg);
   }
 
@@ -108,49 +107,35 @@ const annoCorrente = new Date().getFullYear();
   /* ---- Logo colonna sinistra ----------------------------- */
   .footer-logo {
     display: inline-flex;
-    align-items: baseline;
-    gap: 4px;
+    align-items: center;
     text-decoration: none;
     margin-bottom: var(--space-sm);
-  }
-
-  .footer-logo-mcw {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--color-avorio);
-    letter-spacing: 0.05em;
-  }
-
-  .footer-logo-star {
-    color: var(--color-oro);
-    font-size: 0.9rem;
   }
 
   .footer-tagline {
     font-family: var(--font-display);
     font-style: italic;
     font-size: var(--text-small);
-    color: var(--color-oro);
+    color: var(--color-panna);
     letter-spacing: 0.04em;
     margin-bottom: var(--space-sm);
   }
 
   .footer-desc {
     font-size: var(--text-small);
-    color: var(--color-pietra);
+    color: var(--color-panna);
     line-height: 1.7;
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   /* ---- Intestazioni colonne ------------------------------ */
   .footer-heading {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
+    font-family: var(--font-display);
+    font-size: var(--text-small);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--color-oro);
+    color: var(--color-panna);
     margin-bottom: var(--space-sm);
   }
 
@@ -166,13 +151,14 @@ const annoCorrente = new Date().getFullYear();
 
   .footer-nav-link {
     font-size: var(--text-small);
-    color: var(--color-pietra);
+    color: var(--color-panna);
+    opacity: 0.7;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
   .footer-nav-link:hover {
-    color: var(--color-avorio);
+    opacity: 1;
   }
 
   /* ---- Social + legale ----------------------------------- */
@@ -187,34 +173,34 @@ const annoCorrente = new Date().getFullYear();
     flex-wrap: wrap;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 0.5px solid var(--color-oro);
+    border-top: 0.5px solid var(--color-mora-300);
   }
 
   .footer-legal a {
     font-family: var(--font-body);
     font-size: 0.75rem;
-    color: var(--color-pietra);
+    color: var(--color-panna);
+    opacity: 0.7;
     text-decoration: none;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
   }
 
   .footer-legal a:hover {
-    color: var(--color-oro);
+    opacity: 1;
   }
 
   .footer-legal-sep {
-    color: var(--color-oro);
+    color: var(--color-mora-300);
     font-size: 0.625rem;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   /* ---- Firma di chiusura --------------------------------- */
   .footer-bottom {
-    border-top: var(--border-hairline);
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: var(--color-basilico);
+    max-width: none;
     padding: var(--space-sm) var(--space-md);
     display: flex;
     justify-content: space-between;
@@ -222,15 +208,18 @@ const annoCorrente = new Date().getFullYear();
   }
 
   .footer-copyright {
-    font-size: var(--text-label);
-    color: var(--color-grafite);
+    font-size: 12px;
+    color: var(--color-panna-400);
     letter-spacing: 0.04em;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .footer-signature {
-    color: var(--color-oro);
+    color: var(--color-panna);
     font-size: 1.2rem;
-    opacity: 0.6;
+    opacity: 0.4;
   }
 
   /* ---- Responsive mobile --------------------------------- */
@@ -241,7 +230,7 @@ const annoCorrente = new Date().getFullYear();
     }
 
     .footer-col--brand {
-      border-bottom: var(--border-hairline);
+      border-bottom: 0.5px solid var(--color-mora-300);
       padding-bottom: var(--space-md);
     }
   }

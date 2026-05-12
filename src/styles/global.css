@@ -36,61 +36,77 @@ select {
   font: inherit;
 }
 
-/* --- Tokens: Colori primari -------------------------------- */
+/* --- Tokens: Giardino Aperitivo ----------------------------- */
 :root {
-  --color-fumo:     #1A1410;   /* sfondo principale */
-  --color-borgogna: #6B1A2A;   /* accento rosso scuro */
-  --color-oro:      #C4850D;   /* accento dorato */
-  --color-pietra:   #B8AC9A;   /* testo su scuro */
+  /* ---- Giardino Aperitivo — Core palette ---- */
+  --color-basilico:      #2E4A36;
+  --color-panna:         #F7F2E5;
+  --color-bitter:        #B83A2E;
+  --color-mora:          #4A2540;
+  --color-pesco:         #D97A91;
+  --color-inchiostro:    #1A1416;
 
-  /* Colori neutri */
-  --color-marmo:    #231C19;   /* card su sfondo scuro */
-  --color-avorio:   #F5EDE0;   /* sfondo sezione chiara */
-  --color-lino:     #E8D9C0;   /* card su sfondo chiaro */
-  --color-grafite:  #4A3F38;   /* testo su chiaro */
+  /* ---- Extended scale ---- */
+  --color-panna-100:     #FBF7EC;
+  --color-panna-300:     #E6DCC0;
+  --color-panna-400:     #C9BD99;
+  --color-basilico-600:  #3D6048;
+  --color-basilico-900:  #1F3325;
+  --color-bitter-500:    #D4503F;
+  --color-bitter-900:    #7A2419;
+  --color-mora-300:      #8A5A7A;
+  --color-pesco-300:     #F2C5CD;
+  --color-inchiostro-300:#A89BA0;
+  --color-inchiostro-500:#6B5C61;
+  --color-inchiostro-700:#3A2E32;
 
-  /* Accenti vivaci — usare con parsimonia */
-  --color-navigli:  #1B8C7D;   /* teal Navigli */
-  --color-spritz:   #E8520A;   /* arancione Spritz */
+  /* ---- Backward-compat aliases ---- */
+  --color-avorio:   var(--color-panna);
+  --color-fumo:     var(--color-mora);
+  --color-borgogna: var(--color-bitter);
+  --color-lino:     var(--color-panna-300);
+  --color-grafite:  var(--color-inchiostro-700);
+  --color-marmo:    #5A2F50;    /* lighter mora for dark cards */
+  --color-pietra:   var(--color-pesco-300);
+  --color-oro:      var(--color-basilico);
 
-  /* --- Tipografia --------------------------------------- */
-  --font-display: 'Bodoni Moda', Didot, 'Playfair Display', Georgia, serif;
+  /* ---- Tipografia ---- */
+  --font-display: 'Bodoni Moda', 'Didot', 'Playfair Display', Georgia, serif;
   --font-body:    'Plus Jakarta Sans', Inter, 'DM Sans', Arial, sans-serif;
   --font-mono:    'Courier New', Courier, monospace;
 
-  /* Scala tipografica mobile-first con clamp */
-  --text-hero:  clamp(3rem, 8vw, 7rem);       /* Bodoni, titoli hero */
+  --text-hero:  clamp(3rem, 8vw, 7rem);
   --text-h1:    clamp(2.2rem, 5vw, 4rem);
   --text-h2:    clamp(1.6rem, 3.5vw, 2.8rem);
   --text-h3:    clamp(1.2rem, 2.5vw, 1.8rem);
   --text-body:  1rem;
   --text-small: 0.875rem;
-  --text-label: 0.75rem;                      /* usare con uppercase + tracking */
+  --text-label: 0.75rem;
 
-  /* --- Layout ------------------------------------------- */
+  /* ---- Layout ---- */
   --container: 1200px;
   --section-py: clamp(4rem, 8vw, 8rem);
 
-  /* --- Spaziatura --------------------------------------- */
+  /* ---- Spacing ---- */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
   --space-xl: 8rem;
 
-  /* --- Bordi e raggi ------------------------------------ */
+  /* ---- Borders ---- */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
 
-  /* Filetto dorato stile distilleria */
-  --border-hairline: 0.5px solid var(--color-oro);
+  /* Filetto stile distilleria — Basilico instead of gold */
+  --border-hairline: 0.5px solid var(--color-basilico);
 }
 
 /* --- Stili base body -------------------------------------- */
 body {
-  background-color: var(--color-fumo);
-  color: var(--color-pietra);
+  background-color: var(--color-panna);
+  color: var(--color-inchiostro);
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: 1.6;
@@ -131,11 +147,11 @@ body {
   top: 4px;
 }
 
-/* Dot-grid — texture puntini dorati */
+/* Dot-grid — texture puntini Basilico */
 .mcw-dot-grid {
   background-image: radial-gradient(
     circle,
-    color-mix(in srgb, var(--color-oro) 20%, transparent) 1.25px,
+    color-mix(in srgb, var(--color-basilico) 12%, transparent) 1.25px,
     transparent 1.25px
   );
   background-size: 14px 14px;
@@ -144,7 +160,7 @@ body {
 /* Stella decorativa MCW — glifo U+2736 */
 .mcw-star::before {
   content: '✶';
-  color: var(--color-oro);
+  color: var(--color-basilico);
   display: inline;
 }
 
@@ -159,7 +175,7 @@ body {
   position: absolute;
   width: 16px;
   height: 16px;
-  border-color: var(--color-oro);
+  border-color: var(--color-basilico);
   border-style: solid;
   opacity: 0.6;
 }
@@ -187,8 +203,8 @@ body {
   position: absolute;
   top: -100%;
   left: 1rem;
-  background: var(--color-oro);
-  color: var(--color-fumo);
+  background: var(--color-bitter);
+  color: var(--color-panna);
   padding: 0.5rem 1rem;
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -204,7 +220,7 @@ body {
 
 /* Focus visibile su tutti gli elementi interattivi */
 :focus-visible {
-  outline: 2px solid var(--color-oro);
+  outline: 2px solid var(--color-bitter);
   outline-offset: 3px;
   border-radius: 2px;
 }

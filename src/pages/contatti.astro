@@ -182,7 +182,7 @@ const social = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
-    color: var(--color-fumo);
+    color: var(--color-mora);
     line-height: 1.05;
   }
 
@@ -202,7 +202,7 @@ const social = [
   .pass-intro {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro);
     line-height: 1.65;
     max-width: 580px;
     margin: var(--space-sm) 0 0;
@@ -216,7 +216,8 @@ const social = [
   }
 
   .pass-card {
-    background-color: var(--color-lino);
+    background-color: var(--color-panna-100);
+    border: 1px solid var(--color-basilico);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
     display: flex;
@@ -225,7 +226,8 @@ const social = [
   }
 
   .pass-card--vip {
-    background-color: var(--color-borgogna);
+    background-color: var(--color-mora);
+    border-color: var(--color-mora-300);
   }
 
   .pass-top { display: flex; flex-direction: column; gap: var(--space-xs); }
@@ -236,11 +238,11 @@ const social = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-grafite);
+    color: var(--color-basilico);
     margin: 0;
   }
 
-  .pass-type--vip { color: var(--color-avorio); opacity: 0.7; }
+  .pass-type--vip { color: var(--color-panna); opacity: 0.7; }
 
   .vip-top-row {
     display: flex;
@@ -257,8 +259,8 @@ const social = [
     letter-spacing: 0.08em;
     padding: 3px 10px;
     border-radius: var(--radius-sm);
-    background-color: var(--color-oro);
-    color: var(--color-fumo);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
     white-space: nowrap;
   }
 
@@ -272,21 +274,21 @@ const social = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: clamp(3rem, 5vw, 4.5rem);
-    color: var(--color-oro);
+    color: var(--color-bitter);
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
-  .pass-price--vip { color: var(--color-avorio); }
+  .pass-price--vip { color: var(--color-panna); }
 
   .pass-price-note {
     font-family: var(--font-body);
     font-size: var(--text-label);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro-500);
     opacity: 0.7;
   }
 
-  .pass-price-note--vip { color: var(--color-avorio); opacity: 0.6; }
+  .pass-price-note--vip { color: var(--color-panna); opacity: 0.6; }
 
   .feature-list {
     list-style: none;
@@ -295,12 +297,12 @@ const social = [
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 25%, transparent);
+    border-top: 0.5px solid color-mix(in srgb, var(--color-basilico) 25%, transparent);
     padding-top: var(--space-sm);
   }
 
   .pass-card--vip .feature-list {
-    border-top-color: color-mix(in srgb, var(--color-avorio) 20%, transparent);
+    border-top-color: var(--color-mora-300);
   }
 
   .feature {
@@ -309,15 +311,15 @@ const social = [
     gap: 8px;
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro);
     line-height: 1.5;
   }
 
-  .pass-card--vip .feature { color: var(--color-avorio); opacity: 0.9; }
+  .pass-card--vip .feature { color: var(--color-panna); opacity: 0.9; }
   .feature--intro { font-style: italic; opacity: 0.7; }
 
   .f-star {
-    color: var(--color-oro);
+    color: var(--color-basilico);
     font-size: 0.5rem;
     line-height: 1.8;
     flex-shrink: 0;
@@ -340,37 +342,38 @@ const social = [
   }
 
   .pass-btn--dark {
-    background-color: var(--color-fumo);
-    color: var(--color-avorio);
-    border: 1px solid var(--color-fumo);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
   }
 
   .pass-btn--dark:hover {
-    background-color: transparent;
-    color: var(--color-fumo);
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    color: var(--color-panna);
   }
 
   .pass-btn--avorio {
-    background-color: var(--color-avorio);
-    color: var(--color-borgogna);
-    border: 1px solid var(--color-avorio);
+    background-color: var(--color-panna);
+    color: var(--color-mora);
+    border: 1px solid var(--color-panna);
   }
 
   .pass-btn--avorio:hover {
     background-color: transparent;
-    color: var(--color-avorio);
+    color: var(--color-panna);
   }
 
   .pass-note {
     font-family: var(--font-body);
     font-size: var(--text-label);
-    color: var(--color-grafite);
+    color: var(--color-inchiostro-500);
     opacity: 0.6;
     text-align: center;
     margin: 0;
   }
 
-  .pass-note--vip { color: var(--color-avorio); }
+  .pass-note--vip { color: var(--color-panna); }
 
   /* ---- FORM TALLY (dark) -------------------------------- */
   .s-form {
@@ -383,21 +386,22 @@ const social = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
-    color: var(--color-avorio);
+    color: var(--color-panna);
     line-height: 1.05;
     margin-bottom: var(--space-sm);
   }
 
   .form-heading span {
-    color: var(--color-oro);
+    color: var(--color-panna);
     font-size: 0.5em;
     vertical-align: middle;
+    opacity: 0.5;
   }
 
   .form-intro {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-pietra);
+    color: var(--color-pesco-300);
     line-height: 1.65;
     max-width: 560px;
     margin: 0 0 var(--space-lg);
@@ -425,7 +429,7 @@ const social = [
     gap: var(--space-lg);
     margin: var(--space-md) 0 var(--space-lg);
     padding-top: var(--space-md);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 25%, transparent);
+    border-top: 0.5px solid var(--color-panna-300);
   }
 
   .info-col { display: flex; flex-direction: column; gap: var(--space-xs); }
@@ -436,27 +440,26 @@ const social = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-grafite);
+    color: var(--color-inchiostro-500);
     margin: 0;
-    opacity: 0.6;
   }
 
   .info-email {
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-fumo);
+    color: var(--color-basilico);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
-  .info-email:hover { color: var(--color-borgogna); }
+  .info-email:hover { color: var(--color-basilico-600); }
 
   .social-row {
     display: flex;
     gap: var(--space-md);
     flex-wrap: wrap;
     padding-top: var(--space-md);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-grafite) 20%, transparent);
+    border-top: 0.5px solid var(--color-panna-300);
   }
 
   .social-link {
@@ -475,14 +478,13 @@ const social = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--color-grafite);
-    opacity: 0.6;
+    color: var(--color-inchiostro-500);
   }
 
   .social-handle {
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-fumo);
+    color: var(--color-basilico);
   }
 
   /* ---- RESPONSIVE --------------------------------------- */
