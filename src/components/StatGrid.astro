@@ -16,7 +16,7 @@ interface Props {
 const { stats } = Astro.props;
 ---
 
-<div class="stat-grid-wrap mcw-filetto">
+<div class="stat-grid-wrap mcw-filetto--dark">
   <div
     class="stat-grid"
     style={`--stat-cols: ${Math.min(stats.length, 6)}`}
@@ -69,7 +69,7 @@ const { stats } = Astro.props;
   }
 
   .stat-bottom-rule {
-    border-top: var(--border-hairline);
+    border-top: var(--border-hairline-dark);
   }
 
   @media (max-width: 768px) {

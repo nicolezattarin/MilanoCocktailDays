@@ -39,7 +39,7 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
         {serate.map(({ num }) => (
           <li class="serata">
             <div class="serata-inner">
-              <div class="serata-top mcw-filetto">
+              <div class="serata-top mcw-filetto--dark">
                 <div class="serata-meta">
                   <span class="serata-num">SERATA {num}</span>
                   <span class="badge-soon" aria-label="Prossimamente">Prossimamente</span>
@@ -118,7 +118,7 @@ const serate = Array.from({ length: 10 }, (_, i) => ({
   }
 
   .serata {
-    border-bottom: var(--border-hairline);
+    border-bottom: var(--border-hairline-dark);
   }
 
   .serata:last-child { border-bottom: none; }
