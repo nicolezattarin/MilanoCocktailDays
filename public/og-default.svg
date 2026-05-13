@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <!-- Background fumo -->
-  <rect width="1200" height="630" fill="#1A1410"/>
+  <!-- Background Mora -->
+  <rect width="1200" height="630" fill="#4A2540"/>
 
-  <!-- Dot grid texture -->
+  <!-- Dot grid (Panna 20%) -->
   <defs>
     <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="10" cy="10" r="1.5" fill="#C4850D" opacity="0.18"/>
+      <circle cx="10" cy="10" r="1.5" fill="#F7F2E5" opacity="0.20"/>
     </pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#dots)"/>
 
-  <!-- Border hairline oro -->
-  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#C4850D" stroke-width="0.5" opacity="0.5"/>
-  <rect x="52" y="52" width="1096" height="526" fill="none" stroke="#C4850D" stroke-width="0.5" opacity="0.25"/>
+  <!-- Bracket (Panna 45%) -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#F7F2E5" stroke-width="0.5" opacity="0.45"/>
+  <rect x="52" y="52" width="1096" height="526" fill="none" stroke="#F7F2E5" stroke-width="0.5" opacity="0.20"/>
 
-  <!-- Star decorativo -->
-  <text x="600" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="48" fill="#C4850D" opacity="0.6">✶</text>
+  <!-- Overline (Basilico) -->
+  <text x="100" y="150" font-family="'Arial','Helvetica',sans-serif" font-size="14" font-weight="700" fill="#2E4A36" letter-spacing="6">PRIMA EDIZIONE · 2027</text>
 
-  <!-- Titolo principale -->
-  <text x="600" y="320" text-anchor="middle" font-family="Georgia,'Didot','Playfair Display',serif" font-size="72" font-weight="700" fill="#F5EDE0" letter-spacing="4">MILAN COCKTAIL DAYS</text>
+  <!-- Star (Bitter) -->
+  <text x="100" y="230" font-family="Georgia,serif" font-size="28" fill="#B83A2E" opacity="0.9">✶</text>
 
-  <!-- Anno -->
-  <text x="600" y="390" text-anchor="middle" font-family="'Arial','Helvetica',sans-serif" font-size="28" font-weight="700" fill="#C4850D" letter-spacing="12">2027</text>
+  <!-- Titolo (Panna) -->
+  <text x="100" y="320" font-family="Georgia,'Didot','Playfair Display',serif" font-size="80" font-weight="900" fill="#F7F2E5" letter-spacing="-2">MILAN</text>
+  <text x="100" y="410" font-family="Georgia,'Didot','Playfair Display',serif" font-size="80" font-weight="900" fill="#F7F2E5" letter-spacing="-2">COCKTAIL</text>
+  <text x="100" y="500" font-family="Georgia,'Didot','Playfair Display',serif" font-size="80" font-weight="900" fill="#B83A2E" letter-spacing="-2">DAYS</text>
 
-  <!-- Sottotitolo -->
-  <text x="600" y="450" text-anchor="middle" font-family="'Arial','Helvetica',sans-serif" font-size="16" font-weight="400" fill="#B8AC9A" letter-spacing="6" opacity="0.7">MILANO · APRILE–MAGGIO</text>
-
-  <!-- NOTE: sostituire con immagine reale prima del lancio -->
+  <!-- Sottotitolo (Pesco-300) -->
+  <text x="100" y="560" font-family="'Arial','Helvetica',sans-serif" font-size="16" fill="#F2C5CD" letter-spacing="4" opacity="0.7">MILANO · APRILE–MAGGIO 2027</text>
 </svg>
