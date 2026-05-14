@@ -48,13 +48,27 @@ const testimonials = [
 >
 
   <!-- S1 · HERO ------------------------------------------- -->
-  <section class="s-hero mcw-dot-grid" aria-labelledby="home-h1">
+  <section class="s-hero" aria-labelledby="home-h1">
+    <!-- Background photo: sostituire src con immagine reale 1920×1080 -->
+    <picture class="hero-bg" aria-hidden="true">
+      <source srcset="/images/hero.webp" type="image/webp" />
+      <img
+        src="/images/hero.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        loading="eager"
+      />
+    </picture>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
     <div class="wrap hero-inner">
       <p class="hero-overline" aria-hidden="true">Milano · Aprile–Maggio 2027</p>
 
       <div class="hero-h1-wrap mcw-bracket">
         <h1 id="home-h1" class="hero-h1">
-          La Prima<br /><em>Milan Cocktail</em><br />Week.
+          La Prima<br /><em>Milan Cocktail</em><br />Days.
         </h1>
       </div>
 
@@ -85,13 +99,18 @@ const testimonials = [
         <h2 id="audience-h2" class="section-h2">Un festival<br />per tutti</h2>
       </div>
       <div class="audience-grid">
-        {audience.map(({ tag, title: cardTitle, desc }) => (
+        {audience.map(({ tag, title: cardTitle, desc }, idx) => (
           <article class="audience-card">
-            <div
-              class="card-img"
-              role="img"
-              aria-label={`Illustrazione: ${cardTitle}`}
-            >
+            <div class="card-img">
+              <!-- Photo slot: sostituire src con immagine reale -->
+              <img
+                class="card-photo"
+                src={`/images/audience-${idx + 1}.jpg`}
+                alt={cardTitle}
+                loading="lazy"
+                width="400"
+                height="300"
+              />
               <span class="card-tag" aria-hidden="true">{tag}</span>
             </div>
             <div class="card-body">
@@ -154,11 +173,16 @@ const testimonials = [
       <div class="bars-grid">
         {[1, 2, 3, 4].map((i) => (
           <article class="bar-card">
-            <div
-              class="bar-img"
-              role="img"
-              aria-label={`Bar partner MCD ${i} — coming soon`}
-            >
+            <div class="bar-img">
+              <!-- Photo slot: sostituire src con foto bar reale -->
+              <img
+                class="bar-photo"
+                src={`/images/bar-${i}.jpg`}
+                alt={`Bar partner MCD ${i} — coming soon`}
+                loading="lazy"
+                width="600"
+                height="400"
+              />
               <span class="bar-star" aria-hidden="true">✶</span>
             </div>
             <div class="bar-info">
@@ -244,18 +268,52 @@ const testimonials = [
 
   /* ---- HERO --------------------------------------------- */
   .s-hero {
+    position: relative;
     min-height: 100svh;
     display: flex;
     align-items: center;
     padding: var(--section-py) 0;
-    background-color: var(--color-panna);
+    background-color: var(--color-panna); /* fallback quando foto mancante */
+    overflow: hidden;
+  }
+
+  /* Foto hero: occupa tutta la sezione, oggetto centrato a destra */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+  }
+
+  /* Overlay: panna pieno su sinistra (testo leggibile), sfuma verso destra */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      var(--color-panna) 0%,
+      var(--color-panna) 30%,
+      color-mix(in srgb, var(--color-panna) 85%, transparent) 50%,
+      color-mix(in srgb, var(--color-panna) 20%, transparent) 70%,
+      transparent 100%
+    );
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
+    max-width: 55%; /* testo occupa metà sinistra, foto visibile a destra */
   }
 
   .hero-overline {
@@ -420,19 +478,33 @@ const testimonials = [
     gap: var(--space-sm);
   }
 
-  /* Placeholder 16/9: dimensioni esplicite per evitare CLS */
   .card-img {
-    aspect-ratio: 16 / 9;
+    position: relative;
+    aspect-ratio: 4 / 3;
     width: 100%;
-    background-color: var(--color-lino);
+    background-color: var(--color-lino); /* fallback colore quando img assente */
     border-radius: var(--radius-sm);
-    display: flex;
-    align-items: flex-end;
-    padding: var(--space-xs);
     overflow: hidden;
   }
 
+  .card-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .audience-card:hover .card-photo {
+    transform: scale(1.05);
+  }
+
   .card-tag {
+    position: absolute;
+    bottom: var(--space-xs);
+    left: var(--space-xs);
+    z-index: 1;
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
@@ -602,22 +674,38 @@ const testimonials = [
 
   .bar-card { display: flex; flex-direction: column; gap: var(--space-xs); }
 
-  /* Placeholder 3/2: dimensioni esplicite anti-CLS */
   .bar-img {
+    position: relative;
     aspect-ratio: 3 / 2;
     width: 100%;
-    background-color: var(--color-lino);
+    background-color: var(--color-lino); /* fallback colore quando img assente */
     border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
 
+  .bar-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .bar-card:hover .bar-photo {
+    transform: scale(1.05);
+  }
+
   .bar-star {
-    color: var(--color-oro);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-basilico);
     font-size: 2rem;
-    opacity: 0.3;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
   .bar-info { padding: var(--space-xs) 0 0; }
@@ -781,6 +869,12 @@ const testimonials = [
 
   /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
+    .hero-inner { max-width: 100%; }
+    /* overlay full opaque su mobile — foto non visibile, testo leggibile */
+    .hero-overlay {
+      background: var(--color-panna);
+      opacity: 0.92;
+    }
     .audience-grid { grid-template-columns: 1fr 1fr; }
     .how-inner { grid-template-columns: 1fr; }
     .app-mock { display: none; }
