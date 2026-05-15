@@ -3,12 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TickerBand from '../components/TickerBand.astro';
 import StatGrid from '../components/StatGrid.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import { builder } from '@builder.io/sdk';
+
+builder.init(import.meta.env.BUILDER_API_KEY);
+const content = await builder.get('page', { userAttributes: { urlPath: '/' } }).toPromise();
 
 const partners = [
   'Tanqueray', 'Campari', 'Amaro Montenegro',
   'Fever-Tree', 'Martini', "Hendrick's",
   'Bulleit', 'Aperol', 'Cynar', 'Santa Teresa',
 ];
+
+
 
 const stats = [
   { value: 'TBA',   label: 'Bar Partner' },
@@ -232,6 +238,9 @@ const testimonials = [
     variant="borgogna"
     ctaClass="cta-iscrizione"
   />
+
+  <!-- S8.5 · BUILDER CONTENT ----------------------------- -->
+  {content && <div set:html={content.data?.html} />}
 
   <!-- S9 · FORM ISCRIZIONE --------------------------------- -->
   <section class="s-form" id="form" aria-labelledby="form-h2">

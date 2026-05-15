@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@builder.io/sdk": "^6.3.0",
     "astro": "^6.3.1"
   }
 }
