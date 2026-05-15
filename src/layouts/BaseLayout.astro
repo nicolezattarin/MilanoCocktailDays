@@ -87,9 +87,6 @@ const jsonLdOrg = {
     <!-- Tally embed widget -->
     <script src="https://tally.so/widgets/embed.js"></script>
 
-    <!-- iubenda Privacy Controls & Cookie Solution — deve essere primo in <head> -->
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/85649d7a-11b6-46ec-8877-b5040bed6205.js"></script>
-
     <!-- 1. CHARSET + VIEWPORT -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -182,7 +179,5 @@ const jsonLdOrg = {
     </main>
     <Footer />
     <slot name="body-scripts" />
-    <!-- iubenda embed renderer -->
-    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
   </body>
 </html>

@@ -8,7 +8,6 @@
 const navLinks = [
   { href: '/festival',  label: 'Festival' },
   { href: '/bars',      label: 'Bars' },
-  { href: '/programma', label: 'Programma' },
   { href: '/contatti',  label: 'Contatti' },
 ];
 
@@ -22,7 +21,7 @@ const currentPath = Astro.url.pathname;
   <div class="header-inner">
     <!-- Logo -->
     <a href="/" class="site-logo" aria-label="Milan Cocktail Days — torna alla home">
-      <img src="/logos/MCD_Logo_2.svg" alt="Milan Cocktail Days" class="site-logo-img" />
+      <img src="https://cdn.builder.io/api/v1/image/assets%2F760efc3625c243069372e49380aa29cf%2Faa6062dd5195452b9b89c2cf699afadd" alt="Milan Cocktail Days" class="site-logo-img" />
     </a>
 
     <!-- Hamburger (visibile solo mobile) -->
@@ -90,9 +89,12 @@ const currentPath = Astro.url.pathname;
 
   .site-logo-img {
     height: 300px;
-    width: auto;
+    width: 260px;
     display: block;
     filter: brightness(0) invert(1);
+    object-position: center;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 
   /* ---- Nav links ------------------------------------------- */
