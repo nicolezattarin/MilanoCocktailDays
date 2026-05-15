@@ -5,8 +5,15 @@ import StatGrid from '../components/StatGrid.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import { builder } from '@builder.io/sdk';
 
-builder.init(import.meta.env.BUILDER_API_KEY);
-const content = await builder.get('page', { userAttributes: { urlPath: '/' } }).toPromise();
+let content = null;
+if (import.meta.env.BUILDER_API_KEY) {
+  try {
+    builder.init(import.meta.env.BUILDER_API_KEY);
+    content = await builder.get('page', { userAttributes: { urlPath: '/' } }).toPromise();
+  } catch (e) {
+    console.warn('Failed to fetch Builder.io content:', e);
+  }
+}
 
 const partners = [
   'Tanqueray', 'Campari', 'Amaro Montenegro',
