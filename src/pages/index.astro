@@ -1,283 +1,168 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TickerBand from '../components/TickerBand.astro';
-import StatGrid from '../components/StatGrid.astro';
-import CtaBanner from '../components/CtaBanner.astro';
-import { builder } from '@builder.io/sdk';
 
-let content = null;
-if (import.meta.env.BUILDER_API_KEY) {
-  try {
-    builder.init(import.meta.env.BUILDER_API_KEY);
-    content = await builder.get('page', { userAttributes: { urlPath: '/' } }).toPromise();
-  } catch (e) {
-    console.warn('Failed to fetch Builder.io content:', e);
-  }
-}
-
-const partners = [
+const brands = [
   'Tanqueray', 'Campari', 'Amaro Montenegro',
   'Fever-Tree', 'Martini', "Hendrick's",
   'Bulleit', 'Aperol', 'Cynar', 'Santa Teresa',
 ];
 
-
-
-const stats = [
-  { value: 'TBA',   label: 'Bar Partner' },
-  { value: '10',    label: 'Serate' },
-  { value: '30+',   label: 'Bartender' },
-  { value: '1.000', label: 'Posti disponibili' },
-];
-
-const audience = [
-  { tag: 'Appassionati', title: 'APPASSIONATI DI COCKTAIL', desc: 'Cocktail signature esclusivi creati appositamente per MCD, degustazioni guidate e accesso ai migliori bar della città.' },
-  { tag: 'Amici',        title: 'SERATE TRA AMICI',         desc: 'Il pretesto perfetto per esplorare Milano by night: 10 serate, 10 bar diversi, un pass che apre tutte le porte.' },
-  { tag: 'Date',         title: 'DATE NIGHT',               desc: "Locali selezionati con cura, atmosfera unica, cocktail d'autore. La serata perfetta per stupire." },
-  { tag: 'Esploratori',  title: 'ESPLORATORI',              desc: 'Navigli · Brera · Isola · Porta Romana. Scopri angoli di Milano che non sapevi di amare.' },
-];
-
-const steps = [
-  { n: '01', title: 'ISCRIVITI',                desc: 'Acquista il Pass Festival e accedi a tutte le serate.' },
-  { n: '02', title: 'SCOPRI BAR E COCKTAIL',   desc: 'Ogni bar crea un cocktail signature esclusivo per MCD.' },
-  { n: '03', title: 'PRENOTA E DEGUSTA',       desc: 'Prenota il tuo slot nel bar scelto al prezzo speciale MCD.' },
-  { n: '04', title: 'COLLEZIONA ESPERIENZE',   desc: '10 serate, 10 bar diversi: costruisci il tuo percorso tra i quartieri di Milano.' },
-];
-
-const testimonials = [
-  { quote: "Un'esperienza unica nel suo genere. Ho scoperto cocktail bar di Milano che non conoscevo affatto.", name: 'Giulia M.', age: 28, initials: 'GM' },
-  { quote: "Finalmente un evento che unisce qualità, socialità e la scoperta autentica della città.", name: 'Marco T.', age: 34, initials: 'MT' },
-  { quote: "I cocktail signature erano tutti eccezionali. Il format bar-hopping è perfetto.", name: 'Sofia R.', age: 26, initials: 'SR' },
-  { quote: "La qualità dei bartender e dei drink era da vera capitale europea del cocktail.", name: 'Chiara V.', age: 29, initials: 'CV' },
-  { quote: "Un'idea brillante per valorizzare la scena cocktail milanese. Assolutamente consigliato.", name: 'Luca F.', age: 35, initials: 'LF' },
-  { quote: "Dieci serate, dieci bar diversi: ogni sera era una sorpresa. Non vedo l'ora della prossima edizione.", name: 'Andrea B.', age: 31, initials: 'AB' },
+const proofRows = [
+  { ed: '1ª edizione', bar: '18', part: '600', tag: '' },
+  { ed: '3ª edizione', bar: '45', part: '2.400', tag: '+300%' },
+  { ed: '5ª edizione', bar: '80', part: '6.000', tag: '+150%' },
 ];
 ---
 
 <BaseLayout
   title="Milan Cocktail Days 2027"
-  description="La prima Milan Cocktail Days. 10 serate nei migliori bar di Milano, cocktail signature esclusivi. Aprile–Maggio 2027. Iscriviti ora."
+  description="Un pass. La città intera. La prima Milano festival dedicata al cocktail. Aprile–Maggio 2027."
   pageType="event"
 >
 
-  <!-- S1 · HERO ------------------------------------------- -->
+  <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="home-h1">
-    <!-- Background photo: sostituire src con immagine reale 1920×1080 -->
     <picture class="hero-bg" aria-hidden="true">
       <source srcset="/images/hero.webp" type="image/webp" />
       <img
         src="/images/hero.jpg"
         alt=""
-        width="1920"
-        height="1080"
-        fetchpriority="high"
-        loading="eager"
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
       />
     </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <div class="wrap hero-inner">
-      <p class="hero-overline" aria-hidden="true">Milano · maggio 2027</p>
+      <p class="hero-overline">Milano · Aprile–Maggio 2027</p>
 
       <div class="hero-h1-wrap mcw-bracket">
         <h1 id="home-h1" class="hero-h1">
-          La Prima<br /><em>Milan Cocktail</em><br />Days.
+          Un pass.<br /><em>La città</em><br />intera.
         </h1>
       </div>
 
-      <p class="hero-sub">Prima edizione · Iscrizioni aperte</p>
+      <p class="hero-sub">La prima settimana dedicata al cocktail a Milano.</p>
 
       <div class="hero-cta">
-        <a href="#form" class="btn btn--primary cta-iscrizione">Iscriviti ora</a>
-        <a href="/festival" class="btn btn--ghost">Scopri il festival →</a>
+        <a href="/partecipa" class="btn btn--primary">Voglio partecipare</a>
+        <a href="/bar" class="btn btn--ghost">Sei un bar →</a>
+        <a href="/sponsor" class="btn btn--ghost">Diventa sponsor →</a>
       </div>
     </div>
   </section>
 
-  <!-- S2 · TICKER ----------------------------------------- -->
-  <TickerBand items={partners} />
+  <!-- TICKER ------------------------------------------------ -->
+  <TickerBand items={brands} />
 
-  <!-- S3 · STATISTICHE ------------------------------------ -->
-  <section class="s-stats" aria-label="I numeri di Milan Cocktail Days">
-    <div class="wrap">
-      <StatGrid stats={stats} />
-    </div>
-  </section>
-
-  <!-- S4 · PER CHI È MCD ---------------------------------- -->
-  <section class="s-audience" aria-labelledby="audience-h2">
-    <div class="wrap">
-      <div class="section-header">
-        <p class="section-overline">Per chi è MCD</p>
-        <h2 id="audience-h2" class="section-h2">Un festival<br />per tutti</h2>
-      </div>
-      <div class="audience-grid">
-        {audience.map(({ tag, title: cardTitle, desc }, idx) => (
-          <article class="audience-card">
-            <div class="card-img">
-              <!-- Photo slot: sostituire src con immagine reale -->
-              <img
-                class="card-photo"
-                src={`/images/audience-${idx + 1}.jpg`}
-                alt={cardTitle}
-                loading="lazy"
-                width="400"
-                height="300"
-              />
-              <span class="card-tag" aria-hidden="true">{tag}</span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">{cardTitle}</h3>
-              <p class="card-desc">{desc}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- S5 · COME FUNZIONA ---------------------------------- -->
-  <section class="s-how" aria-labelledby="how-h2">
-    <div class="wrap how-inner">
-      <!-- Mockup stilizzato: aria-hidden perché decorativo -->
-      <div class="app-mock" aria-hidden="true">
-        <div class="phone-frame">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="phone-header-bar"></div>
-            <div class="phone-card-lg"></div>
-            <div class="phone-card-row">
-              <div class="phone-card-sm"></div>
-              <div class="phone-card-sm"></div>
-            </div>
-            <div class="phone-card-lg phone-card-lg--xs"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="how-steps">
-        <p class="section-overline--light">Come funziona</p>
-        <h2 id="how-h2" class="section-h2--light">
-          Il tuo percorso<br />tra i bar di Milano
+  <!-- SOCIAL PROOF ------------------------------------------ -->
+  <section class="s-proof" aria-labelledby="proof-h2">
+    <div class="wrap proof-inner">
+      <div class="proof-text">
+        <p class="section-overline">Il modello funziona</p>
+        <h2 id="proof-h2" class="section-h2">
+          Già testato.<br />Ora a Milano.
         </h2>
-        <ol class="step-list" role="list">
-          {steps.map(({ n, title: stepTitle, desc }) => (
-            <li class="step">
-              <span class="step-n" aria-hidden="true">{n}</span>
-              <div class="step-body">
-                <h3 class="step-title">{stepTitle}</h3>
-                <p class="step-desc">{desc}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <p class="proof-body">
+          CocktailX Munich ha dimostrato che il bar-hopping festival funziona.
+          Stiamo portando lo stesso format nella città più vivace d'Italia
+          per la sua cocktail culture.
+        </p>
+      </div>
+      <div class="proof-table-wrap">
+        <p class="table-label">CocktailX Munich · crescita per edizione</p>
+        <table class="proof-table" aria-label="Crescita CocktailX Munich per edizione">
+          <thead>
+            <tr>
+              <th scope="col">Edizione</th>
+              <th scope="col">Bar</th>
+              <th scope="col">Partecipanti</th>
+              <th scope="col">Crescita</th>
+            </tr>
+          </thead>
+          <tbody>
+            {proofRows.map(({ ed, bar, part, tag }) => (
+              <tr>
+                <td>{ed}</td>
+                <td class="num-cell">{bar}</td>
+                <td class="num-cell">{part}</td>
+                <td class="tag-cell">
+                  {tag && <span class="growth-tag">{tag}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- S6 · BAR PREVIEW ------------------------------------ -->
-  <section class="s-bars" aria-labelledby="bars-h2">
+  <!-- 3 AUDIENCE CARDS -------------------------------------- -->
+  <section class="s-cards" aria-label="A chi è rivolto Milan Cocktail Days">
     <div class="wrap">
-      <div class="section-header">
-        <p class="section-overline">I bar partecipanti</p>
-        <h2 id="bars-h2" class="section-h2">I Bar<br />Partecipanti</h2>
-        <p class="section-tba">TBA · I bar partner saranno annunciati presto</p>
-      </div>
-      <div class="bars-grid">
-        {[1, 2, 3, 4].map((i) => (
-          <article class="bar-card">
-            <div class="bar-img">
-              <!-- Photo slot: sostituire src con foto bar reale -->
-              <img
-                class="bar-photo"
-                src="/images/TBABAR.png"
-                alt={`Bar partner MCD ${i} — coming soon`}
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-              <span class="bar-star" aria-hidden="true">✶</span>
-            </div>
-            <div class="bar-info">
-              <p class="bar-name">Bar Partner MCD</p>
-              <p class="bar-city">Milano</p>
-            </div>
-          </article>
-        ))}
-      </div>
-      <div class="bars-cta">
-        <a href="/bars" class="link-more">Vedi tutti →</a>
-      </div>
-    </div>
-  </section>
+      <p class="section-overline--center">Scegli il tuo percorso</p>
 
-  <!-- S7 · TESTIMONIAL ------------------------------------ -->
-  <section class="s-test" aria-labelledby="test-h2">
-    <video
-      class="s-test-bg-video"
-      autoplay
-      muted
-      loop
-      playsinline
-    >
-      <source src="/videos/testimonials.mp4" type="video/mp4">
-    </video>
-    <div class="wrap">
-      <p class="section-overline--light">Cosa dicono</p>
-      <h2 id="test-h2" class="section-h2--light">
-        Voci dalla prima edizione <span aria-hidden="true">✶</span>
-      </h2>
-    </div>
-    <div class="test-outer">
-      <div class="test-track" role="list">
-        {testimonials.map(({ quote, name, age, initials }) => (
-          <article class="test-card" role="listitem">
-            <blockquote class="test-quote">"{quote}"</blockquote>
-            <div class="test-author">
-              <div class="test-avatar" aria-hidden="true">{initials}</div>
-              <div>
-                <p class="test-name">{name}</p>
-                <p class="test-age">{age} anni</p>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+      <div class="cards-grid">
 
-  <!-- S8 · CTA FINALE ------------------------------------- -->
-  <CtaBanner
-    title="Posti limitati. Iscriviti ora."
-    ctaText="Iscriviti →"
-    ctaHref="#form"
-    variant="borgogna"
-    ctaClass="cta-iscrizione"
-  />
+        <!-- CARD 1: Partecipanti (primary) -->
+        <article class="aud-card aud-card--primary" aria-labelledby="card-part-h3">
+          <div class="aud-card-top">
+            <span class="aud-label">Partecipanti</span>
+            <span class="aud-badge">Priorità</span>
+          </div>
+          <h3 id="card-part-h3" class="aud-title">
+            Esplora Milano<br />cocktail per cocktail
+          </h3>
+          <p class="aud-desc">
+            Un pass. Tutti i bar. Cocktail signature a €6 per serata.
+            Scopri angoli di Milano che non sapevi di amare.
+          </p>
+          <ul class="aud-features" role="list">
+            <li>Pass Festival · accesso a tutti i bar</li>
+            <li>10 serate · 10 bar diversi</li>
+            <li>Cocktail signature esclusivi MCD</li>
+            <li>App con mappa e itinerari</li>
+          </ul>
+          <a href="/partecipa" class="aud-cta aud-cta--primary">
+            Entra in lista d'attesa →
+          </a>
+        </article>
 
-  <!-- S8.5 · BUILDER CONTENT ----------------------------- -->
-  {content && <div set:html={content.data?.html} />}
+        <!-- CARD 2: Bar Partner -->
+        <article class="aud-card aud-card--secondary" aria-labelledby="card-bar-h3">
+          <div class="aud-card-top">
+            <span class="aud-label">Bar Partner</span>
+          </div>
+          <h3 id="card-bar-h3" class="aud-title aud-title--light">
+            Porta il tuo bar<br />nella selezione
+          </h3>
+          <p class="aud-desc aud-desc--light">
+            €0 fee. €6 fisso sul cocktail. Traffico qualificato
+            di appassionati direttamente nel tuo locale.
+          </p>
+          <a href="/bar" class="aud-cta aud-cta--ghost">
+            Candida il tuo bar →
+          </a>
+        </article>
 
-  <!-- S9 · FORM ISCRIZIONE --------------------------------- -->
-  <section class="s-form" id="form" aria-labelledby="form-h2">
-    <div class="wrap">
-      <h2 id="form-h2" class="form-heading">
-        Lascia i tuoi dati <span aria-hidden="true">✶</span>
-      </h2>
-      <p class="form-intro">
-        Iscriviti alla lista d'attesa. Ti contatteremo appena le vendite saranno aperte.
-      </p>
-      <div class="tally-wrap">
-        <iframe
-          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
-          loading="lazy"
-          width="100%"
-          height="689"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="Milano Cocktail Days — Iscrizione"
-        ></iframe>
+        <!-- CARD 3: Sponsor -->
+        <article class="aud-card aud-card--tertiary" aria-labelledby="card-spo-h3">
+          <div class="aud-card-top">
+            <span class="aud-label aud-label--light">Sponsor</span>
+          </div>
+          <h3 id="card-spo-h3" class="aud-title aud-title--light">
+            Raggiungi chi<br />conosce il settore
+          </h3>
+          <p class="aud-desc aud-desc--light">
+            Brand beverage, tech e mobility. Un pubblico premium,
+            un contesto curato, un evento in crescita.
+          </p>
+          <a href="/sponsor" class="aud-cta aud-cta--ghost">
+            Parliamone →
+          </a>
+        </article>
+
       </div>
     </div>
   </section>
@@ -298,7 +183,7 @@ const testimonials = [
     display: flex;
     align-items: center;
     padding: var(--section-py) 0;
-    background-color: var(--color-panna); /* fallback quando foto mancante */
+    background-color: var(--color-panna);
     background-image: url(https://cdn.builder.io/api/v1/image/assets%2F760efc3625c243069372e49380aa29cf%2Fa9999275167c4e979681e6714ae70968);
     background-repeat: no-repeat;
     background-position: center;
@@ -306,7 +191,6 @@ const testimonials = [
     overflow: hidden;
   }
 
-  /* Foto hero: occupa tutta la sezione, oggetto centrato a destra */
   .hero-bg {
     position: absolute;
     inset: 0;
@@ -320,7 +204,6 @@ const testimonials = [
     object-position: 80% center;
   }
 
-  /* Overlay: panna pieno su sinistra (testo leggibile), sfuma verso destra */
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -342,9 +225,8 @@ const testimonials = [
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
-    max-width: 40%; /* testo occupa sinistra, foto visibile a destra */
+    max-width: 40%;
     margin-left: 100px;
-    margin-right: 100px;
   }
 
   .hero-overline {
@@ -380,7 +262,6 @@ const testimonials = [
     font-family: var(--font-body);
     font-style: italic;
     font-size: var(--text-body-lg);
-    font-weight: 400;
     color: var(--color-mora);
     line-height: 1.5;
     margin: 0;
@@ -417,7 +298,6 @@ const testimonials = [
   .btn--primary:hover {
     background-color: var(--color-bitter-500);
     border-color: var(--color-bitter-500);
-    color: var(--color-panna);
   }
 
   .btn--ghost {
@@ -431,16 +311,17 @@ const testimonials = [
     border-color: var(--color-basilico);
   }
 
-  /* ---- STATISTICHE -------------------------------------- */
-  .s-stats {
-    background-color: var(--color-fumo);
+  /* ---- SOCIAL PROOF ------------------------------------- */
+  .s-proof {
+    background-color: var(--color-avorio);
     padding: var(--section-py) 0;
   }
 
-  /* ---- AUDIENCE (avorio) -------------------------------- */
-  .s-audience {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+  .proof-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
   }
 
   .section-overline {
@@ -453,15 +334,16 @@ const testimonials = [
     margin: 0 0 var(--space-xs);
   }
 
-  .section-overline--light {
+  .section-overline--center {
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--color-panna);
-    opacity: 0.7;
-    margin: 0 0 var(--space-xs);
+    opacity: 0.65;
+    text-align: center;
+    margin: 0 0 var(--space-lg);
   }
 
   .section-h2 {
@@ -470,452 +352,251 @@ const testimonials = [
     font-size: var(--text-h1);
     color: var(--color-mora);
     line-height: 1.05;
+    margin-bottom: var(--space-sm);
   }
 
-  .section-h2--light {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-panna);
-    line-height: 1.05;
-  }
-
-  .section-h2--light span {
-    color: var(--color-panna);
-    font-size: 0.5em;
-    vertical-align: middle;
-    opacity: 0.5;
-  }
-
-  .section-header { margin-bottom: var(--space-lg); }
-
-  .section-tba {
+  .proof-body {
     font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro-500);
-    margin-top: var(--space-xs);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.75;
+    margin: 0;
   }
 
-  .audience-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-    align-items: start;
-  }
-
-  .audience-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-
-  .card-img {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    width: 100%;
-    background-color: var(--color-lino); /* fallback colore quando img assente */
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-
-  .card-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .audience-card:hover .card-photo {
-    transform: scale(1.05);
-  }
-
-  .card-tag {
-    position: absolute;
-    bottom: var(--space-xs);
-    left: var(--space-xs);
-    z-index: 1;
+  .table-label {
     font-family: var(--font-body);
     font-size: var(--text-label);
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-inchiostro-500);
+    margin-bottom: var(--space-sm);
+  }
+
+  .proof-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+  }
+
+  .proof-table thead tr {
+    border-bottom: 1px solid var(--color-basilico);
+  }
+
+  .proof-table th {
+    font-weight: 700;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-size: 11px;
     color: var(--color-basilico);
-    background-color: var(--color-panna);
-    padding: 4px 10px;
+    padding: 8px 12px 8px 0;
+    text-align: left;
+  }
+
+  .proof-table td {
+    padding: 12px 12px 12px 0;
+    color: var(--color-inchiostro);
+    border-bottom: 0.5px solid var(--color-panna-300);
+  }
+
+  .num-cell {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-mora);
+  }
+
+  .growth-tag {
+    display: inline-block;
+    background-color: var(--color-basilico);
+    color: var(--color-panna);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
     border-radius: var(--radius-sm);
   }
 
-  .card-body { display: flex; flex-direction: column; gap: 6px; }
-
-  .card-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-small);
-    color: var(--color-mora);
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-  }
-
-  .card-desc {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro-500);
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  /* ---- COME FUNZIONA (dark) ------------------------------ */
-  .s-how {
+  /* ---- 3 AUDIENCE CARDS --------------------------------- */
+  .s-cards {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
   }
 
-  .how-inner {
+  .cards-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    align-items: center;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: var(--space-md);
+    align-items: stretch;
   }
 
-  .app-mock {
+  .aud-card {
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: var(--space-md);
   }
 
-  .phone-frame {
-    width: 240px;
-    height: 480px;
-    border: 1.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
-    border-radius: 28px;
+  .aud-card--primary {
+    background-color: var(--color-avorio);
+    border: 1px solid var(--color-panna-300);
+  }
+
+  .aud-card--secondary {
+    background-color: var(--color-mora);
+    border: 0.5px solid var(--color-mora-300);
+  }
+
+  .aud-card--tertiary {
     background-color: var(--color-marmo);
-    padding: 16px 12px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .phone-notch {
-    width: 60px;
-    height: 8px;
-    background-color: color-mix(in srgb, var(--color-panna) 15%, transparent);
-    border-radius: 4px;
-    margin: 0 auto 6px;
-  }
-
-  .phone-screen {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .phone-header-bar {
-    height: 24px;
-    background-color: color-mix(in srgb, var(--color-basilico) 40%, transparent);
-    border-radius: var(--radius-sm);
-  }
-
-  .phone-card-lg {
-    flex: 1;
-    background-color: color-mix(in srgb, var(--color-bitter) 30%, transparent);
-    border-radius: var(--radius-sm);
     border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
   }
 
-  .phone-card-lg--xs { flex: 0 0 40px; background-color: color-mix(in srgb, var(--color-basilico) 20%, transparent); }
-
-  .phone-card-row { display: flex; gap: 8px; height: 60px; }
-
-  .phone-card-sm {
-    flex: 1;
-    background-color: color-mix(in srgb, var(--color-panna) 10%, transparent);
-    border-radius: var(--radius-sm);
-  }
-
-  .how-steps {
+  .aud-card-top {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    align-items: center;
+    gap: var(--space-xs);
   }
 
-  .how-steps .section-h2--light { margin-bottom: var(--space-md); }
+  .aud-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-basilico);
+  }
 
-  .step-list {
+  .aud-label--light {
+    color: var(--color-panna);
+    opacity: 0.6;
+  }
+
+  .aud-badge {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+  }
+
+  .aud-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h2);
+    color: var(--color-mora);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .aud-title--light {
+    color: var(--color-panna);
+  }
+
+  .aud-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-inchiostro-500);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .aud-desc--light {
+    color: var(--color-pesco-300);
+    opacity: 0.85;
+  }
+
+  .aud-features {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
+    gap: 8px;
+    border-top: 0.5px solid var(--color-panna-300);
     padding-top: var(--space-sm);
-    border-top: var(--border-hairline-dark);
   }
 
-  .step-n {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(2.5rem, 4vw, 3.75rem);
-    color: var(--color-bitter);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 80px;
-    letter-spacing: -0.03em;
-    display: block;
-  }
-
-  .step-body { padding-top: 6px; }
-
-  .step-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-body);
-    color: var(--color-panna);
-    letter-spacing: 0.04em;
-    margin-bottom: 4px;
-  }
-
-  .step-desc {
+  .aud-features li {
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-pesco-300);
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  /* ---- BAR PREVIEW (avorio) ------------------------------ */
-  .s-bars {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
-  }
-
-  .bars-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-  }
-
-  .bar-card { display: flex; flex-direction: column; gap: var(--space-xs); }
-
-  .bar-img {
+    color: var(--color-inchiostro);
+    padding-left: 16px;
     position: relative;
-    aspect-ratio: 3 / 2;
-    width: 100%;
-    background-color: var(--color-lino); /* fallback colore quando img assente */
-    border-radius: var(--radius-sm);
-    overflow: hidden;
+    line-height: 1.5;
   }
 
-  .bar-photo {
+  .aud-features li::before {
+    content: "✶";
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    left: 0;
+    color: var(--color-bitter);
+    font-size: 8px;
+    top: 5px;
   }
 
-  .bar-card:hover .bar-photo {
-    transform: scale(1.05);
-  }
-
-  .bar-star {
-    position: absolute;
-    inset: 0;
-    display: flex;
+  .aud-cta {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    color: var(--color-basilico);
-    font-size: 2rem;
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
-  .bar-info { padding: var(--space-xs) 0 0; }
-
-  .bar-name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-body);
-    color: var(--color-mora);
-    margin: 0 0 2px;
-  }
-
-  .bar-city {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-basilico);
-    margin: 0;
-  }
-
-  .bars-cta { margin-top: var(--space-lg); text-align: center; }
-
-  .link-more {
+    padding: 0.75rem 1.5rem;
     font-family: var(--font-body);
     font-size: var(--text-small);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-basilico);
     text-decoration: none;
-    border-bottom: 0.5px solid var(--color-basilico);
-    padding-bottom: 2px;
-    transition: opacity 0.2s ease;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-top: auto;
+    align-self: flex-start;
   }
 
-  .link-more:hover { opacity: 0.6; }
-
-  /* ---- TESTIMONIAL (dark) -------------------------------- */
-  .s-test {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    overflow: hidden;
-  }
-
-  .s-test .wrap { margin-bottom: var(--space-lg); }
-
-  .test-outer {
-    overflow-x: auto;
-    padding: 0 2rem var(--space-sm);
-    scrollbar-width: none;
-  }
-
-  .test-outer::-webkit-scrollbar { display: none; }
-
-  .test-track {
-    display: flex;
-    gap: var(--space-md);
-    width: max-content;
-    scroll-snap-type: x mandatory;
-  }
-
-  .test-card {
-    scroll-snap-align: start;
-    flex: 0 0 360px;
-    background-color: var(--color-marmo);
-    border: 0.5px solid var(--color-mora-300);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-md);
-  }
-
-  .test-quote {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: var(--text-body);
-    color: var(--color-pesco-300);
-    line-height: 1.7;
-    quotes: none;
-    margin: 0;
-  }
-
-  .test-author {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .test-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  .aud-cta--primary {
     background-color: var(--color-bitter);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.75rem;
     color: var(--color-panna);
-    flex-shrink: 0;
-    letter-spacing: 0.04em;
+    border: 1px solid var(--color-bitter);
   }
 
-  .test-name {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
+  .aud-cta--primary:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+  }
+
+  .aud-cta--ghost {
+    background-color: transparent;
     color: var(--color-panna);
-    margin: 0 0 2px;
+    border: 1px solid color-mix(in srgb, var(--color-panna) 40%, transparent);
   }
 
-  .test-age {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-pesco-300);
-    margin: 0;
-    opacity: 0.7;
-  }
-
-  /* ---- FORM ISCRIZIONE (dark) --------------------------- */
-  .s-form {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    scroll-margin-top: 64px;
-  }
-
-  .form-heading {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-panna);
-    line-height: 1.05;
-    margin-bottom: var(--space-sm);
-  }
-
-  .form-heading span {
-    color: var(--color-panna);
-    font-size: 0.5em;
-    vertical-align: middle;
-    opacity: 0.5;
-  }
-
-  .form-intro {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-pesco-300);
-    line-height: 1.65;
-    max-width: 560px;
-    margin: 0 0 var(--space-lg);
-    opacity: 0.85;
-  }
-
-  .tally-wrap {
-    max-width: 760px;
+  .aud-cta--ghost:hover {
+    border-color: var(--color-panna);
   }
 
   /* ---- RESPONSIVE --------------------------------------- */
+  @media (max-width: 900px) {
+    .proof-inner { grid-template-columns: 1fr; }
+    .cards-grid  { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 768px) {
-    .hero-inner { max-width: 100%; }
-    /* overlay full opaque su mobile — foto non visibile, testo leggibile */
+    .hero-inner {
+      max-width: 100%;
+      margin-left: 0;
+    }
     .hero-overlay {
       background: var(--color-panna);
       opacity: 0.92;
     }
-    .audience-grid { grid-template-columns: 1fr 1fr; }
-    .how-inner { grid-template-columns: 1fr; }
-    .app-mock { display: none; }
-    .bars-grid { grid-template-columns: 1fr 1fr; }
-    .hero-cta { flex-direction: column; width: 100%; }
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
     .btn { width: 100%; justify-content: center; }
-  }
-
-  @media (max-width: 480px) {
-    .audience-grid,
-    .bars-grid { grid-template-columns: 1fr; }
   }
 </style>

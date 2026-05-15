@@ -1,0 +1,754 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const steps = [
+  { n: '01', title: 'ACQUISTA IL PASS',     desc: 'Un unico pass ti dà accesso a tutti i bar partner per le 10 serate del festival.' },
+  { n: '02', title: 'SCEGLI IL TUO BAR',    desc: "Sfoglia la mappa sull'app, prenota uno slot nel bar della serata, arrivi quando vuoi." },
+  { n: '03', title: 'DEGUSTA A €6',          desc: 'Il cocktail signature MCD — creato esclusivamente per il festival — ti aspetta a prezzo fisso.' },
+];
+
+const appFeatures = [
+  { icon: '🗺', title: 'Mappa interattiva',  desc: 'Tutti i bar partner su mappa, con info, orari e distanze dal tuo punto.' },
+  { icon: '✔', title: 'Bar visitati',        desc: 'Tieni traccia dei locali già esplorati e costruisci il tuo percorso edizione dopo edizione.' },
+  { icon: '📱', title: 'Ricette via QR',      desc: 'Nel bar, inquadra il QR e sblocca la ricetta del cocktail signature che stai bevendo.' },
+  { icon: '🏆', title: 'Classifica',          desc: 'Scala la leaderboard: chi visita più bar e lascia le migliori recensioni sale in cima.' },
+];
+
+const testimonials = [
+  { quote: "Un'esperienza unica. Ho scoperto cocktail bar di Milano che non conoscevo affatto.", name: 'Giulia M.', age: 28, initials: 'GM' },
+  { quote: "Finalmente un evento che unisce qualità, socialità e scoperta autentica della città.", name: 'Marco T.', age: 34, initials: 'MT' },
+  { quote: "I cocktail signature erano tutti eccezionali. Il format bar-hopping è perfetto.", name: 'Sofia R.', age: 26, initials: 'SR' },
+  { quote: "La qualità dei bartender e dei drink era da vera capitale europea del cocktail.", name: 'Chiara V.', age: 29, initials: 'CV' },
+  { quote: "Un'idea brillante per valorizzare la scena cocktail milanese. Assolutamente consigliato.", name: 'Luca F.', age: 35, initials: 'LF' },
+  { quote: "Dieci serate, dieci bar diversi: ogni sera era una sorpresa. Non vedo l'ora della prossima.", name: 'Andrea B.', age: 31, initials: 'AB' },
+];
+
+const faqs = [
+  { q: 'Quanto costa il pass?',             a: 'Il prezzo sarà comunicato all\'apertura ufficiale delle vendite. L\'iscrizione alla lista d\'attesa è gratuita e non vincolante.' },
+  { q: 'Quando si svolge il festival?',     a: 'Prima edizione: Aprile–Maggio 2027 a Milano. Ti avviseremo con anticipo sulle date precise.' },
+  { q: 'Come si usa il pass?',              a: 'Prenoti uno slot nel bar che ti interessa tramite l\'app MCD. All\'ingresso mostri il pass digitale e ordini il cocktail signature a €6.' },
+  { q: 'Quanti bar posso visitare?',        a: 'Tutti i bar partner del festival. Non c\'è un limite: il pass ti dà accesso a tutti i locali per tutta la durata del festival.' },
+  { q: 'Posso portare amici senza pass?',   a: 'Il pass è personale. I tuoi amici possono iscriversi alla lista d\'attesa e ricevere il loro pass all\'apertura delle vendite.' },
+];
+---
+
+<BaseLayout
+  title="Partecipa"
+  description="Entra in lista d'attesa per Milan Cocktail Days 2027. Un pass per tutti i bar, cocktail signature a €6, app con mappa e itinerari. Aprile–Maggio 2027."
+  pageType="event"
+>
+
+  <!-- HERO -------------------------------------------------- -->
+  <section class="s-hero" aria-labelledby="partecipa-h1">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-overline">Partecipanti · Prima Edizione 2027</p>
+      <h1 id="partecipa-h1" class="hero-h1">
+        Vivi Milano,<br /><em>cocktail</em><br />per cocktail.
+      </h1>
+      <p class="hero-sub">Un pass. Tutti i bar. €6 a cocktail.</p>
+      <a href="#form" class="btn btn--primary">Entra in lista d'attesa →</a>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA ----------------------------------------- -->
+  <section class="s-how" aria-labelledby="how-h2">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="overline">Come funziona</p>
+        <h2 id="how-h2" class="section-h2">Tre passi.<br />Una città da scoprire.</h2>
+      </div>
+      <ol class="step-list" role="list">
+        {steps.map(({ n, title, desc }) => (
+          <li class="step">
+            <span class="step-n" aria-hidden="true">{n}</span>
+            <div class="step-body">
+              <h3 class="step-title">{title}</h3>
+              <p class="step-desc">{desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PER CHI È --------------------------------------------- -->
+  <section class="s-perchi" aria-labelledby="perchi-h2">
+    <div class="wrap perchi-inner">
+      <div class="perchi-text">
+        <p class="overline--dark">Per chi è MCD</p>
+        <h2 id="perchi-h2" class="section-h2--dark">
+          Chi ama Milano<br />e la cultura del bere bene.
+        </h2>
+        <p class="body-text">
+          Milan Cocktail Days è per chi vuole esplorare la scena cocktail milanese
+          in modo autentico. Non una serata, ma un percorso: Navigli, Brera, Isola,
+          Porta Romana. Bar selezionati con cura, bartender d'eccezione, ricette
+          create apposta per l'evento.
+        </p>
+        <p class="body-text">
+          È perfetto per un gruppo di amici, per una date night, per un appassionato
+          che vuole conoscere i protagonisti della scena. Non occorre essere esperti:
+          basta la curiosità.
+        </p>
+      </div>
+      <div class="perchi-img" role="img" aria-label="Partecipanti a Milan Cocktail Days — coming soon">
+        <span class="img-star" aria-hidden="true">✶</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- L'APP ------------------------------------------------- -->
+  <section class="s-app" aria-labelledby="app-h2">
+    <div class="wrap app-inner">
+      <div class="app-mock" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header-bar"></div>
+            <div class="phone-card-lg"></div>
+            <div class="phone-card-row">
+              <div class="phone-card-sm"></div>
+              <div class="phone-card-sm"></div>
+            </div>
+            <div class="phone-card-lg phone-card-lg--xs"></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <p class="overline--light">L'app che ti accompagna</p>
+        <h2 id="app-h2" class="section-h2--light">
+          Il tuo festival<br />in tasca.
+        </h2>
+        <div class="app-features">
+          {appFeatures.map(({ icon, title, desc }) => (
+            <div class="app-feature">
+              <span class="app-icon" aria-hidden="true">{icon}</span>
+              <div>
+                <h3 class="app-feature-title">{title}</h3>
+                <p class="app-feature-desc">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL ------------------------------------------- -->
+  <section class="s-test" aria-labelledby="test-h2">
+    <div class="wrap">
+      <p class="overline--light">Cosa dicono</p>
+      <h2 id="test-h2" class="section-h2--light">
+        Voci dalla lista d'attesa <span aria-hidden="true">✶</span>
+      </h2>
+    </div>
+    <div class="test-outer">
+      <div class="test-track" role="list">
+        {testimonials.map(({ quote, name, age, initials }) => (
+          <article class="test-card" role="listitem">
+            <blockquote class="test-quote">"{quote}"</blockquote>
+            <div class="test-author">
+              <div class="test-avatar" aria-hidden="true">{initials}</div>
+              <div>
+                <p class="test-name">{name}</p>
+                <p class="test-age">{age} anni</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ --------------------------------------------------- -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap">
+      <h2 id="faq-h2" class="section-h2--dark">Domande frequenti</h2>
+      <dl class="faq-list">
+        {faqs.map(({ q, a }) => (
+          <div class="faq-item">
+            <dt class="faq-q">{q}</dt>
+            <dd class="faq-a">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -------------------------------------------- -->
+  <CtaBanner
+    title="Posti limitati. Iscriviti ora."
+    ctaText="Entra in lista d'attesa →"
+    ctaHref="#form"
+    variant="borgogna"
+    ctaClass="cta-iscrizione"
+  />
+
+  <!-- FORM -------------------------------------------------- -->
+  <section class="s-form" id="form" aria-labelledby="form-h2">
+    <div class="wrap">
+      <h2 id="form-h2" class="form-heading">
+        Lista d'attesa <span aria-hidden="true">✶</span>
+      </h2>
+      <p class="form-intro">
+        Iscriviti gratuitamente. Ti contatteremo per primo all'apertura ufficiale dei pass.
+      </p>
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
+          loading="lazy"
+          width="100%"
+          height="689"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Milan Cocktail Days — Lista d'attesa partecipanti"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ---- HERO --------------------------------------------- */
+  .s-hero {
+    position: relative;
+    min-height: 70svh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-py) 0;
+    background-color: var(--color-mora);
+    background-image: url(https://cdn.builder.io/api/v1/image/assets%2F760efc3625c243069372e49380aa29cf%2Fa9999275167c4e979681e6714ae70968);
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-mora) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 70%, transparent) 50%,
+      color-mix(in srgb, var(--color-mora) 30%, transparent) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    max-width: 560px;
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-panna);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-panna);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--color-bitter);
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-sm);
+    transition: background-color 0.2s ease;
+  }
+
+  .btn--primary {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+  }
+
+  /* ---- COME FUNZIONA (dark) ------------------------------ */
+  .s-how {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .section-header { margin-bottom: var(--space-lg); }
+
+  .overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-panna);
+    opacity: 0.65;
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+  }
+
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: var(--border-hairline-dark);
+  }
+
+  .step-n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    color: var(--color-bitter);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px;
+    letter-spacing: -0.03em;
+  }
+
+  .step-body { padding-top: 6px; }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-panna);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---- PER CHI È (avorio) -------------------------------- */
+  .s-perchi {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .perchi-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .perchi-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .overline--dark {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-h2--dark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-mora);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .body-text {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.8;
+    margin: 0 0 var(--space-sm);
+  }
+
+  .perchi-img {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-lino);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .img-star {
+    color: var(--color-basilico);
+    font-size: 3rem;
+    opacity: 0.25;
+  }
+
+  /* ---- APP (dark) ---------------------------------------- */
+  .s-app {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .app-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .app-mock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-frame {
+    width: 240px;
+    height: 480px;
+    border: 1.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
+    border-radius: 28px;
+    background-color: var(--color-marmo);
+    padding: 16px 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phone-notch {
+    width: 60px;
+    height: 8px;
+    background-color: color-mix(in srgb, var(--color-panna) 15%, transparent);
+    border-radius: 4px;
+    margin: 0 auto 6px;
+  }
+
+  .phone-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .phone-header-bar {
+    height: 24px;
+    background-color: color-mix(in srgb, var(--color-basilico) 40%, transparent);
+    border-radius: var(--radius-sm);
+  }
+
+  .phone-card-lg {
+    flex: 1;
+    background-color: color-mix(in srgb, var(--color-bitter) 30%, transparent);
+    border-radius: var(--radius-sm);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+  }
+
+  .phone-card-lg--xs { flex: 0 0 40px; background-color: color-mix(in srgb, var(--color-basilico) 20%, transparent); }
+
+  .phone-card-row { display: flex; gap: 8px; height: 60px; }
+
+  .phone-card-sm {
+    flex: 1;
+    background-color: color-mix(in srgb, var(--color-panna) 10%, transparent);
+    border-radius: var(--radius-sm);
+  }
+
+  .app-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .overline--light {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-panna);
+    opacity: 0.65;
+    margin: 0;
+  }
+
+  .section-h2--light {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .app-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+  }
+
+  .app-feature {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+    padding-top: var(--space-sm);
+    border-top: var(--border-hairline-dark);
+  }
+
+  .app-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .app-feature-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-small);
+    color: var(--color-panna);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .app-feature-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- TESTIMONIAL (dark) -------------------------------- */
+  .s-test {
+    background-color: var(--color-mora);
+    padding: var(--section-py) 0;
+    overflow: hidden;
+  }
+
+  .s-test .wrap { margin-bottom: var(--space-lg); }
+
+  .test-outer {
+    overflow-x: auto;
+    padding: 0 2rem var(--space-sm);
+    scrollbar-width: none;
+  }
+
+  .test-outer::-webkit-scrollbar { display: none; }
+
+  .test-track {
+    display: flex;
+    gap: var(--space-md);
+    width: max-content;
+    scroll-snap-type: x mandatory;
+  }
+
+  .test-card {
+    scroll-snap-align: start;
+    flex: 0 0 340px;
+    background-color: var(--color-marmo);
+    border: 0.5px solid var(--color-mora-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .test-quote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.7;
+    quotes: none;
+    margin: 0;
+  }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .test-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-bitter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--color-panna);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .test-name {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    color: var(--color-panna);
+    margin: 0 0 2px;
+  }
+
+  .test-age {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    color: var(--color-pesco-300);
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  /* ---- FAQ (avorio) ------------------------------------- */
+  .s-faq {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .s-faq .section-h2--dark { margin-bottom: var(--space-lg); }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 760px;
+  }
+
+  .faq-item {
+    padding: var(--space-md) 0;
+    border-top: 0.5px solid var(--color-panna-300);
+  }
+
+  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+
+  .faq-q {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-mora);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .faq-a {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-inchiostro-500);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---- FORM (dark) -------------------------------------- */
+  .s-form {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    scroll-margin-top: 64px;
+  }
+
+  .form-heading {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .form-heading span {
+    color: var(--color-panna);
+    font-size: 0.5em;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+
+  .form-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 0 var(--space-lg);
+    opacity: 0.85;
+  }
+
+  .tally-wrap { max-width: 760px; }
+
+  /* ---- RESPONSIVE --------------------------------------- */
+  @media (max-width: 768px) {
+    .perchi-inner { grid-template-columns: 1fr; }
+    .app-inner    { grid-template-columns: 1fr; }
+    .app-mock     { display: none; }
+    .hero-h1 { font-size: clamp(2.5rem, 10vw, 5rem); }
+  }
+</style>

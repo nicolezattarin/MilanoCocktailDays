@@ -6,9 +6,9 @@
  */
 
 const navLinks = [
-  { href: '/festival',  label: 'Festival' },
-  { href: '/bars',      label: 'Bars' },
-  { href: '/contatti',  label: 'Contatti' },
+  { href: '/partecipa', label: 'Partecipanti' },
+  { href: '/bar',       label: 'Bar Partner' },
+  { href: '/sponsor',   label: 'Sponsor' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -47,14 +47,14 @@ const currentPath = Astro.url.pathname;
         ))}
         <!-- CTA visibile nel menu mobile -->
         <li class="nav-item nav-item--cta-mobile">
-          <a href="/contatti" class="nav-cta-mobile">Iscriviti</a>
+          <a href="/partecipa" class="nav-cta-mobile">Partecipa</a>
         </li>
       </ul>
     </nav>
 
     <!-- CTA bottone desktop -->
-    <a href="/contatti" class="nav-cta" aria-label="Iscriviti a Milan Cocktail Days">
-      Iscriviti
+    <a href="/partecipa" class="nav-cta" aria-label="Entra in lista d'attesa Milan Cocktail Days">
+      Partecipa
     </a>
   </div>
 </header>

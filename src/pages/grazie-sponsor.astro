@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Interesse ricevuto"
+  description="Abbiamo ricevuto il tuo interesse per una partnership con Milan Cocktail Days 2027. Il fondatore ti contatta presto."
+  noindex={true}
+>
+  <section class="s-grazie" aria-labelledby="grazie-h1">
+    <div class="wrap">
+      <div class="grazie-card">
+        <span class="grazie-star" aria-hidden="true">✶</span>
+        <p class="grazie-label">Sponsor</p>
+        <h1 id="grazie-h1" class="grazie-h1">
+          Grazie per<br /><em>l'interesse.</em>
+        </h1>
+        <p class="grazie-body">
+          Il fondatore ti contatta personalmente per fissare
+          una conversazione. 30 minuti, nessun impegno.
+          Parliamo degli obiettivi del tuo brand e costruiamo
+          qualcosa che abbia senso per entrambi.
+        </p>
+        <div class="grazie-info">
+          <div class="info-row">
+            <span class="info-label">Esclusiva di categoria</span>
+            <span class="info-val">Chi si muove prima, la ottiene</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Tempi</span>
+            <span class="info-val">Partnership principali entro dic. 2026</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Contatto diretto</span>
+            <a href="mailto:sponsor@milancocktaildays.it" class="info-email">
+              sponsor@milancocktaildays.it
+            </a>
+          </div>
+        </div>
+        <div class="grazie-next">
+          <div class="next-actions">
+            <a
+              href="https://www.instagram.com/milancocktailweek"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--primary"
+            >
+              Seguici su Instagram →
+            </a>
+            <a href="/sponsor" class="btn btn--ghost">Torna alla pagina sponsor</a>
+          </div>
+        </div>
+        <div class="grazie-footer">
+          <a href="/" class="back-link">← Torna alla home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .s-grazie {
+    min-height: 100svh;
+    background-color: var(--color-mora);
+    display: flex;
+    align-items: center;
+    padding: var(--section-py) 0;
+  }
+
+  .grazie-card {
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .grazie-star {
+    display: block;
+    color: var(--color-bitter);
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .grazie-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-panna);
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  .grazie-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-panna);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .grazie-h1 em {
+    font-style: italic;
+    color: var(--color-bitter);
+  }
+
+  .grazie-body {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .grazie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: var(--border-hairline-dark);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: var(--border-hairline-dark);
+    flex-wrap: wrap;
+  }
+
+  .info-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-panna);
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+
+  .info-val {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+  }
+
+  .info-email {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-bitter);
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.2s;
+  }
+
+  .info-email:hover { opacity: 0.7; }
+
+  .grazie-next {
+    padding-top: var(--space-md);
+  }
+
+  .next-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn--primary {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+  }
+
+  .btn--primary:hover { background-color: var(--color-bitter-500); border-color: var(--color-bitter-500); }
+
+  .btn--ghost {
+    background-color: transparent;
+    color: var(--color-panna);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 35%, transparent);
+  }
+
+  .btn--ghost:hover { border-color: var(--color-panna); }
+
+  .grazie-footer { padding-top: var(--space-sm); }
+
+  .back-link {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-panna);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .back-link:hover { opacity: 1; }
+
+  @media (max-width: 480px) {
+    .next-actions { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+</style>

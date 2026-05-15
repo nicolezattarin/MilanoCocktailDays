@@ -1,0 +1,772 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const proofRows = [
+  { ed: '1ª edizione', bar: '18', part: '600' },
+  { ed: '3ª edizione', bar: '45', part: '2.400' },
+  { ed: '5ª edizione', bar: '80', part: '6.000' },
+];
+
+const categories = [
+  {
+    cat: 'Beverage',
+    icon: '🍶',
+    desc: 'Spirits, soft drink, acque premium, vermouth, liquori. Il contesto perfetto: i partecipanti MCD sono consumatori consapevoli, con alta spesa media.',
+    examples: 'Spirits · Soft drink · Acque premium · Vermouth',
+  },
+  {
+    cat: 'Tech',
+    icon: '📱',
+    desc: 'App, piattaforme di booking, mobile payment, digital services. Un pubblico 25-40, urban, early adopter, con alta affinità tecnologica.',
+    examples: 'App · Booking · Pagamenti · Digital services',
+  },
+  {
+    cat: 'Mobility',
+    icon: '🚗',
+    desc: "Trasporto premium, car sharing, servizi di mobilità urbana. Chi frequenta MCD si sposta tra i quartieri ogni sera: un'opportunità unica.",
+    examples: 'Car sharing · Taxi premium · Monopattini · Mobilità urbana',
+  },
+];
+
+const offerings = [
+  { val: '1.000+',    label: 'Partecipanti attesi' },
+  { val: 'TBA',       label: 'Bar partner' },
+  { val: '10',        label: 'Serate di festival' },
+  { val: '25–40',     label: 'Fascia d\'età principale' },
+];
+
+const appFeatures = [
+  { title: 'Logo in evidenza',         desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.' },
+  { title: 'Prodotti in evidenza',     desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.' },
+  { title: 'Community',                desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.' },
+  { title: 'Report dati',              desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.' },
+];
+
+const faqs = [
+  { q: 'Quali formati di partnership esistono?',   a: 'Logo in app, prodotti in evidenza nelle schede cocktail, masterclass co-branded, comunicazione social MCD, presenza fisica durante le serate. I pacchetti si definiscono in call.' },
+  { q: 'Ci sono esclusive di categoria?',          a: 'Sì. Per ogni categoria (beverage, tech, mobility) puntiamo a un solo partner principale. Chi si muove prima ha l\'esclusiva di categoria.' },
+  { q: 'Entro quando chiudere la partnership?',    a: 'Le partnership principali vanno chiuse entro dicembre 2026 per essere integrate in tutta la comunicazione pre-festival.' },
+  { q: 'Qual è l\'investimento minimo?',           a: 'Non c\'è un listino pubblico. La call serve a capire gli obiettivi del brand e costruire un pacchetto con senso. Parliamone.' },
+];
+---
+
+<BaseLayout
+  title="Sponsor"
+  description="Diventa sponsor di Milan Cocktail Days 2027. Partnership per brand beverage, tech e mobility. Pubblico premium 25-40, esclusiva di categoria."
+>
+
+  <!-- HERO -------------------------------------------------- -->
+  <section class="s-hero" aria-labelledby="sponsor-h1">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-overline">Sponsor · Partnership Aperte</p>
+      <h1 id="sponsor-h1" class="hero-h1">
+        Un evento sostenuto<br /><em>da chi conosce</em><br />il settore.
+      </h1>
+      <p class="hero-sub">
+        Beverage, tech, mobility. Un pubblico premium, un contesto curato,
+        un'esclusiva di categoria.
+      </p>
+      <a href="#form" class="btn btn--primary">Parliamone →</a>
+    </div>
+  </section>
+
+  <!-- IL MODELLO E I NUMERI --------------------------------- -->
+  <section class="s-model" aria-labelledby="model-h2">
+    <div class="wrap model-inner">
+      <div class="model-text">
+        <p class="overline--dark">Il modello e i numeri</p>
+        <h2 id="model-h2" class="section-h2--dark">
+          Un format che funziona.<br />Una città che aspettava.
+        </h2>
+        <p class="body-text">
+          CocktailX Munich ha validato il modello: festival di bar-hopping con
+          pass unico, crescita anno su anno, comunità fedele di appassionati.
+          Milano è il mercato più maturo d'Italia per la cocktail culture —
+          e non aveva ancora un suo evento dedicato.
+        </p>
+        <p class="body-text">
+          MCD è la prima edizione. Chi entra ora co-costruisce il brand
+          con noi, con esclusiva di categoria e massima visibilità fin dal lancio.
+        </p>
+      </div>
+      <div class="model-table-side">
+        <p class="table-label">CocktailX Munich · crescita per edizione</p>
+        <table class="proof-table" aria-label="Crescita CocktailX Munich">
+          <thead>
+            <tr>
+              <th scope="col">Edizione</th>
+              <th scope="col">Bar</th>
+              <th scope="col">Partecipanti</th>
+            </tr>
+          </thead>
+          <tbody>
+            {proofRows.map(({ ed, bar, part }) => (
+              <tr>
+                <td>{ed}</td>
+                <td class="num-cell">{bar}</td>
+                <td class="num-cell">{part}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div class="milan-tag">
+          <span class="milan-label">Milano</span>
+          <p class="milan-desc">4° mercato cocktail in Europa · crescita YoY +18%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIE DI PARTNERSHIP ----------------------------- -->
+  <section class="s-categories" aria-labelledby="cat-h2">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="overline">Categorie di partnership</p>
+        <h2 id="cat-h2" class="section-h2">
+          Tre categorie.<br />Un solo partner per ognuna.
+        </h2>
+      </div>
+      <div class="cat-grid">
+        {categories.map(({ cat, icon, desc, examples }) => (
+          <article class="cat-card">
+            <div class="cat-top">
+              <span class="cat-icon" aria-hidden="true">{icon}</span>
+              <h3 class="cat-title">{cat}</h3>
+            </div>
+            <p class="cat-desc">{desc}</p>
+            <p class="cat-examples">{examples}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA OFFRE IL FESTIVAL -------------------------------- -->
+  <section class="s-offer" aria-labelledby="offer-h2">
+    <div class="wrap">
+      <div class="section-header">
+        <p class="overline--dark">Cosa offre il festival</p>
+        <h2 id="offer-h2" class="section-h2--dark">Reach, pubblico, contesto.</h2>
+      </div>
+      <div class="offer-grid">
+        {offerings.map(({ val, label }) => (
+          <div class="offer-item">
+            <span class="offer-val">{val}</span>
+            <span class="offer-label">{label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="offer-detail">
+        <p class="offer-text">
+          Il pubblico MCD è 25–40 anni, urbano, con alta spesa media e forte affinità
+          verso brand di qualità. Non è un pubblico di massa: è un pubblico che sceglie.
+          Il contesto festival — serata per serata, bar per bar — crea un'associazione
+          positiva con i brand partner che la pubblicità tradizionale difficilmente raggiunge.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- L'APP PER I PARTNER ----------------------------------- -->
+  <section class="s-app" aria-labelledby="app-h2">
+    <div class="wrap app-inner">
+      <div class="app-mock" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header-bar"></div>
+            <div class="phone-card-lg"></div>
+            <div class="phone-card-row">
+              <div class="phone-card-sm"></div>
+              <div class="phone-card-sm"></div>
+            </div>
+            <div class="phone-card-lg phone-card-lg--xs"></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <p class="overline">L'app per i partner</p>
+        <h2 id="app-h2" class="section-h2">
+          Il tuo brand<br />dentro l'esperienza.
+        </h2>
+        <div class="app-features">
+          {appFeatures.map(({ title, desc }) => (
+            <div class="app-feature">
+              <h3 class="app-feature-title">{title}</h3>
+              <p class="app-feature-desc">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ --------------------------------------------------- -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap">
+      <h2 id="faq-h2" class="section-h2--dark">Domande frequenti</h2>
+      <dl class="faq-list">
+        {faqs.map(({ q, a }) => (
+          <div class="faq-item">
+            <dt class="faq-q">{q}</dt>
+            <dd class="faq-a">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -------------------------------------------- -->
+  <CtaBanner
+    title="Costruiamo qualcosa insieme."
+    subtitle="Parliamo degli obiettivi del tuo brand. 30 minuti."
+    ctaText="Parliamone →"
+    ctaHref="#form"
+    variant="borgogna"
+    ctaClass="cta-sponsor"
+  />
+
+  <!-- FORM -------------------------------------------------- -->
+  <section class="s-form" id="form" aria-labelledby="form-h2">
+    <div class="wrap">
+      <h2 id="form-h2" class="form-heading">
+        Manifestazione d'interesse <span aria-hidden="true">✶</span>
+      </h2>
+      <p class="form-intro">
+        Lascia i tuoi contatti. Il fondatore ti risponde personalmente
+        per fissare una conversazione.
+      </p>
+      <div class="form-placeholder">
+        <p class="placeholder-note">
+          Il form sponsor è in arrivo. Nel frattempo scrivici direttamente:
+          <a href="mailto:sponsor@milancocktaildays.it" class="placeholder-link">
+            sponsor@milancocktaildays.it
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ---- HERO (mora) --------------------------------------- */
+  .s-hero {
+    position: relative;
+    min-height: 70svh;
+    display: flex;
+    align-items: center;
+    padding: var(--section-py) 0;
+    background-color: var(--color-mora);
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 40%, color-mix(in srgb, var(--color-bitter) 10%, transparent) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    max-width: 640px;
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-panna);
+    opacity: 0.65;
+    margin: 0;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-panna);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--color-bitter);
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-sm);
+    transition: background-color 0.2s ease;
+  }
+
+  .btn--primary {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+  }
+
+  .section-header { margin-bottom: var(--space-lg); }
+
+  /* ---- MODELLO (avorio) ---------------------------------- */
+  .s-model {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .model-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .model-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .overline--dark {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-h2--dark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-mora);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .body-text {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.8;
+    margin: 0 0 var(--space-sm);
+  }
+
+  .table-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-inchiostro-500);
+    margin-bottom: var(--space-sm);
+  }
+
+  .proof-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-md);
+  }
+
+  .proof-table thead tr { border-bottom: 1px solid var(--color-basilico); }
+
+  .proof-table th {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    color: var(--color-basilico);
+    padding: 8px 12px 8px 0;
+    text-align: left;
+  }
+
+  .proof-table td {
+    padding: 12px 12px 12px 0;
+    color: var(--color-inchiostro);
+    border-bottom: 0.5px solid var(--color-panna-300);
+  }
+
+  .num-cell {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-mora);
+  }
+
+  .milan-tag {
+    background-color: var(--color-basilico);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .milan-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-panna);
+    opacity: 0.7;
+  }
+
+  .milan-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-panna);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---- CATEGORIE (fumo) ---------------------------------- */
+  .s-categories {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-panna);
+    opacity: 0.65;
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .cat-card {
+    background-color: var(--color-marmo);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .cat-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .cat-icon { font-size: 1.5rem; }
+
+  .cat-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h3);
+    color: var(--color-panna);
+    margin: 0;
+  }
+
+  .cat-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .cat-examples {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-panna);
+    opacity: 0.4;
+    margin: 0;
+  }
+
+  /* ---- COSA OFFRE (avorio) ------------------------------- */
+  .s-offer {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .offer-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background-color: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
+    border-radius: var(--radius-md);
+  }
+
+  .offer-val {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-mora);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .offer-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-basilico);
+  }
+
+  .offer-detail { max-width: 760px; }
+
+  .offer-text {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* ---- APP (fumo) ---------------------------------------- */
+  .s-app {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+  }
+
+  .app-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .app-mock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-frame {
+    width: 240px;
+    height: 480px;
+    border: 1.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
+    border-radius: 28px;
+    background-color: var(--color-marmo);
+    padding: 16px 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phone-notch { width: 60px; height: 8px; background-color: color-mix(in srgb, var(--color-panna) 15%, transparent); border-radius: 4px; margin: 0 auto 6px; }
+  .phone-screen { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .phone-header-bar { height: 24px; background-color: color-mix(in srgb, var(--color-basilico) 40%, transparent); border-radius: var(--radius-sm); }
+  .phone-card-lg { flex: 1; background-color: color-mix(in srgb, var(--color-bitter) 30%, transparent); border-radius: var(--radius-sm); border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); }
+  .phone-card-lg--xs { flex: 0 0 40px; background-color: color-mix(in srgb, var(--color-basilico) 20%, transparent); }
+  .phone-card-row { display: flex; gap: 8px; height: 60px; }
+  .phone-card-sm { flex: 1; background-color: color-mix(in srgb, var(--color-panna) 10%, transparent); border-radius: var(--radius-sm); }
+
+  .app-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .app-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .app-feature {
+    padding: var(--space-sm) 0;
+    border-top: var(--border-hairline-dark);
+  }
+
+  .app-feature-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-small);
+    color: var(--color-panna);
+    margin-bottom: 4px;
+  }
+
+  .app-feature-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- FAQ (avorio) ------------------------------------- */
+  .s-faq {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .s-faq .section-h2--dark { margin-bottom: var(--space-lg); }
+
+  .faq-list { display: flex; flex-direction: column; max-width: 760px; }
+
+  .faq-item {
+    padding: var(--space-md) 0;
+    border-top: 0.5px solid var(--color-panna-300);
+  }
+
+  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+
+  .faq-q {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-mora);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .faq-a {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-inchiostro-500);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---- FORM (fumo) -------------------------------------- */
+  .s-form {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    scroll-margin-top: 64px;
+  }
+
+  .form-heading {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .form-heading span {
+    font-size: 0.5em;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+
+  .form-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 0 var(--space-lg);
+    opacity: 0.85;
+  }
+
+  .form-placeholder {
+    max-width: 560px;
+    background-color: var(--color-marmo);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+  }
+
+  .placeholder-note {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .placeholder-link {
+    color: var(--color-bitter);
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.2s;
+  }
+
+  .placeholder-link:hover { opacity: 0.7; }
+
+  /* ---- RESPONSIVE --------------------------------------- */
+  @media (max-width: 900px) {
+    .cat-grid   { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .model-inner { grid-template-columns: 1fr; }
+    .app-inner   { grid-template-columns: 1fr; }
+    .app-mock    { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .offer-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
