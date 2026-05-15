@@ -8,7 +8,6 @@
 const navLinks = [
   { href: '/festival',  label: 'Festival' },
   { href: '/bars',      label: 'Bars' },
-  { href: '/programma', label: 'Programma' },
   { href: '/contatti',  label: 'Contatti' },
 ];
 
@@ -90,9 +89,12 @@ const currentPath = Astro.url.pathname;
 
   .site-logo-img {
     height: 300px;
-    width: auto;
+    width: 260px;
     display: block;
     filter: brightness(0) invert(1);
+    object-position: center;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 
   /* ---- Nav links ------------------------------------------- */
