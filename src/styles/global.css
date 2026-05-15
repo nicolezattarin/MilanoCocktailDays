@@ -331,10 +331,24 @@ body {
    Section Testimonials — s-test
    ============================================================ */
 .s-test {
-  background-image: url(https://cdn.builder.io/o/assets%2F760efc3625c243069372e49380aa29cf%2F136645223e1a44abad1861b0a513f2aa?alt=media&token=6ef298b9-3770-4ebb-a1e2-5610df836564&apiKey=760efc3625c243069372e49380aa29cf);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.s-test-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.s-test .wrap,
+.s-test .test-outer {
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================================
