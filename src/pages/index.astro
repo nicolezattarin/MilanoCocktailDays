@@ -207,14 +207,16 @@ const proofRows = [
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-      to right,
+    background: radial-gradient(
+      ellipse 800px 600px at 15% 50%,
       var(--color-panna) 0%,
-      var(--color-panna) 30%,
-      color-mix(in srgb, var(--color-panna) 85%, transparent) 50%,
-      color-mix(in srgb, var(--color-panna) 20%, transparent) 70%,
+      var(--color-panna) 20%,
+      color-mix(in srgb, var(--color-panna) 70%, transparent) 45%,
+      color-mix(in srgb, var(--color-panna) 30%, transparent) 75%,
       transparent 100%
     );
+    box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 1);
+    opacity: 0.85;
   }
 
   .hero-inner {
