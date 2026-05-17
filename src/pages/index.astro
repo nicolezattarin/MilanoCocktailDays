@@ -135,20 +135,39 @@ const milanDots = [
         Milano <span aria-hidden="true">✶</span> Maggio 2027 <span aria-hidden="true">✶</span> Prima Edizione
       </p>
 
-      <div class="hero-h1-wrap mcw-bracket">
-        <h1 id="home-h1" class="hero-h1">
-          Trenta bar di Milano.<br />Per dieci giorni.<br />Un pass.
-        </h1>
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-h1-wrap mcw-bracket">
+            <h1 id="home-h1" class="hero-h1">
+              Trenta bar di Milano.<br />Per dieci giorni.<br />Un pass.
+            </h1>
+          </div>
+
+          <p class="hero-sub">
+            Ogni bar inventa un cocktail solo per te. €6 l'uno, solo nei dieci giorni di maggio.
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-badge">Limited Early Bird</div>
+
+          <div class="hero-price-section">
+            <span class="hero-price-label">A partire da</span>
+            <div class="hero-price">€15</div>
+          </div>
+
+          <div class="hero-divider"></div>
+
+          <div class="hero-social-proof">
+            <div class="proof-number">347</div>
+            <div class="proof-label">Persone già<br/>in lista</div>
+          </div>
+
+          <a href="#lista" class="btn btn--primary btn--hero">
+            Entra in lista d'attesa <span aria-hidden="true">✶</span>
+          </a>
+        </div>
       </div>
-
-      <p class="hero-sub">
-        Ogni bar inventa un cocktail solo per te. €6 l'uno, solo nei dieci giorni di maggio.
-        Mettiti in lista - i primi pass partono da €15.
-      </p>
-
-      <a href="#lista" class="btn btn--primary">
-        Entra in lista d'attesa <span aria-hidden="true">✶</span>
-      </a>
     </div>
   </section>
 
@@ -438,12 +457,41 @@ const milanDots = [
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 0%,
-      color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 30%,
-      transparent 60%
-    );
+    background:
+      radial-gradient(
+        ellipse 900px 700px at 20% 50%,
+        color-mix(in srgb, var(--color-inchiostro) 50%, transparent) 0%,
+        color-mix(in srgb, var(--color-inchiostro) 20%, transparent) 40%,
+        transparent 80%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-inchiostro) 40%, transparent) 0%,
+        color-mix(in srgb, var(--color-inchiostro) 10%, transparent) 35%,
+        transparent 70%
+      );
+    background-blend-mode: multiply;
+  }
+
+  .hero-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noisefilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' seed='1' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noisefilter)' opacity='0.08'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    pointer-events: none;
+  }
+
+  @keyframes fadeUpHero {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .hero-inner {
@@ -452,15 +500,15 @@ const milanDots = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-lg);
     max-width: 100%;
-    margin: 0 auto;
     padding: 24px 40px;
-    background: color-mix(in srgb, var(--color-panna) 8%, transparent);
-    backdrop-filter: blur(10px);
-    border: 1px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
-    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-panna) 6%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 18%, transparent);
+    border-radius: var(--radius-lg);
     text-align: center;
+    animation: fadeUpHero 0.8s ease-out;
   }
 
   .hero-logo {
@@ -469,6 +517,7 @@ const milanDots = [
     display: block;
     object-fit: contain;
     margin-bottom: var(--space-md);
+    animation: fadeUpHero 0.8s ease-out 0.1s both;
   }
 
   .hero-overline {
@@ -479,29 +528,145 @@ const milanDots = [
     letter-spacing: 0.22em;
     color: var(--color-panna);
     margin: 0;
+    animation: fadeUpHero 0.8s ease-out 0.2s both;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    width: 100%;
+    align-items: start;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    text-align: left;
   }
 
   .hero-h1-wrap {
-    padding: var(--space-sm) var(--space-md);
+    padding: 0;
   }
 
   .hero-h1 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2rem, 4.5vw, 4rem);
+    font-size: clamp(3rem, 8vw, 5.5rem);
     color: var(--color-panna);
-    line-height: 1.05;
-    letter-spacing: -0.01em;
+    line-height: 1;
+    letter-spacing: -0.02em;
     margin: 0;
+    animation: fadeUpHero 0.8s ease-out 0.3s both;
   }
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: var(--text-body-lg);
+    font-size: clamp(0.95rem, 1.2vw, 1rem);
     color: var(--color-pesco-300);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
-    max-width: 480px;
+    max-width: 100%;
+    animation: fadeUpHero 0.8s ease-out 0.4s both;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-bitter);
+    background: color-mix(in srgb, var(--color-bitter) 12%, transparent);
+    border: 1px solid var(--color-bitter);
+    padding: 6px 14px;
+    border-radius: 20px;
+    animation: fadeUpHero 0.8s ease-out 0.3s both;
+  }
+
+  .hero-price-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeUpHero 0.8s ease-out 0.4s both;
+  }
+
+  .hero-price-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-pesca-300);
+  }
+
+  .hero-price {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--color-bitter);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-panna) 25%, transparent);
+    animation: fadeUpHero 0.8s ease-out 0.5s both;
+  }
+
+  .hero-social-proof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    animation: fadeUpHero 0.8s ease-out 0.6s both;
+  }
+
+  .proof-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 900;
+    color: var(--color-panna);
+    line-height: 1;
+  }
+
+  .proof-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-pesca-300);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn--hero {
+    width: 100%;
+    max-width: 280px;
+    height: 56px;
+    padding: 0 2rem;
+    font-size: var(--text-small);
+    border-radius: 16px;
+    animation: fadeUpHero 0.8s ease-out 0.7s both;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn--hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px color-mix(in srgb, var(--color-bitter) 35%, transparent);
   }
 
   /* ── SHARED BTN ───────────────────────────────────────────── */
