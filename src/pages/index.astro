@@ -412,10 +412,10 @@ const milanDots = [
   /* ── HERO ─────────────────────────────────────────────────── */
   .s-hero {
     position: relative;
-    min-height: 100svh;
+    min-height: 80svh;
     display: flex;
     align-items: center;
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
     overflow: hidden;
   }
 
@@ -536,7 +536,7 @@ const milanDots = [
   /* ── COME FUNZIONA ────────────────────────────────────────── */
   .s-how {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .how-h2 {
@@ -545,7 +545,7 @@ const milanDots = [
     font-size: var(--text-h1);
     color: var(--color-panna);
     line-height: 1.05;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
   }
 
   .step-list {
@@ -607,8 +607,8 @@ const milanDots = [
   }
 
   .how-strap {
-    margin-top: var(--space-xl);
-    padding-top: var(--space-md);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-sm);
     border-top: var(--border-hairline-dark);
     font-family: var(--font-display);
     font-weight: 700;
@@ -620,7 +620,7 @@ const milanDots = [
   /* ── PERCHÉ ISCRIVERSI ────────────────────────────────────── */
   .s-why {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .why-h2 {
@@ -629,14 +629,14 @@ const milanDots = [
     font-size: var(--text-h1);
     color: var(--color-mora);
     line-height: 1.05;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
   }
 
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
 
   .why-block-title {
@@ -679,15 +679,15 @@ const milanDots = [
 
   /* ── PER CHI È ────────────────────────────────────────────── */
   .s-perchi {
-    background-color: var(--color-panna);
-    padding: var(--section-py) 0;
+    background-color: var(--color-basilico);
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
-    color: var(--color-mora);
+    color: var(--color-panna);
     line-height: 1.05;
     margin: 0 0 var(--space-md);
     max-width: 760px;
@@ -696,37 +696,38 @@ const milanDots = [
   .perchi-lead {
     font-family: var(--font-body);
     font-size: var(--text-body-lg);
-    color: var(--color-inchiostro);
+    color: var(--color-pesco-300);
     line-height: 1.7;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
     max-width: 640px;
   }
 
   .perchi-occasions {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .perchi-occasions li {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-mora);
+    color: var(--color-panna);
     font-style: italic;
     line-height: 1.5;
     padding: var(--space-md);
-    border: 0.5px solid var(--color-panna-300);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
     border-radius: var(--radius-sm);
-    background-color: var(--color-avorio);
+    background-color: var(--color-basilico-600);
   }
 
   .perchi-close {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-inchiostro-500);
+    color: var(--color-panna);
+    opacity: 0.7;
     margin: 0;
     font-style: italic;
   }
@@ -734,7 +735,7 @@ const milanDots = [
   /* ── BAR PARTNER ──────────────────────────────────────────── */
   .s-bars {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .bars-h2 {
@@ -751,7 +752,7 @@ const milanDots = [
     font-size: var(--text-body);
     color: var(--color-inchiostro);
     line-height: 1.75;
-    margin: 0 0 var(--space-xl);
+    margin: 0 0 var(--space-md);
     max-width: 640px;
   }
 
@@ -759,7 +760,7 @@ const milanDots = [
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
   }
 
   .criterion {
@@ -784,7 +785,7 @@ const milanDots = [
   }
 
   .map-wrap {
-    margin: 0 0 var(--space-xl);
+    margin: 0 0 var(--space-md);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -810,13 +811,13 @@ const milanDots = [
   /* ── APP ──────────────────────────────────────────────────── */
   .s-app {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .app-inner {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
     align-items: center;
   }
 
@@ -940,13 +941,13 @@ const milanDots = [
 
   /* ── VOCI DALLA LISTA ─────────────────────────────────────── */
   .s-quotes {
-    background-color: var(--color-mora);
-    padding: var(--section-py) 0;
+    background-color: var(--color-panna-100);
+    padding: clamp(2rem, 5vw, 4rem) 0;
     overflow: hidden;
   }
 
   .quotes-header {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     display: flex;
     align-items: baseline;
     gap: var(--space-md);
@@ -957,21 +958,20 @@ const milanDots = [
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h2);
-    color: var(--color-panna);
+    color: var(--color-mora);
     margin: 0;
   }
 
   .quotes-counter {
     font-family: var(--font-body);
     font-size: var(--text-small);
-    color: var(--color-pesco-300);
-    opacity: 0.8;
+    color: var(--color-inchiostro-500);
     margin: 0;
   }
 
   .quotes-counter .counter-num {
     font-size: var(--text-body);
-    color: var(--color-pesco-300);
+    color: var(--color-basilico);
   }
 
   .quotes-outer {
@@ -992,8 +992,8 @@ const milanDots = [
   .quote-card {
     scroll-snap-align: start;
     flex: 0 0 min(320px, 80vw);
-    background-color: color-mix(in srgb, var(--color-panna) 8%, transparent);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    background-color: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
     border-radius: var(--radius-md);
     padding: var(--space-md);
     display: flex;
@@ -1005,7 +1005,7 @@ const milanDots = [
     font-family: var(--font-body);
     font-style: italic;
     font-size: var(--text-body);
-    color: var(--color-pesco-300);
+    color: var(--color-mora);
     line-height: 1.65;
     quotes: none;
     margin: 0;
@@ -1017,14 +1017,13 @@ const milanDots = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-panna);
-    opacity: 0.7;
+    color: var(--color-inchiostro-700);
   }
 
   /* ── CTA FINALE ───────────────────────────────────────────── */
   .s-cta-final {
     background-color: var(--color-mora);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
     border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
   }
 
@@ -1056,7 +1055,7 @@ const milanDots = [
   /* ── FAQ ──────────────────────────────────────────────────── */
   .s-faq {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
   }
 
   .faq-h2 {
@@ -1065,7 +1064,7 @@ const milanDots = [
     font-size: var(--text-h1);
     color: var(--color-mora);
     line-height: 1.05;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 var(--space-md);
   }
 
   .faq-list {
@@ -1122,7 +1121,7 @@ const milanDots = [
   /* ── FORM ─────────────────────────────────────────────────── */
   .s-lista {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: clamp(2rem, 5vw, 4rem) 0;
     scroll-margin-top: 64px;
   }
 
