@@ -132,7 +132,7 @@ const milanDots = [
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <div class="wrap hero-inner">
-      <img src="/logos/logo_3_v.FINAL/Inchiostro.svg" alt="Milan Cocktail Days" class="hero-logo" />
+      <img src="/logos/logo_3_v.FINAL/Panna.svg" alt="Milan Cocktail Days" class="hero-logo" />
 
       <p class="hero-overline">
         Milano <span aria-hidden="true">✶</span> Maggio 2027 <span aria-hidden="true">✶</span> Prima Edizione
@@ -168,8 +168,8 @@ const milanDots = [
           {steps.map(({ n, icon, title, desc }) => (
             <article class="how-card">
               <div class="how-card-top">
-                <div class="how-card-num" aria-hidden="true">{n}</div>
                 <div class="how-card-icon" aria-hidden="true" set:html={icon} />
+                <div class="how-card-num" aria-hidden="true">{n}</div>
               </div>
               <h3 class="how-card-title">{title}</h3>
               <div class="how-card-desc-box">
@@ -710,8 +710,8 @@ const milanDots = [
   }
 
   .how-card-icon svg {
-    width: 20px;
-    height: 20px;
+    width: clamp(1.5rem, 3vw, 2rem);
+    height: clamp(1.5rem, 3vw, 2rem);
   }
 
   .how-card-title {
