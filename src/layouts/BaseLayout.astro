@@ -105,10 +105,10 @@ const jsonLdOrg = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- 4. GOOGLE FONTS — solo pesi necessari, opsz axis -->
+    <!-- 4. GOOGLE FONTS — Jost (display) + Montserrat (body) -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap"
     />
 
     <!-- 5. TITLE + META BASE -->
@@ -146,8 +146,8 @@ const jsonLdOrg = {
 
     <!-- 10. JSON-LD — condizionale su pageType -->
     {pageType === 'event'
-      ? <script type="application/ld+json" set:html={JSON.stringify(jsonLdEvent)} />
-      : <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
+      ? <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdEvent)} />
+      : <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
     }
 
     <!-- ============================================================

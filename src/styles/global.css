@@ -71,8 +71,8 @@ select {
   --color-oro:      var(--color-basilico);
 
   /* ---- Tipografia ---- */
-  --font-display: 'Bodoni Moda', 'Didot', 'Playfair Display', Georgia, serif;
-  --font-body:    'Plus Jakarta Sans', Inter, 'DM Sans', Arial, sans-serif;
+  --font-display: 'Jost', 'Futura', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  --font-body:    'Montserrat', 'Gill Sans', 'Gill Sans MT', Arial, sans-serif;
   --font-mono:    'Courier New', Courier, monospace;
 
   --text-hero:     clamp(3rem, 8vw, 7rem);      /* display — 80px */
