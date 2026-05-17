@@ -180,34 +180,62 @@ const milanDots = [
   <!-- S03 · PERCHÉ ISCRIVERSI ────────────────────────────────── -->
   <section class="s-why" aria-labelledby="why-h2">
     <div class="wrap">
-      <h2 id="why-h2" class="why-h2">I primi a saperlo. I primi a entrare.</h2>
+      <div class="why-content">
+        <div class="why-left">
+          <div class="why-headline">
+            <h2 id="why-h2" class="why-h2">I primi<br /><span class="why-highlight">entrano prima</span>.</h2>
+            <p class="why-tagline">E pagano meno.</p>
+          </div>
 
-      <div class="why-grid">
-        <div class="why-block">
-          <h3 class="why-block-title">Priorità.</h3>
-          <p class="why-block-body">
-            Quando i pass aprono, la prima email arriva a chi è in lista.
-            Senza coda, senza refresh, senza dover essere svegli all'ora giusta.
+          <p class="why-copy">
+            Accesso anticipato + prezzo launch riservato ai primi iscritti.
           </p>
+
+          <div class="why-proof">
+            <div class="proof-avatars">
+              <div class="avatar avatar-1"></div>
+              <div class="avatar avatar-2"></div>
+              <div class="avatar avatar-3"></div>
+            </div>
+            <div class="proof-text">
+              <div class="proof-number" id="counter">347</div>
+              <div class="proof-label">persone già in lista</div>
+            </div>
+          </div>
+
+          <a href="#lista" class="btn btn--why">
+            Entra nella waitlist
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
-        <div class="why-block">
-          <h3 class="why-block-title">
-            Super early bird a <span class="price">€15</span>.
-          </h3>
-          <p class="why-block-body">
-            I primi pass costano la metà del prezzo standard. Sono limitati:
-            quando finiscono, si passa a €30. Niente trucchi, solo conti.
-          </p>
+
+        <div class="why-right">
+          <div class="why-card">
+            <div class="card-badge">Limited Early Access</div>
+
+            <div class="card-price-group">
+              <div class="card-price-label">A partire da</div>
+              <div class="card-price-main">€15</div>
+              <div class="card-price-old">~~€30~~</div>
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="card-scarcity">
+              <div class="scarcity-label">Rimasti</div>
+              <div class="scarcity-number">53</div>
+              <div class="scarcity-subtext">accessi</div>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 67%"></div>
+            </div>
+            <div class="progress-label">67% già assegnati</div>
+          </div>
         </div>
       </div>
-
-      <p class="why-counter" aria-live="polite">
-        <strong class="counter-num" id="counter">347</strong> persone già in lista
-      </p>
-
-      <a href="#lista" class="btn btn--primary">
-        Entra in lista d'attesa <span aria-hidden="true">✶</span>
-      </a>
     </div>
   </section>
 
@@ -631,63 +659,314 @@ const milanDots = [
   }
 
   /* ── PERCHÉ ISCRIVERSI ────────────────────────────────────── */
+  @keyframes fadeUpWhy {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .s-why {
-    background-color: var(--color-avorio);
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-panna-100) 0%,
+      color-mix(in srgb, var(--color-panna-100) 50%, var(--color-panna-300)) 100%
+    );
+    padding: clamp(3rem, 8vw, 6rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .why-left {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3rem);
+    animation: fadeUpWhy 0.8s ease-out;
+  }
+
+  .why-headline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
   }
 
   .why-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     color: var(--color-mora);
-    line-height: 1.05;
-    margin: 0 0 var(--space-md);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.01em;
   }
 
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-md);
+  .why-highlight {
+    background: linear-gradient(
+      135deg,
+      var(--color-bitter) 0%,
+      var(--color-bitter-500) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .why-block-title {
+  .why-tagline {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: var(--text-h2);
-    color: var(--color-mora);
-    margin: 0 0 var(--space-sm);
-  }
-
-  .why-block-body {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro);
-    line-height: 1.75;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    color: var(--color-basilico);
     margin: 0;
+    letter-spacing: -0.01em;
   }
 
-  .price {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--color-bitter);
-  }
-
-  .why-counter {
+  .why-copy {
     font-family: var(--font-body);
-    font-size: var(--text-body);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
     color: var(--color-inchiostro-500);
-    margin: 0 0 var(--space-sm);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 480px;
   }
 
-  .counter-num {
+  .why-proof {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: color-mix(in srgb, var(--color-panna) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-basilico) 8%, transparent);
+    border-radius: 12px;
+    animation: fadeUpWhy 0.8s ease-out 0.1s both;
+  }
+
+  .proof-avatars {
+    display: flex;
+    margin-left: -8px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--color-panna);
+    background: var(--color-basilico);
+    margin-left: -12px;
+    animation: fadeUpWhy 0.6s ease-out;
+  }
+
+  .avatar:first-child { background: var(--color-bitter-500); }
+  .avatar:nth-child(2) { background: var(--color-basilico); animation-delay: 0.05s; }
+  .avatar:nth-child(3) { background: var(--color-mora-300); animation-delay: 0.1s; }
+
+  .proof-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .proof-number {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-basilico);
-    display: inline;
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    color: var(--color-mora);
+    line-height: 1;
+  }
+
+  .proof-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-inchiostro-500);
+    margin-top: 0.25rem;
+  }
+
+  .btn--why {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background: var(--color-bitter);
+    color: var(--color-panna);
+    border: none;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: fadeUpWhy 0.8s ease-out 0.2s both;
+    width: fit-content;
+  }
+
+  .btn--why:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px color-mix(in srgb, var(--color-bitter) 30%, transparent);
+    background: var(--color-bitter-500);
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .btn--why:hover .btn-icon {
+    transform: translateX(4px);
+  }
+
+  .why-right {
+    perspective: 1200px;
+    animation: fadeUpWhy 0.8s ease-out 0.3s both;
+  }
+
+  .why-card {
+    background: var(--color-panna);
+    border: 1px solid color-mix(in srgb, var(--color-basilico) 10%, transparent);
+    border-radius: 20px;
+    padding: clamp(2rem, 4vw, 3rem);
+    box-shadow:
+      0 1px 3px color-mix(in srgb, var(--color-inchiostro) 5%, transparent),
+      0 12px 40px color-mix(in srgb, var(--color-inchiostro) 8%, transparent);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .why-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 2px 6px color-mix(in srgb, var(--color-inchiostro) 8%, transparent),
+      0 24px 56px color-mix(in srgb, var(--color-inchiostro) 12%, transparent);
+  }
+
+  .card-badge {
+    display: inline-block;
+    background: linear-gradient(
+      135deg,
+      var(--color-bitter) 0%,
+      var(--color-bitter-500) 100%
+    );
+    color: var(--color-panna);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    width: fit-content;
+  }
+
+  .card-price-group {
+    text-align: center;
+  }
+
+  .card-price-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-inchiostro-500);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-price-main {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--color-bitter);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .card-price-old {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-inchiostro-300);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+
+  .card-divider {
+    width: 100%;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-basilico) 8%, transparent);
+  }
+
+  .card-scarcity {
+    text-align: center;
+  }
+
+  .scarcity-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-inchiostro-500);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .scarcity-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 900;
+    color: var(--color-mora);
+    line-height: 1;
+  }
+
+  .scarcity-subtext {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-inchiostro-500);
+    margin-top: 0.35rem;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: color-mix(in srgb, var(--color-basilico) 8%, transparent);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--color-bitter) 0%,
+      var(--color-bitter-500) 100%
+    );
+    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .progress-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-inchiostro-500);
+    text-align: center;
+    margin-top: 0.5rem;
   }
 
   /* ── PER CHI È ────────────────────────────────────────────── */
@@ -1167,7 +1446,7 @@ const milanDots = [
 
   /* ── RESPONSIVE ───────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .why-grid        { grid-template-columns: 1fr; }
+    .why-content     { grid-template-columns: 1fr; }
     .criteria-grid   { grid-template-columns: 1fr; }
     .perchi-occasions { grid-template-columns: 1fr; }
     .app-inner       { grid-template-columns: 1fr; }
