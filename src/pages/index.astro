@@ -436,15 +436,9 @@ const milanDots = [
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: radial-gradient(
-      ellipse 800px 600px at 15% 50%,
-      var(--color-panna) 0%,
-      var(--color-panna) 20%,
-      color-mix(in srgb, var(--color-panna) 70%, transparent) 45%,
-      color-mix(in srgb, var(--color-panna) 30%, transparent) 75%,
-      transparent 100%
-    );
-    opacity: 0.9;
+    background: color-mix(in srgb, var(--color-panna) 25%, transparent);
+    backdrop-filter: blur(8px);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 40%, transparent);
   }
 
   .hero-inner {
