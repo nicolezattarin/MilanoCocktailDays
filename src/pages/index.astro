@@ -216,11 +216,8 @@ const milanDots = [
           <p class="proof-copy"><strong class="proof-n">347</strong> già in lista</p>
         </div>
 
-        <a href="#lista" class="why-cta">
-          Entra nella lista
-          <svg class="cta-arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M4 10h12M11 5l5 5-5 5"/>
-          </svg>
+        <a href="#lista" class="btn btn--primary">
+          Entra nella lista <span aria-hidden="true">✶</span>
         </a>
       </div>
 
@@ -916,41 +913,6 @@ const milanDots = [
     font-weight: 700;
   }
 
-  /* CTA */
-  .why-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-mora);
-    text-decoration: none;
-    border-bottom: 0.5px solid color-mix(in srgb, var(--color-mora) 28%, transparent);
-    padding-bottom: 2px;
-    width: fit-content;
-    transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
-    animation: fadeUpWhy 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
-  }
-
-  .why-cta:hover {
-    color: var(--color-bitter);
-    border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent);
-    gap: 0.7rem;
-  }
-
-  .cta-arr {
-    width: 15px;
-    height: 15px;
-    transition: transform 0.25s ease;
-    flex-shrink: 0;
-  }
-
-  .why-cta:hover .cta-arr {
-    transform: translateX(3px);
-  }
 
   /* ---- Premium panel right ---- */
   .why-panel-outer {
