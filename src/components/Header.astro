@@ -6,9 +6,9 @@
  */
 
 const navLinks = [
-  { href: '/partecipa', label: 'Partecipanti' },
-  { href: '/bar',       label: 'Bar Partner' },
-  { href: '/sponsor',   label: 'Sponsor' },
+  { href: '/#lista',   label: 'Partecipanti' },
+  { href: '/bar',      label: 'Bar Partner' },
+  { href: '/sponsor',  label: 'Sponsor' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -47,13 +47,13 @@ const currentPath = Astro.url.pathname;
         ))}
         <!-- CTA visibile nel menu mobile -->
         <li class="nav-item nav-item--cta-mobile">
-          <a href="/partecipa" class="nav-cta-mobile">Partecipa</a>
+          <a href="/#lista" class="nav-cta-mobile">Partecipa</a>
         </li>
       </ul>
     </nav>
 
     <!-- CTA bottone desktop -->
-    <a href="/partecipa" class="nav-cta" aria-label="Entra in lista d'attesa Milan Cocktail Days">
+    <a href="/#lista" class="nav-cta" aria-label="Entra in lista d'attesa Milan Cocktail Days">
       Partecipa
     </a>
   </div>
