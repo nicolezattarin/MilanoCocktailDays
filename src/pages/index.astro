@@ -168,8 +168,8 @@ const milanDots = [
           {steps.map(({ n, icon, title, desc }) => (
             <article class="how-card">
               <div class="how-card-top">
-                <div class="how-card-icon" aria-hidden="true" set:html={icon} />
                 <div class="how-card-num" aria-hidden="true">{n}</div>
+                <div class="how-card-icon" aria-hidden="true" set:html={icon} />
               </div>
               <h3 class="how-card-title">{title}</h3>
               <div class="how-card-desc-box">
@@ -706,7 +706,7 @@ const milanDots = [
 
   .how-card-icon {
     color: var(--color-panna);
-    opacity: 0.4;
+    opacity: 0.45;
   }
 
   .how-card-icon svg {
