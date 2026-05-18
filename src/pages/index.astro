@@ -26,14 +26,17 @@ const criteria = [
   {
     title: 'Cocktail come mestiere.',
     desc: 'La miscelazione prima del concept, della musica, dei selfie.',
+    img: '/images/criteria-cocktail.jpg',
   },
   {
     title: 'Quartieri vivi.',
     desc: 'Da Brera a Lambrate, dai Navigli a NoLo. Milano non è solo il centro.',
+    img: '/images/criteria-quartieri.jpg',
   },
   {
     title: 'Voci della scena.',
     desc: "Non nomi su un'insegna: persone con cui si parla.",
+    img: '/images/criteria-bartender.jpg',
   },
 ];
 
@@ -105,20 +108,6 @@ const faqs = [
   },
 ];
 
-const milanDots = [
-  { x: 175, y: 130 }, { x: 185, y: 142 }, { x: 170, y: 150 },
-  { x: 196, y: 112 }, { x: 212, y: 120 },
-  { x: 242, y: 118 }, { x: 256, y: 128 }, { x: 250, y: 108 },
-  { x: 158, y: 232 }, { x: 170, y: 246 }, { x: 162, y: 220 },
-  { x: 215, y: 258 }, { x: 226, y: 268 }, { x: 234, y: 250 },
-  { x: 290, y: 180 }, { x: 302, y: 194 }, { x: 285, y: 167 },
-  { x: 188, y: 158 }, { x: 200, y: 162 },
-  { x: 136, y: 176 }, { x: 128, y: 166 }, { x: 142, y: 190 },
-  { x: 252, y: 162 }, { x: 264, y: 172 },
-  { x: 154, y: 92  }, { x: 168, y: 102 },
-  { x: 205, y: 198 }, { x: 216, y: 186 },
-  { x: 266, y: 146 }, { x: 200, y: 215 },
-];
 ---
 
 <BaseLayout
@@ -280,55 +269,29 @@ const milanDots = [
   <!-- S06a · I BAR PARTNER ───────────────────────────────────── -->
   <section class="s-bars" aria-labelledby="bars-h2">
     <div class="wrap">
-      <h2 id="bars-h2" class="bars-h2">Non tutti i bar di Milano. I trenta che contano.</h2>
-
-      <p class="bars-lead">
-        Stiamo costruendo la mappa. Bar indipendenti, bartender con un'idea, cocktail che
-        parlano. Quando i primi nomi saranno sul tavolo, chi è in lista li legge per primo.
-      </p>
+      <div class="bars-header">
+        <h2 id="bars-h2" class="bars-h2">Non tutti i bar di Milano. I trenta che contano.</h2>
+        <p class="bars-lead">
+          Bar indipendenti, bartender con un'idea, cocktail che parlano.
+          Chi è in lista li vede per primo.
+        </p>
+      </div>
 
       <div class="criteria-grid">
-        {criteria.map(({ title, desc }) => (
-          <div class="criterion">
-            <h3 class="criterion-title">{title}</h3>
-            <p class="criterion-desc">{desc}</p>
+        {criteria.map(({ title, desc, img }) => (
+          <div class="criterion-card">
+            <div class="criterion-img-wrap">
+              <img src={img} alt="" class="criterion-img" loading="lazy" />
+            </div>
+            <div class="criterion-body">
+              <h3 class="criterion-title">{title}</h3>
+              <p class="criterion-desc">{desc}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      <figure class="map-wrap">
-        <svg
-          viewBox="0 0 400 360"
-          xmlns="http://www.w3.org/2000/svg"
-          class="milan-map"
-          aria-hidden="true"
-          role="presentation"
-        >
-          <path
-            d="M 80 120 Q 110 65 170 55 Q 225 46 285 68 Q 345 88 362 145 Q 378 185 360 245 Q 340 295 278 315 Q 218 335 158 315 Q 98 294 80 248 Q 62 195 80 120 Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            opacity="0.25"
-          />
-          {milanDots.map(({ x, y }) => (
-            <circle
-              cx={x}
-              cy={y}
-              r="5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              opacity="0.65"
-            />
-          ))}
-        </svg>
-        <figcaption class="map-caption">
-          In aggiornamento — i primi nomi a giorni. <span aria-hidden="true">✶</span>
-        </figcaption>
-      </figure>
-
-      <a href="#lista" class="btn btn--primary">
+      <a href="#lista" class="btn btn--primary bars-cta">
         Iscriviti per saperlo prima di tutti <span aria-hidden="true">✶</span>
       </a>
     </div>
@@ -1077,37 +1040,82 @@ const milanDots = [
   /* ── BAR PARTNER ──────────────────────────────────────────── */
   .s-bars {
     background-color: var(--color-avorio);
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  }
+
+  .bars-header {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
   }
 
   .bars-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
     color: var(--color-mora);
     line-height: 1.05;
-    margin: 0 0 var(--space-sm);
+    margin: 0;
+    flex: 1;
+    min-width: 220px;
   }
 
   .bars-lead {
     font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro);
-    line-height: 1.75;
-    margin: 0 0 var(--space-md);
-    max-width: 640px;
+    font-size: var(--text-small);
+    color: var(--color-inchiostro-500);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+    min-width: 220px;
   }
 
   .criteria-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+    gap: var(--space-sm);
     margin-bottom: var(--space-md);
   }
 
-  .criterion {
-    padding: var(--space-md) 0 var(--space-md) var(--space-sm);
+  .criterion-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .criterion-card:hover {
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--color-mora) 12%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .criterion-img-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--color-panna-300);
+  }
+
+  .criterion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .criterion-card:hover .criterion-img {
+    transform: scale(1.05);
+  }
+
+  .criterion-body {
+    padding: var(--space-sm) var(--space-sm) var(--space-md);
     border-top: 2px solid var(--color-basilico);
+    flex: 1;
   }
 
   .criterion-title {
@@ -1126,28 +1134,8 @@ const milanDots = [
     margin: 0;
   }
 
-  .map-wrap {
-    margin: 0 0 var(--space-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
-  .milan-map {
-    width: 100%;
-    max-width: 480px;
-    color: var(--color-basilico);
-  }
-
-  .map-caption {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-inchiostro-500);
-    text-align: center;
+  .bars-cta {
+    margin-top: 0;
   }
 
   /* ── APP ──────────────────────────────────────────────────── */
@@ -1562,6 +1550,7 @@ const milanDots = [
     .why-wrap         { grid-template-columns: 1fr; }
     .why-panel        { animation: none; }
     .criteria-grid    { grid-template-columns: 1fr; }
+    .bars-header      { flex-direction: column; gap: var(--space-sm); }
     .perchi-layout    { grid-template-columns: 1fr; }
     .perchi-image-col { height: 420px; position: relative; }
     .perchi-img-reveal { position: relative; height: 100%; }
