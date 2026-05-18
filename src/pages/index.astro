@@ -252,26 +252,43 @@ const milanDots = [
 
   <!-- S05 · PER CHI È ────────────────────────────────────────── -->
   <section class="s-perchi" aria-labelledby="perchi-h2">
-    <div class="wrap">
-      <h2 id="perchi-h2" class="perchi-h2">
-        Per chi ama Milano. E per chi vuole conoscerla meglio.
-      </h2>
+    <div class="perchi-layout">
 
-      <p class="perchi-lead">
-        MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
-        sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
-      </p>
+      <div class="perchi-content">
+        <p class="section-kicker section-kicker--light">Per chi è</p>
+        <h2 id="perchi-h2" class="perchi-h2">
+          Per chi ama<br />Milano.<br />E per chi vuole<br />conoscerla meglio.
+        </h2>
+        <p class="perchi-lead">
+          MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
+          sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
+        </p>
 
-      <ul class="perchi-occasions" role="list">
-        <li>Per il sabato pomeriggio con chi ti piace.</li>
-        <li>Per una serata diversa con gli amici di sempre.</li>
-        <li>Per chi è curioso e non sa da dove iniziare.</li>
-      </ul>
+        <ul class="perchi-occasions" role="list">
+          <li class="perchi-occasion">Per il sabato pomeriggio con chi ti piace.</li>
+          <li class="perchi-occasion">Per una serata diversa con gli amici di sempre.</li>
+          <li class="perchi-occasion">Per chi è curioso e non sa da dove iniziare.</li>
+        </ul>
 
-      <p class="perchi-close">
-        Nessun dress code. Nessun esame. Solo bicchieri e bar che vale la pena conoscere.
-        <span aria-hidden="true">✶</span>
-      </p>
+        <p class="perchi-close">
+          Nessun dress code. Nessun esame. Solo bicchieri e bar che vale la pena conoscere.
+          <span aria-hidden="true">✶</span>
+        </p>
+      </div>
+
+      <div class="perchi-image-col" aria-hidden="true">
+        <div class="perchi-image-wrap">
+          <img
+            src="/images/Person Holding Glass Photo.jpg"
+            alt=""
+            class="perchi-img"
+            loading="lazy"
+            width="800" height="1000"
+          />
+          <div class="perchi-image-overlay"></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -391,9 +408,20 @@ const milanDots = [
 
   <!-- S08 · CTA FINALE ───────────────────────────────────────── -->
   <section class="s-cta-final" aria-labelledby="cta-final-h2">
+    <picture class="cta-bg" aria-hidden="true">
+      <img
+        src="/images/Photo by Mahyaddin Jabbarli.jpg"
+        alt=""
+        class="cta-bg-img"
+        loading="lazy"
+        width="1920" height="1080"
+      />
+    </picture>
+    <div class="cta-overlay" aria-hidden="true"></div>
     <div class="wrap cta-final-inner">
+      <p class="section-kicker section-kicker--light">Milano, Maggio 2027</p>
       <h2 id="cta-final-h2" class="cta-final-h2">
-        Milano. Maggio 2027.<br />Sii il primo a sapere quando escono i biglietti.
+        Sii il primo<br />a sapere.
       </h2>
       <a href="#lista" class="btn btn--final">
         Entra in lista d'attesa <span aria-hidden="true">✶</span>
@@ -402,10 +430,42 @@ const milanDots = [
     </div>
   </section>
 
+    <!-- FORM ───────────────────────────────────────────────────── -->
+  <section class="s-lista" id="lista" aria-labelledby="lista-h2">
+    <div class="wrap lista-wrap">
+
+      <div class="lista-header">
+        <p class="section-kicker section-kicker--light">Accesso anticipato</p>
+        <h2 id="lista-h2" class="lista-h2">
+          Lista d'attesa <span aria-hidden="true">✶</span>
+        </h2>
+        <p class="lista-intro">
+          Iscriviti gratuitamente. Ti contatteremo per primo all'apertura ufficiale dei pass.
+        </p>
+      </div>
+
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
+          loading="lazy"
+          width="100%"
+          height="689"
+          title="Milan Cocktail Days — Lista d'attesa partecipanti"
+        ></iframe>
+      </div>
+
+    </div>
+  </section>
+
   <!-- S09 · FAQ ──────────────────────────────────────────────── -->
   <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap">
-      <h2 id="faq-h2" class="faq-h2">Domande, in due righe.</h2>
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande,<br />in due righe.</h2>
+      </div>
+
       <div class="faq-list" id="faq-list">
         {faqs.map(({ q, a }) => (
           <details class="faq-item">
@@ -417,29 +477,10 @@ const milanDots = [
           </details>
         ))}
       </div>
+
     </div>
   </section>
 
-  <!-- FORM ───────────────────────────────────────────────────── -->
-  <section class="s-lista" id="lista" aria-labelledby="lista-h2">
-    <div class="wrap">
-      <h2 id="lista-h2" class="lista-h2">
-        Lista d'attesa <span aria-hidden="true">✶</span>
-      </h2>
-      <p class="lista-intro">
-        Iscriviti gratuitamente. Ti contatteremo per primo all'apertura ufficiale dei pass.
-      </p>
-      <div class="tally-wrap">
-        <iframe
-          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
-          loading="lazy"
-          width="100%"
-          height="689"
-          title="Milan Cocktail Days — Lista d'attesa partecipanti"
-        ></iframe>
-      </div>
-    </div>
-  </section>
 
 </BaseLayout>
 
