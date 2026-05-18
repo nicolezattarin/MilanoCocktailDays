@@ -193,16 +193,25 @@ const faqs = [
 
   <!-- FAQ --------------------------------------------------- -->
   <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap">
-      <h2 id="faq-h2" class="section-h2--dark">Domande frequenti</h2>
-      <dl class="faq-list">
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header reveal">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande<br />frequenti.</h2>
+      </div>
+
+      <div class="faq-list reveal reveal-d1" id="faq-list">
         {faqs.map(({ q, a }) => (
-          <div class="faq-item">
-            <dt class="faq-q">{q}</dt>
-            <dd class="faq-a">{a}</dd>
-          </div>
+          <details class="faq-item">
+            <summary class="faq-q">
+              {q}
+              <span class="faq-icon" aria-hidden="true">✶</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
         ))}
-      </dl>
+      </div>
+
     </div>
   </section>
 
@@ -245,6 +254,21 @@ const faqs = [
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 2rem;
+  }
+
+  /* ---- Reveal animations -------------------------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
   /* ---- HERO (dark) --------------------------------------- */
@@ -656,39 +680,80 @@ const faqs = [
 
   /* ---- FAQ (avorio) ------------------------------------- */
   .s-faq {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    background-color: var(--color-panna);
+    padding: clamp(3rem, 6vw, 5rem) 0;
   }
 
-  .s-faq .section-h2--dark { margin-bottom: var(--space-lg); }
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .faq-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--color-mora);
+    line-height: 0.97;
+    margin: 0;
+    letter-spacing: -0.03em;
+  }
 
   .faq-list {
     display: flex;
     flex-direction: column;
-    max-width: 760px;
   }
 
   .faq-item {
-    padding: var(--space-md) 0;
     border-top: 0.5px solid var(--color-panna-300);
   }
 
-  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+  .faq-item:last-child {
+    border-bottom: 0.5px solid var(--color-panna-300);
+  }
 
   .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    cursor: pointer;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-body);
     color: var(--color-mora);
-    margin: 0 0 var(--space-xs);
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    color: var(--color-bitter);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    font-size: 0.9em;
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
   }
 
   .faq-a {
     font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro-500);
-    line-height: 1.7;
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.75;
     margin: 0;
+    padding: 0 var(--space-lg) var(--space-md) 0;
   }
 
   /* ---- FORM (fumo) -------------------------------------- */
@@ -726,11 +791,49 @@ const faqs = [
   .tally-wrap { max-width: 760px; }
 
   /* ---- RESPONSIVE --------------------------------------- */
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+
   @media (max-width: 768px) {
     .benefits-grid  { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
     .criteria-inner { grid-template-columns: 1fr; }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
+    .faq-wrap       { grid-template-columns: 1fr; }
+    .faq-header     { position: static; }
   }
 </style>
+
+<script>
+  // FAQ accordion — close others on open
+  document.querySelectorAll('.faq-item').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if ((detail as HTMLDetailsElement).open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== detail) (other as HTMLDetailsElement).open = false;
+        });
+      }
+    });
+  });
+
+  // Reveal animations
+  requestAnimationFrame(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.05 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+    }, 2500);
+  });
+</script>
