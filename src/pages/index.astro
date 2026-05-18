@@ -1556,10 +1556,10 @@ const faqs = [
   .tally-wrap { max-width: 760px; }
 
   /* ══════════════════════════════════════════════════════════
-     PREMIUM TRANSITIONS — section fades, reveals, ambient
+     PREMIUM TRANSITIONS — reveals, vignette, ambient
      ══════════════════════════════════════════════════════════ */
 
-  /* All sections: local stacking context for z-index isolation */
+  /* All sections: local stacking context */
   section { position: relative; z-index: 0; }
 
   /* ── UNIVERSAL SCROLL REVEAL ──────────────────────────────── */
@@ -1575,113 +1575,55 @@ const faqs = [
   .reveal-d2 { transition-delay: 0.24s; }
   .reveal-d3 { transition-delay: 0.38s; }
 
-  /* ── HERO bottom fades into mora ──────────────────────────── */
+  /* ── CINEMATIC VIGNETTE — top shadow on all non-hero sections  */
+  /* Only rgba black — works regardless of adjacent section color */
+  .s-how::before,
+  .s-why::before,
+  .s-perchi::before,
+  .s-bars::before,
+  .s-app::before,
+  .s-quotes::before,
+  .s-cta-final::before,
+  .s-lista::before,
+  .s-faq::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Hero: bottom darkens toward the how section below */
   .s-hero::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 110px;
-    background: linear-gradient(to bottom, transparent, var(--color-mora));
+    height: 120px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
     pointer-events: none;
     z-index: 1;
   }
-  .hero-inner { z-index: 3; } /* lift above ::after (z:1) and overlay (z:1) */
+  .hero-inner { z-index: 3; }
 
-  /* ── HOW: bottom fades to panna ──────────────────────────── */
-  .s-how::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 72px;
-    background: linear-gradient(to bottom, transparent, var(--color-panna));
-    pointer-events: none;
-    z-index: 1;
-  }
+  /* Ensure content wrappers are above vignette layers */
+  .s-how .wrap    { position: relative; z-index: 3; }
+  .why-wrap       { position: relative; z-index: 3; }
+  .perchi-layout  { position: relative; z-index: 3; }
+  .s-bars .wrap   { position: relative; z-index: 3; }
+  .app-inner      { position: relative; z-index: 3; }
+  .quotes-header,
+  .quotes-outer   { position: relative; z-index: 3; }
+  .s-lista .wrap  { position: relative; z-index: 3; }
+  .faq-wrap       { position: relative; z-index: 3; }
 
-  /* ── WHY: bottom to basilico ─────────────────────────────── */
-  .s-why { overflow: hidden; }
-  .s-why::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, transparent, var(--color-basilico));
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* ── PERCHI: bottom fades to panna ───────────────────────── */
-  .s-perchi::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 90px;
-    background: linear-gradient(to bottom, transparent, var(--color-panna));
-    pointer-events: none;
-    z-index: 2;
-  }
-  .perchi-layout { position: relative; z-index: 3; }
-
-  /* ── BARS: bottom to mora ────────────────────────────────── */
-  .s-bars { overflow: hidden; }
-  .s-bars::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, transparent, var(--color-mora));
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-bars .wrap { position: relative; z-index: 2; }
-
-  /* ── APP: bottom fades to panna-100 ──────────────────────── */
-  .s-app { overflow: hidden; }
-  .s-app::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 72px;
-    background: linear-gradient(to bottom, transparent, var(--color-panna-100));
-    pointer-events: none;
-    z-index: 1;
-  }
-  .app-inner { position: relative; z-index: 2; }
-
-  /* ── QUOTES: soft ambient mesh ───────────────────────────── */
+  /* ── QUOTES: ambient mesh tint ────────────────────────────── */
   .s-quotes {
     background-image:
-      radial-gradient(ellipse 60% 50% at 85% 55%, color-mix(in srgb, var(--color-pesco) 7%, transparent), transparent),
+      radial-gradient(ellipse 60% 50% at 85% 55%, color-mix(in srgb, var(--color-pesco) 6%, transparent), transparent),
       radial-gradient(ellipse 40% 60% at 12% 40%, color-mix(in srgb, var(--color-basilico) 5%, transparent), transparent);
   }
-  .quotes-header,
-  .quotes-outer { position: relative; z-index: 2; }
-
-  /* ── LISTA: top vignette, bottom to panna ─────────────────── */
-  .s-lista { overflow: hidden; }
-  .s-lista::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.38), transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-lista::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 72px;
-    background: linear-gradient(to bottom, transparent, var(--color-panna));
-    pointer-events: none;
-    z-index: 1;
-  }
-  .s-lista .wrap { position: relative; z-index: 2; }
-
-  /* ── FAQ ─────────────────────────────────────────────────── */
-  .s-faq { overflow: hidden; }
-  .faq-wrap { position: relative; z-index: 2; }
 
   /* ── BUTTON MICRO-INTERACTION ─────────────────────────────── */
   .btn {
