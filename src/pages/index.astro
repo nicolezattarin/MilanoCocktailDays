@@ -199,14 +199,23 @@ const milanDots = [
     <div class="wrap why-wrap">
 
       <div class="why-editorial">
-        <p class="why-kicker">Lista d'attesa <span aria-hidden="true">✶</span> Accesso anticipato</p>
+        <p class="why-kicker">Early bird <span aria-hidden="true">✶</span> Prezzi lancio</p>
         <h2 id="why-h2" class="why-h2">
-          I primi<br />
-          <em class="why-em">entrano prima</em><span class="why-dot">.</span>
+          Per i primi iscritti,<br />
+          <em class="why-em">un prezzo stracciato.</em>
         </h2>
-        <p class="why-sub">E pagano meno.</p>
-        <p class="why-body">Accesso anticipato + prezzo launch riservato ai primi iscritti.</p>
+        <p class="why-body">Il pass sale a €30 non appena finiscono i posti early bird.</p>
+      </div>
 
+      <div class="why-price-block">
+        <div class="panel-price">
+          <span class="price-from">Da</span>
+          <span class="price-main">€15</span>
+          <span class="price-was">€30</span>
+        </div>
+      </div>
+
+      <div class="why-action">
         <div class="why-proof">
           <div class="proof-avatars" aria-hidden="true">
             <span class="avatar av-1"></span>
@@ -215,36 +224,9 @@ const milanDots = [
           </div>
           <p class="proof-copy"><strong class="proof-n">347</strong> già in lista</p>
         </div>
-
         <a href="#lista" class="btn btn--primary">
           Entra nella lista <span aria-hidden="true">✶</span>
         </a>
-      </div>
-
-      <div class="why-panel-outer">
-        <div class="why-panel">
-          <div class="panel-badge">
-            <span class="panel-dot" aria-hidden="true"></span>
-            Accesso anticipato
-          </div>
-
-          <div class="panel-price">
-            <span class="price-from">Da</span>
-            <span class="price-main">€15</span>
-            <span class="price-was">€30</span>
-          </div>
-
-          <div class="panel-alloc">
-            <div class="alloc-row">
-              <span class="alloc-lbl">Allocazione</span>
-              <span class="alloc-pct">67% assegnata</span>
-            </div>
-            <div class="alloc-track" aria-hidden="true">
-              <div class="alloc-fill"></div>
-            </div>
-            <p class="alloc-rest">53 accessi rimasti <span aria-hidden="true">✶</span></p>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -813,36 +795,13 @@ const milanDots = [
   }
 
   /* ── PERCHÉ ISCRIVERSI ────────────────────────────────────── */
-  @keyframes fadeUpWhy {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes floatPanel {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-7px); }
-  }
-
-  @keyframes allocIn {
-    from { width: 0; }
-    to   { width: 67%; }
-  }
-
-  @keyframes dotPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.75); }
-  }
-
   .s-why {
-    background: linear-gradient(
-      158deg,
-      var(--color-panna-100) 0%,
-      var(--color-panna) 60%,
-      color-mix(in srgb, var(--color-panna-300) 25%, var(--color-panna)) 100%
-    );
-    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: var(--color-panna);
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
     position: relative;
     overflow: hidden;
+    border-top: 0.5px solid var(--color-panna-300);
+    border-bottom: 0.5px solid var(--color-panna-300);
   }
 
   .why-texture {
@@ -851,7 +810,7 @@ const milanDots = [
     pointer-events: none;
     background-image: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-basilico) 7%, transparent) 1px,
+      color-mix(in srgb, var(--color-basilico) 5%, transparent) 1px,
       transparent 1px
     );
     background-size: 20px 20px;
@@ -861,18 +820,18 @@ const milanDots = [
   .why-wrap {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 0.8fr;
-    gap: clamp(3rem, 7vw, 7rem);
+    display: flex;
     align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    flex-wrap: wrap;
   }
 
-  /* ---- Editorial left ---- */
   .why-editorial {
+    flex: 1;
+    min-width: 220px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-    animation: fadeUpWhy 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    gap: 0.5rem;
   }
 
   .why-kicker {
@@ -889,49 +848,78 @@ const milanDots = [
   .why-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2.8rem, 5.5vw, 4.75rem);
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
     color: var(--color-mora);
-    line-height: 1.0;
+    line-height: 1.1;
     margin: 0;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
 
   .why-em {
     font-style: italic;
     font-weight: 700;
     color: var(--color-bitter);
-    display: block;
-  }
-
-  .why-dot {
-    color: var(--color-basilico);
-  }
-
-  .why-sub {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
-    color: var(--color-basilico);
-    opacity: 0.7;
-    margin: 0;
-    letter-spacing: 0.01em;
   }
 
   .why-body {
     font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro-700);
-    line-height: 1.65;
-    margin: 0;
-    max-width: 380px;
+    font-size: var(--text-small);
+    color: var(--color-inchiostro-500);
+    line-height: 1.5;
+    margin: 0.25rem 0 0;
   }
 
-  /* Social proof */
+  .why-price-block {
+    flex-shrink: 0;
+    border-left: 0.5px solid var(--color-panna-300);
+    border-right: 0.5px solid var(--color-panna-300);
+    padding: 0 clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .panel-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .price-from {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--color-inchiostro-500);
+  }
+
+  .price-main {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-bitter);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .price-was {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro-300);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    opacity: 0.55;
+    align-self: center;
+  }
+
+  .why-action {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
   .why-proof {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    animation: fadeUpWhy 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
   }
 
   .proof-avatars {
@@ -939,11 +927,11 @@ const milanDots = [
   }
 
   .avatar {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     border: 1.5px solid var(--color-panna);
-    margin-left: -9px;
+    margin-left: -8px;
   }
 
   .av-1 { background: var(--color-bitter-500); margin-left: 0; }
@@ -963,150 +951,6 @@ const milanDots = [
   }
 
 
-  /* ---- Premium panel right ---- */
-  .why-panel-outer {
-    animation: fadeUpWhy 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
-  }
-
-  .why-panel {
-    background: color-mix(in srgb, var(--color-panna) 94%, var(--color-panna-300));
-    border: 0.5px solid color-mix(in srgb, var(--color-basilico) 9%, transparent);
-    border-radius: 18px;
-    padding: clamp(1.75rem, 3.5vw, 2.5rem);
-    box-shadow:
-      0 1px 2px color-mix(in srgb, var(--color-mora) 4%, transparent),
-      0 6px 20px color-mix(in srgb, var(--color-mora) 5%, transparent),
-      0 20px 56px color-mix(in srgb, var(--color-mora) 5%, transparent);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.25rem, 2.5vw, 1.75rem);
-    animation: floatPanel 9s ease-in-out 1s infinite;
-  }
-
-  .panel-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-basilico);
-  }
-
-  .panel-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-basilico);
-    flex-shrink: 0;
-    animation: dotPulse 2.4s ease-in-out infinite;
-  }
-
-  .panel-price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .price-from {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 500;
-    color: var(--color-inchiostro-500);
-    letter-spacing: 0.02em;
-  }
-
-  .price-main {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(3rem, 5.5vw, 4.25rem);
-    color: var(--color-bitter);
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  .price-was {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro-300);
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-    opacity: 0.55;
-    align-self: center;
-  }
-
-  /* Allocation indicator */
-  .panel-alloc {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-top: clamp(0.75rem, 1.5vw, 1rem);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-basilico) 8%, transparent);
-  }
-
-  .alloc-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .alloc-lbl {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.11em;
-    color: var(--color-inchiostro-700);
-  }
-
-  .alloc-pct {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-inchiostro-500);
-  }
-
-  .alloc-track {
-    height: 2px;
-    background: color-mix(in srgb, var(--color-basilico) 9%, transparent);
-    border-radius: 2px;
-    position: relative;
-  }
-
-  .alloc-fill {
-    height: 100%;
-    width: 67%;
-    background: linear-gradient(to right, var(--color-basilico), var(--color-bitter));
-    border-radius: 2px;
-    position: relative;
-    animation: allocIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
-  }
-
-  .alloc-fill::after {
-    content: '';
-    position: absolute;
-    right: -1px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-bitter);
-    box-shadow: 0 0 6px color-mix(in srgb, var(--color-bitter) 55%, transparent);
-  }
-
-  .alloc-rest {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-bitter);
-    margin: 0;
-  }
-
   /* ── PER CHI È ────────────────────────────────────────────── */
   .s-perchi {
     background-color: var(--color-basilico);
@@ -1115,23 +959,23 @@ const milanDots = [
 
   .perchi-layout {
     display: grid;
-    grid-template-columns: 1fr 0.65fr;
-    min-height: clamp(380px, 50vh, 560px);
+    grid-template-columns: 1fr 0.55fr;
+    min-height: clamp(300px, 38vh, 440px);
   }
 
   .perchi-content {
-    padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 5vw, 5rem);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: var(--space-md);
-    max-width: 700px;
+    gap: var(--space-sm);
+    max-width: 640px;
   }
 
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 50px;
+    font-size: clamp(36px, 3.5vw, 44px);
     color: var(--color-panna);
     line-height: 0.97;
     margin: 0;
@@ -1164,7 +1008,7 @@ const milanDots = [
     color: var(--color-panna);
     font-style: italic;
     line-height: 1.5;
-    padding: 1rem 0;
+    padding: 0.65rem 0;
     border-bottom: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
     opacity: 0.85;
   }
