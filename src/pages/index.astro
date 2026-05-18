@@ -11,12 +11,12 @@ const steps = [
   {
     n: '02',
     title: 'Scegli i bar',
-    desc: "Trenta locali da Brera a NoLo. Nessuna prenotazione, nessun itinerario fisso.",
+    desc: "Trenta locali dai Navigli a NoLo. Nessuna prenotazione, nessun itinerario fisso.",
     icon: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C11.6 3 8 6.6 8 11c0 6 8 18 8 18s8-12 8-18c0-4.4-3.6-8-8-8z"/><circle cx="16" cy="11" r="2.5"/></svg>`,
   },
   {
     n: '03',
-    title: 'Bevi il Cocktail Days',
+    title: 'Bevi il Cocktail esclusivo',
     desc: "Il cocktail esclusivo del bar, servito solo in questi dieci giorni. €6, ovunque.",
     icon: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h22L16 17 5 4z"/><line x1="16" y1="17" x2="16" y2="25"/><line x1="10" y1="28" x2="22" y2="28"/></svg>`,
   },
@@ -929,7 +929,7 @@ const faqs = [
   .perchi-layout {
     display: grid;
     grid-template-columns: 1fr 0.9fr;
-    min-height: clamp(500px, 65vh, 750px);
+    height: 600px;
   }
 
   .perchi-content {
@@ -1010,11 +1010,8 @@ const faqs = [
   }
 
   .perchi-image-wrap {
-    position: relative;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
-    width: 600px;
+    position: absolute;
+    inset: 0;
   }
 
   .perchi-image-col {
