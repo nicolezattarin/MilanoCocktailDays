@@ -749,7 +749,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 </style>
 
 <script>
-  // Universal .reveal observer
+  // Universal .reveal — same as index.astro
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
     const obs = new IntersectionObserver(
@@ -764,7 +764,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     revealEls.forEach(el => obs.observe(el));
   }
 
-  // Bar cards: staggered reveal
+  // Bar cards: staggered reveal (column offset, 4-col grid)
   const barCards = document.querySelectorAll('.bar-card');
   if (barCards.length) {
     const io = new IntersectionObserver(
@@ -779,5 +779,13 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
       { threshold: 0.05 }
     );
     barCards.forEach(c => io.observe(c));
+  }
+
+  // Hero parallax — reduced-motion safe, passive scroll
+  const heroBgImg = document.querySelector<HTMLImageElement>('.hero-bg img');
+  if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', () => {
+      heroBgImg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+    }, { passive: true });
   }
 </script>
