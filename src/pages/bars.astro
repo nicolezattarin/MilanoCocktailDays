@@ -13,7 +13,15 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 
   <!-- S01 · HERO ─────────────────────────────────────────────── -->
   <section class="s-hero" aria-labelledby="bars-h1">
-    <div class="hero-glow" aria-hidden="true"></div>
+    <picture class="hero-bg" aria-hidden="true">
+      <img
+        src="/images/Timothe Durand Photo from Unsplash.jpg"
+        alt=""
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
+      />
+    </picture>
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="hero-overline">
         Bar Partner <span aria-hidden="true">✶</span> Milano 2027
@@ -77,12 +85,15 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
       <div class="bars-grid">
         {placeholders.map((_, i) => (
           <article class="bar-card">
-            <div
-              class="bar-img mcw-dot-grid--dark"
-              role="img"
-              aria-label={`Bar partner MCD ${i + 1} — in arrivo`}
-            >
-              <span class="bar-star" aria-hidden="true">✶</span>
+            <div class="bar-img-wrap">
+              <img
+                src={`/images/${i % 2 === 0 ? 'TBABAR.png' : 'TBABAR 2.png'}`}
+                alt={`Bar partner MCD ${i + 1} — in arrivo`}
+                class="bar-img"
+                loading="lazy"
+                width="600" height="400"
+              />
+              <div class="bar-img-overlay" aria-hidden="true"></div>
             </div>
             <div class="bar-info">
               <p class="bar-coming">Coming soon</p>
@@ -121,6 +132,16 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 
   <!-- S05 · CTA PARTNER ──────────────────────────────────────── -->
   <section class="s-cta-partner" aria-labelledby="cta-partner-h2">
+    <picture class="cta-partner-bg" aria-hidden="true">
+      <img
+        src="/images/Carson Masterson Photo.jpg"
+        alt=""
+        class="cta-partner-bg-img"
+        loading="lazy"
+        width="1920" height="1080"
+      />
+    </picture>
+    <div class="cta-partner-overlay" aria-hidden="true"></div>
     <div class="wrap cta-partner-inner">
       <p class="section-kicker section-kicker--light reveal">Per i bar</p>
       <h2 id="cta-partner-h2" class="cta-partner-h2 reveal reveal-d1">
@@ -278,7 +299,6 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 
   /* ── S01 · HERO ───────────────────────────────────────────── */
   .s-hero {
-    background-color: var(--color-mora);
     min-height: 60svh;
     display: flex;
     align-items: center;
@@ -286,13 +306,28 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     overflow: hidden;
   }
 
-  .hero-glow {
+  .hero-bg {
     position: absolute;
     inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 55% 60% at 80% 20%, color-mix(in srgb, var(--color-bitter) 10%, transparent), transparent),
-      radial-gradient(ellipse 45% 50% at 10% 80%, color-mix(in srgb, var(--color-basilico) 20%, transparent), transparent);
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-mora) 70%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 35%, transparent) 45%,
+      transparent 75%
+    );
   }
 
   .hero-inner {
