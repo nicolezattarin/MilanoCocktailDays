@@ -242,8 +242,21 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
   .reveal-d2 { transition-delay: 0.24s; }
   .reveal-d3 { transition-delay: 0.38s; }
 
-  /* ── VIGNETTE — top shadow every non-first section ─────────── */
+  /* ── VIGNETTE — identica a index.astro ───────────────────── */
   section { position: relative; z-index: 0; }
+
+  /* Hero: bottom darkens toward section below */
+  .s-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Top shadow on all non-hero sections */
   .s-tba::before,
   .s-grid::before,
   .s-quartieri::before,
@@ -253,10 +266,15 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 80px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
     pointer-events: none;
     z-index: 2;
   }
+
+  /* Content wrappers above vignette (z:2) */
+  .tba-wrap        { position: relative; z-index: 3; }
+  .quartieri-wrap  { position: relative; z-index: 3; }
+  .cta-partner-inner { position: relative; z-index: 3; }
 
   /* ── S01 · HERO ───────────────────────────────────────────── */
   .s-hero {
@@ -279,7 +297,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 
   .hero-inner {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -421,7 +439,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
       radial-gradient(ellipse 40% 55% at 5% 90%, color-mix(in srgb, var(--color-basilico) 16%, transparent), transparent);
   }
 
-  .s-grid .wrap { position: relative; z-index: 2; }
+  .s-grid .wrap { position: relative; z-index: 3; }
 
   .grid-header {
     display: flex;
