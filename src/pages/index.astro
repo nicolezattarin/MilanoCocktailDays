@@ -1116,11 +1116,11 @@ const milanDots = [
   .perchi-layout {
     display: grid;
     grid-template-columns: 1fr 0.65fr;
-    height: 700px;
+    min-height: clamp(380px, 50vh, 560px);
   }
 
   .perchi-content {
-    padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 5vw, 5rem);
+    padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 5vw, 5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1571,7 +1571,7 @@ const milanDots = [
   /* ── FAQ ──────────────────────────────────────────────────── */
   .s-faq {
     background-color: var(--color-panna);
-    padding: clamp(5rem, 10vw, 9rem) 0;
+    padding: clamp(3rem, 6vw, 5rem) 0;
   }
 
   .faq-wrap {
