@@ -252,26 +252,43 @@ const milanDots = [
 
   <!-- S05 · PER CHI È ────────────────────────────────────────── -->
   <section class="s-perchi" aria-labelledby="perchi-h2">
-    <div class="wrap">
-      <h2 id="perchi-h2" class="perchi-h2">
-        Per chi ama Milano. E per chi vuole conoscerla meglio.
-      </h2>
+    <div class="perchi-layout">
 
-      <p class="perchi-lead">
-        MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
-        sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
-      </p>
+      <div class="perchi-content">
+        <p class="section-kicker section-kicker--light">Per chi è</p>
+        <h2 id="perchi-h2" class="perchi-h2">
+          Per chi ama<br />Milano.<br />E per chi vuole<br />conoscerla meglio.
+        </h2>
+        <p class="perchi-lead">
+          MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
+          sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
+        </p>
 
-      <ul class="perchi-occasions" role="list">
-        <li>Per il sabato pomeriggio con chi ti piace.</li>
-        <li>Per una serata diversa con gli amici di sempre.</li>
-        <li>Per chi è curioso e non sa da dove iniziare.</li>
-      </ul>
+        <ul class="perchi-occasions" role="list">
+          <li class="perchi-occasion">Per il sabato pomeriggio con chi ti piace.</li>
+          <li class="perchi-occasion">Per una serata diversa con gli amici di sempre.</li>
+          <li class="perchi-occasion">Per chi è curioso e non sa da dove iniziare.</li>
+        </ul>
 
-      <p class="perchi-close">
-        Nessun dress code. Nessun esame. Solo bicchieri e bar che vale la pena conoscere.
-        <span aria-hidden="true">✶</span>
-      </p>
+        <p class="perchi-close">
+          Nessun dress code. Nessun esame. Solo bicchieri e bar che vale la pena conoscere.
+          <span aria-hidden="true">✶</span>
+        </p>
+      </div>
+
+      <div class="perchi-image-col" aria-hidden="true">
+        <div class="perchi-image-wrap">
+          <img
+            src="/images/Person Holding Glass Photo.jpg"
+            alt=""
+            class="perchi-img"
+            loading="lazy"
+            width="800" height="1000"
+          />
+          <div class="perchi-image-overlay"></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -391,9 +408,20 @@ const milanDots = [
 
   <!-- S08 · CTA FINALE ───────────────────────────────────────── -->
   <section class="s-cta-final" aria-labelledby="cta-final-h2">
+    <picture class="cta-bg" aria-hidden="true">
+      <img
+        src="/images/Photo by Mahyaddin Jabbarli.jpg"
+        alt=""
+        class="cta-bg-img"
+        loading="lazy"
+        width="1920" height="1080"
+      />
+    </picture>
+    <div class="cta-overlay" aria-hidden="true"></div>
     <div class="wrap cta-final-inner">
+      <p class="section-kicker section-kicker--light">Milano, Maggio 2027</p>
       <h2 id="cta-final-h2" class="cta-final-h2">
-        Milano. Maggio 2027.<br />Sii il primo a sapere quando escono i biglietti.
+        Sii il primo<br />a sapere.
       </h2>
       <a href="#lista" class="btn btn--final">
         Entra in lista d'attesa <span aria-hidden="true">✶</span>
@@ -404,8 +432,13 @@ const milanDots = [
 
   <!-- S09 · FAQ ──────────────────────────────────────────────── -->
   <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap">
-      <h2 id="faq-h2" class="faq-h2">Domande, in due righe.</h2>
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande,<br />in due righe.</h2>
+      </div>
+
       <div class="faq-list" id="faq-list">
         {faqs.map(({ q, a }) => (
           <details class="faq-item">
@@ -417,6 +450,7 @@ const milanDots = [
           </details>
         ))}
       </div>
+
     </div>
   </section>
 
@@ -448,6 +482,22 @@ const milanDots = [
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 2rem;
+  }
+
+  /* ── SECTION KICKER ───────────────────────────────────────── */
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+  .section-kicker--light {
+    color: var(--color-pesco-300);
+    opacity: 0.8;
   }
 
   /* ── HERO ─────────────────────────────────────────────────── */
@@ -1061,17 +1111,32 @@ const milanDots = [
   /* ── PER CHI È ────────────────────────────────────────────── */
   .s-perchi {
     background-color: var(--color-basilico);
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    overflow: hidden;
+  }
+
+  .perchi-layout {
+    display: grid;
+    grid-template-columns: 1fr 0.65fr;
+    min-height: clamp(500px, 70vh, 800px);
+  }
+
+  .perchi-content {
+    padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    max-width: 700px;
   }
 
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     color: var(--color-panna);
-    line-height: 1.05;
-    margin: 0 0 var(--space-md);
-    max-width: 760px;
+    line-height: 0.97;
+    margin: 0;
+    letter-spacing: -0.025em;
   }
 
   .perchi-lead {
@@ -1079,38 +1144,73 @@ const milanDots = [
     font-size: var(--text-body-lg);
     color: var(--color-pesco-300);
     line-height: 1.7;
-    margin: 0 0 var(--space-md);
-    max-width: 640px;
+    margin: 0;
+    max-width: 520px;
+    opacity: 0.85;
   }
 
   .perchi-occasions {
     list-style: none;
     padding: 0;
-    margin: 0 0 var(--space-md);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-sm);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
   }
 
-  .perchi-occasions li {
+  .perchi-occasion {
     font-family: var(--font-body);
     font-size: var(--text-body);
     color: var(--color-panna);
     font-style: italic;
     line-height: 1.5;
-    padding: var(--space-md);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
-    border-radius: var(--radius-sm);
-    background-color: var(--color-basilico-600);
+    padding: 1rem 0;
+    border-bottom: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
+    opacity: 0.85;
   }
 
   .perchi-close {
     font-family: var(--font-body);
-    font-size: var(--text-body);
+    font-size: var(--text-small);
     color: var(--color-panna);
-    opacity: 0.7;
+    opacity: 0.5;
     margin: 0;
     font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .perchi-image-col {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .perchi-image-wrap {
+    position: absolute;
+    inset: 0;
+  }
+
+  .perchi-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .s-perchi:hover .perchi-img {
+    transform: scale(1.03);
+  }
+
+  .perchi-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-basilico) 50%, transparent) 0%,
+      transparent 40%
+    );
   }
 
   /* ── BAR PARTNER ──────────────────────────────────────────── */
@@ -1403,53 +1503,98 @@ const milanDots = [
 
   /* ── CTA FINALE ───────────────────────────────────────────── */
   .s-cta-final {
-    background-color: var(--color-mora);
-    padding: clamp(2rem, 5vw, 4rem) 0;
-    border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(400px, 60vh, 700px);
+    display: flex;
+    align-items: center;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .cta-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-mora) 88%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 65%, transparent) 60%,
+      color-mix(in srgb, var(--color-inchiostro) 70%, transparent) 100%
+    );
   }
 
   .cta-final-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
     gap: var(--space-md);
+    padding-top: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
   }
 
   .cta-final-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
+    font-size: clamp(3.5rem, 9vw, 8rem);
     color: var(--color-panna);
-    line-height: 1.1;
+    line-height: 0.9;
     margin: 0;
+    letter-spacing: -0.03em;
   }
 
   .cta-trust {
     font-family: var(--font-body);
     font-size: var(--text-small);
     color: var(--color-pesco-300);
-    opacity: 0.75;
+    opacity: 0.65;
     margin: 0;
+    font-style: italic;
   }
 
   /* ── FAQ ──────────────────────────────────────────────────── */
   .s-faq {
-    background-color: var(--color-avorio);
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    background-color: var(--color-panna);
+    padding: clamp(5rem, 10vw, 9rem) 0;
+  }
+
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 5rem;
   }
 
   .faq-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-h1);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     color: var(--color-mora);
-    line-height: 1.05;
-    margin: 0 0 var(--space-md);
+    line-height: 0.97;
+    margin: 0;
+    letter-spacing: -0.03em;
   }
 
   .faq-list {
-    max-width: 760px;
     display: flex;
     flex-direction: column;
   }
@@ -1535,14 +1680,18 @@ const milanDots = [
 
   /* ── RESPONSIVE ───────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .how-steps       { grid-template-columns: 1fr; }
-    .how-connector   { display: none; }
-    .why-wrap        { grid-template-columns: 1fr; }
-    .why-panel       { animation: none; }
-    .criteria-grid   { grid-template-columns: 1fr; }
-    .perchi-occasions { grid-template-columns: 1fr; }
-    .app-inner       { grid-template-columns: 1fr; }
-    .app-mock        { display: none; }
+    .how-steps        { grid-template-columns: 1fr; }
+    .how-connector    { display: none; }
+    .why-wrap         { grid-template-columns: 1fr; }
+    .why-panel        { animation: none; }
+    .criteria-grid    { grid-template-columns: 1fr; }
+    .perchi-layout    { grid-template-columns: 1fr; }
+    .perchi-image-col { height: 380px; position: relative; }
+    .perchi-image-wrap { position: relative; height: 100%; }
+    .faq-wrap         { grid-template-columns: 1fr; }
+    .faq-header       { position: static; }
+    .app-inner        { grid-template-columns: 1fr; }
+    .app-mock         { display: none; }
   }
 
   @media (max-width: 768px) {
@@ -1560,7 +1709,7 @@ const milanDots = [
     .quotes-header   { flex-direction: column; gap: var(--space-xs); }
     .app-cards       { grid-template-columns: 1fr; }
     .app-card--wide  { grid-column: auto; }
-    .cta-final-h2    { font-size: var(--text-h2); }
+    .cta-final-h2    { font-size: clamp(2.5rem, 12vw, 5rem); }
   }
 </style>
 
