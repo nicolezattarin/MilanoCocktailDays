@@ -271,8 +271,7 @@ const milanDots = [
         </ul>
 
         <p class="perchi-close">
-          Nessun dress code. Nessun esame. Solo bicchieri e bar che vale la pena conoscere.
-          <span aria-hidden="true">✶</span>
+
         </p>
       </div>
 
@@ -546,7 +545,7 @@ const milanDots = [
     margin: 0 auto;
     padding: 24px 40px;
     background: color-mix(in srgb, var(--color-panna) 8%, transparent);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(4px);
     border: 1px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
     border-radius: var(--radius-md);
     text-align: center;
@@ -661,7 +660,7 @@ const milanDots = [
   .how-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-size: 70px;
     color: var(--color-panna);
     line-height: 0.95;
     letter-spacing: -0.02em;
@@ -1117,7 +1116,7 @@ const milanDots = [
   .perchi-layout {
     display: grid;
     grid-template-columns: 1fr 0.65fr;
-    min-height: clamp(500px, 70vh, 800px);
+    height: 700px;
   }
 
   .perchi-content {
@@ -1132,7 +1131,7 @@ const milanDots = [
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: 50px;
     color: var(--color-panna);
     line-height: 0.97;
     margin: 0;
@@ -1206,11 +1205,10 @@ const milanDots = [
   .perchi-image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--color-basilico) 50%, transparent) 0%,
-      transparent 40%
-    );
+    background-image: url(https://cdn.builder.io/api/v1/image/assets%2F760efc3625c243069372e49380aa29cf%2Fb0bbdc0d008f4607b09a2537cac7317b);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   /* ── BAR PARTNER ──────────────────────────────────────────── */
@@ -1528,11 +1526,13 @@ const milanDots = [
     position: absolute;
     inset: 0;
     z-index: 1;
+    line-height: 25.6px;
+    display: block;
     background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-mora) 88%, transparent) 0%,
-      color-mix(in srgb, var(--color-mora) 65%, transparent) 60%,
-      color-mix(in srgb, var(--color-inchiostro) 70%, transparent) 100%
+      to right,
+      color-mix(in srgb, var(--color-mora) 40%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 20%, transparent) 50%,
+      transparent 100%
     );
   }
 
@@ -1545,6 +1545,8 @@ const milanDots = [
     gap: var(--space-md);
     padding-top: clamp(4rem, 8vw, 7rem);
     padding-bottom: clamp(4rem, 8vw, 7rem);
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .cta-final-h2 {
