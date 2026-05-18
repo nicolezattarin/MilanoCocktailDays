@@ -157,7 +157,7 @@ const faqs = [
     <div class="how-bg-glow" aria-hidden="true"></div>
     <div class="wrap">
 
-      <h2 id="how-h2" class="how-h2">Tre cose,<br />niente di più.</h2>
+      <h2 id="how-h2" class="how-h2 reveal">Tre cose,<br />niente di più.</h2>
 
       <div class="how-steps-wrap">
         <div class="how-connector" aria-hidden="true"></div>
@@ -177,7 +177,7 @@ const faqs = [
         </div>
       </div>
 
-      <div class="how-footer">
+      <div class="how-footer reveal reveal-d1">
         <p class="how-strap">
           Trenta bar. Trenta cocktail unici. Solo dentro MCD.
           <span aria-hidden="true">✶</span>
@@ -269,7 +269,7 @@ const faqs = [
   <!-- S06a · I BAR PARTNER ───────────────────────────────────── -->
   <section class="s-bars" aria-labelledby="bars-h2">
     <div class="wrap">
-      <div class="bars-header">
+      <div class="bars-header reveal">
         <h2 id="bars-h2" class="bars-h2">Non tutti i bar di Milano. I trenta che contano.</h2>
         <p class="bars-lead">
           Bar indipendenti, bartender con un'idea, cocktail che parlano.
@@ -278,8 +278,8 @@ const faqs = [
       </div>
 
       <div class="criteria-grid">
-        {criteria.map(({ title, desc, img }) => (
-          <div class="criterion-card">
+        {criteria.map(({ title, desc, img }, i) => (
+          <div class:list={['criterion-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
             <div class="criterion-img-wrap">
               <img src={img} alt="" class="criterion-img" loading="lazy" />
             </div>
@@ -291,7 +291,7 @@ const faqs = [
         ))}
       </div>
 
-      <a href="#lista" class="btn btn--primary bars-cta">
+      <a href="#lista" class="btn btn--primary bars-cta reveal reveal-d1">
         Iscriviti per saperlo prima di tutti <span aria-hidden="true">✶</span>
       </a>
     </div>
@@ -316,12 +316,12 @@ const faqs = [
       </div>
 
       <div class="app-content">
-        <h2 id="app-h2" class="app-h2">Un'app che ti accompagna in giro.</h2>
-        <p class="app-sub">
+        <h2 id="app-h2" class="app-h2 reveal">Un'app che ti accompagna in giro.</h2>
+        <p class="app-sub reveal reveal-d1">
           Accedi ai drink dell'evento, raccogli i tuoi punti e riscatta i premi dei partner.
         </p>
 
-        <div class="app-cards">
+        <div class="app-cards reveal reveal-d2">
           {appFeatures.map(({ title, desc, wide }) => (
             <div class:list={['app-card', { 'app-card--wide': wide }]}>
               <h3 class="app-card-title">{title}</h3>
@@ -335,7 +335,7 @@ const faqs = [
 
   <!-- S07 · VOCI DALLA LISTA ─────────────────────────────────── -->
   <section class="s-quotes" aria-labelledby="quotes-h2">
-    <div class="wrap quotes-header">
+    <div class="wrap quotes-header reveal">
       <h2 id="quotes-h2" class="quotes-h2">Cosa dice chi si è già registrato</h2>
       <p class="quotes-counter" aria-live="polite">
         <strong class="counter-num" id="counter-quotes">347</strong> persone già in lista
@@ -367,24 +367,24 @@ const faqs = [
     </picture>
     <div class="cta-overlay" aria-hidden="true"></div>
     <div class="wrap cta-final-inner">
-      <p class="section-kicker section-kicker--light">Milano, Maggio 2027</p>
-      <h2 id="cta-final-h2" class="cta-final-h2">
+      <p class="section-kicker section-kicker--light reveal">Milano, Maggio 2027</p>
+      <h2 id="cta-final-h2" class="cta-final-h2 reveal reveal-d1">
         Sii il primo<br />a sapere.
       </h2>
-      <a href="#lista" class="btn btn--final">
+      <a href="#lista" class="btn btn--final reveal reveal-d2">
         Entra in lista d'attesa <span aria-hidden="true">✶</span>
       </a>
-      <p class="cta-trust">Ti scriviamo solo quando aprono i pass. Niente spam, parola.</p>
+      <p class="cta-trust reveal reveal-d3">Ti scriviamo solo quando aprono i pass. Niente spam, parola.</p>
     </div>
   </section>
 
   <!-- FORM ───────────────────────────────────────────────────── -->
   <section class="s-lista" id="lista" aria-labelledby="lista-h2">
     <div class="wrap">
-      <h2 id="lista-h2" class="lista-h2">
+      <h2 id="lista-h2" class="lista-h2 reveal">
         Lista d'attesa <span aria-hidden="true">✶</span>
       </h2>
-      <p class="lista-intro">
+      <p class="lista-intro reveal reveal-d1">
         Iscriviti gratuitamente. Ti contatteremo per primo all'apertura ufficiale dei pass.
       </p>
       <div class="tally-wrap">
@@ -403,12 +403,12 @@ const faqs = [
   <section class="s-faq" aria-labelledby="faq-h2">
     <div class="wrap faq-wrap">
 
-      <div class="faq-header">
+      <div class="faq-header reveal">
         <p class="section-kicker">FAQ</p>
         <h2 id="faq-h2" class="faq-h2">Domande,<br />in due righe.</h2>
       </div>
 
-      <div class="faq-list" id="faq-list">
+      <div class="faq-list reveal reveal-d1" id="faq-list">
         {faqs.map(({ q, a }) => (
           <details class="faq-item">
             <summary class="faq-q">
@@ -554,7 +554,6 @@ const faqs = [
     letter-spacing: 0.1em;
     text-decoration: none;
     border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
     margin-top: var(--space-sm);
   }
 
@@ -605,7 +604,7 @@ const faqs = [
 
   .s-how .wrap {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .how-h2 {
@@ -788,7 +787,7 @@ const faqs = [
 
   .why-wrap {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: clamp(2rem, 5vw, 5rem);
@@ -1556,6 +1555,193 @@ const faqs = [
 
   .tally-wrap { max-width: 760px; }
 
+  /* ══════════════════════════════════════════════════════════
+     PREMIUM TRANSITIONS — section fades, reveals, ambient
+     ══════════════════════════════════════════════════════════ */
+
+  /* All sections: local stacking context for z-index isolation */
+  section { position: relative; z-index: 0; }
+
+  /* ── UNIVERSAL SCROLL REVEAL ──────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  /* ── HERO bottom fades into mora ──────────────────────────── */
+  .s-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 110px;
+    background: linear-gradient(to bottom, transparent, var(--color-mora));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-inner { z-index: 3; } /* lift above ::after (z:1) and overlay (z:1) */
+
+  /* ── HOW: top darkens from hero, bottom fades to panna ────── */
+  .s-how::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.32), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-how::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, var(--color-panna));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── WHY: top from mora, bottom to basilico ───────────────── */
+  .s-why { overflow: hidden; }
+  .s-why::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--color-mora), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-why::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--color-basilico));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── PERCHI: bottom fades to panna ───────────────────────── */
+  .s-perchi::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 90px;
+    background: linear-gradient(to bottom, transparent, var(--color-panna));
+    pointer-events: none;
+    z-index: 2;
+  }
+  .perchi-layout { position: relative; z-index: 3; }
+
+  /* ── BARS: top from basilico, bottom to mora ──────────────── */
+  .s-bars { overflow: hidden; }
+  .s-bars::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--color-basilico), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-bars::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--color-mora));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-bars .wrap { position: relative; z-index: 2; }
+
+  /* ── APP: bottom fades to panna-100 ──────────────────────── */
+  .s-app { overflow: hidden; }
+  .s-app::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, var(--color-panna-100));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .app-inner { position: relative; z-index: 2; }
+
+  /* ── QUOTES: top from mora, soft ambient mesh ─────────────── */
+  .s-quotes {
+    background-image:
+      radial-gradient(ellipse 60% 50% at 85% 55%, color-mix(in srgb, var(--color-pesco) 7%, transparent), transparent),
+      radial-gradient(ellipse 40% 60% at 12% 40%, color-mix(in srgb, var(--color-basilico) 5%, transparent), transparent);
+  }
+  .s-quotes::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--color-mora), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .quotes-header,
+  .quotes-outer { position: relative; z-index: 2; }
+
+  /* ── LISTA: top vignette, bottom to panna ─────────────────── */
+  .s-lista { overflow: hidden; }
+  .s-lista::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.38), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-lista::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, var(--color-panna));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s-lista .wrap { position: relative; z-index: 2; }
+
+  /* ── FAQ: top from mora ───────────────────────────────────── */
+  .s-faq { overflow: hidden; }
+  .s-faq::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--color-mora), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .faq-wrap { position: relative; z-index: 2; }
+
+  /* ── BUTTON MICRO-INTERACTION ─────────────────────────────── */
+  .btn {
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 24%, transparent);
+  }
+  .btn:active { transform: translateY(0); }
+
   /* ── RESPONSIVE ───────────────────────────────────────────── */
   @media (max-width: 900px) {
     .how-steps        { grid-template-columns: 1fr; }
@@ -1604,7 +1790,7 @@ const faqs = [
     });
   });
 
-  // Per chi è: scroll reveal
+  // Per chi è: coordinated stagger on section entry
   const perchiSection = document.querySelector('.s-perchi');
   if (perchiSection) {
     const reveals = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
@@ -1635,4 +1821,26 @@ const faqs = [
     howCards.forEach(c => io.observe(c));
   }
 
+  // Universal .reveal observer
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const revealObs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          revealObs.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+    );
+    revealEls.forEach(el => revealObs.observe(el));
+  }
+
+  // Hero parallax — reduced-motion safe, passive scroll
+  const heroBgImg = document.querySelector<HTMLImageElement>('.hero-bg img');
+  if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', () => {
+      heroBgImg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+    }, { passive: true });
+  }
 </script>
