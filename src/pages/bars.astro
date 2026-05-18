@@ -304,6 +304,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 
   /* ── S01 · HERO ───────────────────────────────────────────── */
   .s-hero {
+    position: relative;
     min-height: 60svh;
     display: flex;
     align-items: center;
@@ -328,10 +329,9 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     inset: 0;
     z-index: 1;
     background: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--color-mora) 70%, transparent) 0%,
-      color-mix(in srgb, var(--color-mora) 35%, transparent) 45%,
-      transparent 75%
+      to bottom,
+      color-mix(in srgb, var(--color-inchiostro) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 60%, transparent) 100%
     );
   }
 
@@ -341,6 +341,13 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    max-width: 600px;
+    padding: 32px 40px;
+    background: color-mix(in srgb, var(--color-inchiostro) 30%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
+    border-radius: var(--radius-md);
   }
 
   .hero-overline {
@@ -355,7 +362,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
   }
 
   .hero-h1-wrap {
-    padding: var(--space-sm) var(--space-md);
+    padding: 0;
     align-self: flex-start;
   }
 

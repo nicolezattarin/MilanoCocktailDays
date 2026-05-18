@@ -54,6 +54,14 @@ const faqs = [
 
   <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="bar-h1">
+    <picture class="hero-bg" aria-hidden="true">
+      <img
+        src="/images/Timothe Durand Photo from Unsplash.jpg"
+        alt=""
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
+      />
+    </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="hero-overline">Bar Partner · Selezione Aperta</p>
@@ -278,15 +286,31 @@ const faqs = [
     display: flex;
     align-items: center;
     padding: var(--section-py) 0;
-    background-color: var(--color-basilico);
     overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, color-mix(in srgb, var(--color-bitter) 8%, transparent) 0%, transparent 70%);
     z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-inchiostro) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 62%, transparent) 100%
+    );
   }
 
   .hero-inner {
@@ -297,11 +321,11 @@ const faqs = [
     align-items: flex-start;
     gap: var(--space-sm);
     max-width: 580px;
-    padding: 28px 36px;
-    background: color-mix(in srgb, var(--color-panna) 8%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid color-mix(in srgb, var(--color-panna) 18%, transparent);
+    padding: 32px 40px;
+    background: color-mix(in srgb, var(--color-inchiostro) 30%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
     border-radius: var(--radius-md);
   }
 
