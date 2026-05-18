@@ -245,28 +245,24 @@ const milanDots = [
     <div class="perchi-layout">
 
       <div class="perchi-content">
-        <p class="section-kicker section-kicker--light">Per chi è</p>
-        <h2 id="perchi-h2" class="perchi-h2">
+        <p class="section-kicker section-kicker--light perchi-reveal">Per chi è</p>
+        <h2 id="perchi-h2" class="perchi-h2 perchi-reveal">
           Per chi ama<br />Milano.<br />E per chi vuole<br />conoscerla meglio.
         </h2>
-        <p class="perchi-lead">
+        <p class="perchi-lead perchi-reveal">
           MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
           sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
         </p>
 
-        <ul class="perchi-occasions" role="list">
+        <ul class="perchi-occasions perchi-reveal" role="list">
           <li class="perchi-occasion">Per il sabato pomeriggio con chi ti piace.</li>
           <li class="perchi-occasion">Per una serata diversa con gli amici di sempre.</li>
           <li class="perchi-occasion">Per chi è curioso e non sa da dove iniziare.</li>
         </ul>
-
-        <p class="perchi-close">
-
-        </p>
       </div>
 
       <div class="perchi-image-col" aria-hidden="true">
-        <div class="perchi-image-wrap">
+        <div class="perchi-image-wrap perchi-img-reveal">
           <img
             src="/images/Person Holding Glass Photo.jpg"
             alt=""
@@ -967,12 +963,12 @@ const milanDots = [
 
   .perchi-layout {
     display: grid;
-    grid-template-columns: 1fr 0.55fr;
-    min-height: clamp(300px, 38vh, 440px);
+    grid-template-columns: 1fr 0.9fr;
+    min-height: clamp(500px, 65vh, 750px);
   }
 
   .perchi-content {
-    padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 5rem);
+    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -983,7 +979,7 @@ const milanDots = [
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(36px, 3.5vw, 44px);
+    font-size: clamp(40px, 4vw, 56px);
     color: var(--color-panna);
     line-height: 0.97;
     margin: 0;
@@ -1021,24 +1017,36 @@ const milanDots = [
     opacity: 0.85;
   }
 
-  .perchi-close {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-panna);
-    opacity: 0.5;
-    margin: 0;
-    font-style: italic;
-    letter-spacing: 0.02em;
+  /* scroll-reveal states */
+  .perchi-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .perchi-reveal:nth-child(2) { transition-delay: 0.1s; }
+  .perchi-reveal:nth-child(3) { transition-delay: 0.2s; }
+  .perchi-reveal:nth-child(4) { transition-delay: 0.32s; }
+  .perchi-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .perchi-img-reveal {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.15s;
+  }
+  .perchi-img-reveal.is-visible {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .perchi-image-col {
     position: relative;
     overflow: hidden;
-  }
-
-  .perchi-image-wrap {
-    position: absolute;
-    inset: 0;
   }
 
   .perchi-img {
@@ -1047,20 +1055,23 @@ const milanDots = [
     object-fit: cover;
     object-position: center top;
     display: block;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .s-perchi:hover .perchi-img {
-    transform: scale(1.03);
+  .perchi-image-col:hover .perchi-img {
+    transform: scale(1.04);
   }
 
   .perchi-image-overlay {
     position: absolute;
     inset: 0;
-    background-image: url(https://cdn.builder.io/api/v1/image/assets%2F760efc3625c243069372e49380aa29cf%2Fb0bbdc0d008f4607b09a2537cac7317b);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(
+      to right,
+      var(--color-basilico) 0%,
+      color-mix(in srgb, var(--color-basilico) 55%, transparent) 25%,
+      color-mix(in srgb, var(--color-basilico) 15%, transparent) 55%,
+      transparent 100%
+    );
   }
 
   /* ── BAR PARTNER ──────────────────────────────────────────── */
@@ -1552,8 +1563,8 @@ const milanDots = [
     .why-panel        { animation: none; }
     .criteria-grid    { grid-template-columns: 1fr; }
     .perchi-layout    { grid-template-columns: 1fr; }
-    .perchi-image-col { height: 380px; position: relative; }
-    .perchi-image-wrap { position: relative; height: 100%; }
+    .perchi-image-col { height: 420px; position: relative; }
+    .perchi-img-reveal { position: relative; height: 100%; }
     .faq-wrap         { grid-template-columns: 1fr; }
     .faq-header       { position: static; }
     .app-inner        { grid-template-columns: 1fr; }
@@ -1590,6 +1601,22 @@ const milanDots = [
       }
     });
   });
+
+  // Per chi è: scroll reveal
+  const perchiSection = document.querySelector('.s-perchi');
+  if (perchiSection) {
+    const reveals = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
+    const perchiObs = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          reveals.forEach(el => el.classList.add('is-visible'));
+          perchiObs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    perchiObs.observe(perchiSection);
+  }
 
   // How-section cards: scroll reveal
   const howCards = document.querySelectorAll('.how-card');
