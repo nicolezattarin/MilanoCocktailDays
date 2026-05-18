@@ -586,9 +586,11 @@ const faqs = [
   /* ── COME FUNZIONA ────────────────────────────────────────── */
   .s-how {
     background-color: var(--color-fumo);
-    padding: clamp(3rem, 7vw, 6rem) 0;
+    padding: 50px 0 50px 0;
     position: relative;
     overflow: hidden;
+    min-height: 200px;
+    height: 580px;
   }
 
   .how-bg-glow {
@@ -609,16 +611,16 @@ const faqs = [
   .how-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 70px;
+    font-size: 60px;
     color: var(--color-panna);
     line-height: 0.95;
     letter-spacing: -0.02em;
-    margin: 0 0 var(--space-lg);
+    margin: 0 0 30px;
   }
 
   .how-steps-wrap {
     position: relative;
-    margin-bottom: var(--space-lg);
+    margin-bottom: 30px;
   }
 
   .how-connector {
@@ -936,7 +938,7 @@ const faqs = [
     flex-direction: column;
     justify-content: center;
     gap: var(--space-sm);
-    max-width: 640px;
+    max-width: 700px;
   }
 
   .perchi-h2 {
@@ -1007,6 +1009,14 @@ const faqs = [
     transform: scale(1);
   }
 
+  .perchi-image-wrap {
+    position: relative;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: 600px;
+  }
+
   .perchi-image-col {
     position: relative;
     overflow: hidden;
@@ -1016,7 +1026,7 @@ const faqs = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: left;
     display: block;
     transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -1036,8 +1046,10 @@ const faqs = [
       color-mix(in srgb, var(--color-basilico) 14%, transparent) 50%,
       transparent 65%
     );
-    line-height: 25.6px;
-    object-position: 50% 50%;
+    opacity: 1;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: -18px 1px 8px 2px #2e4a36;
   }
 
   /* ── BAR PARTNER ──────────────────────────────────────────── */
