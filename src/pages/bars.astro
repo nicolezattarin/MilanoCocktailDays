@@ -263,6 +263,11 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
   .reveal-d2 { transition-delay: 0.24s; }
   .reveal-d3 { transition-delay: 0.38s; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .bar-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
   /* ── VIGNETTE — identica a index.astro ───────────────────── */
   section { position: relative; z-index: 0; }
 
@@ -749,39 +754,43 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 </style>
 
 <script>
-  // Universal .reveal — same as index.astro
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          obs.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
-    );
-    revealEls.forEach(el => obs.observe(el));
-  }
+  function makeVisible(el: Element) { el.classList.add('is-visible'); }
 
-  // Bar cards: staggered reveal (column offset, 4-col grid)
-  const barCards = document.querySelectorAll('.bar-card');
-  if (barCards.length) {
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          const card = e.target as HTMLElement;
-          const idx = Array.from(barCards).indexOf(card);
-          setTimeout(() => card.classList.add('is-visible'), (idx % 4) * 80);
-          io.unobserve(card);
-        }
-      }),
-      { threshold: 0.05 }
-    );
-    barCards.forEach(c => io.observe(c));
-  }
+  requestAnimationFrame(() => {
+    // Universal .reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+      const obs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); obs.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      revealEls.forEach(el => obs.observe(el));
+    }
 
-  // Hero parallax — reduced-motion safe, passive scroll
+    // Bar cards: staggered reveal
+    const barCards = document.querySelectorAll('.bar-card');
+    if (barCards.length) {
+      const io = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) {
+            const card = e.target as HTMLElement;
+            const idx = Array.from(barCards).indexOf(card);
+            setTimeout(() => makeVisible(card), (idx % 4) * 80);
+            io.unobserve(card);
+          }
+        }),
+        { threshold: 0.05 }
+      );
+      barCards.forEach(c => io.observe(c));
+    }
+
+    // Safety fallback: show any still-hidden after 2.5s
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.is-visible), .bar-card:not(.is-visible)').forEach(makeVisible);
+    }, 2500);
+  });
+
+  // Hero parallax — reduced-motion safe
   const heroBgImg = document.querySelector<HTMLImageElement>('.hero-bg img');
   if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     window.addEventListener('scroll', () => {

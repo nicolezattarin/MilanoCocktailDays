@@ -1575,6 +1575,13 @@ const faqs = [
   .reveal-d2 { transition-delay: 0.24s; }
   .reveal-d3 { transition-delay: 0.38s; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .how-card,
+    .perchi-reveal,
+    .perchi-img-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
   /* ── CINEMATIC VIGNETTE — top shadow on all non-hero sections  */
   /* Only rgba black — works regardless of adjacent section color */
   .s-how::before,
@@ -1687,51 +1694,53 @@ const faqs = [
     });
   });
 
-  // Per chi è: coordinated stagger on section entry
-  const perchiSection = document.querySelector('.s-perchi');
-  if (perchiSection) {
-    const reveals = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
-    const perchiObs = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) {
-          reveals.forEach(el => el.classList.add('is-visible'));
-          perchiObs.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    perchiObs.observe(perchiSection);
+  function makeVisible(el: Element) {
+    el.classList.add('is-visible');
   }
 
-  // How-section cards: scroll reveal
-  const howCards = document.querySelectorAll('.how-card');
-  if (howCards.length) {
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.12 }
-    );
-    howCards.forEach(c => io.observe(c));
-  }
+  // Wait for first paint — prevents observer firing before layout is stable
+  requestAnimationFrame(() => {
+    // Per chi è: stagger on section entry
+    const perchiSection = document.querySelector('.s-perchi');
+    if (perchiSection) {
+      const perchiRevealEls = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
+      const perchiObs = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            perchiRevealEls.forEach(makeVisible);
+            perchiObs.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      perchiObs.observe(perchiSection);
+    }
 
-  // Universal .reveal observer
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const revealObs = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          revealObs.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
-    );
-    revealEls.forEach(el => revealObs.observe(el));
-  }
+    // How-section cards
+    const howCards = document.querySelectorAll('.how-card');
+    if (howCards.length) {
+      const io = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); io.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      howCards.forEach(c => io.observe(c));
+    }
+
+    // Universal .reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+      const revealObs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); revealObs.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      revealEls.forEach(el => revealObs.observe(el));
+
+      // Safety fallback: show any still-hidden elements after 2.5s
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible), .how-card:not(.is-visible), .perchi-reveal:not(.is-visible), .perchi-img-reveal:not(.is-visible)').forEach(makeVisible);
+      }, 2500);
+    }
+  });
 
   // Hero parallax — reduced-motion safe, passive scroll
   const heroBgImg = document.querySelector<HTMLImageElement>('.hero-bg img');
