@@ -1,48 +1,86 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHero from '../components/SectionHero.astro';
-import TbaBox from '../components/TbaBox.astro';
-import CtaBanner from '../components/CtaBanner.astro';
 
 const placeholders = Array.from({ length: 12 }, (_, i) => i + 1);
 const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
 ---
 
 <BaseLayout
-  title="I Bar Partner"
+  title="I Bar Partner — Milan Cocktail Days"
   description="I bar partner di Milan Cocktail Days 2027. Navigli, Brera, Isola, Porta Romana. Annuncio ufficiale in arrivo."
+  pageType="page"
 >
 
-  <SectionHero
-    title="I Bar"
-    subtitle="TBA · I bar partner saranno annunciati presto"
-    overline="Bar Partner"
-  />
+  <!-- S01 · HERO ─────────────────────────────────────────────── -->
+  <section class="s-hero" aria-labelledby="bars-h1">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-overline">
+        Bar Partner <span aria-hidden="true">✶</span> Milano 2027
+      </p>
+      <div class="hero-h1-wrap mcw-bracket mcw-bracket--dark">
+        <h1 id="bars-h1" class="hero-h1">I Bar</h1>
+      </div>
+      <p class="hero-sub">TBA · I bar partner saranno annunciati presto</p>
+    </div>
+  </section>
 
-  <TbaBox
-    title="Bar partner in arrivo"
-    body="Stiamo selezionando i migliori bar di Milano per la prima edizione di MCD. Ogni bar creerà un cocktail signature esclusivo per il festival. L'annuncio ufficiale è previsto per i prossimi mesi."
-    ctaText="Ricevi l'annuncio →"
-    ctaHref="/contatti"
-    ctaClass="cta-newsletter"
-  />
+  <!-- S02 · EDITORIALE TBA ───────────────────────────────────── -->
+  <section class="s-tba" aria-labelledby="tba-h2">
+    <div class="wrap tba-wrap">
 
-  <!-- PLACEHOLDER GRID (dark) ----------------------------- -->
+      <div class="tba-editorial">
+        <p class="section-kicker reveal">In arrivo</p>
+        <h2 id="tba-h2" class="tba-h2 reveal reveal-d1">
+          Bar partner<br /><em class="tba-em">in arrivo.</em>
+        </h2>
+        <p class="tba-body reveal reveal-d2">
+          Stiamo selezionando i migliori bar di Milano per la prima edizione di MCD.
+          Ogni bar creerà un cocktail signature esclusivo per il festival.
+          L'annuncio ufficiale è previsto per i prossimi mesi.
+        </p>
+        <a href="/contatti" class="btn btn--primary cta-newsletter reveal reveal-d3">
+          Ricevi l'annuncio <span aria-hidden="true">✶</span>
+        </a>
+      </div>
+
+      <div class="tba-stats reveal reveal-d2">
+        <div class="stat-item">
+          <span class="stat-num">30</span>
+          <span class="stat-label">Bar selezionati</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">30</span>
+          <span class="stat-label">Cocktail esclusivi</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">€6</span>
+          <span class="stat-label">Ovunque, sempre</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S03 · GRID PLACEHOLDER ─────────────────────────────────── -->
   <section class="s-grid" aria-labelledby="grid-h2">
+    <div class="grid-glow" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="grid-header">
-        <h2 id="grid-h2" class="section-h2--light">I Bar Partecipanti</h2>
-        <span class="grid-tba" aria-label="Da annunciare">TBA</span>
+
+      <div class="grid-header reveal">
+        <h2 id="grid-h2" class="grid-h2">I Bar Partecipanti</h2>
+        <span class="grid-tba-badge">TBA</span>
       </div>
 
       <div class="bars-grid">
-        {placeholders.map((i) => (
+        {placeholders.map((_, i) => (
           <article class="bar-card">
-            <!-- Placeholder 3/2: dimensioni esplicite anti-CLS -->
             <div
-              class="bar-img mcw-dot-grid"
+              class="bar-img mcw-dot-grid--dark"
               role="img"
-              aria-label={`Bar partner MCD ${i} — in arrivo`}
+              aria-label={`Bar partner MCD ${i + 1} — in arrivo`}
             >
               <span class="bar-star" aria-hidden="true">✶</span>
             </div>
@@ -53,15 +91,23 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
           </article>
         ))}
       </div>
+
     </div>
   </section>
 
-  <!-- QUARTIERI (chiara) ---------------------------------- -->
+  <!-- S04 · QUARTIERI ────────────────────────────────────────── -->
   <section class="s-quartieri" aria-labelledby="quartieri-h2">
-    <div class="wrap">
-      <p class="overline">I bar selezionati coprono tutta Milano</p>
+    <div class="wrap quartieri-wrap">
+
+      <div class="quartieri-text">
+        <p class="section-kicker reveal">Quartieri</p>
+        <h2 id="quartieri-h2" class="quartieri-h2 reveal reveal-d1">
+          I bar selezionati<br />coprono tutta Milano.
+        </h2>
+      </div>
+
       <div
-        class="pills"
+        class="pills reveal reveal-d2"
         role="list"
         aria-label="Quartieri di Milano coinvolti nel festival"
       >
@@ -69,29 +115,36 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
           <span class="pill" role="listitem">{q}</span>
         ))}
       </div>
+
     </div>
   </section>
 
-  <CtaBanner
-    title="Vuoi portare il tuo bar a MCD?"
-    subtitle="Siamo alla ricerca di cocktail bar di qualità per la prima edizione."
-    ctaText="Diventa partner →"
-    ctaHref="#form-partner"
-    variant="borgogna"
-    ctaClass="cta-partner"
-  />
+  <!-- S05 · CTA PARTNER ──────────────────────────────────────── -->
+  <section class="s-cta-partner" aria-labelledby="cta-partner-h2">
+    <div class="wrap cta-partner-inner">
+      <p class="section-kicker section-kicker--light reveal">Per i bar</p>
+      <h2 id="cta-partner-h2" class="cta-partner-h2 reveal reveal-d1">
+        Vuoi portare<br />il tuo bar a MCD?
+      </h2>
+      <p class="cta-partner-sub reveal reveal-d2">
+        Siamo alla ricerca di cocktail bar di qualità per la prima edizione.
+      </p>
+      <a href="#form-partner" class="btn btn--final cta-partner reveal reveal-d3">
+        Diventa partner <span aria-hidden="true">✶</span>
+      </a>
+    </div>
+  </section>
 
-  <!-- FORM BAR PARTNER (dark) ------------------------------ -->
-  <section class="s-form-partner" id="form-partner" aria-labelledby="form-partner-h2">
+  <!-- S06 · FORM BAR PARTNER ─────────────────────────────────── -->
+  <section class="s-form" id="form-partner" aria-labelledby="form-h2">
     <div class="wrap">
-      <h2 id="form-partner-h2" class="form-heading">
+      <h2 id="form-h2" class="form-h2 reveal">
         Diventa bar partner <span aria-hidden="true">✶</span>
       </h2>
-      <p class="form-intro">
+      <p class="form-intro reveal reveal-d1">
         Compila il form per candidare il tuo bar a Milan Cocktail Days 2027.
         Ti contatteremo per valutare insieme la partnership.
       </p>
-
       <div class="tally-wrap">
         <iframe
           data-tally-src="https://tally.so/embed/vGEKJQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
@@ -113,35 +166,289 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     padding: 0 2rem;
   }
 
-  .section-h2--light {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-panna);
-    line-height: 1.05;
+  /* ── SECTION KICKER ───────────────────────────────────────── */
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+  .section-kicker--light {
+    color: var(--color-pesco-300);
+    opacity: 0.8;
   }
 
-  /* ---- GRID (dark) -------------------------------------- */
-  .s-grid {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+  /* ── SHARED BTN ───────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.2s ease;
+    margin-top: var(--space-sm);
   }
+  .btn--primary {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+  }
+  .btn--primary:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 24%, transparent);
+  }
+  .btn--final {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+    font-size: var(--text-body);
+    padding: 1rem 2.5rem;
+    margin-top: 0;
+  }
+  .btn--final:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 24%, transparent);
+  }
+  .btn:active { transform: translateY(0); }
+
+  /* ── REVEAL ANIMATION ─────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  /* ── VIGNETTE — top shadow every non-first section ─────────── */
+  section { position: relative; z-index: 0; }
+  .s-tba::before,
+  .s-grid::before,
+  .s-quartieri::before,
+  .s-cta-partner::before,
+  .s-form::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ── S01 · HERO ───────────────────────────────────────────── */
+  .s-hero {
+    background-color: var(--color-mora);
+    min-height: 60svh;
+    display: flex;
+    align-items: center;
+    padding: clamp(3rem, 8vw, 6rem) 0;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 60% at 80% 20%, color-mix(in srgb, var(--color-bitter) 10%, transparent), transparent),
+      radial-gradient(ellipse 45% 50% at 10% 80%, color-mix(in srgb, var(--color-basilico) 20%, transparent), transparent);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-panna);
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  .hero-h1-wrap {
+    padding: var(--space-sm) var(--space-md);
+    align-self: flex-start;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 9vw, 7rem);
+    color: var(--color-panna);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  /* ── S02 · TBA EDITORIALE ─────────────────────────────────── */
+  .s-tba {
+    background-color: var(--color-panna);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    overflow: hidden;
+  }
+
+  .tba-wrap {
+    display: flex;
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+    flex-wrap: wrap;
+  }
+
+  .tba-editorial {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .tba-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--color-mora);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .tba-em {
+    font-style: italic;
+    color: var(--color-bitter);
+  }
+
+  .tba-body {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-inchiostro-500);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .tba-stats {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 0.5px solid var(--color-panna-300);
+    padding-left: clamp(2rem, 4vw, 4rem);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: var(--space-sm) 0;
+  }
+
+  .stat-divider {
+    height: 0.5px;
+    background: var(--color-panna-300);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-bitter);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-inchiostro-500);
+  }
+
+  /* ── S03 · GRID ───────────────────────────────────────────── */
+  .s-grid {
+    background-color: var(--color-mora);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    overflow: hidden;
+  }
+
+  .grid-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 45% at 90% 10%, color-mix(in srgb, var(--color-bitter) 8%, transparent), transparent),
+      radial-gradient(ellipse 40% 55% at 5% 90%, color-mix(in srgb, var(--color-basilico) 16%, transparent), transparent);
+  }
+
+  .s-grid .wrap { position: relative; z-index: 2; }
 
   .grid-header {
     display: flex;
     align-items: baseline;
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
   }
 
-  .grid-tba {
+  .grid-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .grid-tba-badge {
     font-family: var(--font-body);
     font-size: var(--text-small);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: var(--color-panna);
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
   .bars-grid {
@@ -154,25 +461,36 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  .bar-card.is-visible { opacity: 1; transform: none; }
 
-  /* Placeholder 3/2: dimensioni esplicite anti-CLS */
   .bar-img {
     aspect-ratio: 3 / 2;
     width: 100%;
     background-color: var(--color-marmo);
-    border: var(--border-hairline-dark);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bar-card:hover .bar-img {
+    border-color: color-mix(in srgb, var(--color-bitter) 30%, transparent);
+    transform: translateY(-3px);
   }
 
   .bar-star {
     color: var(--color-panna);
-    font-size: 2rem;
-    opacity: 0.25;
+    font-size: 1.75rem;
+    opacity: 0.2;
   }
 
   .bar-info { padding: var(--space-xs) 0 0; }
@@ -182,7 +500,7 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     font-size: var(--text-small);
     color: var(--color-pesco-300);
     margin: 0 0 2px;
-    opacity: 0.7;
+    opacity: 0.65;
   }
 
   .bar-city {
@@ -192,33 +510,45 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-panna);
-    opacity: 0.5;
+    opacity: 0.45;
     margin: 0;
   }
 
-  /* ---- QUARTIERI (avorio) -------------------------------- */
+  /* ── S04 · QUARTIERI ──────────────────────────────────────── */
   .s-quartieri {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    background-color: var(--color-panna);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    overflow: hidden;
   }
 
-  .overline {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-basilico);
-    margin: 0 0 var(--space-md);
+  .quartieri-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(3rem, 7vw, 6rem);
+    flex-wrap: wrap;
+  }
+
+  .quartieri-text { flex: 1; min-width: 240px; }
+
+  .quartieri-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    color: var(--color-mora);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
   }
 
   .pills {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
+    flex: 1;
+    min-width: 240px;
+    align-self: center;
   }
 
-  /* Pill: bordo Basilico, radius 2px, PJS uppercase */
   .pill {
     display: inline-flex;
     align-items: center;
@@ -232,26 +562,68 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     border: 0.5px solid var(--color-basilico);
     border-radius: 2px;
     background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  /* ---- FORM PARTNER (dark) ------------------------------ */
-  .s-form-partner {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+  .pill:hover {
+    background-color: var(--color-basilico);
+    color: var(--color-panna);
+  }
+
+  /* ── S05 · CTA PARTNER ────────────────────────────────────── */
+  .s-cta-partner {
+    background-color: var(--color-basilico);
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    overflow: hidden;
+  }
+
+  .cta-partner-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .cta-partner-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--color-panna);
+    line-height: 0.97;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .cta-partner-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 440px;
+    opacity: 0.85;
+  }
+
+  /* ── S06 · FORM ───────────────────────────────────────────── */
+  .s-form {
+    background-color: var(--color-mora);
+    padding: clamp(3rem, 6vw, 5rem) 0;
     scroll-margin-top: 64px;
+    overflow: hidden;
   }
 
-  .form-heading {
+  .s-form .wrap { position: relative; z-index: 2; }
+
+  .form-h2 {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
     color: var(--color-panna);
     line-height: 1.05;
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-sm);
   }
 
-  .form-heading span {
-    color: var(--color-panna);
+  .form-h2 span {
     font-size: 0.5em;
     vertical-align: middle;
     opacity: 0.5;
@@ -267,18 +639,57 @@ const quartieri = ['Navigli', 'Brera', 'Isola', 'Porta Romana', 'Centro'];
     opacity: 0.85;
   }
 
-  .tally-wrap {
-    max-width: 760px;
+  .tally-wrap { max-width: 760px; }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .tba-wrap       { flex-direction: column; }
+    .tba-stats      { border-left: none; border-top: 0.5px solid var(--color-panna-300); padding-left: 0; padding-top: var(--space-md); flex-direction: row; flex-wrap: wrap; gap: var(--space-md); }
+    .stat-divider   { display: none; }
+    .quartieri-wrap { flex-direction: column; align-items: flex-start; }
+    .bars-grid      { grid-template-columns: repeat(3, 1fr); }
   }
 
-  /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .bars-grid { grid-template-columns: 1fr 1fr; }
+    .bars-grid  { grid-template-columns: repeat(2, 1fr); }
     .grid-header { flex-direction: column; gap: var(--space-xs); }
-    .tally-tbd { padding: var(--space-md); }
   }
 
   @media (max-width: 480px) {
-    .bars-grid { grid-template-columns: 1fr; }
+    .bars-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
+
+<script>
+  // Universal .reveal observer
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          obs.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+    );
+    revealEls.forEach(el => obs.observe(el));
+  }
+
+  // Bar cards: staggered reveal
+  const barCards = document.querySelectorAll('.bar-card');
+  if (barCards.length) {
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          const card = e.target as HTMLElement;
+          const idx = Array.from(barCards).indexOf(card);
+          setTimeout(() => card.classList.add('is-visible'), (idx % 4) * 80);
+          io.unobserve(card);
+        }
+      }),
+      { threshold: 0.05 }
+    );
+    barCards.forEach(c => io.observe(c));
+  }
+</script>
