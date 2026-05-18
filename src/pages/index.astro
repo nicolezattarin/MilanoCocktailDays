@@ -60,6 +60,14 @@ const quotes = [
   { text: 'Cocktail a €6 è già abbastanza per comprare il biglietto', name: 'Marco', age: 24 },
   { text: 'Una scusa per uscire durante la settimana a Milano', name: 'Elena', age: 30 },
   { text: 'Sembra un modo carino per scoprire nuovi bar', name: 'Luca', age: 34 },
+  { text: 'Non vedo l\'ora di esplorare quartieri che non conoscevo', name: 'Sara', age: 28 },
+  { text: 'Perfetto per chi ama i cocktail ma odia i prezzi da centro', name: 'Davide', age: 31 },
+  { text: 'Ho già convinto tutti i miei amici a iscriversi', name: 'Martina', age: 26 },
+  { text: '€15 per dieci giorni di giro per Milano? Affare fatto', name: 'Valentina', age: 32 },
+  { text: 'L\'idea del cocktail unico per ogni bar è geniale', name: 'Chiara', age: 29 },
+  { text: 'Questo è esattamente il tipo di evento che mancava in città', name: 'Riccardo', age: 35 },
+  { text: 'Finalmente qualcosa che vale la pena fare a Milano a maggio', name: 'Andrea', age: 33 },
+  { text: 'Sono curioso di vedere quali bar sceglieranno', name: 'Filippo', age: 27 },
 ];
 
 const faqs = [
@@ -376,9 +384,9 @@ const milanDots = [
     </div>
 
     <div class="quotes-outer">
-      <div class="quotes-track" id="quotes-track" role="list">
-        {quotes.map(({ text, name, age }) => (
-          <article class="quote-card" role="listitem">
+      <div class="quotes-track" id="quotes-track" aria-label="Testimonianze">
+        {[...quotes, ...quotes].map(({ text, name, age }, i) => (
+          <article class="quote-card" aria-hidden={i >= quotes.length ? 'true' : 'false'}>
             <blockquote class="quote-text">"{text}"</blockquote>
             <footer class="quote-author">— {name}, {age}</footer>
           </article>
@@ -1297,23 +1305,35 @@ const milanDots = [
     color: var(--color-basilico);
   }
 
-  .quotes-outer {
-    overflow-x: auto;
-    padding: 0 2rem var(--space-sm);
-    scrollbar-width: none;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
-  .quotes-outer::-webkit-scrollbar { display: none; }
+  .quotes-outer {
+    overflow: hidden;
+    padding: 0 0 var(--space-sm);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
 
   .quotes-track {
     display: flex;
     gap: var(--space-md);
     width: max-content;
-    scroll-snap-type: x mandatory;
+    animation: marquee 40s linear infinite;
+  }
+
+  .quotes-outer:hover .quotes-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .quotes-track { animation: none; }
+    .quotes-outer { overflow-x: auto; }
   }
 
   .quote-card {
-    scroll-snap-align: start;
     flex: 0 0 min(320px, 80vw);
     background-color: var(--color-panna);
     border: 0.5px solid var(--color-panna-300);
@@ -1586,18 +1606,4 @@ const milanDots = [
     howCards.forEach(c => io.observe(c));
   }
 
-  // Quote carousel: auto-advance every 4s
-  const quotesOuter = document.querySelector('.quotes-outer');
-  const quotesTrack = document.getElementById('quotes-track');
-  if (quotesOuter && quotesTrack) {
-    const cards = Array.from(quotesTrack.querySelectorAll('.quote-card')) as HTMLElement[];
-    let idx = 0;
-    setInterval(() => {
-      idx = (idx + 1) % cards.length;
-      (quotesOuter as HTMLElement).scrollTo({
-        left: cards[idx].offsetLeft,
-        behavior: 'smooth',
-      });
-    }, 4000);
-  }
 </script>
