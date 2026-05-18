@@ -1587,16 +1587,7 @@ const faqs = [
   }
   .hero-inner { z-index: 3; } /* lift above ::after (z:1) and overlay (z:1) */
 
-  /* ── HOW: top darkens from hero, bottom fades to panna ────── */
-  .s-how::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 56px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.32), transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
+  /* ── HOW: bottom fades to panna ──────────────────────────── */
   .s-how::after {
     content: '';
     position: absolute;
@@ -1607,17 +1598,8 @@ const faqs = [
     z-index: 1;
   }
 
-  /* ── WHY: top from mora, bottom to basilico ───────────────── */
+  /* ── WHY: bottom to basilico ─────────────────────────────── */
   .s-why { overflow: hidden; }
-  .s-why::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, var(--color-mora), transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
   .s-why::after {
     content: '';
     position: absolute;
@@ -1640,17 +1622,8 @@ const faqs = [
   }
   .perchi-layout { position: relative; z-index: 3; }
 
-  /* ── BARS: top from basilico, bottom to mora ──────────────── */
+  /* ── BARS: bottom to mora ────────────────────────────────── */
   .s-bars { overflow: hidden; }
-  .s-bars::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, var(--color-basilico), transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
   .s-bars::after {
     content: '';
     position: absolute;
@@ -1675,20 +1648,11 @@ const faqs = [
   }
   .app-inner { position: relative; z-index: 2; }
 
-  /* ── QUOTES: top from mora, soft ambient mesh ─────────────── */
+  /* ── QUOTES: soft ambient mesh ───────────────────────────── */
   .s-quotes {
     background-image:
       radial-gradient(ellipse 60% 50% at 85% 55%, color-mix(in srgb, var(--color-pesco) 7%, transparent), transparent),
       radial-gradient(ellipse 40% 60% at 12% 40%, color-mix(in srgb, var(--color-basilico) 5%, transparent), transparent);
-  }
-  .s-quotes::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, var(--color-mora), transparent);
-    pointer-events: none;
-    z-index: 1;
   }
   .quotes-header,
   .quotes-outer { position: relative; z-index: 2; }
@@ -1715,17 +1679,8 @@ const faqs = [
   }
   .s-lista .wrap { position: relative; z-index: 2; }
 
-  /* ── FAQ: top from mora ───────────────────────────────────── */
+  /* ── FAQ ─────────────────────────────────────────────────── */
   .s-faq { overflow: hidden; }
-  .s-faq::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: linear-gradient(to bottom, var(--color-mora), transparent);
-    pointer-events: none;
-    z-index: 1;
-  }
   .faq-wrap { position: relative; z-index: 2; }
 
   /* ── BUTTON MICRO-INTERACTION ─────────────────────────────── */
