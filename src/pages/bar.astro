@@ -434,29 +434,53 @@ const faqs = [
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: 0;
+    max-width: 560px;
   }
 
   .step {
     display: flex;
     align-items: flex-start;
     gap: var(--space-md);
-    padding-top: var(--space-sm);
-    border-top: var(--border-hairline-dark);
+    position: relative;
+    padding-bottom: var(--space-xl);
+  }
+
+  .step:last-child { padding-bottom: 0; }
+
+  /* dashed connector */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 31px;
+    top: 64px;
+    bottom: 0;
+    width: 0;
+    border-left: 2px dashed color-mix(in srgb, var(--color-bitter) 38%, transparent);
   }
 
   .step-n {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-bitter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2.5rem, 4vw, 3.75rem);
-    color: var(--color-bitter);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 80px;
-    letter-spacing: -0.03em;
+    font-size: 1.15rem;
+    color: var(--color-panna);
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+    box-shadow:
+      0 0 0 5px color-mix(in srgb, var(--color-bitter) 18%, transparent),
+      0 4px 20px color-mix(in srgb, var(--color-bitter) 40%, transparent);
   }
 
-  .step-body { padding-top: 6px; }
+  .step-body { padding-top: 18px; }
 
   .step-title {
     font-family: var(--font-display);
