@@ -406,7 +406,7 @@ const faqs = [
   /* ---- COME FUNZIONA (fumo) ------------------------------ */
   .s-how {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: 50px 0 70px;
   }
 
   .overline {
@@ -443,7 +443,7 @@ const faqs = [
     align-items: flex-start;
     gap: var(--space-md);
     position: relative;
-    padding-bottom: var(--space-xl);
+    padding-bottom: 5px;
   }
 
   .step:last-child { padding-bottom: 0; }
@@ -508,7 +508,7 @@ const faqs = [
       transparent 1px
     );
     background-size: 28px 28px;
-    padding: var(--section-py) 0;
+    padding: 70px 0;
     position: relative;
     overflow: hidden;
   }
@@ -663,7 +663,7 @@ const faqs = [
   /* ---- COSA TI CHIEDIAMO (fumo) -------------------------- */
   .s-req {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
   }
 
   .req-inner {
@@ -711,6 +711,15 @@ const faqs = [
     );
   }
 
+  .req-item:nth-child(1) .req-img-overlay {
+    max-width: 5000px;
+  }
+
+  .req-item:nth-child(2) .req-img-overlay,
+  .req-item:nth-child(3) .req-img-overlay {
+    max-width: 500px;
+  }
+
   .req-content {
     position: relative;
     z-index: 1;
@@ -755,7 +764,7 @@ const faqs = [
   /* ---- CRITERI SELEZIONE (avorio) ------------------------ */
   .s-criteria {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
   }
 
   .criteria-inner {
@@ -813,7 +822,7 @@ const faqs = [
   /* ---- APP (fumo) ---------------------------------------- */
   .s-app {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
   }
 
   .app-inner {
