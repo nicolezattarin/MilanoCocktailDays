@@ -81,7 +81,7 @@ const faqs = [
     <div class="how-bg-overlay" aria-hidden="true"></div>
     <div class="wrap how-inner">
       <div class="how-content">
-        <div class="section-header">
+        <div class="section-header reveal">
           <p class="overline">Come funziona per i tuoi ospiti</p>
           <h2 id="how-h2" class="section-h2">Tre passi.<br />Zero complessità operativa.</h2>
         </div>
@@ -125,15 +125,15 @@ const faqs = [
   <!-- COSA TI CHIEDIAMO ------------------------------------- -->
   <section class="s-req" aria-labelledby="req-h2">
     <div class="wrap req-inner">
-      <div class="req-lead">
+      <div class="req-lead reveal">
         <p class="overline">Cosa ti chiediamo</p>
         <h2 id="req-h2" class="section-h2">
           Semplice.<br />Sostenibile.
         </h2>
       </div>
       <div class="req-grid">
-        {requirements.map(({ label, val, sub, img }) => (
-          <div class="req-item" style={`--req-bg: url('${img}')`}>
+        {requirements.map(({ label, val, sub, img }, i) => (
+          <div class="req-item" style={`--req-bg: url('${img}'); --stagger: ${i * 0.12}s`}>
             <div class="req-img-overlay" aria-hidden="true"></div>
             <div class="req-content">
               <p class="req-label">{label}</p>
@@ -149,7 +149,7 @@ const faqs = [
   <!-- CHI STIAMO SELEZIONANDO ------------------------------- -->
   <section class="s-criteria" aria-labelledby="criteria-h2">
     <div class="wrap criteria-inner">
-      <div class="criteria-text">
+      <div class="criteria-text reveal">
         <p class="overline--dark">Chi stiamo selezionando</p>
         <h2 id="criteria-h2" class="section-h2--dark">
           Qualità prima.<br />Tutto il resto viene da sé.
@@ -160,7 +160,7 @@ const faqs = [
           la pena scoprire. Dimensioni e notorietà contano poco.
         </p>
       </div>
-      <ul class="criteria-list" role="list">
+      <ul class="criteria-list reveal reveal-d1" role="list">
         {criteria.map((c) => (
           <li class="criteria-item">
             <span class="c-star" aria-hidden="true">✶</span>
@@ -174,7 +174,7 @@ const faqs = [
   <!-- L'APP PER IL TUO BAR ---------------------------------- -->
   <section class="s-app" aria-labelledby="app-h2">
     <div class="wrap app-inner">
-      <div class="app-content">
+      <div class="app-content reveal">
         <p class="overline">L'app per il tuo bar</p>
         <h2 id="app-h2" class="section-h2">
           Dati reali.<br />Community attiva.
@@ -293,7 +293,40 @@ const faqs = [
   .reveal-d3 { transition-delay: 0.38s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .reveal,
+    .step,
+    .req-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* ---- All sections: local stacking context -------------- */
+  section { position: relative; z-index: 0; }
+
+  /* ---- Cinematic vignette — top shadow on non-hero sections */
+  .s-how::before,
+  .s-req::before,
+  .s-criteria::before,
+  .s-app::before,
+  .s-cta-video::before,
+  .s-form::before,
+  .s-faq::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.18), transparent);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Hero bottom darkening toward next section */
+  .s-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* ---- HERO (dark) --------------------------------------- */
@@ -384,6 +417,7 @@ const faqs = [
   .btn {
     display: inline-flex;
     align-items: center;
+    gap: 0.4em;
     padding: 0.875rem 2rem;
     font-family: var(--font-body);
     font-size: var(--text-small);
@@ -393,8 +427,19 @@ const faqs = [
     text-decoration: none;
     border-radius: var(--radius-sm);
     margin-top: var(--space-sm);
-    transition: background-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.2s ease;
   }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 28%, transparent);
+  }
+
+  .btn:active { transform: translateY(0); }
 
   .btn--primary {
     background-color: var(--color-bitter);
@@ -415,6 +460,18 @@ const faqs = [
     padding: var(--section-py) 0;
     position: relative;
     overflow: hidden;
+  }
+
+  /* Ambient glow blobs */
+  .s-how::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 45% at 85% 15%, color-mix(in srgb, var(--color-bitter) 8%, transparent), transparent),
+      radial-gradient(ellipse 40% 55% at 5% 85%, color-mix(in srgb, var(--color-basilico) 12%, transparent), transparent);
   }
 
   .how-bg-img {
@@ -492,7 +549,16 @@ const faqs = [
     gap: var(--space-md);
     position: relative;
     padding-bottom: 5px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .step.is-visible { opacity: 1; transform: none; }
+  .step:nth-child(2) { transition-delay: 0.12s; }
+  .step:nth-child(3) { transition-delay: 0.24s; }
 
   .step:last-child { padding-bottom: 0; }
 
@@ -752,6 +818,29 @@ const faqs = [
     flex-direction: column;
     justify-content: flex-end;
     border: 1px solid color-mix(in srgb, var(--color-panna) 30%, transparent);
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    transition:
+      opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    transition-delay: var(--stagger, 0s);
+  }
+
+  .req-item.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .req-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 52px -10px rgba(0,0,0,0.45);
+    border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent);
+  }
+
+  .req-item.is-visible:hover {
+    transform: translateY(-5px);
   }
 
   .req-item::after {
@@ -1212,15 +1301,62 @@ const faqs = [
     });
   });
 
-  // Reveal animations
+  function makeVisible(el: Element) {
+    el.classList.add('is-visible');
+  }
+
   requestAnimationFrame(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
-      { threshold: 0.05 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    setTimeout(() => {
-      document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
-    }, 2500);
+    // Step stagger — trigger when step-list enters viewport
+    const stepSection = document.querySelector('.s-how');
+    if (stepSection) {
+      const steps = stepSection.querySelectorAll('.step');
+      const stepObs = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            steps.forEach(makeVisible);
+            stepObs.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      stepObs.observe(stepSection);
+    }
+
+    // req-item stagger — trigger when grid enters viewport
+    const reqGrid = document.querySelector('.req-grid');
+    if (reqGrid) {
+      const reqItems = reqGrid.querySelectorAll('.req-item');
+      const reqObs = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            reqItems.forEach(makeVisible);
+            reqObs.disconnect();
+          }
+        },
+        { threshold: 0.08 }
+      );
+      reqObs.observe(reqGrid);
+    }
+
+    // Universal .reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+      const revealObs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); revealObs.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      revealEls.forEach(el => revealObs.observe(el));
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible), .step:not(.is-visible), .req-item:not(.is-visible)').forEach(makeVisible);
+      }, 2500);
+    }
   });
+
+  // Hero parallax — reduced-motion safe
+  const heroBgImg = document.querySelector<HTMLImageElement>('.s-hero .hero-bg img');
+  if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', () => {
+      heroBgImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+    }, { passive: true });
+  }
 </script>
