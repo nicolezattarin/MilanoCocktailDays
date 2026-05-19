@@ -97,8 +97,8 @@ const faqs = [
 
   <!-- COSA OTTIENI ------------------------------------------ -->
   <section class="s-benefits" aria-labelledby="benefits-h2">
-    <div class="wrap">
-      <div class="section-header reveal">
+    <div class="wrap benefits-inner">
+      <div class="benefits-lead reveal">
         <p class="overline--dark">Cosa ottieni</p>
         <h2 id="benefits-h2" class="section-h2--dark">
           Valore reale.<br />Nessun rischio.
@@ -508,6 +508,19 @@ const faqs = [
 
   .s-benefits .wrap { position: relative; z-index: 1; }
 
+  .benefits-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .benefits-lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
   .overline--dark {
     font-family: var(--font-body);
     font-size: var(--text-label);
@@ -530,7 +543,7 @@ const faqs = [
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .benefit-card {
@@ -538,7 +551,7 @@ const faqs = [
     background-color: var(--color-panna);
     border: 0.5px solid var(--color-panna-300);
     border-radius: var(--radius-md);
-    padding: var(--space-md);
+    padding: var(--space-sm) calc(var(--space-sm) * 1.25);
     overflow: hidden;
     transition:
       transform 0.38s cubic-bezier(0.16,1,0.3,1),
@@ -576,11 +589,11 @@ const faqs = [
     display: block;
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2rem, 3vw, 2.75rem);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
     color: var(--color-bitter);
     opacity: 0.22;
     line-height: 1;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
     letter-spacing: -0.04em;
     transition: opacity 0.38s ease;
   }
@@ -906,9 +919,10 @@ const faqs = [
     inset: 0;
     z-index: 1;
     background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-inchiostro) 50%, transparent) 0%,
-      color-mix(in srgb, var(--color-inchiostro) 65%, transparent) 100%
+      to right,
+      color-mix(in srgb, var(--color-inchiostro) 70%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 20%, transparent) 65%,
+      transparent 100%
     );
   }
 
@@ -920,12 +934,6 @@ const faqs = [
     align-items: flex-start;
     gap: var(--space-sm);
     max-width: 560px;
-    padding: 36px 44px;
-    background: color-mix(in srgb, var(--color-inchiostro) 30%, transparent);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
-    border-radius: var(--radius-md);
   }
 
   .cta-star {
@@ -941,15 +949,17 @@ const faqs = [
     color: var(--color-panna);
     line-height: 1.05;
     margin: 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
   }
 
   .cta-video-sub {
     font-family: var(--font-body);
     font-size: var(--text-body);
     color: var(--color-panna);
-    opacity: 0.8;
+    opacity: 0.9;
     line-height: 1.65;
     margin: 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
 
   .cta-video-btn {
@@ -1022,6 +1032,7 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
+    .benefits-inner { grid-template-columns: 1fr; }
     .benefits-grid  { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
     .criteria-inner { grid-template-columns: 1fr; }
