@@ -421,6 +421,9 @@ const faqs = [
     position: absolute;
     inset: 0 0 0 42%;
     z-index: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   .how-bg-img img {
@@ -441,6 +444,8 @@ const faqs = [
       color-mix(in srgb, var(--color-fumo) 20%, transparent) 78%,
       transparent 100%
     );
+    opacity: 1;
+    font-weight: 900;
   }
 
   .how-inner {
@@ -712,7 +717,9 @@ const faqs = [
   .req-inner {
     display: grid;
     grid-template-columns: 200px 1fr;
-    gap: clamp(3rem, 7vw, 6rem);
+    gap: 200px;
+    margin-right: auto;
+    margin-left: auto;
     align-items: center;
   }
 
@@ -725,7 +732,12 @@ const faqs = [
   .req-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+    gap: 20px;
+    margin-left: auto;
+    flex-grow: 1;
+    width: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .req-item {
@@ -876,13 +888,21 @@ const faqs = [
   .s-app {
     background-color: var(--color-fumo);
     padding: 70px 0;
+    display: flex;
+    align-items: stretch;
   }
 
   .app-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     gap: var(--space-xl);
     align-items: center;
+    overflow: auto;
+    flex-grow: 1;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: flex-start;
   }
 
   .app-content {
