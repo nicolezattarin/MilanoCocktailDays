@@ -126,8 +126,26 @@ const faqs = [
         fetchpriority="high" loading="eager"
       />
     </picture>
-    <div class="hero-overlay" aria-hidden="true"></div>
 
+    <div class="hero-card-wrapper">
+      <div class="hero-card">
+        <div class="wrap hero-inner">
+          <p class="hero-overline">Milano · Aprile–Maggio 2027</p>
+
+          <div class="hero-h1-wrap mcw-bracket">
+            <h1 id="home-h1" class="hero-h1">
+              Un pass.<br /><em>La città</em><br />intera.
+            </h1>
+          </div>
+
+          <p class="hero-sub">La prima settimana dedicata al cocktail a Milano.</p>
+
+          <div class="hero-cta">
+            <a href="/partecipa" class="btn btn--primary">Voglio partecipare</a>
+            <a href="/bar" class="btn btn--ghost">Sei un bar →</a>
+            <a href="/sponsor" class="btn btn--ghost">Diventa sponsor →</a>
+          </div>
+        </div>
     <div class="wrap hero-inner">
       <img src="/logos/logo_3_v.FINAL/Panna.svg" alt="Milan Cocktail Days" class="hero-logo" />
 
@@ -233,6 +251,16 @@ const faqs = [
   <section class="s-perchi" aria-labelledby="perchi-h2">
     <div class="perchi-layout">
 
+  <!-- SOCIAL PROOF ------------------------------------------ -->
+  <section class="s-proof" aria-labelledby="proof-h2">
+    <div class="wrap proof-inner">
+      <div class="proof-visual">
+        <img src="https://images.unsplash.com/photo-1514432324607-2e467f4af3fb?w=600&h=400&fit=crop" alt="CocktailX Munich event" class="proof-image" />
+      </div>
+      <div class="proof-text">
+        <p class="section-overline">Il modello funziona</p>
+        <h2 id="proof-h2" class="section-h2">
+          Già testato.<br />Ora a Milano.
       <div class="perchi-content">
         <p class="section-kicker section-kicker--light perchi-reveal">Per chi è</p>
         <h2 id="perchi-h2" class="perchi-h2 perchi-reveal">
@@ -242,6 +270,19 @@ const faqs = [
           MCD non è per gli addetti ai lavori. È per chi al bancone ci sta bene,
           sa o non sa quello che ordina, e ha voglia di fare un giro che valga la pena.
         </p>
+        <div class="proof-stats">
+          <div class="stat-item">
+            <span class="stat-number">100k+</span>
+            <span class="stat-label">Ospiti totali</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">45+</span>
+            <span class="stat-label">Bar partner</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Edizioni</span>
+          </div>
 
         <ul class="perchi-occasions perchi-reveal" role="list">
           <li class="perchi-occasion">Per il sabato pomeriggio con chi ti piace.</li>
@@ -277,6 +318,78 @@ const faqs = [
         </p>
       </div>
 
+        <!-- CARD 1: Partecipanti (primary) -->
+        <article class="aud-card aud-card--primary" aria-labelledby="card-part-h3">
+          <div class="card-image-wrap">
+            <img src="https://images.unsplash.com/photo-1514432324607-2e467f4af3fb?w=500&h=300&fit=crop" alt="Partecipanti al festival" class="card-image" />
+          </div>
+          <div class="card-content">
+            <div class="aud-card-top">
+              <span class="aud-label">Partecipanti</span>
+              <span class="aud-badge">Priorità</span>
+            </div>
+            <h3 id="card-part-h3" class="aud-title">
+              Esplora Milano<br />cocktail per cocktail
+            </h3>
+            <p class="aud-desc">
+              Un pass. Tutti i bar. Cocktail signature a €6 per serata.
+              Scopri angoli di Milano che non sapevi di amare.
+            </p>
+            <ul class="aud-features" role="list">
+              <li>Pass Festival · accesso a tutti i bar</li>
+              <li>10 serate · 10 bar diversi</li>
+              <li>Cocktail signature esclusivi MCD</li>
+              <li>App con mappa e itinerari</li>
+            </ul>
+            <a href="/partecipa" class="aud-cta aud-cta--primary">
+              Entra in lista d'attesa →
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 2: Bar Partner -->
+        <article class="aud-card aud-card--secondary" aria-labelledby="card-bar-h3">
+          <div class="card-image-wrap">
+            <img src="https://images.unsplash.com/photo-1521017143531-fbd100d7d604?w=500&h=300&fit=crop" alt="Bar partner event" class="card-image" />
+          </div>
+          <div class="card-content">
+            <div class="aud-card-top">
+              <span class="aud-label aud-label--dark">Bar Partner</span>
+            </div>
+            <h3 id="card-bar-h3" class="aud-title aud-title--light">
+              Porta il tuo bar<br />nella selezione
+            </h3>
+            <p class="aud-desc aud-desc--light">
+              €0 fee. €6 fisso sul cocktail. Traffico qualificato
+              di appassionati direttamente nel tuo locale.
+            </p>
+            <a href="/bar" class="aud-cta aud-cta--ghost">
+              Candida il tuo bar →
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3: Sponsor -->
+        <article class="aud-card aud-card--tertiary" aria-labelledby="card-spo-h3">
+          <div class="card-image-wrap">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=300&fit=crop" alt="Sponsor partnership" class="card-image" />
+          </div>
+          <div class="card-content">
+            <div class="aud-card-top">
+              <span class="aud-label aud-label--light">Sponsor</span>
+            </div>
+            <h3 id="card-spo-h3" class="aud-title aud-title--light">
+              Raggiungi chi<br />conosce il settore
+            </h3>
+            <p class="aud-desc aud-desc--light">
+              Brand beverage, tech e mobility. Un pubblico premium,
+              un contesto curato, un evento in crescita.
+            </p>
+            <a href="/sponsor" class="aud-cta aud-cta--ghost">
+              Parliamone →
+            </a>
+          </div>
+        </article>
       <div class="criteria-grid">
         {criteria.map(({ title, desc, img }, i) => (
           <div class:list={['criterion-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
@@ -454,6 +567,8 @@ const faqs = [
     min-height: 80svh;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    padding: var(--section-py) 0;
     padding: clamp(2rem, 5vw, 4rem) 0;
     overflow: hidden;
   }
@@ -468,13 +583,32 @@ const faqs = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 80% center;
+    object-position: center;
   }
 
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
+  .hero-card-wrapper {
+    position: relative;
     z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.15) 25%,
+      transparent 60%
+    );
+  }
+
+  .hero-card {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    opacity: 1;
     background: linear-gradient(
       to right,
       color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 0%,
@@ -484,12 +618,11 @@ const faqs = [
   }
 
   .hero-inner {
-    position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
+    max-width: 500px;
     max-width: 100%;
     margin: 0 auto;
     padding: 24px 40px;
@@ -525,6 +658,18 @@ const faqs = [
   .hero-h1 {
     font-family: var(--font-display);
     font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-panna);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--color-panna);
+  }
+
     font-size: clamp(2rem, 4.5vw, 4rem);
     color: var(--color-panna);
     line-height: 1.05;
@@ -535,6 +680,8 @@ const faqs = [
   .hero-sub {
     font-family: var(--font-body);
     font-size: var(--text-body-lg);
+    color: var(--color-panna);
+    line-height: 1.5;
     color: var(--color-pesco-300);
     line-height: 1.6;
     margin: 0;
@@ -568,11 +715,107 @@ const faqs = [
     border-color: var(--color-bitter-500);
   }
 
+  .btn--ghost {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-panna);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btn--ghost:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: var(--color-panna);
+  }
+
+  /* ---- SOCIAL PROOF ------------------------------------- */
+  .s-proof {
+    background-color: var(--color-avorio);
+    padding: var(--section-py) 0;
+  }
+
+  .proof-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .proof-visual {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .proof-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-panna-300);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 900;
+    color: var(--color-bitter);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-basilico);
+    opacity: 0.7;
+  }
+
+  .section-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .section-overline--center {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
   .btn--final {
     background-color: var(--color-bitter);
     color: var(--color-panna);
     border: 1px solid var(--color-bitter);
     font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ---- 3 AUDIENCE CARDS --------------------------------- */
+  .s-cards {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
     padding: 1rem 2.5rem;
     margin-top: 0;
   }
@@ -646,6 +889,44 @@ const faqs = [
     z-index: 1;
   }
 
+  .aud-card {
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .aud-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-image-wrap {
+    overflow: hidden;
+    height: 200px;
+  }
+
+  .card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .aud-card:hover .card-image {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    flex-grow: 1;
   .how-card {
     background-color: color-mix(in srgb, var(--color-panna) 5%, var(--color-mora));
     border: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
@@ -706,6 +987,21 @@ const faqs = [
     height: clamp(1.5rem, 3vw, 2rem);
   }
 
+  .aud-label--dark {
+    color: var(--color-panna);
+    opacity: 0.7;
+  }
+
+  .aud-badge {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
   .how-card-icon :global(svg) {
     width: 100%;
     height: 100%;
@@ -1648,6 +1944,18 @@ const faqs = [
 
   /* ── RESPONSIVE ───────────────────────────────────────────── */
   @media (max-width: 900px) {
+    .proof-inner {
+      grid-template-columns: 1fr;
+    }
+    .proof-visual {
+      order: -1;
+    }
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .proof-stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
     .how-steps        { grid-template-columns: 1fr; }
     .how-connector    { display: none; }
     .why-wrap         { grid-template-columns: 1fr; }
@@ -1664,13 +1972,20 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
+    .hero-card-wrapper {
+      padding-left: 1rem;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        transparent 75%
+      );
+    }
+    .hero-card {
+      padding: var(--space-md);
+    }
     .hero-inner {
       max-width: 100%;
-      margin-left: 0;
-    }
-    .hero-overlay {
-      background: var(--color-panna);
-      opacity: 0.92;
     }
     .hero-h1         { font-size: clamp(1.75rem, 8vw, 3rem); }
     .how-h2          { font-size: clamp(2.5rem, 10vw, 4rem); }
