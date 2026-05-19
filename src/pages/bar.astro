@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaBanner from '../components/CtaBanner.astro';
 
 const ospiteSteps = [
   { n: '01', title: 'ACQUISTA IL PASS',      desc: 'I partecipanti acquistano il Pass Festival prima del festival. Tu non fai nulla.' },
-  { n: '02', title: 'PRENOTA LO SLOT',       desc: 'Tramite app MCD prenotano un orario nel tuo bar. Sai in anticipo quante persone aspettarti.' },
+  { n: '02', title: 'SCEGLI IL BAR',       desc: 'Tramite app MCD possono visionare i bar disponibili e scegliere dove andare.' },
   { n: '03', title: 'ORDINA E DEGUSTA',      desc: 'Arrivano, mostrano il pass, ordinano il tuo cocktail signature. €6 fisso — tu incassi.' },
 ];
 
@@ -16,10 +15,9 @@ const benefits = [
 ];
 
 const requirements = [
-  { icon: '€', label: 'Fee di adesione',  val: '€0 — partecipazione gratuita' },
-  { icon: '🍸', label: 'Prezzo cocktail', val: '€6 fisso per il cocktail signature MCD' },
-  { icon: '📅', label: 'Serate minime',   val: 'Almeno 3 serate su 10 del festival' },
-  { icon: '✦', label: 'Cocktail MCD',     val: 'Una ricetta signature creata per l\'evento' },
+  { label: 'Fee di adesione', val: '€0',    sub: 'Partecipare non costa nulla.',          img: '/images/bar_photo1.jpg' },
+  { label: 'Prezzo cocktail', val: '€6',    sub: 'Fisso per ogni cocktail signature MCD.',img: '/images/Person Holding Glass Photo.jpg' },
+  { label: 'Cocktail MCD',   val: '×1',    sub: "Una ricetta tua, esclusiva per l'evento.", img: '/images/Photo by Mediha Ekici.jpg' },
 ];
 
 const criteria = [
@@ -54,6 +52,14 @@ const faqs = [
 
   <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="bar-h1">
+    <picture class="hero-bg" aria-hidden="true">
+      <img
+        src="/images/Andrea De Santis Photo.jpg"
+        alt=""
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
+      />
+    </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="hero-overline">Bar Partner · Selezione Aperta</p>
@@ -69,40 +75,47 @@ const faqs = [
 
   <!-- COME FUNZIONA PER I TUOI OSPITI ----------------------- -->
   <section class="s-how" aria-labelledby="how-h2">
-    <div class="wrap">
-      <div class="section-header">
-        <p class="overline">Come funziona per i tuoi ospiti</p>
-        <h2 id="how-h2" class="section-h2">Tre passi.<br />Zero complessità operativa.</h2>
+    <div class="how-bg-img" aria-hidden="true">
+      <img src="/images/Louis Hansel Photo.jpg" alt="" width="900" height="1200" loading="lazy" />
+    </div>
+    <div class="how-bg-overlay" aria-hidden="true"></div>
+    <div class="wrap how-inner">
+      <div class="how-content">
+        <div class="section-header">
+          <p class="overline">Come funziona per i tuoi ospiti</p>
+          <h2 id="how-h2" class="section-h2">Tre passi.<br />Zero complessità operativa.</h2>
+        </div>
+        <ol class="step-list" role="list">
+          {ospiteSteps.map(({ n, title, desc }) => (
+            <li class="step">
+              <span class="step-n" aria-hidden="true">{n}</span>
+              <div class="step-body">
+                <h3 class="step-title">{title}</h3>
+                <p class="step-desc">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-      <ol class="step-list" role="list">
-        {ospiteSteps.map(({ n, title, desc }) => (
-          <li class="step">
-            <span class="step-n" aria-hidden="true">{n}</span>
-            <div class="step-body">
-              <h3 class="step-title">{title}</h3>
-              <p class="step-desc">{desc}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
     </div>
   </section>
 
   <!-- COSA OTTIENI ------------------------------------------ -->
   <section class="s-benefits" aria-labelledby="benefits-h2">
-    <div class="wrap">
-      <div class="section-header">
+    <div class="wrap benefits-inner">
+      <div class="benefits-lead reveal">
         <p class="overline--dark">Cosa ottieni</p>
         <h2 id="benefits-h2" class="section-h2--dark">
           Valore reale.<br />Nessun rischio.
         </h2>
       </div>
       <div class="benefits-grid">
-        {benefits.map(({ title, desc }) => (
-          <div class="benefit-card">
-            <span class="benefit-star" aria-hidden="true">✶</span>
+        {benefits.map(({ title, desc }, i) => (
+          <div class="benefit-card reveal" style={`--stagger: ${i * 0.12}s`}>
+            <span class="benefit-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="benefit-title">{title}</h3>
             <p class="benefit-desc">{desc}</p>
+            <div class="benefit-glow" aria-hidden="true"></div>
           </div>
         ))}
       </div>
@@ -111,20 +124,21 @@ const faqs = [
 
   <!-- COSA TI CHIEDIAMO ------------------------------------- -->
   <section class="s-req" aria-labelledby="req-h2">
-    <div class="wrap">
-      <div class="section-header">
+    <div class="wrap req-inner">
+      <div class="req-lead">
         <p class="overline">Cosa ti chiediamo</p>
         <h2 id="req-h2" class="section-h2">
           Semplice.<br />Sostenibile.
         </h2>
       </div>
       <div class="req-grid">
-        {requirements.map(({ icon, label, val }) => (
-          <div class="req-item">
-            <span class="req-icon" aria-hidden="true">{icon}</span>
-            <div>
+        {requirements.map(({ label, val, sub, img }) => (
+          <div class="req-item" style={`--req-bg: url('${img}')`}>
+            <div class="req-img-overlay" aria-hidden="true"></div>
+            <div class="req-content">
               <p class="req-label">{label}</p>
               <p class="req-val">{val}</p>
+              <p class="req-sub">{sub}</p>
             </div>
           </div>
         ))}
@@ -191,30 +205,26 @@ const faqs = [
     </div>
   </section>
 
-  <!-- FAQ --------------------------------------------------- -->
-  <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap">
-      <h2 id="faq-h2" class="section-h2--dark">Domande frequenti</h2>
-      <dl class="faq-list">
-        {faqs.map(({ q, a }) => (
-          <div class="faq-item">
-            <dt class="faq-q">{q}</dt>
-            <dd class="faq-a">{a}</dd>
-          </div>
-        ))}
-      </dl>
+  <!-- CTA BANNER -------------------------------------------- -->
+  <section class="s-cta-video" aria-labelledby="cta-video-h2">
+    <video
+      class="cta-video-bg"
+      aria-hidden="true"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="/images/Video 1920x1080 from Luca Ferrara.mp4" type="video/mp4" />
+    </video>
+    <div class="cta-video-overlay" aria-hidden="true"></div>
+    <div class="wrap cta-video-inner">
+      <span class="cta-star" aria-hidden="true">✶</span>
+      <h2 id="cta-video-h2" class="cta-video-title">Vuoi far parte<br />della selezione?</h2>
+      <p class="cta-video-sub">La candidatura è gratuita e non vincolante.</p>
+      <a href="#form" class="cta-video-btn cta-partner">Candida il tuo bar →</a>
     </div>
   </section>
-
-  <!-- CTA BANNER -------------------------------------------- -->
-  <CtaBanner
-    title="Vuoi far parte della selezione?"
-    subtitle="La candidatura è gratuita e non vincolante."
-    ctaText="Candida il tuo bar →"
-    ctaHref="#form"
-    variant="borgogna"
-    ctaClass="cta-partner"
-  />
 
   <!-- FORM CANDIDATURA -------------------------------------- -->
   <section class="s-form" id="form" aria-labelledby="form-h2">
@@ -238,6 +248,30 @@ const faqs = [
     </div>
   </section>
 
+  <!-- FAQ --------------------------------------------------- -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header reveal">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande<br />frequenti.</h2>
+      </div>
+
+      <div class="faq-list reveal reveal-d1" id="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              {q}
+              <span class="faq-icon" aria-hidden="true">✶</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
@@ -247,6 +281,21 @@ const faqs = [
     padding: 0 2rem;
   }
 
+  /* ---- Reveal animations -------------------------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
   /* ---- HERO (dark) --------------------------------------- */
   .s-hero {
     position: relative;
@@ -254,15 +303,31 @@ const faqs = [
     display: flex;
     align-items: center;
     padding: var(--section-py) 0;
-    background-color: var(--color-basilico);
     overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, color-mix(in srgb, var(--color-bitter) 8%, transparent) 0%, transparent 70%);
     z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-inchiostro) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 62%, transparent) 100%
+    );
   }
 
   .hero-inner {
@@ -272,7 +337,13 @@ const faqs = [
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
-    max-width: 620px;
+    max-width: 720px;
+    padding: 32px 40px;
+    background: color-mix(in srgb, var(--color-inchiostro) 30%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
+    border-radius: var(--radius-md);
   }
 
   .hero-overline {
@@ -342,6 +413,43 @@ const faqs = [
   .s-how {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .how-bg-img {
+    position: absolute;
+    inset: 0 0 0 42%;
+    z-index: 0;
+  }
+
+  .how-bg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .how-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      115deg,
+      var(--color-fumo) 38%,
+      color-mix(in srgb, var(--color-fumo) 72%, transparent) 58%,
+      color-mix(in srgb, var(--color-fumo) 20%, transparent) 78%,
+      transparent 100%
+    );
+  }
+
+  .how-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .how-content {
+    max-width: 52%;
   }
 
   .overline {
@@ -369,29 +477,53 @@ const faqs = [
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: 0;
+    max-width: 560px;
   }
 
   .step {
     display: flex;
     align-items: flex-start;
     gap: var(--space-md);
-    padding-top: var(--space-sm);
-    border-top: var(--border-hairline-dark);
+    position: relative;
+    padding-bottom: 5px;
+  }
+
+  .step:last-child { padding-bottom: 0; }
+
+  /* dashed connector */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 31px;
+    top: 64px;
+    bottom: 0;
+    width: 0;
+    border-left: 2px dashed color-mix(in srgb, var(--color-bitter) 38%, transparent);
   }
 
   .step-n {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-bitter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2.5rem, 4vw, 3.75rem);
-    color: var(--color-bitter);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 80px;
-    letter-spacing: -0.03em;
+    font-size: 1.15rem;
+    color: var(--color-panna);
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+    box-shadow:
+      0 0 0 5px color-mix(in srgb, var(--color-bitter) 18%, transparent),
+      0 4px 20px color-mix(in srgb, var(--color-bitter) 40%, transparent);
   }
 
-  .step-body { padding-top: 6px; }
+  .step-body { padding-top: 18px; }
 
   .step-title {
     font-family: var(--font-display);
@@ -413,7 +545,47 @@ const faqs = [
   /* ---- BENEFITS (avorio) --------------------------------- */
   .s-benefits {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-mora) 7%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+    padding: 70px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s-benefits::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-bitter) 10%, transparent) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .s-benefits .wrap { position: relative; z-index: 1; }
+
+  .benefits-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .benefits-lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .overline--dark {
@@ -438,21 +610,81 @@ const faqs = [
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .benefit-card {
+    position: relative;
     background-color: var(--color-panna);
     border: 0.5px solid var(--color-panna-300);
     border-radius: var(--radius-md);
-    padding: var(--space-md);
+    padding: var(--space-sm) calc(var(--space-sm) * 1.25);
+    overflow: hidden;
+    transition:
+      transform 0.38s cubic-bezier(0.16,1,0.3,1),
+      box-shadow 0.38s cubic-bezier(0.16,1,0.3,1),
+      border-color 0.38s ease,
+      opacity 0.7s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .benefit-star {
+  .benefit-card:not(.is-visible) {
+    transition-delay: var(--stagger, 0s);
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px -10px color-mix(in srgb, var(--color-mora) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-basilico) 30%, transparent);
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-bitter), var(--color-basilico));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .benefit-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .benefit-num {
     display: block;
-    color: var(--color-basilico);
-    font-size: 1.25rem;
-    margin-bottom: var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: var(--color-bitter);
+    opacity: 0.22;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.04em;
+    transition: opacity 0.38s ease;
+  }
+
+  .benefit-card:hover .benefit-num {
+    opacity: 0.5;
+  }
+
+  .benefit-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 60% 0%,
+      color-mix(in srgb, var(--color-bitter) 9%, transparent),
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .benefit-card:hover .benefit-glow {
+    opacity: 1;
   }
 
   .benefit-title {
@@ -474,28 +706,80 @@ const faqs = [
   /* ---- COSA TI CHIEDIAMO (fumo) -------------------------- */
   .s-req {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
+  }
+
+  .req-inner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .req-lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .req-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
   }
 
   .req-item {
-    display: flex;
-    gap: var(--space-sm);
-    align-items: flex-start;
-    padding: var(--space-md);
-    background-color: var(--color-marmo);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
+    position: relative;
+    background-image: var(--req-bg);
+    background-size: cover;
+    background-position: center;
     border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
   }
 
-  .req-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
+  .req-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--color-panna) 22%, transparent);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .req-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-inchiostro) 97%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 75%, transparent) 40%,
+      color-mix(in srgb, var(--color-inchiostro) 30%, transparent) 75%,
+      color-mix(in srgb, var(--color-inchiostro) 10%, transparent) 100%
+    );
+  }
+
+  .req-item:nth-child(1) .req-img-overlay {
+    max-width: 5000px;
+  }
+
+  .req-item:nth-child(2) .req-img-overlay,
+  .req-item:nth-child(3) .req-img-overlay {
+    max-width: 500px;
+  }
+
+  .req-content {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--space-md);
   }
 
   .req-label {
@@ -503,24 +787,37 @@ const faqs = [
     font-size: var(--text-label);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     color: var(--color-panna);
-    opacity: 0.6;
-    margin: 0 0 4px;
+    opacity: 0.55;
+    margin: 0;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
   }
 
   .req-val {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    color: var(--color-panna);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+
+  .req-sub {
     font-family: var(--font-body);
     font-size: var(--text-small);
     color: var(--color-pesco-300);
     line-height: 1.5;
-    margin: 0;
+    margin: 4px 0 0;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.7);
   }
 
   /* ---- CRITERI SELEZIONE (avorio) ------------------------ */
   .s-criteria {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
   }
 
   .criteria-inner {
@@ -578,7 +875,7 @@ const faqs = [
   /* ---- APP (fumo) ---------------------------------------- */
   .s-app {
     background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
+    padding: 70px 0;
   }
 
   .app-inner {
@@ -656,39 +953,168 @@ const faqs = [
 
   /* ---- FAQ (avorio) ------------------------------------- */
   .s-faq {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    background-color: var(--color-panna);
+    padding: clamp(3rem, 6vw, 5rem) 0;
   }
 
-  .s-faq .section-h2--dark { margin-bottom: var(--space-lg); }
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .faq-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--color-mora);
+    line-height: 0.97;
+    margin: 0;
+    letter-spacing: -0.03em;
+  }
 
   .faq-list {
     display: flex;
     flex-direction: column;
-    max-width: 760px;
   }
 
   .faq-item {
-    padding: var(--space-md) 0;
     border-top: 0.5px solid var(--color-panna-300);
   }
 
-  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+  .faq-item:last-child {
+    border-bottom: 0.5px solid var(--color-panna-300);
+  }
 
   .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    cursor: pointer;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-body);
     color: var(--color-mora);
-    margin: 0 0 var(--space-xs);
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    color: var(--color-bitter);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    font-size: 0.9em;
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
   }
 
   .faq-a {
     font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro-500);
-    line-height: 1.7;
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.75;
     margin: 0;
+    padding: 0 var(--space-lg) var(--space-md) 0;
+  }
+
+  /* ---- CTA VIDEO ---------------------------------------- */
+  .s-cta-video {
+    position: relative;
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    overflow: hidden;
+  }
+
+  .cta-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .cta-video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-inchiostro) 70%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 20%, transparent) 65%,
+      transparent 100%
+    );
+  }
+
+  .cta-video-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    max-width: 560px;
+  }
+
+  .cta-star {
+    color: var(--color-panna);
+    font-size: 1.6rem;
+    opacity: 0.5;
+  }
+
+  .cta-video-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin: 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  .cta-video-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-panna);
+    opacity: 0.9;
+    line-height: 1.65;
+    margin: 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .cta-video-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+    margin-top: var(--space-xs);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .cta-video-btn:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
   }
 
   /* ---- FORM (fumo) -------------------------------------- */
@@ -726,11 +1152,55 @@ const faqs = [
   .tally-wrap { max-width: 760px; }
 
   /* ---- RESPONSIVE --------------------------------------- */
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+
   @media (max-width: 768px) {
+    .how-bg-img     { display: none; }
+    .how-bg-overlay { display: none; }
+    .how-content    { max-width: 100%; }
+    .benefits-inner { grid-template-columns: 1fr; }
     .benefits-grid  { grid-template-columns: 1fr; }
+    .req-inner      { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
+    .req-item       { min-height: 260px; }
     .criteria-inner { grid-template-columns: 1fr; }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
+    .faq-wrap       { grid-template-columns: 1fr; }
+    .faq-header     { position: static; }
   }
 </style>
+
+<script>
+  // FAQ accordion — close others on open
+  document.querySelectorAll('.faq-item').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if ((detail as HTMLDetailsElement).open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== detail) (other as HTMLDetailsElement).open = false;
+        });
+      }
+    });
+  });
+
+  // Reveal animations
+  requestAnimationFrame(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.05 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+    }, 2500);
+  });
+</script>
