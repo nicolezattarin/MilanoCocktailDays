@@ -15,10 +15,9 @@ const benefits = [
 ];
 
 const requirements = [
-  { icon: '€', label: 'Fee di adesione',  val: '€0 — partecipazione gratuita' },
-  { icon: '🍸', label: 'Prezzo cocktail', val: '€6 fisso per il cocktail signature MCD' },
-  { icon: '📅', label: 'Serate minime',   val: 'Almeno 3 serate su 10 del festival' },
-  { icon: '✦', label: 'Cocktail MCD',     val: 'Una ricetta signature creata per l\'evento' },
+  { icon: '€',  label: 'Fee di adesione', val: '€0 — partecipazione gratuita',                       img: '/images/bar_photo1.jpg' },
+  { icon: '🍸', label: 'Prezzo cocktail', val: '€6 fisso per il cocktail signature MCD',              img: '/images/Person Holding Glass Photo.jpg' },
+  { icon: '✦',  label: 'Cocktail MCD',   val: "Una ricetta signature creata per l'evento",            img: '/images/Photo by Mediha Ekici.jpg' },
 ];
 
 const criteria = [
@@ -127,12 +126,15 @@ const faqs = [
         </h2>
       </div>
       <div class="req-grid">
-        {requirements.map(({ icon, label, val }) => (
-          <div class="req-item">
-            <span class="req-icon" aria-hidden="true">{icon}</span>
-            <div>
-              <p class="req-label">{label}</p>
-              <p class="req-val">{val}</p>
+        {requirements.map(({ icon, label, val, img }) => (
+          <div class="req-item" style={`--req-bg: url('${img}')`}>
+            <div class="req-img-overlay" aria-hidden="true"></div>
+            <div class="req-content">
+              <span class="req-icon" aria-hidden="true">{icon}</span>
+              <div>
+                <p class="req-label">{label}</p>
+                <p class="req-val">{val}</p>
+              </div>
             </div>
           </div>
         ))}
@@ -644,18 +646,42 @@ const faqs = [
 
   .req-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
   }
 
   .req-item {
+    position: relative;
+    background-image: var(--req-bg);
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
+  }
+
+  .req-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-inchiostro) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 50%,
+      color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 100%
+    );
+  }
+
+  .req-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     gap: var(--space-sm);
     align-items: flex-start;
     padding: var(--space-md);
-    background-color: var(--color-marmo);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
-    border-radius: var(--radius-md);
   }
 
   .req-icon {
@@ -1035,6 +1061,7 @@ const faqs = [
     .benefits-inner { grid-template-columns: 1fr; }
     .benefits-grid  { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
+    .req-item       { min-height: 260px; }
     .criteria-inner { grid-template-columns: 1fr; }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
