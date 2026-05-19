@@ -206,7 +206,7 @@ const faqs = [
   <section class="s-cta-video" aria-labelledby="cta-video-h2">
     <picture class="cta-video-bg" aria-hidden="true">
       <img
-        src="/images/Carson Masterson Photo.jpg"
+        src="/images/Iris Yan Unsplash.jpg"
         alt=""
         width="1920" height="1080"
         loading="lazy"
@@ -543,7 +543,7 @@ const faqs = [
   /* ── MODEL ───────────────────────────────────────────────── */
   .s-model {
     background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
     overflow: hidden;
   }
 
@@ -621,6 +621,14 @@ const faqs = [
     margin: 0 0 var(--space-sm);
   }
 
+  .model-table-side {
+    background-color: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: 0 8px 32px -8px color-mix(in srgb, var(--color-mora) 10%, transparent);
+  }
+
   .table-label {
     font-family: var(--font-body);
     font-size: var(--text-label);
@@ -652,7 +660,7 @@ const faqs = [
   }
 
   .proof-table td {
-    padding: 12px 12px 12px 0;
+    padding: 10px 12px 10px 0;
     color: var(--color-inchiostro);
     border-bottom: 0.5px solid var(--color-panna-300);
   }
