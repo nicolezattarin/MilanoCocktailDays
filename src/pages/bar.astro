@@ -75,22 +75,28 @@ const faqs = [
 
   <!-- COME FUNZIONA PER I TUOI OSPITI ----------------------- -->
   <section class="s-how" aria-labelledby="how-h2">
-    <div class="wrap">
-      <div class="section-header">
-        <p class="overline">Come funziona per i tuoi ospiti</p>
-        <h2 id="how-h2" class="section-h2">Tre passi.<br />Zero complessità operativa.</h2>
+    <div class="how-bg-img" aria-hidden="true">
+      <img src="/images/Louis Hansel Photo.jpg" alt="" width="900" height="1200" loading="lazy" />
+    </div>
+    <div class="how-bg-overlay" aria-hidden="true"></div>
+    <div class="wrap how-inner">
+      <div class="how-content">
+        <div class="section-header">
+          <p class="overline">Come funziona per i tuoi ospiti</p>
+          <h2 id="how-h2" class="section-h2">Tre passi.<br />Zero complessità operativa.</h2>
+        </div>
+        <ol class="step-list" role="list">
+          {ospiteSteps.map(({ n, title, desc }) => (
+            <li class="step">
+              <span class="step-n" aria-hidden="true">{n}</span>
+              <div class="step-body">
+                <h3 class="step-title">{title}</h3>
+                <p class="step-desc">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-      <ol class="step-list" role="list">
-        {ospiteSteps.map(({ n, title, desc }) => (
-          <li class="step">
-            <span class="step-n" aria-hidden="true">{n}</span>
-            <div class="step-body">
-              <h3 class="step-title">{title}</h3>
-              <p class="step-desc">{desc}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
     </div>
   </section>
 
@@ -406,7 +412,44 @@ const faqs = [
   /* ---- COME FUNZIONA (fumo) ------------------------------ */
   .s-how {
     background-color: var(--color-fumo);
-    padding: 50px 0 70px;
+    padding: var(--section-py) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .how-bg-img {
+    position: absolute;
+    inset: 0 0 0 42%;
+    z-index: 0;
+  }
+
+  .how-bg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .how-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      115deg,
+      var(--color-fumo) 38%,
+      color-mix(in srgb, var(--color-fumo) 72%, transparent) 58%,
+      color-mix(in srgb, var(--color-fumo) 20%, transparent) 78%,
+      transparent 100%
+    );
+  }
+
+  .how-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .how-content {
+    max-width: 52%;
   }
 
   .overline {
@@ -1111,6 +1154,9 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
+    .how-bg-img     { display: none; }
+    .how-bg-overlay { display: none; }
+    .how-content    { max-width: 100%; }
     .benefits-inner { grid-template-columns: 1fr; }
     .benefits-grid  { grid-template-columns: 1fr; }
     .req-inner      { grid-template-columns: 1fr; }
