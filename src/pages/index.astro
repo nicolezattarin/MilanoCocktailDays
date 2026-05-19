@@ -317,7 +317,7 @@ const faqs = [
                 <span></span><span></span><span></span>
               </div>
             </div>
-            <!-- mini map -->
+            <!-- map area -->
             <div class="phone-map">
               <div class="phone-map-grid"></div>
               <div class="phone-pin" style="top:28%;left:38%"></div>
@@ -326,11 +326,11 @@ const faqs = [
               <div class="phone-pin" style="top:68%;left:28%"></div>
               <div class="phone-pin" style="top:42%;left:78%"></div>
             </div>
-            <!-- bar card -->
+            <!-- card placeholder -->
             <div class="phone-bar-card">
               <div class="phone-bar-tag">BAR DEL FESTIVAL</div>
-              <div class="phone-bar-name">Terrazza Aperol</div>
-              <div class="phone-bar-cocktail">Negroni della Casa</div>
+              <div class="phone-bar-name"></div>
+              <div class="phone-bar-cocktail"></div>
               <div class="phone-bar-footer">
                 <div class="phone-qr-btn">
                   <div class="phone-qr-icon">
@@ -343,9 +343,9 @@ const faqs = [
             </div>
             <!-- tab bar -->
             <div class="phone-tabs">
-              <div class="phone-tab">🗺️</div>
-              <div class="phone-tab phone-tab--active">🍸</div>
-              <div class="phone-tab">👤</div>
+              <div class="phone-tab phone-tab-dot"></div>
+              <div class="phone-tab phone-tab-dot phone-tab--active"></div>
+              <div class="phone-tab phone-tab-dot"></div>
             </div>
           </div>
         </div>
@@ -1335,15 +1335,18 @@ const faqs = [
   }
 
   .phone-bar-name {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--color-panna);
-    letter-spacing: -0.01em;
+    height: 9px;
+    width: 68%;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--color-panna) 22%, transparent);
+    margin: 2px 0;
   }
 
   .phone-bar-cocktail {
-    font-size: 10px;
-    color: color-mix(in srgb, var(--color-panna) 55%, transparent);
+    height: 7px;
+    width: 44%;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--color-panna) 12%, transparent);
   }
 
   .phone-bar-footer {
@@ -1406,12 +1409,19 @@ const faqs = [
   }
 
   .phone-tab {
-    font-size: 14px;
     opacity: 0.35;
+  }
+
+  .phone-tab-dot {
+    width: 18px;
+    height: 4px;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--color-panna) 50%, transparent);
   }
 
   .phone-tab--active {
     opacity: 1;
+    background: var(--color-bitter) !important;
   }
 
   .app-content {
