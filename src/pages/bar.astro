@@ -15,9 +15,9 @@ const benefits = [
 ];
 
 const requirements = [
-  { icon: '€',  label: 'Fee di adesione', val: '€0 — partecipazione gratuita',                       img: '/images/bar_photo1.jpg' },
-  { icon: '🍸', label: 'Prezzo cocktail', val: '€6 fisso per il cocktail signature MCD',              img: '/images/Person Holding Glass Photo.jpg' },
-  { icon: '✦',  label: 'Cocktail MCD',   val: "Una ricetta signature creata per l'evento",            img: '/images/Photo by Mediha Ekici.jpg' },
+  { label: 'Fee di adesione', val: '€0',    sub: 'Partecipare non costa nulla.',          img: '/images/bar_photo1.jpg' },
+  { label: 'Prezzo cocktail', val: '€6',    sub: 'Fisso per ogni cocktail signature MCD.',img: '/images/Person Holding Glass Photo.jpg' },
+  { label: 'Cocktail MCD',   val: '×1',    sub: "Una ricetta tua, esclusiva per l'evento.", img: '/images/Photo by Mediha Ekici.jpg' },
 ];
 
 const criteria = [
@@ -126,15 +126,13 @@ const faqs = [
         </h2>
       </div>
       <div class="req-grid">
-        {requirements.map(({ icon, label, val, img }) => (
+        {requirements.map(({ label, val, sub, img }) => (
           <div class="req-item" style={`--req-bg: url('${img}')`}>
             <div class="req-img-overlay" aria-hidden="true"></div>
             <div class="req-content">
-              <span class="req-icon" aria-hidden="true">{icon}</span>
-              <div>
-                <p class="req-label">{label}</p>
-                <p class="req-val">{val}</p>
-              </div>
+              <p class="req-label">{label}</p>
+              <p class="req-val">{val}</p>
+              <p class="req-sub">{sub}</p>
             </div>
           </div>
         ))}
@@ -682,9 +680,10 @@ const faqs = [
     inset: 0;
     background: linear-gradient(
       to top,
-      color-mix(in srgb, var(--color-inchiostro) 90%, transparent) 0%,
-      color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 50%,
-      color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 100%
+      color-mix(in srgb, var(--color-inchiostro) 97%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 75%, transparent) 40%,
+      color-mix(in srgb, var(--color-inchiostro) 30%, transparent) 75%,
+      color-mix(in srgb, var(--color-inchiostro) 10%, transparent) 100%
     );
   }
 
@@ -692,14 +691,9 @@ const faqs = [
     position: relative;
     z-index: 1;
     display: flex;
-    gap: var(--space-sm);
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
     padding: var(--space-md);
-  }
-
-  .req-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
   }
 
   .req-label {
@@ -707,18 +701,31 @@ const faqs = [
     font-size: var(--text-label);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     color: var(--color-panna);
-    opacity: 0.6;
-    margin: 0 0 4px;
+    opacity: 0.55;
+    margin: 0;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
   }
 
   .req-val {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    color: var(--color-panna);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+
+  .req-sub {
     font-family: var(--font-body);
     font-size: var(--text-small);
     color: var(--color-pesco-300);
     line-height: 1.5;
-    margin: 0;
+    margin: 4px 0 0;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.7);
   }
 
   /* ---- CRITERI SELEZIONE (avorio) ------------------------ */
