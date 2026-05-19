@@ -42,18 +42,24 @@ const criteria = [
 
 const appFeatures = [
   {
+    step: '01',
+    icon: '🎫',
     title: 'Acquista il biglietto.',
-    desc: "Acquista il tuo biglietto e ottieni l'accesso all'app con tutti gli oltre 60 bar partecipanti e i loro cocktail del festival. Il tuo biglietto ti accompagnerà per 18 giorni durante tutto il festival.",
+    desc: "Un biglietto, 60 bar, 18 giorni. Accedi all'app e sblocca tutti i cocktail signature del festival.",
     wide: false,
   },
   {
-    title: 'Scopri i bar e i cocktail.',
-    desc: "Nell'app puoi vedere quali bar partecipano e quale signature cocktail puoi sbloccare lì. Ogni bar crea un cocktail unico, disponibile solo durante il festival.",
+    step: '02',
+    icon: '🗺️',
+    title: 'Scopri bar e cocktail.',
+    desc: "Mappa interattiva, schede cocktail, filtri per quartiere. Ogni bar ha una ricetta esclusiva MCD.",
     wide: false,
   },
   {
-    title: 'Scansiona e ordina.',
-    desc: "Scansiona il codice QR al bar con l'app, sblocca il signature cocktail e ordinalo direttamente sul posto a 6 €.",
+    step: '03',
+    icon: '📱',
+    title: 'Scansiona e ordina a €6.',
+    desc: "QR al bancone → cocktail sbloccato → paghi 6 €. Sempre. Nessuna sorpresa.",
     wide: true,
   },
 ];
@@ -304,26 +310,60 @@ const faqs = [
         <div class="phone-frame">
           <div class="phone-notch"></div>
           <div class="phone-screen">
-            <div class="phone-header-bar"></div>
-            <div class="phone-card-lg"></div>
-            <div class="phone-card-row">
-              <div class="phone-card-sm"></div>
-              <div class="phone-card-sm"></div>
+            <!-- status bar -->
+            <div class="phone-status">
+              <span class="phone-app-label">MCD</span>
+              <div class="phone-status-dots">
+                <span></span><span></span><span></span>
+              </div>
             </div>
-            <div class="phone-card-lg phone-card-lg--xs"></div>
+            <!-- mini map -->
+            <div class="phone-map">
+              <div class="phone-map-grid"></div>
+              <div class="phone-pin" style="top:28%;left:38%"></div>
+              <div class="phone-pin phone-pin--active" style="top:52%;left:58%"></div>
+              <div class="phone-pin" style="top:22%;left:68%"></div>
+              <div class="phone-pin" style="top:68%;left:28%"></div>
+              <div class="phone-pin" style="top:42%;left:78%"></div>
+            </div>
+            <!-- bar card -->
+            <div class="phone-bar-card">
+              <div class="phone-bar-tag">BAR DEL FESTIVAL</div>
+              <div class="phone-bar-name">Terrazza Aperol</div>
+              <div class="phone-bar-cocktail">Negroni della Casa</div>
+              <div class="phone-bar-footer">
+                <div class="phone-qr-btn">
+                  <div class="phone-qr-icon">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                  <span class="phone-qr-label">Scansiona</span>
+                </div>
+                <div class="phone-price-badge">€6</div>
+              </div>
+            </div>
+            <!-- tab bar -->
+            <div class="phone-tabs">
+              <div class="phone-tab">🗺️</div>
+              <div class="phone-tab phone-tab--active">🍸</div>
+              <div class="phone-tab">👤</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="app-content">
-        <h2 id="app-h2" class="app-h2 reveal">Un'app che ti accompagna in giro.</h2>
+        <h2 id="app-h2" class="app-h2 reveal">60 bar. 18 giorni.<br />Un'app. Sempre €6.</h2>
         <p class="app-sub reveal reveal-d1">
-          Accedi ai drink dell'evento, raccogli i tuoi punti e riscatta i premi dei partner.
+          Biglietto → mappa → QR → cocktail. Tutto in tre tap.
         </p>
 
         <div class="app-cards reveal reveal-d2">
-          {appFeatures.map(({ title, desc, wide }) => (
+          {appFeatures.map(({ step, icon, title, desc, wide }) => (
             <div class:list={['app-card', { 'app-card--wide': wide }]}>
+              <div class="app-card-header">
+                <span class="app-card-icon" aria-hidden="true">{icon}</span>
+                <span class="app-card-step" aria-hidden="true">{step}</span>
+              </div>
               <h3 class="app-card-title">{title}</h3>
               <p class="app-card-desc">{desc}</p>
             </div>
@@ -1171,55 +1211,207 @@ const faqs = [
 
   .phone-frame {
     width: 240px;
-    height: 480px;
-    border: 1.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
-    border-radius: 28px;
-    background-color: var(--color-marmo);
-    padding: 16px 12px 20px;
+    height: 500px;
+    border: 1.5px solid color-mix(in srgb, var(--color-panna) 22%, transparent);
+    border-radius: 32px;
+    background-color: #1a1520;
+    padding: 14px 12px 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-mora) 60%, transparent),
+      0 32px 64px color-mix(in srgb, var(--color-mora) 50%, transparent),
+      0 0 80px color-mix(in srgb, var(--color-bitter) 12%, transparent);
   }
 
   .phone-notch {
-    width: 60px;
-    height: 8px;
-    background-color: color-mix(in srgb, var(--color-panna) 15%, transparent);
+    width: 56px;
+    height: 7px;
+    background-color: #0d0b10;
     border-radius: 4px;
-    margin: 0 auto 6px;
+    margin: 0 auto 10px;
   }
 
   .phone-screen {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
+    overflow: hidden;
+    border-radius: 20px;
   }
 
-  .phone-header-bar {
-    height: 24px;
-    background-color: color-mix(in srgb, var(--color-basilico) 40%, transparent);
-    border-radius: var(--radius-sm);
+  /* status bar */
+  .phone-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px 4px;
+    background: #110e16;
   }
 
-  .phone-card-lg {
+  .phone-app-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--color-bitter);
+  }
+
+  .phone-status-dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .phone-status-dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-panna) 35%, transparent);
+  }
+
+  .phone-status-dots span:last-child {
+    background: var(--color-bitter);
+    opacity: 0.8;
+  }
+
+  /* map */
+  .phone-map {
     flex: 1;
-    background-color: color-mix(in srgb, var(--color-bitter) 30%, transparent);
-    border-radius: var(--radius-sm);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    position: relative;
+    background: linear-gradient(160deg, #1e1828 0%, #160f1f 50%, #0f1420 100%);
+    overflow: hidden;
   }
 
-  .phone-card-lg--xs {
-    flex: 0 0 40px;
-    background-color: color-mix(in srgb, var(--color-basilico) 20%, transparent);
+  .phone-map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--color-panna) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-panna) 4%, transparent) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 
-  .phone-card-row { display: flex; gap: 8px; height: 60px; }
+  .phone-pin {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-panna) 40%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
+    transform: translate(-50%, -50%);
+  }
 
-  .phone-card-sm {
-    flex: 1;
-    background-color: color-mix(in srgb, var(--color-panna) 10%, transparent);
-    border-radius: var(--radius-sm);
+  .phone-pin--active {
+    width: 12px;
+    height: 12px;
+    background: var(--color-bitter);
+    border-color: color-mix(in srgb, var(--color-bitter) 40%, transparent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-bitter) 60%, transparent);
+    animation: pin-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pin-pulse {
+    0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--color-bitter) 60%, transparent); }
+    50% { box-shadow: 0 0 18px color-mix(in srgb, var(--color-bitter) 80%, transparent); }
+  }
+
+  /* bar card */
+  .phone-bar-card {
+    background: #1e1828;
+    border-top: 1px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
+    padding: 10px 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .phone-bar-tag {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-bitter);
+    text-transform: uppercase;
+  }
+
+  .phone-bar-name {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--color-panna);
+    letter-spacing: -0.01em;
+  }
+
+  .phone-bar-cocktail {
+    font-size: 10px;
+    color: color-mix(in srgb, var(--color-panna) 55%, transparent);
+  }
+
+  .phone-bar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  .phone-qr-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: color-mix(in srgb, var(--color-bitter) 18%, transparent);
+    border: 0.5px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+
+  .phone-qr-icon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .phone-qr-icon span {
+    border-radius: 1px;
+    background: var(--color-bitter);
+    opacity: 0.85;
+  }
+
+  .phone-qr-label {
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--color-bitter);
+    letter-spacing: 0.05em;
+  }
+
+  .phone-price-badge {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--color-panna);
+    background: color-mix(in srgb, var(--color-bitter) 25%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-bitter) 50%, transparent);
+    border-radius: 6px;
+    padding: 2px 8px;
+    letter-spacing: -0.02em;
+  }
+
+  /* tab bar */
+  .phone-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0 6px;
+    background: #110e16;
+    border-top: 1px solid color-mix(in srgb, var(--color-panna) 8%, transparent);
+  }
+
+  .phone-tab {
+    font-size: 14px;
+    opacity: 0.35;
+  }
+
+  .phone-tab--active {
+    opacity: 1;
   }
 
   .app-content {
@@ -1257,10 +1449,42 @@ const faqs = [
     border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
     border-radius: var(--radius-sm);
     padding: var(--space-md);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .app-card:hover {
+    background-color: color-mix(in srgb, var(--color-panna) 9%, transparent);
+    border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent);
   }
 
   .app-card--wide {
     grid-column: 1 / -1;
+  }
+
+  .app-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+  }
+
+  .app-card-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .app-card-step {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-bitter);
+    opacity: 0.3;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .app-card:hover .app-card-step {
+    opacity: 0.6;
   }
 
   .app-card-title {
