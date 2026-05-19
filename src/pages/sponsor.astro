@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaBanner from '../components/CtaBanner.astro';
 
 const proofRows = [
   { ed: '1ª edizione', bar: '18', part: '600' },
@@ -11,43 +10,43 @@ const proofRows = [
 const categories = [
   {
     cat: 'Beverage',
-    icon: '🍶',
+    n: '01',
     desc: 'Spirits, soft drink, acque premium, vermouth, liquori. Il contesto perfetto: i partecipanti MCD sono consumatori consapevoli, con alta spesa media.',
     examples: 'Spirits · Soft drink · Acque premium · Vermouth',
   },
   {
     cat: 'Tech',
-    icon: '📱',
-    desc: 'App, piattaforme di booking, mobile payment, digital services. Un pubblico 25-40, urban, early adopter, con alta affinità tecnologica.',
+    n: '02',
+    desc: 'App, piattaforme di booking, mobile payment, digital services. Un pubblico 25–40, urban, early adopter, con alta affinità tecnologica.',
     examples: 'App · Booking · Pagamenti · Digital services',
   },
   {
     cat: 'Mobility',
-    icon: '🚗',
+    n: '03',
     desc: "Trasporto premium, car sharing, servizi di mobilità urbana. Chi frequenta MCD si sposta tra i quartieri ogni sera: un'opportunità unica.",
     examples: 'Car sharing · Taxi premium · Monopattini · Mobilità urbana',
   },
 ];
 
 const offerings = [
-  { val: '1.000+',    label: 'Partecipanti attesi' },
-  { val: 'TBA',       label: 'Bar partner' },
-  { val: '10',        label: 'Serate di festival' },
-  { val: '25–40',     label: 'Fascia d\'età principale' },
+  { val: '1.000+', label: "Partecipanti attesi" },
+  { val: 'TBA',    label: 'Bar partner' },
+  { val: '10',     label: 'Serate di festival' },
+  { val: '25–40',  label: "Fascia d'età principale" },
 ];
 
 const appFeatures = [
-  { title: 'Logo in evidenza',         desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.' },
-  { title: 'Prodotti in evidenza',     desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.' },
-  { title: 'Community',                desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.' },
-  { title: 'Report dati',              desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.' },
+  { title: 'Logo in evidenza',     desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.' },
+  { title: 'Prodotti in evidenza', desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.' },
+  { title: 'Community',            desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.' },
+  { title: 'Report dati',          desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.' },
 ];
 
 const faqs = [
   { q: 'Quali formati di partnership esistono?',   a: 'Logo in app, prodotti in evidenza nelle schede cocktail, masterclass co-branded, comunicazione social MCD, presenza fisica durante le serate. I pacchetti si definiscono in call.' },
-  { q: 'Ci sono esclusive di categoria?',          a: 'Sì. Per ogni categoria (beverage, tech, mobility) puntiamo a un solo partner principale. Chi si muove prima ha l\'esclusiva di categoria.' },
+  { q: 'Ci sono esclusive di categoria?',          a: "Sì. Per ogni categoria (beverage, tech, mobility) puntiamo a un solo partner principale. Chi si muove prima ha l'esclusiva di categoria." },
   { q: 'Entro quando chiudere la partnership?',    a: 'Le partnership principali vanno chiuse entro dicembre 2026 per essere integrate in tutta la comunicazione pre-festival.' },
-  { q: 'Qual è l\'investimento minimo?',           a: 'Non c\'è un listino pubblico. La call serve a capire gli obiettivi del brand e costruire un pacchetto con senso. Parliamone.' },
+  { q: "Qual è l'investimento minimo?",            a: "Non c'è un listino pubblico. La call serve a capire gli obiettivi del brand e costruire un pacchetto con senso. Parliamone." },
 ];
 ---
 
@@ -58,6 +57,14 @@ const faqs = [
 
   <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="sponsor-h1">
+    <picture class="hero-bg" aria-hidden="true">
+      <img
+        src="/images/Timothe Durand Photo from Unsplash.jpg"
+        alt=""
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
+      />
+    </picture>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="hero-overline">Sponsor · Partnership Aperte</p>
@@ -72,48 +79,67 @@ const faqs = [
     </div>
   </section>
 
-  <!-- IL MODELLO E I NUMERI --------------------------------- -->
+  <!-- STATS BAND -------------------------------------------- -->
+  <section class="s-stats" aria-label="Numeri chiave">
+    <div class="stats-glow" aria-hidden="true"></div>
+    <div class="wrap stats-inner">
+      {offerings.map(({ val, label }, i) => (
+        <div class="stat-card reveal" style={`--stagger: ${i * 0.1}s`}>
+          <span class="stat-val">{val}</span>
+          <span class="stat-label">{label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- IL MODELLO -------------------------------------------- -->
   <section class="s-model" aria-labelledby="model-h2">
+    <div class="model-bg-img" aria-hidden="true">
+      <img src="/images/Egemen Sahin Unsplash (1).jpg" alt="" width="900" height="1200" loading="lazy" />
+    </div>
+    <div class="model-bg-overlay" aria-hidden="true"></div>
     <div class="wrap model-inner">
-      <div class="model-text">
-        <p class="overline--dark">Il modello e i numeri</p>
-        <h2 id="model-h2" class="section-h2--dark">
-          Un format che funziona.<br />Una città che aspettava.
-        </h2>
-        <p class="body-text">
-          CocktailX Munich ha validato il modello: festival di bar-hopping con
-          pass unico, crescita anno su anno, comunità fedele di appassionati.
-          Milano è il mercato più maturo d'Italia per la cocktail culture —
-          e non aveva ancora un suo evento dedicato.
-        </p>
-        <p class="body-text">
-          MCD è la prima edizione. Chi entra ora co-costruisce il brand
-          con noi, con esclusiva di categoria e massima visibilità fin dal lancio.
-        </p>
-      </div>
-      <div class="model-table-side">
-        <p class="table-label">CocktailX Munich · crescita per edizione</p>
-        <table class="proof-table" aria-label="Crescita CocktailX Munich">
-          <thead>
-            <tr>
-              <th scope="col">Edizione</th>
-              <th scope="col">Bar</th>
-              <th scope="col">Partecipanti</th>
-            </tr>
-          </thead>
-          <tbody>
-            {proofRows.map(({ ed, bar, part }) => (
+      <div class="model-content">
+        <div class="model-text reveal">
+          <p class="overline--dark">Il modello e i numeri</p>
+          <h2 id="model-h2" class="section-h2--dark">
+            Un format che funziona.<br />Una città che aspettava.
+          </h2>
+          <p class="body-text">
+            CocktailX Munich ha validato il modello: festival di bar-hopping con
+            pass unico, crescita anno su anno, comunità fedele di appassionati.
+            Milano è il mercato più maturo d'Italia per la cocktail culture —
+            e non aveva ancora un suo evento dedicato.
+          </p>
+          <p class="body-text">
+            MCD è la prima edizione. Chi entra ora co-costruisce il brand
+            con noi, con esclusiva di categoria e massima visibilità fin dal lancio.
+          </p>
+        </div>
+        <div class="model-table-side reveal reveal-d1">
+          <p class="table-label">CocktailX Munich · crescita per edizione</p>
+          <table class="proof-table" aria-label="Crescita CocktailX Munich">
+            <thead>
               <tr>
-                <td>{ed}</td>
-                <td class="num-cell">{bar}</td>
-                <td class="num-cell">{part}</td>
+                <th scope="col">Edizione</th>
+                <th scope="col">Bar</th>
+                <th scope="col">Partecipanti</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div class="milan-tag">
-          <span class="milan-label">Milano</span>
-          <p class="milan-desc">4° mercato cocktail in Europa · crescita YoY +18%</p>
+            </thead>
+            <tbody>
+              {proofRows.map(({ ed, bar, part }) => (
+                <tr>
+                  <td>{ed}</td>
+                  <td class="num-cell">{bar}</td>
+                  <td class="num-cell">{part}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div class="milan-tag">
+            <span class="milan-label">Milano</span>
+            <p class="milan-desc">4° mercato cocktail in Europa · crescita YoY +18%</p>
+          </div>
         </div>
       </div>
     </div>
@@ -122,49 +148,22 @@ const faqs = [
   <!-- CATEGORIE DI PARTNERSHIP ----------------------------- -->
   <section class="s-categories" aria-labelledby="cat-h2">
     <div class="wrap">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="overline">Categorie di partnership</p>
         <h2 id="cat-h2" class="section-h2">
           Tre categorie.<br />Un solo partner per ognuna.
         </h2>
       </div>
       <div class="cat-grid">
-        {categories.map(({ cat, icon, desc, examples }) => (
-          <article class="cat-card">
-            <div class="cat-top">
-              <span class="cat-icon" aria-hidden="true">{icon}</span>
-              <h3 class="cat-title">{cat}</h3>
-            </div>
+        {categories.map(({ cat, n, desc, examples }, i) => (
+          <article class="cat-card" style={`--stagger: ${i * 0.12}s`}>
+            <div class="cat-num" aria-hidden="true">{n}</div>
+            <h3 class="cat-title">{cat}</h3>
             <p class="cat-desc">{desc}</p>
             <p class="cat-examples">{examples}</p>
+            <div class="cat-glow" aria-hidden="true"></div>
           </article>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- COSA OFFRE IL FESTIVAL -------------------------------- -->
-  <section class="s-offer" aria-labelledby="offer-h2">
-    <div class="wrap">
-      <div class="section-header">
-        <p class="overline--dark">Cosa offre il festival</p>
-        <h2 id="offer-h2" class="section-h2--dark">Reach, pubblico, contesto.</h2>
-      </div>
-      <div class="offer-grid">
-        {offerings.map(({ val, label }) => (
-          <div class="offer-item">
-            <span class="offer-val">{val}</span>
-            <span class="offer-label">{label}</span>
-          </div>
-        ))}
-      </div>
-      <div class="offer-detail">
-        <p class="offer-text">
-          Il pubblico MCD è 25–40 anni, urbano, con alta spesa media e forte affinità
-          verso brand di qualità. Non è un pubblico di massa: è un pubblico che sceglie.
-          Il contesto festival — serata per serata, bar per bar — crea un'associazione
-          positiva con i brand partner che la pubblicità tradizionale difficilmente raggiunge.
-        </p>
       </div>
     </div>
   </section>
@@ -186,7 +185,7 @@ const faqs = [
           </div>
         </div>
       </div>
-      <div class="app-content">
+      <div class="app-content reveal">
         <p class="overline">L'app per i partner</p>
         <h2 id="app-h2" class="section-h2">
           Il tuo brand<br />dentro l'esperienza.
@@ -203,48 +202,62 @@ const faqs = [
     </div>
   </section>
 
-  <!-- FAQ --------------------------------------------------- -->
-  <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap">
-      <h2 id="faq-h2" class="section-h2--dark">Domande frequenti</h2>
-      <dl class="faq-list">
-        {faqs.map(({ q, a }) => (
-          <div class="faq-item">
-            <dt class="faq-q">{q}</dt>
-            <dd class="faq-a">{a}</dd>
-          </div>
-        ))}
-      </dl>
+  <!-- CTA VIDEO --------------------------------------------- -->
+  <section class="s-cta-video" aria-labelledby="cta-video-h2">
+    <video class="cta-video-bg" aria-hidden="true" autoplay muted loop playsinline>
+      <source src="/images/Video 1920x1080 from Luca Ferrara.mp4" type="video/mp4" />
+    </video>
+    <div class="cta-video-overlay" aria-hidden="true"></div>
+    <div class="wrap cta-video-inner">
+      <span class="cta-star" aria-hidden="true">✶</span>
+      <h2 id="cta-video-h2" class="cta-video-title reveal">
+        Costruiamo<br />qualcosa insieme.
+      </h2>
+      <p class="cta-video-sub reveal reveal-d1">
+        Parliamo degli obiettivi del tuo brand. 30 minuti.
+      </p>
+      <a href="#form" class="btn btn--primary reveal reveal-d2">Parliamone →</a>
     </div>
   </section>
-
-  <!-- CTA BANNER -------------------------------------------- -->
-  <CtaBanner
-    title="Costruiamo qualcosa insieme."
-    subtitle="Parliamo degli obiettivi del tuo brand. 30 minuti."
-    ctaText="Parliamone →"
-    ctaHref="#form"
-    variant="borgogna"
-    ctaClass="cta-sponsor"
-  />
 
   <!-- FORM -------------------------------------------------- -->
   <section class="s-form" id="form" aria-labelledby="form-h2">
     <div class="wrap">
-      <h2 id="form-h2" class="form-heading">
+      <h2 id="form-h2" class="form-heading reveal">
         Manifestazione d'interesse <span aria-hidden="true">✶</span>
       </h2>
-      <p class="form-intro">
+      <p class="form-intro reveal reveal-d1">
         Lascia i tuoi contatti. Il fondatore ti risponde personalmente
         per fissare una conversazione.
       </p>
-      <div class="form-placeholder">
+      <div class="form-placeholder reveal reveal-d2">
         <p class="placeholder-note">
           Il form sponsor è in arrivo. Nel frattempo scrivici direttamente:
           <a href="mailto:sponsor@milancocktaildays.it" class="placeholder-link">
             sponsor@milancocktaildays.it
           </a>
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ --------------------------------------------------- -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap faq-wrap">
+      <div class="faq-header reveal">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande,<br />in due righe.</h2>
+      </div>
+      <div class="faq-list reveal reveal-d1" id="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              {q}
+              <span class="faq-icon" aria-hidden="true">✶</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
@@ -258,32 +271,105 @@ const faqs = [
     padding: 0 2rem;
   }
 
-  /* ---- HERO (mora) --------------------------------------- */
+  /* ── All sections: local stacking context ────────────────── */
+  section { position: relative; z-index: 0; }
+
+  /* ── Reveal animations ───────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .cat-card,
+    .stat-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* ── Cinematic vignette — top shadow on non-hero sections ── */
+  .s-stats::before,
+  .s-model::before,
+  .s-categories::before,
+  .s-app::before,
+  .s-cta-video::before,
+  .s-form::before,
+  .s-faq::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.18), transparent);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Hero bottom shadow */
+  .s-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 140px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── HERO ────────────────────────────────────────────────── */
   .s-hero {
     position: relative;
-    min-height: 70svh;
+    min-height: 75svh;
     display: flex;
     align-items: center;
     padding: var(--section-py) 0;
-    background-color: var(--color-mora);
     overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 80% 40%, color-mix(in srgb, var(--color-bitter) 10%, transparent) 0%, transparent 60%);
     z-index: 1;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-mora) 75%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 40%, transparent) 55%,
+      transparent 100%
+    );
   }
 
   .hero-inner {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
-    max-width: 640px;
+    max-width: 680px;
+    padding: 36px 44px;
+    background: color-mix(in srgb, var(--color-mora) 28%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
+    border-radius: var(--radius-md);
   }
 
   .hero-overline {
@@ -321,9 +407,11 @@ const faqs = [
     max-width: 480px;
   }
 
+  /* ── BUTTON ──────────────────────────────────────────────── */
   .btn {
     display: inline-flex;
     align-items: center;
+    gap: 0.4em;
     padding: 0.875rem 2rem;
     font-family: var(--font-body);
     font-size: var(--text-small);
@@ -333,7 +421,11 @@ const faqs = [
     text-decoration: none;
     border-radius: var(--radius-sm);
     margin-top: var(--space-sm);
-    transition: background-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.2s ease;
   }
 
   .btn--primary {
@@ -345,21 +437,149 @@ const faqs = [
   .btn--primary:hover {
     background-color: var(--color-bitter-500);
     border-color: var(--color-bitter-500);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 28%, transparent);
   }
 
-  .section-header { margin-bottom: var(--space-lg); }
+  .btn--primary:active { transform: translateY(0); }
 
-  /* ---- MODELLO (avorio) ---------------------------------- */
+  /* ── STATS BAND ──────────────────────────────────────────── */
+  .s-stats {
+    background-color: var(--color-avorio);
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-mora) 6%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+    padding: var(--section-py) 0;
+    overflow: hidden;
+  }
+
+  .stats-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, color-mix(in srgb, var(--color-bitter) 8%, transparent), transparent),
+      radial-gradient(ellipse 50% 70% at 15% 50%, color-mix(in srgb, var(--color-basilico) 6%, transparent), transparent);
+  }
+
+  .stats-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .stat-card {
+    background-color: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-sm) var(--space-md) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    transition-delay: var(--stagger, 0s);
+  }
+
+  .stat-card.is-visible { opacity: 1; transform: none; }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-bitter), var(--color-basilico));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stat-card:hover {
+    box-shadow: 0 16px 40px -8px color-mix(in srgb, var(--color-mora) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-basilico) 25%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .stat-card.is-visible:hover { transform: translateY(-4px); }
+
+  .stat-card:hover::before { transform: scaleX(1); }
+
+  .stat-val {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-mora);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-basilico);
+  }
+
+  /* ── MODEL ───────────────────────────────────────────────── */
   .s-model {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
+    overflow: hidden;
+  }
+
+  .model-bg-img {
+    position: absolute;
+    inset: 0 0 0 52%;
+    z-index: 0;
+  }
+
+  .model-bg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .model-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      105deg,
+      var(--color-avorio) 42%,
+      color-mix(in srgb, var(--color-avorio) 90%, transparent) 55%,
+      color-mix(in srgb, var(--color-avorio) 55%, transparent) 70%,
+      color-mix(in srgb, var(--color-avorio) 10%, transparent) 88%,
+      transparent 100%
+    );
   }
 
   .model-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .model-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
     align-items: start;
+    max-width: 70%;
   }
 
   .model-text {
@@ -465,11 +685,13 @@ const faqs = [
     margin: 0;
   }
 
-  /* ---- CATEGORIE (fumo) ---------------------------------- */
+  /* ── CATEGORIE ───────────────────────────────────────────── */
   .s-categories {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
   }
+
+  .section-header { margin-bottom: var(--space-lg); }
 
   .overline {
     font-family: var(--font-body);
@@ -497,22 +719,78 @@ const faqs = [
   }
 
   .cat-card {
-    background-color: var(--color-marmo);
+    position: relative;
+    background-color: color-mix(in srgb, var(--color-panna) 5%, var(--color-mora));
     border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
     border-radius: var(--radius-md);
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-md) var(--space-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    transition-delay: var(--stagger, 0s);
   }
 
-  .cat-top {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
+  .cat-card.is-visible { opacity: 1; transform: none; }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-bitter), var(--color-basilico));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .cat-icon { font-size: 1.5rem; }
+  .cat-card:hover {
+    box-shadow:
+      0 24px 64px color-mix(in srgb, var(--color-mora) 70%, transparent),
+      0 0 48px color-mix(in srgb, var(--color-bitter) 10%, transparent);
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-bitter) 25%, transparent);
+  }
+
+  .cat-card.is-visible:hover { transform: translateY(-6px); }
+
+  .cat-card:hover::before { transform: scaleX(1); }
+
+  .cat-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 60% 0%,
+      color-mix(in srgb, var(--color-bitter) 10%, transparent),
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .cat-card:hover .cat-glow { opacity: 1; }
+
+  .cat-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--color-bitter);
+    opacity: 0.3;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    transition: opacity 0.35s ease;
+  }
+
+  .cat-card:hover .cat-num { opacity: 0.6; }
 
   .cat-title {
     font-family: var(--font-display);
@@ -520,6 +798,9 @@ const faqs = [
     font-size: var(--text-h3);
     color: var(--color-panna);
     margin: 0;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
   }
 
   .cat-desc {
@@ -528,6 +809,9 @@ const faqs = [
     color: var(--color-pesco-300);
     line-height: 1.7;
     margin: 0;
+    flex: 1;
+    position: relative;
+    z-index: 1;
   }
 
   .cat-examples {
@@ -537,62 +821,15 @@ const faqs = [
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-panna);
-    opacity: 0.4;
+    opacity: 0.35;
     margin: 0;
+    padding-top: var(--space-sm);
+    border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
+    position: relative;
+    z-index: 1;
   }
 
-  /* ---- COSA OFFRE (avorio) ------------------------------- */
-  .s-offer {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
-  }
-
-  .offer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-    margin-bottom: var(--space-lg);
-  }
-
-  .offer-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    padding: var(--space-md);
-    background-color: var(--color-panna);
-    border: 0.5px solid var(--color-panna-300);
-    border-radius: var(--radius-md);
-  }
-
-  .offer-val {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--color-mora);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .offer-label {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-basilico);
-  }
-
-  .offer-detail { max-width: 760px; }
-
-  .offer-text {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro);
-    line-height: 1.8;
-    margin: 0;
-  }
-
-  /* ---- APP (fumo) ---------------------------------------- */
+  /* ── APP ─────────────────────────────────────────────────── */
   .s-app {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
@@ -600,7 +837,7 @@ const faqs = [
 
   .app-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     gap: var(--space-xl);
     align-items: center;
   }
@@ -640,7 +877,7 @@ const faqs = [
   .app-features {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 0;
   }
 
   .app-feature {
@@ -664,40 +901,72 @@ const faqs = [
     margin: 0;
   }
 
-  /* ---- FAQ (avorio) ------------------------------------- */
-  .s-faq {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
+  /* ── CTA VIDEO ───────────────────────────────────────────── */
+  .s-cta-video {
+    position: relative;
+    padding: clamp(5rem, 12vw, 10rem) 0;
+    overflow: hidden;
   }
 
-  .s-faq .section-h2--dark { margin-bottom: var(--space-lg); }
-
-  .faq-list { display: flex; flex-direction: column; max-width: 760px; }
-
-  .faq-item {
-    padding: var(--space-md) 0;
-    border-top: 0.5px solid var(--color-panna-300);
+  .cta-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+  .cta-video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-mora) 80%, transparent) 0%,
+      color-mix(in srgb, var(--color-mora) 40%, transparent) 55%,
+      color-mix(in srgb, var(--color-mora) 10%, transparent) 100%
+    );
+  }
 
-  .faq-q {
+  .cta-video-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    max-width: 560px;
+  }
+
+  .cta-star {
+    color: var(--color-panna);
+    font-size: 1.6rem;
+    opacity: 0.5;
+  }
+
+  .cta-video-title {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-body);
-    color: var(--color-mora);
-    margin: 0 0 var(--space-xs);
-  }
-
-  .faq-a {
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro-500);
-    line-height: 1.7;
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
     margin: 0;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
   }
 
-  /* ---- FORM (fumo) -------------------------------------- */
+  .cta-video-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-panna);
+    opacity: 0.9;
+    line-height: 1.65;
+    margin: 0;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+
+  /* ── FORM ────────────────────────────────────────────────── */
   .s-form {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
@@ -731,8 +1000,10 @@ const faqs = [
 
   .form-placeholder {
     max-width: 560px;
-    background-color: var(--color-marmo);
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    background: color-mix(in srgb, var(--color-panna) 6%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 18%, transparent);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
   }
@@ -754,19 +1025,163 @@ const faqs = [
 
   .placeholder-link:hover { opacity: 0.7; }
 
-  /* ---- RESPONSIVE --------------------------------------- */
+  /* ── FAQ ─────────────────────────────────────────────────── */
+  .s-faq {
+    background-color: var(--color-panna);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+
+  .faq-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--color-mora);
+    line-height: 0.97;
+    margin: 0;
+    letter-spacing: -0.03em;
+  }
+
+  .faq-list { display: flex; flex-direction: column; }
+
+  .faq-item { border-top: 0.5px solid var(--color-panna-300); }
+  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-mora);
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    color: var(--color-bitter);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    font-size: 0.9em;
+  }
+
+  details[open] .faq-icon { transform: rotate(45deg); }
+
+  .faq-a {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-inchiostro);
+    line-height: 1.75;
+    margin: 0;
+    padding: 0 var(--space-lg) var(--space-md) 0;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .cat-grid   { grid-template-columns: 1fr; }
-    .offer-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-inner     { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid        { grid-template-columns: 1fr; }
+    .model-content   { max-width: 100%; }
+    .faq-wrap        { grid-template-columns: 1fr; }
+    .faq-header      { position: static; }
   }
 
   @media (max-width: 768px) {
-    .model-inner { grid-template-columns: 1fr; }
-    .app-inner   { grid-template-columns: 1fr; }
-    .app-mock    { display: none; }
+    .model-bg-img    { display: none; }
+    .model-bg-overlay { display: none; }
+    .model-content   { grid-template-columns: 1fr; max-width: 100%; }
+    .app-inner       { grid-template-columns: 1fr; }
+    .app-mock        { display: none; }
   }
 
   @media (max-width: 480px) {
-    .offer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
   }
 </style>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if ((detail as HTMLDetailsElement).open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== detail) (other as HTMLDetailsElement).open = false;
+        });
+      }
+    });
+  });
+
+  function makeVisible(el: Element) { el.classList.add('is-visible'); }
+
+  requestAnimationFrame(() => {
+    // Stat cards stagger
+    const statsGrid = document.querySelector('.stats-inner');
+    if (statsGrid) {
+      const statCards = statsGrid.querySelectorAll('.stat-card');
+      const statsObs = new IntersectionObserver(
+        entries => { if (entries[0].isIntersecting) { statCards.forEach(makeVisible); statsObs.disconnect(); } },
+        { threshold: 0.1 }
+      );
+      statsObs.observe(statsGrid);
+    }
+
+    // Category cards stagger
+    const catGrid = document.querySelector('.cat-grid');
+    if (catGrid) {
+      const catCards = catGrid.querySelectorAll('.cat-card');
+      const catObs = new IntersectionObserver(
+        entries => { if (entries[0].isIntersecting) { catCards.forEach(makeVisible); catObs.disconnect(); } },
+        { threshold: 0.08 }
+      );
+      catObs.observe(catGrid);
+    }
+
+    // Universal reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+      const revealObs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); revealObs.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      revealEls.forEach(el => revealObs.observe(el));
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible), .stat-card:not(.is-visible), .cat-card:not(.is-visible)').forEach(makeVisible);
+      }, 2500);
+    }
+  });
+
+  // Hero parallax
+  const heroBgImg = document.querySelector<HTMLImageElement>('.s-hero .hero-bg img');
+  if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', () => {
+      heroBgImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+    }, { passive: true });
+  }
+</script>
