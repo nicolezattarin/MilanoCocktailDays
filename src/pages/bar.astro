@@ -118,8 +118,8 @@ const faqs = [
 
   <!-- COSA TI CHIEDIAMO ------------------------------------- -->
   <section class="s-req" aria-labelledby="req-h2">
-    <div class="wrap">
-      <div class="section-header">
+    <div class="wrap req-inner">
+      <div class="req-lead">
         <p class="overline">Cosa ti chiediamo</p>
         <h2 id="req-h2" class="section-h2">
           Semplice.<br />Sostenibile.
@@ -201,30 +201,6 @@ const faqs = [
     </div>
   </section>
 
-  <!-- FAQ --------------------------------------------------- -->
-  <section class="s-faq" aria-labelledby="faq-h2">
-    <div class="wrap faq-wrap">
-
-      <div class="faq-header reveal">
-        <p class="section-kicker">FAQ</p>
-        <h2 id="faq-h2" class="faq-h2">Domande<br />frequenti.</h2>
-      </div>
-
-      <div class="faq-list reveal reveal-d1" id="faq-list">
-        {faqs.map(({ q, a }) => (
-          <details class="faq-item">
-            <summary class="faq-q">
-              {q}
-              <span class="faq-icon" aria-hidden="true">✶</span>
-            </summary>
-            <p class="faq-a">{a}</p>
-          </details>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
   <!-- CTA BANNER -------------------------------------------- -->
   <section class="s-cta-video" aria-labelledby="cta-video-h2">
     <video
@@ -265,6 +241,30 @@ const faqs = [
           title="Milan Cocktail Days — Candidatura bar partner"
         ></iframe>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ --------------------------------------------------- -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header reveal">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Domande<br />frequenti.</h2>
+      </div>
+
+      <div class="faq-list reveal reveal-d1" id="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              {q}
+              <span class="faq-icon" aria-hidden="true">✶</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
+      </div>
+
     </div>
   </section>
 
@@ -642,6 +642,19 @@ const faqs = [
   .s-req {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
+  }
+
+  .req-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .req-lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .req-grid {
@@ -1060,6 +1073,7 @@ const faqs = [
   @media (max-width: 768px) {
     .benefits-inner { grid-template-columns: 1fr; }
     .benefits-grid  { grid-template-columns: 1fr; }
+    .req-inner      { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
     .req-item       { min-height: 260px; }
     .criteria-inner { grid-template-columns: 1fr; }
