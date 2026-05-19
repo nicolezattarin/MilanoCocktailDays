@@ -98,18 +98,19 @@ const faqs = [
   <!-- COSA OTTIENI ------------------------------------------ -->
   <section class="s-benefits" aria-labelledby="benefits-h2">
     <div class="wrap">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="overline--dark">Cosa ottieni</p>
         <h2 id="benefits-h2" class="section-h2--dark">
           Valore reale.<br />Nessun rischio.
         </h2>
       </div>
       <div class="benefits-grid">
-        {benefits.map(({ title, desc }) => (
-          <div class="benefit-card">
-            <span class="benefit-star" aria-hidden="true">✶</span>
+        {benefits.map(({ title, desc }, i) => (
+          <div class="benefit-card reveal" style={`--stagger: ${i * 0.12}s`}>
+            <span class="benefit-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="benefit-title">{title}</h3>
             <p class="benefit-desc">{desc}</p>
+            <div class="benefit-glow" aria-hidden="true"></div>
           </div>
         ))}
       </div>
@@ -477,8 +478,35 @@ const faqs = [
   /* ---- BENEFITS (avorio) --------------------------------- */
   .s-benefits {
     background-color: var(--color-avorio);
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-mora) 7%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
     padding: var(--section-py) 0;
+    position: relative;
+    overflow: hidden;
   }
+
+  .s-benefits::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 65vw;
+    height: 65vw;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-bitter) 10%, transparent) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .s-benefits .wrap { position: relative; z-index: 1; }
 
   .overline--dark {
     font-family: var(--font-body);
@@ -506,17 +534,77 @@ const faqs = [
   }
 
   .benefit-card {
+    position: relative;
     background-color: var(--color-panna);
     border: 0.5px solid var(--color-panna-300);
     border-radius: var(--radius-md);
     padding: var(--space-md);
+    overflow: hidden;
+    transition:
+      transform 0.38s cubic-bezier(0.16,1,0.3,1),
+      box-shadow 0.38s cubic-bezier(0.16,1,0.3,1),
+      border-color 0.38s ease,
+      opacity 0.7s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .benefit-star {
+  .benefit-card:not(.is-visible) {
+    transition-delay: var(--stagger, 0s);
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px -10px color-mix(in srgb, var(--color-mora) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-basilico) 30%, transparent);
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-bitter), var(--color-basilico));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .benefit-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .benefit-num {
     display: block;
-    color: var(--color-basilico);
-    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    color: var(--color-bitter);
+    opacity: 0.22;
+    line-height: 1;
     margin-bottom: var(--space-sm);
+    letter-spacing: -0.04em;
+    transition: opacity 0.38s ease;
+  }
+
+  .benefit-card:hover .benefit-num {
+    opacity: 0.5;
+  }
+
+  .benefit-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 60% 0%,
+      color-mix(in srgb, var(--color-bitter) 9%, transparent),
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .benefit-card:hover .benefit-glow {
+    opacity: 1;
   }
 
   .benefit-title {
