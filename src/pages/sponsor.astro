@@ -11,18 +11,21 @@ const categories = [
   {
     cat: 'Beverage',
     n: '01',
+    icon: '🍸',
     desc: 'Spirits, soft drink, acque premium, vermouth, liquori. Il contesto perfetto: i partecipanti MCD sono consumatori consapevoli, con alta spesa media.',
     examples: 'Spirits · Soft drink · Acque premium · Vermouth',
   },
   {
     cat: 'Tech',
     n: '02',
+    icon: '📱',
     desc: 'App, piattaforme di booking, mobile payment, digital services. Un pubblico 25–40, urban, early adopter, con alta affinità tecnologica.',
     examples: 'App · Booking · Pagamenti · Digital services',
   },
   {
     cat: 'Mobility',
     n: '03',
+    icon: '🚗',
     desc: "Trasporto premium, car sharing, servizi di mobilità urbana. Chi frequenta MCD si sposta tra i quartieri ogni sera: un'opportunità unica.",
     examples: 'Car sharing · Taxi premium · Monopattini · Mobilità urbana',
   },
@@ -155,8 +158,9 @@ const faqs = [
         </h2>
       </div>
       <div class="cat-grid">
-        {categories.map(({ cat, n, desc, examples }, i) => (
+        {categories.map(({ cat, n, icon, desc, examples }, i) => (
           <article class="cat-card" style={`--stagger: ${i * 0.12}s`}>
+            <div class="cat-icon" aria-hidden="true">{icon}</div>
             <div class="cat-num" aria-hidden="true">{n}</div>
             <h3 class="cat-title">{cat}</h3>
             <p class="cat-desc">{desc}</p>
@@ -367,9 +371,9 @@ const faqs = [
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-sm);
+    gap: 0.75rem;
     max-width: 680px;
-    padding: 36px 44px;
+    padding: 28px 40px;
     background: color-mix(in srgb, var(--color-mora) 28%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -391,9 +395,9 @@ const faqs = [
   .hero-h1 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: var(--text-hero);
+    font-size: clamp(2.25rem, 5.5vw, 5rem);
     color: var(--color-panna);
-    line-height: 0.92;
+    line-height: 0.95;
     letter-spacing: -0.02em;
     margin: 0;
   }
@@ -405,7 +409,7 @@ const faqs = [
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: var(--text-body-lg);
+    font-size: 1rem;
     color: var(--color-pesco-300);
     line-height: 1.55;
     margin: 0;
@@ -557,7 +561,7 @@ const faqs = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center -100px;
+    object-position: center -300px;
   }
 
   .model-bg-overlay {
@@ -792,6 +796,16 @@ const faqs = [
   }
 
   .cat-card:hover .cat-glow { opacity: 1; }
+
+  .cat-icon {
+    font-size: 2.25rem;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--color-bitter) 40%, transparent));
+    transition: transform 0.3s ease;
+  }
+
+  .cat-card:hover .cat-icon { transform: scale(1.15); }
 
   .cat-num {
     font-family: var(--font-display);
