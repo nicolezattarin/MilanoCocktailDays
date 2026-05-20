@@ -39,10 +39,10 @@ const offerings = [
 ];
 
 const appFeatures = [
-  { title: 'Logo in evidenza',     desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.' },
-  { title: 'Prodotti in evidenza', desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.' },
-  { title: 'Community',            desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.' },
-  { title: 'Report dati',          desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.' },
+  { step: '01', icon: '🏷️', title: 'Logo in evidenza',     desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.', wide: false },
+  { step: '02', icon: '🍸', title: 'Prodotti in evidenza', desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.', wide: false },
+  { step: '03', icon: '💬', title: 'Community',            desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.', wide: false },
+  { step: '04', icon: '📊', title: 'Report dati',          desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.', wide: true },
 ];
 
 const faqs = [
@@ -183,16 +183,19 @@ const faqs = [
           loading="lazy"
         />
       </div>
-      <div class="app-content reveal">
-        <p class="overline">L'app per i partner</p>
-        <h2 id="app-h2" class="section-h2">
-          Il tuo brand<br />dentro l'esperienza.
-        </h2>
-        <div class="app-features">
-          {appFeatures.map(({ title, desc }) => (
-            <div class="app-feature">
-              <h3 class="app-feature-title">{title}</h3>
-              <p class="app-feature-desc">{desc}</p>
+      <div class="app-content">
+        <p class="overline--dark reveal">L'app per i partner</p>
+        <h2 id="app-h2" class="app-h2 reveal">Il tuo brand<br />dentro l'esperienza.</h2>
+        <p class="app-sub reveal reveal-d1">Logo, prodotti, community, dati. Tutto in un unico contesto premium.</p>
+        <div class="app-cards reveal reveal-d2">
+          {appFeatures.map(({ step, icon, title, desc, wide }) => (
+            <div class:list={['app-card', { 'app-card--wide': wide }]}>
+              <div class="app-card-header">
+                <span class="app-card-icon" aria-hidden="true">{icon}</span>
+                <span class="app-card-step" aria-hidden="true">{step}</span>
+              </div>
+              <h3 class="app-card-title">{title}</h3>
+              <p class="app-card-desc">{desc}</p>
             </div>
           ))}
         </div>
@@ -883,31 +886,82 @@ const faqs = [
     gap: var(--space-md);
   }
 
-  .app-features {
+  .app-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .app-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .app-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .app-card {
+    background-color: color-mix(in srgb, var(--color-panna) 6%, transparent);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .app-card:hover {
+    background-color: color-mix(in srgb, var(--color-panna) 9%, transparent);
+    border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent);
+  }
+
+  .app-card--wide { grid-column: 1 / -1; }
+
+  .app-card-header {
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
   }
 
-  .app-feature {
-    padding: var(--space-sm) 0;
-    border-top: var(--border-hairline-dark);
+  .app-card-icon { font-size: 1.25rem; line-height: 1; }
+
+  .app-card-step {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-bitter);
+    opacity: 0.3;
+    line-height: 1;
+    letter-spacing: -0.04em;
   }
 
-  .app-feature-title {
+  .app-card:hover .app-card-step { opacity: 0.6; }
+
+  .app-card-title {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-small);
     color: var(--color-panna);
-    margin-bottom: 4px;
+    margin: 0 0 var(--space-xs);
+    letter-spacing: 0.02em;
   }
 
-  .app-feature-desc {
+  .app-card-desc {
     font-family: var(--font-body);
     font-size: var(--text-small);
     color: var(--color-pesco-300);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
+    opacity: 0.85;
   }
 
   /* ── CTA VIDEO ───────────────────────────────────────────── */

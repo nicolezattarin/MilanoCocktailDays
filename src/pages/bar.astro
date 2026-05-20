@@ -30,10 +30,10 @@ const criteria = [
 ];
 
 const appFeatures = [
-  { title: 'Analytics visite',         desc: 'Dati reali su quanti utenti visitano il tuo profilo, prenotano uno slot, vengono fisicamente nel locale.' },
-  { title: 'Recensioni verificate',    desc: 'Solo i partecipanti con pass possono lasciare recensioni. Feedback autentico, non spam.' },
-  { title: 'Posizionamento sulla mappa', desc: 'Il tuo bar è in primo piano sulla mappa del festival, con foto, descrizione e link alla prenotazione.' },
-  { title: 'Community',                desc: 'Accesso alla sezione community: interagisci con i partecipanti, rispondi alle recensioni, crea contenuti.' },
+  { step: '01', icon: '📈', title: 'Analytics visite',          desc: 'Dati reali su quanti utenti visitano il tuo profilo, prenotano uno slot, vengono fisicamente nel locale.', wide: false },
+  { step: '02', icon: '⭐', title: 'Recensioni verificate',     desc: 'Solo i partecipanti con pass possono lasciare recensioni. Feedback autentico, non spam.', wide: false },
+  { step: '03', icon: '📍', title: 'Posizionamento sulla mappa', desc: 'Il tuo bar è in primo piano sulla mappa del festival, con foto, descrizione e link alla prenotazione.', wide: false },
+  { step: '04', icon: '💬', title: 'Community',                 desc: 'Accesso alla sezione community: interagisci con i partecipanti, rispondi alle recensioni, crea contenuti.', wide: true },
 ];
 
 const faqs = [
@@ -174,16 +174,19 @@ const faqs = [
   <!-- L'APP PER IL TUO BAR ---------------------------------- -->
   <section class="s-app" aria-labelledby="app-h2">
     <div class="wrap app-inner">
-      <div class="app-content reveal">
-        <p class="overline">L'app per il tuo bar</p>
-        <h2 id="app-h2" class="section-h2">
-          Dati reali.<br />Community attiva.
-        </h2>
-        <div class="app-features">
-          {appFeatures.map(({ title, desc }) => (
-            <div class="app-feature">
-              <h3 class="app-feature-title">{title}</h3>
-              <p class="app-feature-desc">{desc}</p>
+      <div class="app-content">
+        <p class="overline--dark reveal">L'app per il tuo bar</p>
+        <h2 id="app-h2" class="app-h2 reveal">Dati reali.<br />Community attiva.</h2>
+        <p class="app-sub reveal reveal-d1">Analytics, recensioni, mappa, community. Tutto in un'unica dashboard.</p>
+        <div class="app-cards reveal reveal-d2">
+          {appFeatures.map(({ step, icon, title, desc, wide }) => (
+            <div class:list={['app-card', { 'app-card--wide': wide }]}>
+              <div class="app-card-header">
+                <span class="app-card-icon" aria-hidden="true">{icon}</span>
+                <span class="app-card-step" aria-hidden="true">{step}</span>
+              </div>
+              <h3 class="app-card-title">{title}</h3>
+              <p class="app-card-desc">{desc}</p>
             </div>
           ))}
         </div>
@@ -1004,31 +1007,82 @@ const faqs = [
     display: block;
   }
 
-  .app-features {
-    display: flex;
-    flex-direction: column;
+  .app-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .app-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .app-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-sm);
   }
 
-  .app-feature {
-    padding: var(--space-sm) 0;
-    border-top: var(--border-hairline-dark);
+  .app-card {
+    background-color: color-mix(in srgb, var(--color-panna) 6%, transparent);
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
   }
 
-  .app-feature-title {
+  .app-card:hover {
+    background-color: color-mix(in srgb, var(--color-panna) 9%, transparent);
+    border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent);
+  }
+
+  .app-card--wide { grid-column: 1 / -1; }
+
+  .app-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+  }
+
+  .app-card-icon { font-size: 1.25rem; line-height: 1; }
+
+  .app-card-step {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-bitter);
+    opacity: 0.3;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .app-card:hover .app-card-step { opacity: 0.6; }
+
+  .app-card-title {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-small);
     color: var(--color-panna);
-    margin-bottom: 4px;
+    margin: 0 0 var(--space-xs);
+    letter-spacing: 0.02em;
   }
 
-  .app-feature-desc {
+  .app-card-desc {
     font-family: var(--font-body);
     font-size: var(--text-small);
     color: var(--color-pesco-300);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
+    opacity: 0.85;
   }
 
   /* ---- FAQ (avorio) ------------------------------------- */
