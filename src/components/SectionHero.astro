@@ -79,4 +79,9 @@ const { title, subtitle, overline, dark = true } = Astro.props;
     line-height: 1.5;
     margin: 0;
   }
+
+  @media (max-width: 480px) {
+    .wrap   { padding: 0 1rem; }
+    .h1-wrap { padding: var(--space-sm) var(--space-sm); }
+  }
 </style>

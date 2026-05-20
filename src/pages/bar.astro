@@ -1312,6 +1312,13 @@ const faqs = [
     .app-cards      { grid-template-columns: 1fr; }
     .app-card--wide { grid-column: auto; }
   }
+
+  @media (max-width: 480px) {
+    .wrap           { padding: 0 1rem; }
+    .step-n         { font-size: clamp(2rem, 10vw, 2.8rem); width: 56px; }
+    .benefits-lead  { min-width: 0; }
+    .faq-q          { font-size: var(--text-body); }
+  }
 </style>
 
 <script>

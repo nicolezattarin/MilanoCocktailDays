@@ -1671,6 +1671,17 @@ const faqs = [
     .app-card--wide  { grid-column: auto; }
     .cta-final-h2    { font-size: clamp(2.5rem, 12vw, 5rem); }
   }
+
+  @media (max-width: 480px) {
+    .wrap            { padding: 0 1rem; }
+    .hero-inner      { padding: 20px 16px; }
+    .s-hero          { min-height: 0; }
+    .hero-logo       { max-width: min(380px, 90%); }
+    .bars-h2         { min-width: 0; font-size: clamp(1.3rem, 7vw, 1.8rem); }
+    .bars-lead       { min-width: 0; }
+    .how-card        { padding: var(--space-sm); }
+    .cta-final-inner { padding: var(--space-lg) var(--space-sm); }
+  }
 </style>
 
 <script>

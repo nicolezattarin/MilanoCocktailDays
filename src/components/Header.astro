@@ -202,6 +202,11 @@ const currentPath = Astro.url.pathname;
   }
 
   /* ---- Mobile ≤ 768px ------------------------------------- */
+  @media (max-width: 480px) {
+    .header-inner { padding: 0 1rem; }
+    .nav-list     { padding: var(--space-sm) 1rem; }
+  }
+
   @media (max-width: 768px) {
     .hamburger { display: flex; }
     .nav-cta   { display: none; }
