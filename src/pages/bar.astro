@@ -1291,20 +1291,25 @@ const faqs = [
     display: block;
   }
 
-  @media (max-width: 768px) {
-    .how-bg-img     { display: none; }
-    .how-bg-overlay { display: none; }
-    .how-content    { max-width: 100%; }
+  @media (max-width: 900px) {
     .benefits-inner { grid-template-columns: 1fr; }
-    .benefits-grid  { grid-template-columns: 1fr; }
-    .req-inner      { grid-template-columns: 1fr; }
-    .req-grid       { grid-template-columns: 1fr; }
-    .req-item       { min-height: 260px; }
     .criteria-inner { grid-template-columns: 1fr; }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
     .faq-wrap       { grid-template-columns: 1fr; }
     .faq-header     { position: static; }
+  }
+
+  @media (max-width: 768px) {
+    .how-bg-img     { display: none; }
+    .how-bg-overlay { display: none; }
+    .how-content    { max-width: 100%; }
+    .benefits-grid  { grid-template-columns: 1fr; }
+    .req-inner      { grid-template-columns: 1fr; }
+    .req-grid       { grid-template-columns: 1fr; }
+    .req-item       { min-height: 260px; }
+    .app-cards      { grid-template-columns: 1fr; }
+    .app-card--wide { grid-column: auto; }
   }
 </style>
 
