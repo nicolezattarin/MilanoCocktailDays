@@ -1656,14 +1656,9 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
-    .hero-inner {
-      max-width: 100%;
-      margin-left: 0;
-    }
-    .hero-overlay {
-      background: color-mix(in srgb, var(--color-mora) 70%, transparent);
-      opacity: 1;
-    }
+    .s-hero          { min-height: 100svh; padding: var(--space-lg) 0; }
+    .hero-inner      { width: 100%; max-width: 100%; margin-left: 0; padding: 28px 20px; }
+    .hero-overlay    { background: color-mix(in srgb, var(--color-mora) 70%, transparent); opacity: 1; }
     .hero-h1         { font-size: clamp(1.75rem, 8vw, 3rem); }
     .how-h2          { font-size: clamp(2.5rem, 10vw, 4rem); }
     .how-footer      { flex-direction: column; align-items: flex-start; }
@@ -1675,8 +1670,7 @@ const faqs = [
 
   @media (max-width: 480px) {
     .wrap            { padding: 0 1rem; }
-    .hero-inner      { padding: 20px 16px; background: color-mix(in srgb, var(--color-mora) 30%, transparent); }
-    .s-hero          { min-height: 0; }
+    .hero-inner      { padding: 20px 16px; }
     .hero-logo       { max-width: min(380px, 90%); }
     .bars-h2         { min-width: 0; font-size: clamp(1.3rem, 7vw, 1.8rem); }
     .bars-lead       { min-width: 0; }

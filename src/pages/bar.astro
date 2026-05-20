@@ -334,6 +334,7 @@ const faqs = [
     align-items: center;
     padding: var(--section-py) 0;
     overflow: hidden;
+    background-color: var(--color-fumo);
   }
 
   .hero-bg {
@@ -1303,14 +1304,20 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
-    .how-bg-img     { display: none; }
-    .how-bg-overlay { display: none; }
-    .how-content    { max-width: 100%; }
-    .benefits-grid  { grid-template-columns: 1fr; }
-    .req-grid       { grid-template-columns: 1fr; }
-    .req-item       { min-height: 260px; }
-    .app-cards      { grid-template-columns: 1fr; }
-    .app-card--wide { grid-column: auto; }
+    .s-hero            { min-height: 100svh; padding: var(--space-lg) 0; }
+    .hero-overlay      { background: color-mix(in srgb, var(--color-inchiostro) 65%, transparent); }
+    .hero-inner        { width: 100%; max-width: 100%; padding: 28px 20px; align-items: center; text-align: center; }
+    .hero-sub          { max-width: 100%; }
+    .cta-video-overlay { background: color-mix(in srgb, var(--color-inchiostro) 55%, transparent); }
+    .cta-video-inner   { max-width: 100%; align-items: center; text-align: center; }
+    .how-bg-img        { display: none; }
+    .how-bg-overlay    { display: none; }
+    .how-content       { max-width: 100%; }
+    .benefits-grid     { grid-template-columns: 1fr; }
+    .req-grid          { grid-template-columns: 1fr; }
+    .req-item          { min-height: 260px; }
+    .app-cards         { grid-template-columns: 1fr; }
+    .app-card--wide    { grid-column: auto; }
   }
 
   @media (max-width: 480px) {

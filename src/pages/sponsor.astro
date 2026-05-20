@@ -335,6 +335,7 @@ const faqs = [
     align-items: center;
     padding: var(--section-py) 0;
     overflow: hidden;
+    background-color: var(--color-mora);
   }
 
   .hero-bg {
@@ -1182,6 +1183,10 @@ const faqs = [
   }
 
   @media (max-width: 768px) {
+    .s-hero          { min-height: 100svh; padding: var(--space-lg) 0; }
+    .hero-overlay    { background: color-mix(in srgb, var(--color-mora) 70%, transparent); }
+    .hero-inner      { width: 100%; max-width: 100%; padding: 28px 20px; align-items: center; text-align: center; }
+    .hero-sub        { max-width: 100%; }
     .model-bg-img    { display: none; }
     .model-bg-overlay { display: none; }
     .model-content   { grid-template-columns: 1fr; max-width: 100%; }
