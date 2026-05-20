@@ -61,13 +61,13 @@ const quartieri = [
         </p>
         <a href="/contatti" class="btn">Iscriviti ora →</a>
       </div>
-      <!-- Placeholder immagine 4/3 -->
-      <div
-        class="what-img"
-        role="img"
-        aria-label="Immagine descrittiva del festival Milan Cocktail Days — prossimamente"
-      >
-        <span class="img-star" aria-hidden="true">✶</span>
+      <div class="what-img">
+        <img
+          src="/images/Google Pixel 4 Mockup/app_bar-portrait.png"
+          alt="App Milan Cocktail Days — Schermata bar"
+          class="mockup-img"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -211,29 +211,17 @@ const quartieri = [
     margin-bottom: var(--space-sm);
   }
 
-  /* Placeholder immagine 4/3: dimensioni esplicite anti-CLS */
   .what-img {
-    aspect-ratio: 4 / 3;
-    width: 100%;
-    background-color: var(--color-lino);
-    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
   }
 
-  .what-img:nth-of-type(2) {
-    background-image: url('/images/Cocktail Landing Page Image May 15 2026.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-
-  .img-star {
-    color: var(--color-basilico);
-    font-size: 3rem;
-    opacity: 0.25;
+  .mockup-img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .btn {
