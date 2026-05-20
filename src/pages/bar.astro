@@ -33,7 +33,7 @@ const appFeatures = [
   { step: '01', icon: '📈', title: 'Analytics visite',          desc: 'Dati reali su quanti utenti visitano il tuo profilo, prenotano uno slot, vengono fisicamente nel locale.', wide: false },
   { step: '02', icon: '⭐', title: 'Recensioni verificate',     desc: 'Solo i partecipanti con pass possono lasciare recensioni. Feedback autentico, non spam.', wide: false },
   { step: '03', icon: '📍', title: 'Posizionamento sulla mappa', desc: 'Il tuo bar è in primo piano sulla mappa del festival, con foto, descrizione e link alla prenotazione.', wide: false },
-  { step: '04', icon: '💬', title: 'Community',                 desc: 'Accesso alla sezione community: interagisci con i partecipanti, rispondi alle recensioni, crea contenuti.', wide: true },
+  { step: '04', icon: '💬', title: 'Community',                 desc: 'Accesso alla sezione community: interagisci con i partecipanti, rispondi alle recensioni, crea contenuti.', wide: false },
 ];
 
 const faqs = [
@@ -976,16 +976,10 @@ const faqs = [
   }
 
   .app-inner {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-lg);
     align-items: center;
-    overflow: auto;
-    flex-grow: 1;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: flex-start;
   }
 
   .app-content {
