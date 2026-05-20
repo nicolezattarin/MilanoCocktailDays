@@ -460,6 +460,7 @@ const faqs = [
     align-items: center;
     padding: clamp(2rem, 5vw, 4rem) 0;
     overflow: hidden;
+    background-color: var(--color-mora);
   }
 
   .hero-bg {
@@ -1660,8 +1661,8 @@ const faqs = [
       margin-left: 0;
     }
     .hero-overlay {
-      background: var(--color-panna);
-      opacity: 0.92;
+      background: color-mix(in srgb, var(--color-mora) 70%, transparent);
+      opacity: 1;
     }
     .hero-h1         { font-size: clamp(1.75rem, 8vw, 3rem); }
     .how-h2          { font-size: clamp(2.5rem, 10vw, 4rem); }
@@ -1674,7 +1675,7 @@ const faqs = [
 
   @media (max-width: 480px) {
     .wrap            { padding: 0 1rem; }
-    .hero-inner      { padding: 20px 16px; }
+    .hero-inner      { padding: 20px 16px; background: color-mix(in srgb, var(--color-mora) 30%, transparent); }
     .s-hero          { min-height: 0; }
     .hero-logo       { max-width: min(380px, 90%); }
     .bars-h2         { min-width: 0; font-size: clamp(1.3rem, 7vw, 1.8rem); }
