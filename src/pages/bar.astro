@@ -189,18 +189,12 @@ const faqs = [
         </div>
       </div>
       <div class="app-mock" aria-hidden="true">
-        <div class="phone-frame">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="phone-header-bar"></div>
-            <div class="phone-card-lg"></div>
-            <div class="phone-card-row">
-              <div class="phone-card-sm"></div>
-              <div class="phone-card-sm"></div>
-            </div>
-            <div class="phone-card-lg phone-card-lg--xs"></div>
-          </div>
-        </div>
+        <img
+          src="/images/Google Pixel 4 Mockup/app_bar-portrait.png"
+          alt=""
+          class="mockup-img"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -1003,32 +997,12 @@ const faqs = [
     align-items: center;
   }
 
-  .phone-frame {
-    width: 240px;
-    height: 480px;
-    border: 1.5px solid color-mix(in srgb, var(--color-panna) 20%, transparent);
-    border-radius: 28px;
-    background-color: var(--color-marmo);
-    padding: 16px 12px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .mockup-img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    display: block;
   }
-
-  .phone-notch {
-    width: 60px;
-    height: 8px;
-    background-color: color-mix(in srgb, var(--color-panna) 15%, transparent);
-    border-radius: 4px;
-    margin: 0 auto 6px;
-  }
-
-  .phone-screen { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-  .phone-header-bar { height: 24px; background-color: color-mix(in srgb, var(--color-basilico) 40%, transparent); border-radius: var(--radius-sm); }
-  .phone-card-lg { flex: 1; background-color: color-mix(in srgb, var(--color-bitter) 30%, transparent); border-radius: var(--radius-sm); border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); }
-  .phone-card-lg--xs { flex: 0 0 40px; background-color: color-mix(in srgb, var(--color-basilico) 20%, transparent); }
-  .phone-card-row { display: flex; gap: 8px; height: 60px; }
-  .phone-card-sm { flex: 1; background-color: color-mix(in srgb, var(--color-panna) 10%, transparent); border-radius: var(--radius-sm); }
 
   .app-features {
     display: flex;
