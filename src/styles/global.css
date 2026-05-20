@@ -39,26 +39,26 @@ select {
 /* --- Tokens: Giardino Aperitivo ----------------------------- */
 :root {
   /* ---- Giardino Aperitivo — Core palette ---- */
-  --color-basilico:      #2E4A36;
-  --color-panna:         #F7F2E5;
-  --color-bitter:        #B83A2E;
-  --color-mora:          #4A2540;
-  --color-pesco:         #D97A91;
-  --color-inchiostro:    #1A1416;
+  --color-basilico:      #0055FF;
+  --color-panna:         #F0F4FF;
+  --color-bitter:        #FF3333;
+  --color-mora:          #0A0F3D;
+  --color-pesco:         #00DDFF;
+  --color-inchiostro:    #05081A;
 
   /* ---- Extended scale ---- */
-  --color-panna-100:     #FBF7EC;
-  --color-panna-300:     #E6DCC0;
-  --color-panna-400:     #C9BD99;
-  --color-basilico-600:  #3D6048;
-  --color-basilico-900:  #1F3325;
-  --color-bitter-500:    #D4503F;
-  --color-bitter-900:    #7A2419;
-  --color-mora-300:      #8A5A7A;
-  --color-pesco-300:     #F2C5CD;
-  --color-inchiostro-300:#A89BA0;
-  --color-inchiostro-500:#6B5C61;
-  --color-inchiostro-700:#3A2E32;
+  --color-panna-100:     #F8FAFF;
+  --color-panna-300:     #C8D8F8;
+  --color-panna-400:     #A8C0F0;
+  --color-basilico-600:  #2277FF;
+  --color-basilico-900:  #0033CC;
+  --color-bitter-500:    #FF5555;
+  --color-bitter-900:    #CC0000;
+  --color-mora-300:      #2030A0;
+  --color-pesco-300:     #99EEFF;
+  --color-inchiostro-300:#8090C0;
+  --color-inchiostro-500:#4050A0;
+  --color-inchiostro-700:#202860;
 
   /* ---- Backward-compat aliases ---- */
   --color-avorio:   var(--color-panna);
@@ -66,7 +66,7 @@ select {
   --color-borgogna: var(--color-bitter);
   --color-lino:     var(--color-panna-300);
   --color-grafite:  var(--color-inchiostro-700);
-  --color-marmo:    #5A2F50;    /* lighter mora for dark cards */
+  --color-marmo:    #1A2090;    /* lighter mora for dark cards */
   --color-pietra:   var(--color-pesco-300);
   --color-oro:      var(--color-basilico);
 
