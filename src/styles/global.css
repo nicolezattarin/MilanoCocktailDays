@@ -109,7 +109,12 @@ select {
 }
 
 /* --- Stili base body -------------------------------------- */
+html {
+  overflow-x: hidden;
+}
+
 body {
+  overflow-x: hidden;
   background-color: var(--color-panna);
   color: var(--color-inchiostro);
   font-family: var(--font-body);

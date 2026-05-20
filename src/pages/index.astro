@@ -506,7 +506,8 @@ const faqs = [
 
   .hero-logo {
     height: auto;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     display: block;
     object-fit: contain;
     margin-bottom: var(--space-md);
@@ -589,11 +590,9 @@ const faqs = [
   /* ── COME FUNZIONA ────────────────────────────────────────── */
   .s-how {
     background-color: var(--color-fumo);
-    padding: 50px 0 50px 0;
+    padding: clamp(3rem, 6vw, 5rem) 0;
     position: relative;
     overflow: hidden;
-    min-height: 200px;
-    height: 580px;
   }
 
   .how-bg-glow {
@@ -932,7 +931,7 @@ const faqs = [
   .perchi-layout {
     display: grid;
     grid-template-columns: 1fr 0.9fr;
-    height: 800px;
+    min-height: 600px;
   }
 
   .perchi-content {
@@ -941,9 +940,8 @@ const faqs = [
     flex-direction: column;
     justify-content: center;
     gap: var(--space-sm);
-    max-width: 1000px;
-      margin-left: 330px;
-
+    max-width: 600px;
+    margin-left: clamp(0px, 15vw, 330px);
   }
 
   .perchi-h2 {
@@ -1646,7 +1644,8 @@ const faqs = [
     .why-panel        { animation: none; }
     .criteria-grid    { grid-template-columns: 1fr; }
     .bars-header      { flex-direction: column; gap: var(--space-sm); }
-    .perchi-layout    { grid-template-columns: 1fr; }
+    .perchi-layout    { grid-template-columns: 1fr; min-height: 0; height: auto; }
+    .perchi-content   { margin-left: 0; max-width: 100%; }
     .perchi-image-col { height: 420px; position: relative; }
     .perchi-img-reveal { position: relative; height: 100%; }
     .faq-wrap         { grid-template-columns: 1fr; }

@@ -776,11 +776,11 @@ const faqs = [
 
   .req-inner {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 200px;
+    grid-template-columns: minmax(auto, 180px) 1fr;
+    gap: clamp(var(--space-md), 5vw, var(--space-lg));
     margin-right: auto;
     margin-left: auto;
-    align-items: center;
+    align-items: start;
   }
 
   .req-lead {
@@ -1294,6 +1294,8 @@ const faqs = [
   @media (max-width: 900px) {
     .benefits-inner { grid-template-columns: 1fr; }
     .criteria-inner { grid-template-columns: 1fr; }
+    .req-inner      { grid-template-columns: 1fr; gap: var(--space-md); }
+    .req-grid       { grid-template-columns: repeat(2, 1fr); }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
     .faq-wrap       { grid-template-columns: 1fr; }
@@ -1305,7 +1307,6 @@ const faqs = [
     .how-bg-overlay { display: none; }
     .how-content    { max-width: 100%; }
     .benefits-grid  { grid-template-columns: 1fr; }
-    .req-inner      { grid-template-columns: 1fr; }
     .req-grid       { grid-template-columns: 1fr; }
     .req-item       { min-height: 260px; }
     .app-cards      { grid-template-columns: 1fr; }
