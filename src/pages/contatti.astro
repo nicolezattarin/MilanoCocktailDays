@@ -2,21 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHero from '../components/SectionHero.astro';
 
-const passFeatures = [
-  'Accesso a tutti i bar partner',
-  '10 serate consecutive',
-  'Cocktail signature MCD in ogni bar',
-  'Accesso prioritario agli eventi speciali',
-];
-
-const vipFeatures = [
-  'Tutto il Pass Festival, più:',
-  'Opening Gala esclusivo',
-  'Masterclass con i bartender',
-  'Kit benvenuto MCD',
-  'Accesso lounge riservata',
-];
-
 const contatti = [
   { label: 'Generale',    email: 'milanococktaildays@gmail.com' },
   { label: 'Press',       email: 'milanococktaildays@gmail.com' },
@@ -31,114 +16,19 @@ const social = [
 ---
 
 <BaseLayout
-  title="Iscriviti"
-  description="Iscriviti a Milan Cocktail Days 2027. Pass Festival e Pass VIP disponibili. Posti limitati — entra in lista d'attesa."
+  title="Contatti"
+  description="Contatta Milan Cocktail Days 2027. Email, social e form di contatto."
 >
 
   <SectionHero
-    title="Iscriviti"
-    subtitle="Accedi alle 10 serate MCD nei migliori bar di Milano ✶"
-    overline="Prima Edizione · 2027"
+    title="Contatti"
+    subtitle="Scrivici per informazioni, press, partnership ✶"
+    overline="Milan Cocktail Days · 2027"
   />
 
-  <!-- OPZIONI PASS (avorio) -------------------------------- -->
-  <section class="s-pass" aria-labelledby="pass-h2">
-    <div class="wrap">
-      <div class="pass-header">
-        <div class="filetto mcw-filetto-doppio"></div>
-        <h2 id="pass-h2" class="section-h2">Scegli il tuo pass</h2>
-        <p class="pass-intro">
-          Posti limitati. Lista d'attesa aperta — il prezzo definitivo sarà comunicato
-          all'apertura ufficiale delle vendite.
-        </p>
-      </div>
-
-      <div class="pass-grid">
-        <!-- Card 1: Pass Festival -->
-        <article class="pass-card mcw-bracket" aria-labelledby="pass-festival-h3">
-          <div class="pass-top">
-            <p class="pass-type">Pass Festival</p>
-            <div class="pass-price-wrap">
-              <span class="pass-price" aria-label="Prezzo da annunciare">TBA</span>
-              <span class="pass-price-note">Prezzo da confermare</span>
-            </div>
-          </div>
-
-          <ul class="feature-list" role="list" aria-labelledby="pass-festival-h3">
-            {passFeatures.map((f) => (
-              <li class="feature">
-                <span class="f-star" aria-hidden="true">✶</span>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-
-          <h3 id="pass-festival-h3" class="sr-only">Pass Festival</h3>
-          <a href="#form" class="pass-btn pass-btn--dark cta-pass-festival">
-            Iscriviti alla lista d'attesa
-          </a>
-          <p class="pass-note">Prenotazione non vincolante. Nessun addebito ora.</p>
-        </article>
-
-        <!-- Card 2: Pass VIP (borgogna) -->
-        <article class="pass-card pass-card--vip mcw-bracket mcw-bracket--dark" aria-labelledby="pass-vip-h3">
-          <div class="pass-top">
-            <div class="vip-top-row">
-              <p class="pass-type pass-type--vip">Pass VIP</p>
-              <span class="badge-limited">Posti Limitatissimi</span>
-            </div>
-            <div class="pass-price-wrap">
-              <span class="pass-price pass-price--vip" aria-label="Prezzo da annunciare">TBA</span>
-              <span class="pass-price-note pass-price-note--vip">Prezzo da confermare</span>
-            </div>
-          </div>
-
-          <ul class="feature-list" role="list" aria-labelledby="pass-vip-h3">
-            {vipFeatures.map((f, i) => (
-              <li class:list={['feature', { 'feature--intro': i === 0 }]}>
-                {i > 0 && <span class="f-star" aria-hidden="true">✶</span>}
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-
-          <h3 id="pass-vip-h3" class="sr-only">Pass VIP</h3>
-          <a href="#form" class="pass-btn pass-btn--avorio cta-pass-vip">
-            Iscriviti alla lista VIP
-          </a>
-          <p class="pass-note pass-note--vip">Prenotazione non vincolante. Nessun addebito ora.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORM TALLY PLACEHOLDER (dark) ----------------------- -->
-  <section class="s-form" id="form" aria-labelledby="form-h2">
-    <div class="wrap">
-      <h2 id="form-h2" class="form-heading">
-        Lascia i tuoi dati <span aria-hidden="true">✶</span>
-      </h2>
-      <p class="form-intro">
-        Compila il form per iscriverti alla lista d'attesa.
-        Ti contatteremo appena le vendite saranno aperte.
-      </p>
-
-      <div class="tally-wrap">
-        <iframe
-          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
-          loading="lazy"
-          width="100%"
-          height="689"
-          title="Milano Cocktail Days — Iscrizione"
-        ></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATTI DIRETTI (avorio) ---------------------------- -->
+  <!-- CONTATTI + SOCIAL ------------------------------------ -->
   <section class="s-info" aria-labelledby="info-h2">
     <div class="wrap">
-      <div class="info-filetto mcw-filetto-doppio"></div>
       <h2 id="info-h2" class="section-h2">Contatti diretti</h2>
 
       <div class="info-grid">
@@ -161,6 +51,27 @@ const social = [
     </div>
   </section>
 
+  <!-- FORM ------------------------------------------------- -->
+  <section class="s-form" id="form" aria-labelledby="form-h2">
+    <div class="wrap">
+      <h2 id="form-h2" class="form-heading">
+        Scrivici <span aria-hidden="true">✶</span>
+      </h2>
+      <p class="form-intro">
+        Compila il form e ti risponderemo direttamente.
+      </p>
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
+          loading="lazy"
+          width="100%"
+          height="689"
+          title="Milano Cocktail Days — Contatti"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
@@ -170,262 +81,26 @@ const social = [
     padding: 0 2rem;
   }
 
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0,0,0,0); white-space: nowrap; margin: -1px;
-  }
-
-  /* ---- Tipografia --------------------------------------- */
   .section-h2 {
     font-family: var(--font-display);
     font-weight: 900;
     font-size: var(--text-h1);
     color: var(--color-mora);
     line-height: 1.05;
-  }
-
-  /* ---- PASS (avorio) ------------------------------------ */
-  .s-pass {
-    background-color: var(--color-avorio);
-    padding: var(--section-py) 0;
-  }
-
-  .pass-header { margin-bottom: var(--space-lg); }
-
-  .filetto {
-    width: 60px;
     margin-bottom: var(--space-md);
   }
 
-  .pass-intro {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-inchiostro);
-    line-height: 1.65;
-    max-width: 580px;
-    margin: var(--space-sm) 0 0;
-  }
-
-  .pass-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-    align-items: start;
-  }
-
-  .pass-card {
-    background-color: var(--color-panna-100);
-    border: 1px solid var(--color-basilico);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .pass-card--vip {
-    background-color: var(--color-mora);
-    border-color: var(--color-mora-300);
-  }
-
-  .pass-top { display: flex; flex-direction: column; gap: var(--space-xs); }
-
-  .pass-type {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-basilico);
-    margin: 0;
-  }
-
-  .pass-type--vip { color: var(--color-panna); opacity: 0.7; }
-
-  .vip-top-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-xs);
-  }
-
-  .badge-limited {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 3px 10px;
-    border-radius: var(--radius-sm);
-    background-color: var(--color-bitter);
-    color: var(--color-panna);
-    white-space: nowrap;
-  }
-
-  .pass-price-wrap {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-xs);
-  }
-
-  .pass-price {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    color: var(--color-bitter);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .pass-price--vip { color: var(--color-panna); }
-
-  .pass-price-note {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-inchiostro-500);
-    opacity: 0.7;
-  }
-
-  .pass-price-note--vip { color: var(--color-panna); opacity: 0.6; }
-
-  .feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    border-top: 0.5px solid color-mix(in srgb, var(--color-basilico) 25%, transparent);
-    padding-top: var(--space-sm);
-  }
-
-  .pass-card--vip .feature-list {
-    border-top-color: var(--color-mora-300);
-  }
-
-  .feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    color: var(--color-inchiostro);
-    line-height: 1.5;
-  }
-
-  .pass-card--vip .feature { color: var(--color-panna); opacity: 0.9; }
-  .feature--intro { font-style: italic; opacity: 0.7; }
-
-  .f-star {
-    color: var(--color-basilico);
-    font-size: 0.5rem;
-    line-height: 1.8;
-    flex-shrink: 0;
-  }
-
-  .pass-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    font-family: var(--font-body);
-    font-size: var(--text-small);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    width: 100%;
-  }
-
-  .pass-btn--dark {
-    background-color: var(--color-bitter);
-    color: var(--color-panna);
-    border: 1px solid var(--color-bitter);
-  }
-
-  .pass-btn--dark:hover {
-    background-color: var(--color-bitter-500);
-    border-color: var(--color-bitter-500);
-    color: var(--color-panna);
-  }
-
-  .pass-btn--avorio {
-    background-color: var(--color-panna);
-    color: var(--color-mora);
-    border: 1px solid var(--color-panna);
-  }
-
-  .pass-btn--avorio:hover {
-    background-color: transparent;
-    color: var(--color-panna);
-  }
-
-  .pass-note {
-    font-family: var(--font-body);
-    font-size: var(--text-label);
-    color: var(--color-inchiostro-500);
-    opacity: 0.6;
-    text-align: center;
-    margin: 0;
-  }
-
-  .pass-note--vip { color: var(--color-panna); }
-
-  /* ---- FORM TALLY (dark) -------------------------------- */
-  .s-form {
-    background-color: var(--color-fumo);
-    padding: var(--section-py) 0;
-    scroll-margin-top: 64px;
-  }
-
-  .form-heading {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: var(--text-h1);
-    color: var(--color-panna);
-    line-height: 1.05;
-    margin-bottom: var(--space-sm);
-  }
-
-  .form-heading span {
-    color: var(--color-panna);
-    font-size: 0.5em;
-    vertical-align: middle;
-    opacity: 0.5;
-  }
-
-  .form-intro {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    color: var(--color-pesco-300);
-    line-height: 1.65;
-    max-width: 560px;
-    margin: 0 0 var(--space-lg);
-    opacity: 0.85;
-  }
-
-  .tally-wrap {
-    max-width: 760px;
-  }
-
-  /* ---- INFO CONTATTI (avorio) --------------------------- */
+  /* ---- INFO CONTATTI ------------------------------------ */
   .s-info {
     background-color: var(--color-avorio);
     padding: var(--section-py) 0;
-  }
-
-  .info-filetto {
-    width: 60px;
-    margin-bottom: var(--space-lg);
   }
 
   .info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
-    margin: var(--space-md) 0 var(--space-lg);
+    margin-bottom: var(--space-lg);
     padding-top: var(--space-md);
     border-top: 0.5px solid var(--color-panna-300);
   }
@@ -485,9 +160,43 @@ const social = [
     color: var(--color-basilico);
   }
 
+  /* ---- FORM --------------------------------------------- */
+  .s-form {
+    background-color: var(--color-fumo);
+    padding: var(--section-py) 0;
+    scroll-margin-top: 64px;
+  }
+
+  .form-heading {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    color: var(--color-panna);
+    line-height: 1.05;
+    margin-bottom: var(--space-sm);
+  }
+
+  .form-heading span {
+    color: var(--color-panna);
+    font-size: 0.5em;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+
+  .form-intro {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-pesco-300);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 0 var(--space-lg);
+    opacity: 0.85;
+  }
+
+  .tally-wrap { max-width: 760px; }
+
   /* ---- RESPONSIVE --------------------------------------- */
   @media (max-width: 768px) {
-    .pass-grid { grid-template-columns: 1fr; }
     .info-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   }
 
