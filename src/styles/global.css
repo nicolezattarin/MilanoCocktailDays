@@ -365,3 +365,117 @@ body {
 .cta-newsletter { }
 .cta-pass-festival { }
 .cta-pass-vip   { }
+
+/* ============================================================
+   MOBILE OPTIMIZATIONS — Global
+   ============================================================ */
+
+/* Base: tap highlight off, smooth scroll on iOS */
+* { -webkit-tap-highlight-color: transparent; }
+html { -webkit-text-size-adjust: 100%; }
+
+/* ---- Tablet ≤ 768px --------------------------------------- */
+@media (max-width: 768px) {
+
+  /* 1. Scale down space tokens — 8rem su mobile è impossibile */
+  :root {
+    --space-xl:     3rem;
+    --space-lg:     2rem;
+    --space-md:     1.25rem;
+    --space-sm:     0.875rem;
+    --section-py:   clamp(2.5rem, 7vw, 4rem);
+  }
+
+  /* 2. Wrap padding coerente */
+  .wrap {
+    padding-inline: 1.25rem;
+  }
+
+  /* 3. Touch target — tutti i bottoni almeno 48px */
+  .btn,
+  .btn--primary,
+  .btn--outline,
+  .nav-cta,
+  .pass-btn {
+    min-height: 48px;
+  }
+
+  /* 4. Cat cards — rimuovi aspect-ratio su colonna singola */
+  .cat-card {
+    aspect-ratio: unset;
+    padding: var(--space-md);
+  }
+
+  /* 5. Opp cards — foto più corta su mobile */
+  .opp-img-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* 6. Model section — no height fissa, impila verticalmente */
+  .model-content {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .model-text {
+    padding: var(--space-lg) var(--space-md);
+    overflow-y: visible;
+  }
+  .model-visual {
+    height: 300px;
+  }
+  .model-visual .model-table-side {
+    position: static;
+    backdrop-filter: none;
+    background: var(--color-panna);
+    border-radius: 0;
+  }
+
+  /* 7. Cat/Opp grids — singola colonna */
+  .cat-grid { grid-template-columns: 1fr; }
+  .opp-grid { grid-template-columns: 1fr; }
+  .cat-layout { grid-template-columns: 1fr; }
+
+  /* 8. App cards — singola colonna */
+  .app-cards { grid-template-columns: 1fr; }
+  .app-card--wide { grid-column: auto; }
+}
+
+/* ---- Phone ≤ 480px ---------------------------------------- */
+@media (max-width: 480px) {
+
+  :root {
+    --space-xl:  2rem;
+    --space-lg:  1.5rem;
+    --space-md:  1rem;
+  }
+
+  .wrap { padding-inline: 1rem; }
+
+  /* Hero CTA — full width su schermi piccoli */
+  .btn,
+  .btn--primary,
+  .btn--outline {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Stats — 2 colonne invece di 4 */
+  .stats-inner {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .stat-card {
+    flex: 1 1 calc(50% - 0.375rem);
+    min-width: 120px;
+  }
+
+  /* Pass grid — singola colonna */
+  .pass-grid { grid-template-columns: 1fr; }
+
+  /* Info grid — singola colonna */
+  .info-grid { grid-template-columns: 1fr; }
+
+  /* Tally wrap — no max-width su mobile */
+  .tally-wrap { max-width: 100%; }
+}
