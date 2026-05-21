@@ -748,7 +748,7 @@ Beverage, tech e mobility si incontrano a Milano.
     padding: var(--section-py) 0;
   }
 
-  .opp-overline { color: var(--color-mora); opacity: 0.6; }
+  .overline.opp-overline { color: var(--color-mora); opacity: 0.6; }
 
   .section-h2.opp-h2 { color: var(--color-bitter); font-style: italic; }
 
@@ -859,14 +859,13 @@ Beverage, tech e mobility si incontrano a Milano.
 
   .cat-card {
     position: relative;
-    aspect-ratio: 1 / 1;
     background-color: color-mix(in srgb, var(--color-panna) 5%, var(--color-mora));
     border: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
     border-radius: var(--radius-md);
-    padding: var(--space-sm);
+    padding: var(--space-md);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-sm);
     overflow: hidden;
     opacity: 0;
     transform: translateY(28px);
@@ -961,10 +960,7 @@ Beverage, tech e mobility si incontrano a Milano.
     flex: 1;
     position: relative;
     z-index: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .cat-examples {
