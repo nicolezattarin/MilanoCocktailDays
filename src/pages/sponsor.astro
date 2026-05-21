@@ -112,11 +112,11 @@ Beverage, tech e mobility si incontrano a Milano.
             CocktailX Munich ha validato il modello: festival di bar-hopping con
             pass unico, crescita anno su anno, comunità fedele di appassionati.
           </p>
-          <ul class="body-text">
-            <li><strong>Il Modello:</strong> Un format già validato e di successo, basato su un festival di bar-hopping con pass unico, crescita anno su anno e una comunità fedele di appassionati.</li>
-            <li><strong>Il Paradosso:</strong> Milano ha la cocktail culture più avanzata d'Italia, ma nessun evento dedicato. Fino ad ora.</li>
-            <li><strong>L'Opportunità:</strong> Con la prima edizione costruiamo le fondamenta. Entrare ora nel progetto significa dimostrare a Milano che questo evento doveva già esistere.</li>
-          </ul>
+          <div class="model-points">
+            <p class="body-text"><strong>Il Modello:</strong> Un format già validato e di successo, basato su un festival di bar-hopping con pass unico, crescita anno su anno e una comunità fedele di appassionati.</p>
+            <p class="body-text"><strong>Il Paradosso:</strong> Milano ha la cocktail culture più avanzata d'Italia, ma nessun evento dedicato. Fino ad ora.</p>
+            <p class="body-text"><strong>L'Opportunità:</strong> Con la prima edizione costruiamo le fondamenta. Entrare ora nel progetto significa dimostrare a Milano che questo evento doveva già esistere.</p>
+          </div>
         </div>
         <div class="model-table-side reveal reveal-d1">
           <p class="table-label">CocktailX Munich · crescita per edizione</p>
@@ -650,6 +650,14 @@ Beverage, tech e mobility si incontrano a Milano.
     line-height: 1.8;
     margin: 0 0 var(--space-sm);
   }
+
+  .model-points {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .model-points .body-text { margin: 0; }
 
   .model-table-side {
     background-color: var(--color-panna);
