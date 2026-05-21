@@ -12,14 +12,14 @@ const categories = [
     cat: 'Beverage',
     n: '01',
     icon: '🍸',
-    desc: 'Spirits, soft drink, acque premium, vermouth, liquori. Il contesto perfetto: i partecipanti MCD sono consumatori consapevoli, con alta spesa media.',
+    desc: 'Posiziona il tuo brand davanti al pubblico ideale, nel cuore della cocktail culture milanese: consumatori consapevoli e in target.',
     examples: 'Spirits · Soft drink · Acque premium · Vermouth',
   },
   {
     cat: 'Tech',
     n: '02',
     icon: '📱',
-    desc: 'App, piattaforme di booking, mobile payment, digital services. Un pubblico 25–40, urban, early adopter, con alta affinità tecnologica.',
+    desc: 'Integra i tuoi servizi in un ecosistema di utenti tra i 25 e i 40 anni: un pubblico urban, early adopter e ad alta affinità tecnologica.',
     examples: 'App · Booking · Pagamenti · Digital services',
   },
   {
@@ -143,6 +143,35 @@ Beverage, tech e mobility si incontrano a Milano.
             <p class="milan-desc">4° mercato cocktail in Europa · crescita YoY +18%</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITÀ DI SPONSORSHIP --------------------------- -->
+  <section class="s-opp" aria-labelledby="opp-h2">
+    <div class="wrap">
+      <div class="section-header reveal">
+        <p class="overline">Opportunità di sponsorship</p>
+        <h2 id="opp-h2" class="section-h2">
+          Non solo logo<br />e impression.
+        </h2>
+      </div>
+      <div class="opp-grid">
+        <article class="opp-card reveal" style="--stagger: 0s">
+          <div class="opp-icon" aria-hidden="true">🍸</div>
+          <h3 class="opp-title">I tuoi prodotti nelle ricette</h3>
+          <p class="opp-desc">I tuoi prodotti entrano nelle ricette dei cocktail signature dei bar partner. Presenza reale, non solo visiva.</p>
+        </article>
+        <article class="opp-card reveal" style="--stagger: 0.12s">
+          <div class="opp-icon" aria-hidden="true">📱</div>
+          <h3 class="opp-title">Engagement diretto</h3>
+          <p class="opp-desc">Il tuo brand è presente nell'app. Accedi a recensioni e dati di engagement in tempo reale.</p>
+        </article>
+        <article class="opp-card reveal" style="--stagger: 0.24s">
+          <div class="opp-icon" aria-hidden="true">📊</div>
+          <h3 class="opp-title">Dati unici sul consumo</h3>
+          <p class="opp-desc">Dati reali su consumo e preferenze del pubblico. Raccolti durante il festival, anonimizzati e strutturati.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -701,6 +730,53 @@ Beverage, tech e mobility si incontrano a Milano.
   }
 
   /* ── CATEGORIE ───────────────────────────────────────────── */
+  .s-opp {
+    background-color: var(--color-notte);
+    padding: var(--section-py) 0;
+  }
+
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .opp-grid { grid-template-columns: 1fr; }
+  }
+
+  .opp-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .opp-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .opp-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-h3);
+    color: var(--color-panna);
+    margin: 0;
+  }
+
+  .opp-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-panna);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin: 0;
+  }
+
   .s-categories {
     background-color: var(--color-fumo);
     padding: var(--section-py) 0;
