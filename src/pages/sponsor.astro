@@ -39,10 +39,10 @@ const offerings = [
 ];
 
 const appFeatures = [
-  { step: '01', icon: '🏷️', title: 'Logo in evidenza',     desc: 'Il logo del partner è presente nella home app, nelle schede bar, nelle email agli utenti.', wide: false },
-  { step: '02', icon: '🍸', title: 'Prodotti in evidenza', desc: 'I tuoi prodotti possono essere taggati nei cocktail signature dei bar. Ogni scan QR mostra il tuo brand.', wide: false },
-  { step: '03', icon: '💬', title: 'Community',            desc: 'Accesso alla sezione community per interazioni dirette con i partecipanti. Post sponsorizzati, challenge, premi.', wide: false },
-  { step: '04', icon: '📊', title: 'Report dati',          desc: 'A fine festival: impression, click, interazioni, profilo demografico degli utenti che hanno interagito con il tuo brand.', wide: false },
+  { step: '01', icon: '🔗', title: 'Link parametrizzati',     desc: 'Su tutti i prodotti usati nelle ricette dei bar partner. Tracciamento completo delle interazioni.', wide: false },
+  { step: '02', icon: '📋', title: 'Survey',                  desc: 'Per misurare awareness e preferenze di consumo direttamente tra i partecipanti.', wide: false },
+  { step: '03', icon: '📊', title: 'Raccolta dati',           desc: 'Sul consumo e sul traffico durante le serate. Dati reali, anonimizzati e strutturati.', wide: false },
+  { step: '04', icon: '📱', title: 'Posizionamento in app',   desc: 'Strategico, per portare attivazioni dirette sui tuoi prodotti e servizi.', wide: false },
 ];
 
 const faqs = [
@@ -178,7 +178,7 @@ Beverage, tech e mobility si incontrano a Milano.
 
   <!-- CATEGORIE DI PARTNERSHIP ----------------------------- -->
   <section class="s-categories" aria-labelledby="cat-h2">
-    <div class="wrap">
+    <div class="wrap cat-layout">
       <div class="section-header reveal">
         <p class="overline">Categorie di partnership</p>
         <h2 id="cat-h2" class="section-h2">
@@ -213,8 +213,8 @@ Beverage, tech e mobility si incontrano a Milano.
       </div>
       <div class="app-content">
         <p class="overline--dark reveal">L'app per i partner</p>
-        <h2 id="app-h2" class="app-h2 reveal">Il tuo brand<br />dentro l'esperienza.</h2>
-        <p class="app-sub reveal reveal-d1">Logo, prodotti, community, dati. Tutto in un unico contesto premium.</p>
+        <h2 id="app-h2" class="app-h2 reveal">Dati reali.<br />Valore misurabile.</h2>
+        <p class="app-sub reveal reveal-d1">Un evento offline potenziato dalla tecnologia. Raccogliamo dati di valore e attiviamo i partecipanti direttamente.</p>
         <div class="app-cards reveal reveal-d2">
           {appFeatures.map(({ step, icon, title, desc, wide }) => (
             <div class:list={['app-card', { 'app-card--wide': wide }]}>
@@ -264,13 +264,14 @@ Beverage, tech e mobility si incontrano a Milano.
         Lascia i tuoi contatti. Il fondatore ti risponde personalmente
         per fissare una conversazione.
       </p>
-      <div class="form-placeholder reveal reveal-d2">
-        <p class="placeholder-note">
-          Il form sponsor è in arrivo. Nel frattempo scrivici direttamente:
-          <a href="mailto:milanococktaildays@gmail.com" class="placeholder-link">
-            milanococktaildays@gmail.com
-          </a>
-        </p>
+      <div class="tally-wrap reveal reveal-d2">
+        <iframe
+          data-tally-src="https://tally.so/embed/0QDV99?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="949"
+          title="Sponsor Milano Cocktail Days"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -791,6 +792,20 @@ Beverage, tech e mobility si incontrano a Milano.
   }
 
   .section-header { margin-bottom: var(--space-lg); }
+
+  .cat-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .cat-layout .section-header { margin-bottom: 0; }
+
+  @media (max-width: 900px) {
+    .cat-layout { grid-template-columns: 1fr; }
+    .cat-layout .section-header { margin-bottom: var(--space-lg); }
+  }
 
   .overline {
     font-family: var(--font-body);
