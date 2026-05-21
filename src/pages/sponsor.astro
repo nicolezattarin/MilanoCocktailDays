@@ -97,10 +97,6 @@ Beverage, tech e mobility si incontrano a Milano.
 
   <!-- IL MODELLO -------------------------------------------- -->
   <section class="s-model" aria-labelledby="model-h2">
-    <div class="model-bg-img" aria-hidden="true">
-      <img src="/images/Egemen Sahin Unsplash (1).jpg" alt="" width="900" height="1200" loading="lazy" />
-    </div>
-    <div class="model-bg-overlay" aria-hidden="true"></div>
     <div class="wrap model-inner">
       <div class="model-content">
         <div class="model-text reveal">
@@ -118,7 +114,16 @@ Beverage, tech e mobility si incontrano a Milano.
             <p class="body-text"><strong>L'Opportunità:</strong> Con la prima edizione costruiamo le fondamenta. Entrare ora nel progetto significa dimostrare a Milano che questo evento doveva già esistere.</p>
           </div>
         </div>
-        <div class="model-table-side reveal reveal-d1">
+        <picture class="model-picture reveal reveal-d1">
+          <img
+            src="/images/Egemen Sahin Unsplash (1).jpg"
+            alt="Cocktail bar milanese"
+            width="900" height="1200"
+            loading="lazy"
+            class="model-picture-img"
+          />
+        </picture>
+        <div class="model-table-side reveal reveal-d2">
           <p class="table-label">CocktailX Munich · crescita per edizione</p>
           <table class="proof-table" aria-label="Crescita CocktailX Munich">
             <thead>
@@ -175,26 +180,38 @@ Beverage, tech e mobility si incontrano a Milano.
   <section class="s-opp" aria-labelledby="opp-h2">
     <div class="wrap">
       <div class="section-header reveal">
-        <p class="overline">Opportunità di sponsorship</p>
-        <h2 id="opp-h2" class="section-h2">
+        <p class="overline opp-overline">Opportunità di sponsorship</p>
+        <h2 id="opp-h2" class="section-h2 opp-h2">
           Non solo logo<br />e impression.
         </h2>
       </div>
       <div class="opp-grid">
         <article class="opp-card reveal" style="--stagger: 0s">
-          <div class="opp-icon" aria-hidden="true">🍸</div>
-          <h3 class="opp-title">I tuoi prodotti nelle ricette</h3>
-          <p class="opp-desc">I tuoi prodotti entrano nelle ricette dei cocktail signature dei bar partner. Presenza reale, non solo visiva.</p>
+          <div class="opp-img-wrap">
+            <img src="/images/drink_hand_1.jpg" alt="" loading="lazy" class="opp-img" />
+          </div>
+          <div class="opp-body">
+            <h3 class="opp-title">I tuoi prodotti nelle ricette</h3>
+            <p class="opp-desc">I tuoi prodotti entrano nelle ricette dei cocktail signature dei bar partner. Presenza reale, non solo visiva.</p>
+          </div>
         </article>
         <article class="opp-card reveal" style="--stagger: 0.12s">
-          <div class="opp-icon" aria-hidden="true">📱</div>
-          <h3 class="opp-title">Engagement diretto</h3>
-          <p class="opp-desc">Il tuo brand è presente nell'app. Accedi a recensioni e dati di engagement in tempo reale.</p>
+          <div class="opp-img-wrap">
+            <img src="/images/app_sponsor.png" alt="" loading="lazy" class="opp-img" />
+          </div>
+          <div class="opp-body">
+            <h3 class="opp-title">Engagement diretto</h3>
+            <p class="opp-desc">Il tuo brand è presente nell'app. Accedi a recensioni e dati di engagement in tempo reale.</p>
+          </div>
         </article>
         <article class="opp-card reveal" style="--stagger: 0.24s">
-          <div class="opp-icon" aria-hidden="true">📊</div>
-          <h3 class="opp-title">Dati unici sul consumo</h3>
-          <p class="opp-desc">Dati reali su consumo e preferenze del pubblico. Raccolti durante il festival, anonimizzati e strutturati.</p>
+          <div class="opp-img-wrap">
+            <img src="/images/bar_people_1.jpg" alt="" loading="lazy" class="opp-img" />
+          </div>
+          <div class="opp-body">
+            <h3 class="opp-title">Dati unici sul consumo</h3>
+            <p class="opp-desc">Dati reali su consumo e preferenze del pubblico. Raccolti durante il festival, anonimizzati e strutturati.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -575,48 +592,35 @@ Beverage, tech e mobility si incontrano a Milano.
   .s-model {
     background-color: var(--color-avorio);
     padding: clamp(2.5rem, 5vw, 4rem) 0;
-    overflow: hidden;
   }
 
-  .model-bg-img {
-    position: absolute;
-    inset: 0 0 0 22%;
-    z-index: 0;
-  }
-
-  .model-bg-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center -1000px;
-  }
-
-  .model-bg-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      105deg,
-      var(--color-avorio) 36%,
-      color-mix(in srgb, var(--color-avorio) 96%, transparent) 44%,
-      color-mix(in srgb, var(--color-avorio) 78%, transparent) 54%,
-      color-mix(in srgb, var(--color-avorio) 45%, transparent) 66%,
-      color-mix(in srgb, var(--color-avorio) 12%, transparent) 82%,
-      transparent 100%
-    );
-  }
-
-  .model-inner {
-    position: relative;
-    z-index: 2;
-  }
+  .model-inner { position: relative; }
 
   .model-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto 1fr;
     gap: var(--space-xl);
     align-items: start;
-    max-width: 85%;
+  }
+
+  .model-picture {
+    display: block;
+    width: 260px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    align-self: stretch;
+  }
+
+  .model-picture-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .model-content { grid-template-columns: 1fr; }
+    .model-picture { width: 100%; max-height: 320px; align-self: auto; }
   }
 
   .model-text {
@@ -740,9 +744,13 @@ Beverage, tech e mobility si incontrano a Milano.
 
   /* ── CATEGORIE ───────────────────────────────────────────── */
   .s-opp {
-    background-color: var(--color-mora);
+    background-color: var(--color-panna-100);
     padding: var(--section-py) 0;
   }
+
+  .opp-overline { color: var(--color-mora); opacity: 0.6; }
+
+  .opp-h2 { color: var(--color-mora); }
 
   .opp-grid {
     display: grid;
@@ -755,33 +763,50 @@ Beverage, tech e mobility si incontrano a Milano.
   }
 
   .opp-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--color-panna);
+    border: 0.5px solid var(--color-panna-300);
     border-radius: var(--radius-md);
-    padding: var(--space-lg);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
   }
 
-  .opp-icon {
-    font-size: 2rem;
-    line-height: 1;
+  .opp-img-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .opp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .opp-card:hover .opp-img { transform: scale(1.04); }
+
+  .opp-body {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
   }
 
   .opp-title {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--text-h3);
-    color: var(--color-panna);
+    color: var(--color-mora);
     margin: 0;
   }
 
   .opp-desc {
     font-family: var(--font-body);
     font-size: var(--text-body);
-    color: var(--color-panna);
-    opacity: 0.75;
+    color: var(--color-mora);
+    opacity: 0.7;
     line-height: 1.6;
     margin: 0;
   }
@@ -1285,9 +1310,7 @@ Beverage, tech e mobility si incontrano a Milano.
     .hero-overlay    { background: color-mix(in srgb, var(--color-mora) 70%, transparent); }
     .hero-inner      { width: 100%; max-width: 100%; padding: 28px 20px; align-items: center; text-align: center; }
     .hero-sub        { max-width: 100%; }
-    .model-bg-img    { display: none; }
-    .model-bg-overlay { display: none; }
-    .model-content   { grid-template-columns: 1fr; max-width: 100%; }
+    .model-content   { grid-template-columns: 1fr; }
     .app-cards       { grid-template-columns: 1fr; }
     .app-card--wide  { grid-column: auto; }
   }
