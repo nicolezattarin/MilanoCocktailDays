@@ -602,20 +602,23 @@ Beverage, tech e mobility si incontrano a Milano.
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
-    max-height: 650px;
+    height: clamp(480px, 60vw, 650px);
   }
 
   .model-text {
-    padding: clamp(2.5rem, 5vw, 4rem) var(--space-xl) clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, var(--space-xl));
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 2.5rem);
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
     justify-content: center;
+    overflow-y: auto;
+    min-width: 0;
   }
 
   .model-visual {
     position: relative;
     overflow: hidden;
+    min-height: 0;
   }
 
   .model-picture {
@@ -644,10 +647,23 @@ Beverage, tech e mobility si incontrano a Milano.
   }
 
   @media (max-width: 900px) {
-    .model-content { grid-template-columns: 1fr; min-height: auto; }
-    .model-text { padding: var(--space-lg) var(--space-md); }
-    .model-visual { min-height: 400px; }
-    .model-visual .model-table-side { position: static; backdrop-filter: none; background: var(--color-panna); }
+    .model-content {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .model-text {
+      padding: var(--space-lg) var(--space-md);
+      overflow-y: visible;
+    }
+    .model-visual {
+      height: 340px;
+    }
+    .model-visual .model-table-side {
+      position: static;
+      backdrop-filter: none;
+      background: var(--color-panna);
+      border-radius: 0;
+    }
   }
 
   .overline--dark {
