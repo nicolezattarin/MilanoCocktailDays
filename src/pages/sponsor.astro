@@ -147,6 +147,30 @@ Beverage, tech e mobility si incontrano a Milano.
     </div>
   </section>
 
+  <!-- CATEGORIE DI PARTNERSHIP ----------------------------- -->
+  <section class="s-categories" aria-labelledby="cat-h2">
+    <div class="wrap cat-layout">
+      <div class="section-header reveal">
+        <p class="overline">Categorie di partnership</p>
+        <h2 id="cat-h2" class="section-h2">
+          Tre categorie.<br />Un'esperienza completa.
+        </h2>
+      </div>
+      <div class="cat-grid">
+        {categories.map(({ cat, n, icon, desc, examples }, i) => (
+          <article class="cat-card" style={`--stagger: ${i * 0.12}s`}>
+            <div class="cat-icon" aria-hidden="true">{icon}</div>
+            <div class="cat-num" aria-hidden="true">{n}</div>
+            <h3 class="cat-title">{cat}</h3>
+            <p class="cat-desc">{desc}</p>
+            <p class="cat-examples">{examples}</p>
+            <div class="cat-glow" aria-hidden="true"></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- OPPORTUNITÀ DI SPONSORSHIP --------------------------- -->
   <section class="s-opp" aria-labelledby="opp-h2">
     <div class="wrap">
@@ -172,30 +196,6 @@ Beverage, tech e mobility si incontrano a Milano.
           <h3 class="opp-title">Dati unici sul consumo</h3>
           <p class="opp-desc">Dati reali su consumo e preferenze del pubblico. Raccolti durante il festival, anonimizzati e strutturati.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATEGORIE DI PARTNERSHIP ----------------------------- -->
-  <section class="s-categories" aria-labelledby="cat-h2">
-    <div class="wrap cat-layout">
-      <div class="section-header reveal">
-        <p class="overline">Categorie di partnership</p>
-        <h2 id="cat-h2" class="section-h2">
-          Tre categorie.<br />Un'esperienza completa.
-        </h2>
-      </div>
-      <div class="cat-grid">
-        {categories.map(({ cat, n, icon, desc, examples }, i) => (
-          <article class="cat-card" style={`--stagger: ${i * 0.12}s`}>
-            <div class="cat-icon" aria-hidden="true">{icon}</div>
-            <div class="cat-num" aria-hidden="true">{n}</div>
-            <h3 class="cat-title">{cat}</h3>
-            <p class="cat-desc">{desc}</p>
-            <p class="cat-examples">{examples}</p>
-            <div class="cat-glow" aria-hidden="true"></div>
-          </article>
-        ))}
       </div>
     </div>
   </section>
