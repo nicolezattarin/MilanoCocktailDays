@@ -2,16 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const ospiteSteps = [
-  { n: '01', title: 'ACQUISTA IL PASS',      desc: 'I partecipanti acquistano il Pass Festival prima del festival. Tu non fai nulla.' },
-  { n: '02', title: 'SCEGLI IL BAR',       desc: 'Tramite app MCD possono visionare i bar disponibili e scegliere dove andare.' },
+  { n: '01', title: 'IL CLIENTE ACQUISTA IL PASS',      desc: 'I partecipanti acquistano il Pass prima del festival. Tu non fai nulla.' },
+  { n: '02', title: 'SCEGLIE IL BAR',       desc: 'Tramite app MCD possono visionare i bar disponibili e scegliere dove andare.' },
   { n: '03', title: 'ORDINA E DEGUSTA',      desc: 'Arrivano, mostrano il pass, ordinano il tuo cocktail signature. €6 fisso — tu incassi.' },
 ];
 
 const benefits = [
-  { title: 'Traffico qualificato',    desc: 'Solo appassionati di cocktail, non turisti di passaggio. Il pubblico MCD conosce il drink e sa apprezzarlo.' },
-  { title: 'Visibilità',              desc: 'Presenza sull\'app MCD con profilo bar, foto e cocktail. Social media MCD, comunicati stampa, mappa.' },
-  { title: 'Credenziale editoriale',  desc: 'Essere nella selezione MCD è un riconoscimento. Un segnale di qualità verso chi frequenta la scena.' },
-  { title: 'Analytics visite',        desc: 'Dashboard con dati su visite, conversioni, rating. Capisci chi viene, quando e come ti valutano.' },
+  { title: 'Nuovi volti al bancone',    desc: 'Portiamo nel tuo locale un flusso di nuovi clienti, dagli appassionati dei cocktail a chi ha semplicemente voglia di esplorare la città un drink alla volta. Persone curiose che entrano dalla porta e che puoi trasformare in clienti abituali.' },
+  { title: 'Il tuo locale sulla mappa',  desc: 'Finisci dritto al centro della mappa ufficiale e della comunicazione del festival. È il modo più immediato per farti trovare da migliaia di persone che stanno decidendo quale bar visitare.' },
+  { title: 'Insights di mercato',        desc: 'Niente congetture. A fine festival avrai una panoramica chiara sulle abitudini di consumo di cocktail a Milano: scopri cosa preferiscono bere le persone, le loro scelte e quanto bevono durante la settimana.' },
 ];
 
 const requirements = [
@@ -21,19 +20,17 @@ const requirements = [
 ];
 
 const criteria = [
-  'Carta dei drink curata e aggiornata',
-  'Bartender professionali, con esperienza',
-  'Ambiente adatto a una serata di qualità',
-  'Localizzazione in uno dei quartieri selezionati',
-  'Disponibilità a creare un cocktail signature dedicato',
-  'Capacità operativa di gestire slot di prenotazione',
+  'Una carta dei drink curata, stagionale e mai banale.',
+  'Dietro il bancone, professionisti veri guidati dalla passione.',
+  'Un\'atmosfera capace di trasformare la serata in un\'esperienza.',
+ 
 ];
 
 const appFeatures = [
-  { step: '01', icon: '📈', title: 'Analytics visite',          desc: 'Dati reali su quanti utenti visitano il tuo profilo, prenotano uno slot, vengono fisicamente nel locale.', wide: false },
+  { step: '01', icon: '📈', title: 'Analytics visite',          desc: 'Dati reali su quanti utenti visitano il tuo profilo e acquistano il tuo drink.', wide: false },
   { step: '02', icon: '⭐', title: 'Recensioni verificate',     desc: 'Solo i partecipanti con pass possono lasciare recensioni. Feedback autentico, non spam.', wide: false },
-  { step: '03', icon: '📍', title: 'Posizionamento sulla mappa', desc: 'Il tuo bar è in primo piano sulla mappa del festival, con foto, descrizione e link alla prenotazione.', wide: false },
-  { step: '04', icon: '💬', title: 'Community',                 desc: 'Accesso alla sezione community: interagisci con i partecipanti, rispondi alle recensioni, crea contenuti.', wide: false },
+  { step: '03', icon: '📍', title: 'Posizionamento sulla mappa', desc: 'Il tuo bar è in primo piano sulla mappa del festival, con foto e descrizione.', wide: false },
+  { step: '04', icon: '💬', title: 'Community',                 desc: 'Accesso alla sezione community: interagisci con i partecipanti e attira clienti al tuo locale.', wide: false },
 ];
 
 const faqs = [
@@ -64,10 +61,10 @@ const faqs = [
     <div class="wrap hero-inner">
       <p class="hero-overline">Bar Partner · Selezione Aperta</p>
       <h1 id="bar-h1" class="hero-h1">
-        Stiamo costruendo<br /><em>la selezione.</em>
+        Trenta bar di Milano.<br /><em>Per dieci giorni.</em><em>Un pass.</em>
       </h1>
       <p class="hero-sub">
-        Cerchiamo i migliori cocktail bar di Milano per la prima edizione di MCD.
+        Porta il tuo locale al centro della scena cocktail milanese e mettiti in mostra di fronte a oltre 1.000 nuovi clienti. La partecipazione é totalmente gratuita.
       </p>
       <a href="#form" class="btn btn--primary">Candida il tuo bar →</a>
     </div>
@@ -155,9 +152,9 @@ const faqs = [
           Qualità prima.<br />Tutto il resto viene da sé.
         </h2>
         <p class="body-text">
-          Non cerchiamo i bar più famosi di Milano. Cerchiamo quelli che fanno
-          le cose bene: drink curati, bartender appassionati, un'atmosfera che vale
-          la pena scoprire. Dimensioni e notorietà contano poco.
+          Non cerchiamo i bar più famosi di Milano. 
+          Cerchiamo quelli che fanno le cose bene: drink curati, bartender appassionati, un'atmosfera da scoprire. 
+
         </p>
       </div>
       <ul class="criteria-list reveal reveal-d1" role="list">
@@ -217,8 +214,8 @@ const faqs = [
     <div class="cta-video-overlay" aria-hidden="true"></div>
     <div class="wrap cta-video-inner">
       <span class="cta-star" aria-hidden="true">✶</span>
-      <h2 id="cta-video-h2" class="cta-video-title">Vuoi far parte<br />della selezione?</h2>
-      <p class="cta-video-sub">La candidatura è gratuita e non vincolante.</p>
+      <h2 id="cta-video-h2" class="cta-video-title">Candida <br />il tuo locale</h2>
+      <p class="cta-video-sub">La partecipazione è completamente gratuita.</p>
       <a href="#form" class="cta-video-btn cta-partner">Candida il tuo bar →</a>
     </div>
   </section>
@@ -675,7 +672,7 @@ const faqs = [
 
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-sm);
   }
 
@@ -854,8 +851,9 @@ const faqs = [
     background: linear-gradient(
       to top,
       color-mix(in srgb, var(--color-inchiostro) 97%, transparent) 0%,
-      color-mix(in srgb, var(--color-inchiostro) 75%, transparent) 40%,
-      color-mix(in srgb, var(--color-inchiostro) 30%, transparent) 75%,
+      color-mix(in srgb, var(--color-inchiostro) 90%, transparent) 35%,
+      color-mix(in srgb, var(--color-inchiostro) 65%, transparent) 60%,
+      color-mix(in srgb, var(--color-inchiostro) 30%, transparent) 80%,
       color-mix(in srgb, var(--color-inchiostro) 10%, transparent) 100%
     );
   }
@@ -893,7 +891,7 @@ const faqs = [
   .req-val {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    font-size: clamp(1.6rem, 4.5vw, 4rem);
     color: var(--color-panna);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -1297,6 +1295,7 @@ const faqs = [
     .criteria-inner { grid-template-columns: 1fr; }
     .req-inner      { grid-template-columns: 1fr; gap: var(--space-md); }
     .req-grid       { grid-template-columns: repeat(2, 1fr); }
+    .req-val        { font-size: clamp(1.6rem, 6vw, 3rem); }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
     .faq-wrap       { grid-template-columns: 1fr; }
