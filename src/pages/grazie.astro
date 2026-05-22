@@ -13,6 +13,8 @@ import SocialLinks from '../components/SocialLinks.astro';
       <h1 class="grazie-h1">Ci siamo.<span aria-hidden="true"> ✶</span></h1>
       <p class="grazie-sub">Abbiamo ricevuto la tua iscrizione. Ti contatteremo noi non appena le vendite saranno aperte.</p>
 
+      <img src="/images/dogbartender.gif" alt="Dog bartender" class="grazie-gif" />
+
       <div class="grazie-divider"></div>
 
       <p class="grazie-label">Nel frattempo, seguici</p>
@@ -147,7 +149,15 @@ import SocialLinks from '../components/SocialLinks.astro';
 
   .grazie-back:hover { color: var(--color-mora); }
 
+  .grazie-gif {
+    width: 100%;
+    max-width: 320px;
+    border-radius: var(--radius-md);
+    margin: var(--space-sm) 0;
+  }
+
   @media (max-width: 480px) {
     .wrap { padding: 0 1rem; }
+    .grazie-gif { max-width: 100%; }
   }
 </style>
