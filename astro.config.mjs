@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 const SITE = 'https://milancocktaildays.it';
 
-/** @type {Record<string, { priority: number; changefreq: string }>} */
+/** @type {Record<string, { priority: number; changefreq: any }>} */
 const pagePriority = {
   [`${SITE}/`]:             { priority: 1.0, changefreq: 'monthly' },
   [`${SITE}/festival/`]:    { priority: 0.9, changefreq: 'monthly' },
