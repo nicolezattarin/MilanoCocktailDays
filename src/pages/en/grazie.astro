@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
+---
+
+<BaseLayout
+  title="Thanks for signing up"
+  description="We've received your registration for Milan Cocktail Days 2027. We'll be in touch soon."
+>
+  <section class="s-grazie">
+    <div class="wrap">
+      <p class="overline">Milan Cocktail Days · 2027</p>
+      <h1 class="grazie-h1">You're in.<span aria-hidden="true"> ✶</span></h1>
+      <p class="grazie-sub">We've got your registration. We'll reach out as soon as passes go on sale.</p>
+
+      <img src="/images/dogbartender.gif" alt="Dog bartender" class="grazie-gif" />
+
+      <div class="grazie-divider"></div>
+
+      <p class="grazie-label">In the meantime, follow us</p>
+      <SocialLinks variant="light" />
+
+      <div class="grazie-divider"></div>
+
+      <p class="grazie-label">Contact</p>
+      <a href="mailto:milanococktaildays@gmail.com" class="grazie-email">milanococktaildays@gmail.com</a>
+
+      <a href="/en/" class="grazie-back">← Back to home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .s-grazie { background-color: var(--color-panna); min-height: 80svh; padding: var(--section-py) 0; display: flex; align-items: center; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .overline { font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-basilico); opacity: 0.7; margin: 0; }
+  .grazie-h1 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h1); color: var(--color-mora); line-height: 1.05; margin: 0; }
+  .grazie-sub { font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--color-inchiostro); line-height: 1.6; max-width: 520px; margin: 0; }
+  .grazie-divider { height: 0.5px; background-color: var(--color-panna-300); margin: var(--space-sm) 0; }
+  .grazie-label { font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-inchiostro-500); margin: 0; }
+  .grazie-email { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-basilico); text-decoration: none; transition: color 0.2s ease; }
+  .grazie-email:hover { color: var(--color-basilico-600); }
+  .grazie-back { margin-top: var(--space-md); font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); text-decoration: none; transition: color 0.2s ease; }
+  .grazie-back:hover { color: var(--color-mora); }
+  .grazie-gif { width: 100%; max-width: 320px; border-radius: var(--radius-md); margin: var(--space-sm) 0; }
+  @media (max-width: 480px) { .wrap { padding: 0 1rem; } .grazie-gif { max-width: 100%; } }
+</style>
