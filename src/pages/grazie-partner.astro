@@ -1,11 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const social = [
-  { label: 'Instagram', href: 'https://www.instagram.com/milanococktaildays', handle: '@milanococktaildays' },
-  { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/milano-cocktail-days/', handle: 'Milano Cocktail Days' },
-  { label: 'Telegram',  href: 'https://t.me/+_D1s5hFIlwwyMjA0', handle: 'Canale ufficiale' },
-];
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
 <BaseLayout
@@ -21,14 +16,7 @@ const social = [
       <div class="grazie-divider"></div>
 
       <p class="grazie-label">Nel frattempo, seguici</p>
-      <div class="social-list">
-        {social.map(({ label, href, handle }) => (
-          <a href={href} class="social-item" target="_blank" rel="noopener noreferrer">
-            <span class="social-platform">{label}</span>
-            <span class="social-handle">{handle}</span>
-          </a>
-        ))}
-      </div>
+      <SocialLinks variant="dark" />
 
       <div class="grazie-divider"></div>
 

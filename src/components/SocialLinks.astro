@@ -1,0 +1,116 @@
+---
+/**
+ * SocialLinks — lista social con icone SVG.
+ * Varianti: "light" (su bg panna/avorio) | "dark" (su bg mora)
+ */
+interface Props {
+  variant?: 'light' | 'dark';
+}
+const { variant = 'light' } = Astro.props;
+
+const social = [
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/milanococktaildays',
+    handle: '@milanococktaildays',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/milano-cocktail-days/',
+    handle: 'Milano Cocktail Days',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+  },
+  {
+    label: 'Telegram',
+    href: 'https://t.me/+_D1s5hFIlwwyMjA0',
+    handle: 'Canale ufficiale',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg>`,
+  },
+];
+---
+
+<div class:list={['social-links', `social-links--${variant}`]}>
+  {social.map(({ label, href, handle, icon }) => (
+    <a
+      href={href}
+      class="social-item"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Seguici su ${label}: ${handle}`}
+    >
+      <span class="social-icon" set:html={icon} />
+      <span class="social-info">
+        <span class="social-platform">{label}</span>
+        <span class="social-handle">{handle}</span>
+      </span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .social-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 12px 0;
+    text-decoration: none;
+    border-bottom: 0.5px solid transparent;
+    transition: opacity 0.2s ease;
+    min-height: 48px;
+  }
+
+  .social-item:last-child { border-bottom: none; }
+  .social-item:hover { opacity: 0.65; }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .social-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .social-platform {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+  }
+
+  .social-handle {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    line-height: 1.2;
+  }
+
+  /* ---- Light variant (bg panna) -------------------------- */
+  .social-links--light .social-item {
+    border-bottom-color: var(--color-panna-300);
+  }
+  .social-links--light .social-icon { color: var(--color-basilico); }
+  .social-links--light .social-platform { color: var(--color-inchiostro-500); }
+  .social-links--light .social-handle { color: var(--color-basilico); }
+
+  /* ---- Dark variant (bg mora) ---------------------------- */
+  .social-links--dark .social-item {
+    border-bottom-color: var(--color-mora-300);
+  }
+  .social-links--dark .social-icon { color: var(--color-pesco-300); }
+  .social-links--dark .social-platform { color: var(--color-panna); opacity: 0.55; }
+  .social-links--dark .social-handle { color: var(--color-pesco-300); }
+</style>

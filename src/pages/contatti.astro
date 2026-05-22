@@ -1,17 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHero from '../components/SectionHero.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 
 const contatti = [
-  { label: 'Generale',    email: 'milanococktaildays@gmail.com' },
-  // { label: 'Press',       email: 'milanococktaildays@gmail.com' },
-  // { label: 'Partnership', email: 'milanococktaildays@gmail.com' },
-];
-
-const social = [
-  { label: 'Instagram', href: 'https://www.instagram.com/milanococktaildays', handle: '@milanococktaildays' },
-  { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/milano-cocktail-days/', handle: 'Milano Cocktail Days' },
-  { label: 'Telegram',  href: 'https://t.me/+_D1s5hFIlwwyMjA0', handle: 'Canale ufficiale' },
+  { label: 'Generale', email: 'milanococktaildays@gmail.com' },
 ];
 ---
 
@@ -40,14 +33,7 @@ const social = [
         ))}
       </div>
 
-      <div class="social-row">
-        {social.map(({ label, href, handle }) => (
-          <a href={href} class="social-link" target="_blank" rel="noopener noreferrer" aria-label={`Seguici su ${label}: ${handle}`}>
-            <span class="social-platform" aria-hidden="true">{label}</span>
-            <span class="social-handle">{handle}</span>
-          </a>
-        ))}
-      </div>
+      <SocialLinks variant="light" />
     </div>
   </section>
 
