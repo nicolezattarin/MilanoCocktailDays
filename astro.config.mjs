@@ -4,12 +4,17 @@ import sitemap from '@astrojs/sitemap';
 
 const SITE = 'https://milancocktaildays.it';
 
+/** @type {Record<string, { priority: number; changefreq: string }>} */
 const pagePriority = {
-  [`${SITE}/`]:          { priority: 1.0, changefreq: 'monthly' },
-  [`${SITE}/festival/`]: { priority: 0.9, changefreq: 'monthly' },
-  [`${SITE}/bars/`]:     { priority: 0.8, changefreq: 'monthly' },
-  [`${SITE}/programma/`]:{ priority: 0.8, changefreq: 'monthly' },
-  [`${SITE}/contatti/`]: { priority: 0.7, changefreq: 'monthly' },
+  [`${SITE}/`]:             { priority: 1.0, changefreq: 'monthly' },
+  [`${SITE}/festival/`]:    { priority: 0.9, changefreq: 'monthly' },
+  [`${SITE}/bars/`]:        { priority: 0.8, changefreq: 'monthly' },
+  [`${SITE}/programma/`]:   { priority: 0.8, changefreq: 'monthly' },
+  [`${SITE}/contatti/`]:    { priority: 0.7, changefreq: 'monthly' },
+  [`${SITE}/en/`]:          { priority: 1.0, changefreq: 'monthly' },
+  [`${SITE}/en/festival/`]: { priority: 0.9, changefreq: 'monthly' },
+  [`${SITE}/en/sponsor/`]:  { priority: 0.8, changefreq: 'monthly' },
+  [`${SITE}/en/contatti/`]: { priority: 0.7, changefreq: 'monthly' },
 };
 
 export default defineConfig({
