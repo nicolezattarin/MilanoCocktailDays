@@ -1,22 +1,33 @@
 ---
 /**
- * Footer — tre colonne: logo/tagline, link rapidi, social + legal
+ * Footer — three columns: logo/tagline, quick links, social + legal
+ * Lang detected from URL — no prop needed.
  */
+import { getLang } from '../i18n/utils';
 
-const linkRapidi = [
-  { href: '/partecipa', label: 'Partecipa' },
-  { href: '/bar',       label: 'Bar Partner' },
-  { href: '/sponsor',   label: 'Sponsor' },
-  { href: '/contatti',  label: 'Contatti' },
-];
+const currentPath  = Astro.url.pathname;
+const isEn         = getLang(currentPath) === 'en';
+const annoCorrente = new Date().getFullYear();
+
+const linkRapidi = isEn
+  ? [
+      { href: '/en/',         label: 'Home' },
+      { href: '/bar',         label: 'Bar Partners' },
+      { href: '/en/sponsor',  label: 'Sponsor' },
+      { href: '/en/contatti', label: 'Contact' },
+    ]
+  : [
+      { href: '/',         label: 'Home' },
+      { href: '/bar',      label: 'Bar Partner' },
+      { href: '/sponsor',  label: 'Sponsor' },
+      { href: '/contatti', label: 'Contatti' },
+    ];
 
 const social = [
   { href: 'https://www.instagram.com/milanococktaildays', label: 'Instagram' },
   { href: 'https://www.linkedin.com/company/milano-cocktail-days/', label: 'LinkedIn' },
   { href: 'https://t.me/+_D1s5hFIlwwyMjA0', label: 'Telegram' },
 ];
-
-const annoCorrente = new Date().getFullYear();
 ---
 
 <footer class="site-footer mcw-filetto">
@@ -26,15 +37,15 @@ const annoCorrente = new Date().getFullYear();
       <a href="/" class="footer-logo" aria-label="Milan Cocktail Days">
         <img src="/logos/logo_1_v.FINAL/Inchiostro.svg" alt="Milan Cocktail Days" class="footer-logo-img" />
       </a>
-      <p class="footer-tagline">Milano ✶ Maggio 2027</p>
+      <p class="footer-tagline">Milano ✶ {isEn ? 'May 2027' : 'Maggio 2027'}</p>
       <p class="footer-desc">
-        La settimana della cocktail culture milanese.<br />
+        {isEn ? "Milan's cocktail culture week." : 'La settimana della cocktail culture milanese.'}<br />
       </p>
     </div>
 
     <!-- Colonna centrale: link rapidi -->
     <div class="footer-col footer-col--nav">
-      <h3 class="footer-heading">Link Rapidi</h3>
+      <h3 class="footer-heading">{isEn ? 'Quick Links' : 'Link Rapidi'}</h3>
       <ul class="footer-nav-list" role="list">
         {linkRapidi.map(({ href, label }) => (
           <li>
@@ -46,7 +57,7 @@ const annoCorrente = new Date().getFullYear();
 
     <!-- Colonna destra: social + legale -->
     <div class="footer-col footer-col--social">
-      <h3 class="footer-heading">Seguici</h3>
+      <h3 class="footer-heading">{isEn ? 'Follow Us' : 'Seguici'}</h3>
       <ul class="footer-social-list" role="list">
         {social.map(({ href, label }) => (
           <li>
@@ -73,8 +84,8 @@ const annoCorrente = new Date().getFullYear();
         <a
           href="#"
           id="iubenda-cs-preferences-link"
-          title="Gestisci preferenze cookie"
-        >Preferenze Cookie</a>
+          title={isEn ? 'Manage cookie preferences' : 'Gestisci preferenze cookie'}
+        >{isEn ? 'Cookie Preferences' : 'Preferenze Cookie'}</a>
       </div>
     </div>
   </div>
@@ -82,7 +93,7 @@ const annoCorrente = new Date().getFullYear();
   <!-- Firma di chiusura -->
   <div class="footer-bottom">
     <span class="footer-copyright">
-      &copy; {annoCorrente} Milan Cocktail Days. Tutti i diritti riservati.
+      &copy; {annoCorrente} Milan Cocktail Days. {isEn ? 'All rights reserved.' : 'Tutti i diritti riservati.'}
     </span>
     <span class="footer-signature" aria-hidden="true">✶</span>
   </div>

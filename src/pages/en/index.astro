@@ -1,0 +1,1131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Get your pass',
+    desc: 'One pass. Good for all ten days. Early bird from €15.',
+    icon: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="9" width="28" height="14" rx="2"/><line x1="10" y1="9" x2="10" y2="23" stroke-dasharray="3 3" opacity="0.6"/><circle cx="2" cy="16" r="2.5" fill="currentColor" stroke="none" opacity="0.25"/><circle cx="30" cy="16" r="2.5" fill="currentColor" stroke="none" opacity="0.25"/></svg>`,
+  },
+  {
+    n: '02',
+    title: 'Explore the bars',
+    desc: 'Thirty hand-picked cocktail bars, from Navigli to NoLo. Move at your own pace — no bookings, no fixed route.',
+    icon: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C11.6 3 8 6.6 8 11c0 6 8 18 8 18s8-12 8-18c0-4.4-3.6-8-8-8z"/><circle cx="16" cy="11" r="2.5"/></svg>`,
+  },
+  {
+    n: '03',
+    title: 'Order the exclusive cocktail',
+    desc: 'Order the drink made just for these ten days. Flat €6, at every venue.',
+    icon: `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h22L16 17 5 4z"/><line x1="16" y1="17" x2="16" y2="25"/><line x1="10" y1="28" x2="22" y2="28"/></svg>`,
+  },
+];
+
+const criteria = [
+  {
+    title: 'The cocktail at the centre.',
+    desc: 'Cocktails are the heart of the offering — not an afterthought on the menu.',
+    img: '/images/Clear Wine Glass Photo.jpg',
+  },
+  {
+    title: 'Neighbourhoods that pulse.',
+    desc: 'From Brera to Lambrate, Navigli to NoLo. Milan, quartiere by quartiere.',
+    img: '/images/Szymon Fischer.jpg',
+  },
+  {
+    title: 'A clear point of view.',
+    desc: 'Curated, seasonal drink lists. Every cocktail earns its place.',
+    img: '/images/bartender_1.jpg',
+  },
+];
+
+const appFeatures = [
+  {
+    step: '01',
+    icon: '🎫',
+    title: 'One pass. The whole city.',
+    desc: "Buy your ticket and get access to the app: every bar, every cocktail, right in your pocket. Your pass works for all ten days.",
+    wide: false,
+  },
+  {
+    step: '02',
+    icon: '🗺️',
+    title: 'Discover bars and cocktails.',
+    desc: "Browse which bars are taking part and preview their signature cocktails.",
+    wide: false,
+  },
+  {
+    step: '03',
+    icon: '📱',
+    title: 'Scan and order.',
+    desc: "At the bar, scan the QR code in the app and order your signature cocktail. No reservation needed.",
+    wide: false,
+  },
+  {
+    step: '04',
+    icon: '⭐',
+    title: 'Collect stamps, unlock rewards.',
+    desc: "Every signature cocktail earns a digital stamp. More stamps, more perks.",
+    wide: false,
+  },
+];
+
+const quotes = [
+  { text: "Finally an event like London Cocktail Week, right here in Milan.", name: 'Giulia', age: 25 },
+  { text: "A cocktail at €6 is already enough reason to buy the pass.", name: 'Marco', age: 24 },
+  { text: "An excuse to go out during the week in Milan.", name: 'Elena', age: 30 },
+  { text: "Sounds like a great way to discover new bars.", name: 'Luca', age: 34 },
+  { text: "Can't wait to explore parts of the city I've never been to.", name: 'Sara', age: 28 },
+  { text: "Perfect for cocktail lovers who hate paying central prices.", name: 'Davide', age: 31 },
+  { text: "Already convinced all my friends to sign up.", name: 'Martina', age: 26 },
+  { text: "€15 for ten days around Milan? Done.", name: 'Valentina', age: 32 },
+  { text: "The idea of a unique cocktail at every bar is brilliant.", name: 'Chiara', age: 29 },
+  { text: "Exactly the kind of event this city was missing.", name: 'Riccardo', age: 35 },
+  { text: "Finally something worth doing in Milan in May.", name: 'Andrea', age: 33 },
+  { text: "Curious to see which bars make the cut.", name: 'Filippo', age: 27 },
+];
+
+const faqs = [
+  {
+    q: 'What is Milano Cocktail Days?',
+    a: "Ten days, once a year, when Milan becomes the capital of cocktail culture. Thirty of the city's best bars create a signature drink — exclusive, made for the festival, available nowhere else. Buy the pass and do the tour.",
+  },
+  {
+    q: 'When is the next edition?',
+    a: "May 2027. Official dates coming soon — join the waitlist to find out first and lock in your early bird pass.",
+  },
+  {
+    q: 'Where does it take place?',
+    a: "Everywhere. This is a diffuse festival. The thirty partner bars — announced very soon — are spread across Milan. Each one opens its doors to serve their exclusive creation.",
+  },
+  {
+    q: 'Do I need a separate ticket for each bar?',
+    a: "No. One pass (from €15) gives you access to all thirty partner bars. Show your pass and order the festival cocktail for a flat €6 — instead of the usual €10–15.",
+  },
+  {
+    q: 'Do I need to book in advance?',
+    a: "No bookings, no fixed schedule. Check the bar's opening hours, walk up to the bancone, and order with your pass — accessible directly from our web app.",
+  },
+  {
+    q: 'Where can I buy a pass?',
+    a: "Passes go on sale exclusively online, right here. Join the waitlist to know exactly when they drop and secure your early bird price.",
+  },
+  {
+    q: "I don't know much about cocktails. Is this for me?",
+    a: "Yes. MCD is not a trade fair for industry insiders — it's for anyone who likes a well-made drink and wants to discover new places. Whether you're a regular or a curious first-timer, you belong here.",
+  },
+  {
+    q: 'Is it worth going for just one evening?',
+    a: "Absolutely. One evening is enough to find your next favourite bar. And the economics make sense: three cocktails at €6 each already covers the cost of an early bird pass.",
+  },
+  {
+    q: "My friends aren't interested — should I still come?",
+    a: "Yes. That's what cocktail bars are for. Sit at the bancone, let the bartender do their thing. A good bar is the best social space there is.",
+  },
+  {
+    q: 'Is there an age limit?',
+    a: "Yes — 18+. The programme is exclusively alcoholic beverages.",
+  },
+];
+---
+
+<BaseLayout
+  title="Milano Cocktail Days — Thirty bars, ten days, one pass."
+  description="May 2027: thirty bars across Milan, ten days, one cocktail made just for the festival at every bancone — €6. Join the list for early bird passes from €15."
+  pageType="event"
+>
+
+  <!-- S01 · HERO -->
+  <section class="s-hero" aria-labelledby="home-h1">
+    <picture class="hero-bg" aria-hidden="true">
+      <img
+        src="/images/bar_photo1.jpg"
+        alt=""
+        width="1920" height="1080"
+        fetchpriority="high" loading="eager"
+      />
+    </picture>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="wrap hero-inner">
+      <img src="/logos/logo_3_v.FINAL/Panna.svg" alt="Milan Cocktail Days" class="hero-logo" />
+
+      <p class="hero-overline">
+        Milano <span aria-hidden="true">✶</span> May 2027 <span aria-hidden="true">✶</span> First Edition
+      </p>
+
+      <h1 id="home-h1" class="hero-h1">
+        Thirty bars in Milan.<br />For ten days.<br />One pass.
+      </h1>
+
+      <p class="hero-sub">
+        Every bar creates a cocktail made just for the event — €6 flat, only during the ten days of May.
+        Join the list — early bird passes from €15.
+      </p>
+
+      <a href="#lista" class="btn btn--primary">
+        Join the waitlist <span aria-hidden="true">✶</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- S02 · HOW IT WORKS -->
+  <section class="s-how" aria-labelledby="how-h2">
+    <div class="how-bg-glow" aria-hidden="true"></div>
+    <div class="wrap">
+
+      <h2 id="how-h2" class="how-h2 reveal">Three things.<br />That's it.</h2>
+
+      <div class="how-steps-wrap">
+        <div class="how-connector" aria-hidden="true"></div>
+        <div class="how-steps">
+          {steps.map(({ n, icon, title, desc }) => (
+            <article class="how-card">
+              <div class="how-card-top">
+                <div class="how-card-num" aria-hidden="true">{n}</div>
+                <div class="how-card-icon" aria-hidden="true" set:html={icon} />
+              </div>
+              <h3 class="how-card-title">{title}</h3>
+              <div class="how-card-desc-box">
+                <p class="how-card-desc">{desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="how-footer reveal reveal-d1">
+        <p class="how-strap">
+          Thirty bars, thirty recipes made for the week. A new way to drink Milan.
+          <span aria-hidden="true">✶</span>
+        </p>
+        <a href="#lista" class="btn btn--primary how-cta">
+          Join the waitlist <span aria-hidden="true">✶</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S03 · EARLY BIRD -->
+  <section class="s-why" aria-labelledby="why-h2">
+    <div class="why-texture" aria-hidden="true"></div>
+    <div class="wrap why-wrap">
+
+      <div class="why-editorial">
+        <p class="why-kicker">Early bird <span aria-hidden="true">✶</span> Launch price</p>
+        <h2 id="why-h2" class="why-h2">
+          The best price.<br />
+          <em class="why-em">For the waitlist only.</em>
+        </h2>
+        <p class="why-body">Price goes to €30 once early bird spots are gone.</p>
+      </div>
+
+      <div class="why-price-block">
+        <div class="panel-price">
+          <span class="price-from">From</span>
+          <span class="price-main">€15</span>
+          <span class="price-was">€30</span>
+        </div>
+      </div>
+
+      <div class="why-action">
+        <div class="why-proof">
+          <div class="proof-avatars" aria-hidden="true">
+            <span class="avatar av-1"></span>
+            <span class="avatar av-2"></span>
+            <span class="avatar av-3"></span>
+          </div>
+          <p class="proof-copy"><strong class="proof-n">347</strong> already signed up</p>
+        </div>
+        <a href="#lista" class="btn btn--primary">
+          Join the waitlist <span aria-hidden="true">✶</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S05 · WHO IT'S FOR -->
+  <section class="s-perchi" aria-labelledby="perchi-h2">
+    <div class="perchi-layout">
+
+      <div class="perchi-content">
+        <p class="section-kicker section-kicker--light perchi-reveal">Who it's for</p>
+        <h2 id="perchi-h2" class="perchi-h2 perchi-reveal">
+          For people who love<br />Milan.<br />And those who want to<br />know it, one cocktail at a time.
+        </h2>
+        <p class="perchi-lead perchi-reveal">
+          For anyone who likes to sit at the bancone, order what they always order or try something new — and wants a round of drinks worth making a night of.
+        </p>
+
+        <ul class="perchi-occasions perchi-reveal" role="list">
+          <li class="perchi-occasion">Friday night with the person you want to drink with. A proper toast to the weekend.</li>
+          <li class="perchi-occasion">A different kind of evening. The right cocktails, the right company.</li>
+          <li class="perchi-occasion">For the curious. The ones who never know what to order — and love it that way.</li>
+        </ul>
+      </div>
+
+      <div class="perchi-image-col" aria-hidden="true">
+        <div class="perchi-image-wrap perchi-img-reveal">
+          <img
+            src="/images/Photo by Mediha Ekici copy.jpg"
+            alt=""
+            class="perchi-img"
+            loading="lazy"
+            width="1000" height="1000"
+          />
+          <div class="perchi-image-overlay"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S06a · PARTNER BARS -->
+  <section class="s-bars" aria-labelledby="bars-h2">
+    <div class="wrap">
+      <div class="bars-header reveal">
+        <h2 id="bars-h2" class="bars-h2">Not every bar in Milan. The thirty that matter.</h2>
+        <p class="bars-lead">
+          Independent bars, bartenders with something to say, drinks that tell a story.
+        </p>
+      </div>
+
+      <div class="criteria-grid">
+        {criteria.map(({ title, desc, img }, i) => (
+          <div class:list={['criterion-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
+            <div class="criterion-img-wrap">
+              <img src={img} alt="" class="criterion-img" loading="lazy" />
+            </div>
+            <div class="criterion-body">
+              <h3 class="criterion-title">{title}</h3>
+              <p class="criterion-desc">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <a href="#lista" class="btn btn--primary bars-cta reveal reveal-d1">
+        Join the waitlist <span aria-hidden="true">✶</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- S06b · THE APP -->
+  <section class="s-app" aria-labelledby="app-h2">
+    <div class="wrap app-inner">
+      <div class="app-mock" aria-hidden="true">
+        <img
+          src="/images/Google Pixel 4 Mockup/app_user-portrait.png"
+          alt=""
+          class="mockup-img"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="app-content">
+        <h2 id="app-h2" class="app-h2 reveal">Buy your ticket.<br />Enjoy the festival.</h2>
+        <p class="app-sub reveal reveal-d1">
+          Ticket → map → QR → cocktail. Three taps.
+        </p>
+
+        <div class="app-cards reveal reveal-d2">
+          {appFeatures.map(({ step, icon, title, desc, wide }) => (
+            <div class:list={['app-card', { 'app-card--wide': wide }]}>
+              <div class="app-card-header">
+                <span class="app-card-icon" aria-hidden="true">{icon}</span>
+                <span class="app-card-step" aria-hidden="true">{step}</span>
+              </div>
+              <h3 class="app-card-title">{title}</h3>
+              <p class="app-card-desc">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S07 · VOICES FROM THE LIST -->
+  <section class="s-quotes" aria-labelledby="quotes-h2">
+    <div class="wrap quotes-header reveal">
+      <h2 id="quotes-h2" class="quotes-h2">What people on the list are saying</h2>
+      <p class="quotes-counter" aria-live="polite">
+        <strong class="counter-num" id="counter-quotes">347</strong> people signed up
+      </p>
+    </div>
+
+    <div class="quotes-outer">
+      <div class="quotes-track" id="quotes-track" aria-label="Testimonials">
+        {[...quotes, ...quotes].map(({ text, name, age }, i) => (
+          <article class="quote-card" aria-hidden={i >= quotes.length ? 'true' : 'false'}>
+            <blockquote class="quote-text">"{text}"</blockquote>
+            <footer class="quote-author">— {name}, {age}</footer>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- S08 · FINAL CTA -->
+  <section class="s-cta-final" aria-labelledby="cta-final-h2">
+    <picture class="cta-bg" aria-hidden="true">
+      <img
+        src="/images/Photo by Mahyaddin Jabbarli.jpg"
+        alt=""
+        class="cta-bg-img"
+        loading="lazy"
+        width="1920" height="1080"
+      />
+    </picture>
+    <div class="cta-overlay" aria-hidden="true"></div>
+    <div class="wrap cta-final-inner">
+      <p class="section-kicker section-kicker--light reveal">Milan, May 2027</p>
+      <h2 id="cta-final-h2" class="cta-final-h2 reveal reveal-d1">
+        Join the first edition.<br /> May 2027.
+      </h2>
+      <a href="#lista" class="btn btn--final reveal reveal-d2">
+        Join the waitlist <span aria-hidden="true">✶</span>
+      </a>
+      <p class="cta-trust reveal reveal-d3">Join the waitlist for priority access to early bird passes at the best price.</p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="s-lista" id="lista" aria-labelledby="lista-h2">
+    <div class="wrap">
+      <h2 id="lista-h2" class="lista-h2 reveal">
+        Waitlist <span aria-hidden="true">✶</span>
+      </h2>
+      <p class="lista-intro reveal reveal-d1">
+        Sign up free. You'll hear from us first when passes go on sale.
+      </p>
+      <div class="tally-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/Y5pkp5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&hideFooter=1"
+          loading="lazy"
+          width="100%"
+          height="689"
+          title="Milan Cocktail Days — Waitlist"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- S09 · FAQ -->
+  <section class="s-faq" aria-labelledby="faq-h2">
+    <div class="wrap faq-wrap">
+
+      <div class="faq-header reveal">
+        <p class="section-kicker">FAQ</p>
+        <h2 id="faq-h2" class="faq-h2">Questions.<br />Two lines each.</h2>
+      </div>
+
+      <div class="faq-list reveal reveal-d1" id="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              {q}
+              <span class="faq-icon" aria-hidden="true">✶</span>
+            </summary>
+            <p class="faq-a">{a}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── SECTION KICKER ───────────────────────────────────────── */
+  .section-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-basilico);
+    margin: 0 0 var(--space-sm);
+    display: block;
+  }
+  .section-kicker--light {
+    color: var(--color-pesco-300);
+    opacity: 0.8;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .s-hero {
+    position: relative;
+    min-height: 885px;
+    display: flex;
+    align-items: center;
+    padding: clamp(2rem, 5vw, 4rem) 0;
+    overflow: hidden;
+    background-color: var(--color-mora);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 80% center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 30%,
+      transparent 60%
+    );
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    max-width: 720px;
+    padding: 32px 40px;
+    background: color-mix(in srgb, var(--color-inchiostro) 30%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, var(--color-panna) 14%, transparent);
+    border-radius: var(--radius-md);
+  }
+
+  .hero-logo {
+    height: auto;
+    max-width: 500px;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-overline {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-panna);
+    opacity: 0.65;
+    margin: 0;
+  }
+
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-hero);
+    color: var(--color-panna);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* ── SHARED BTN ───────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-sm);
+  }
+
+  .btn--primary {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+  }
+
+  .btn--final {
+    background-color: var(--color-bitter);
+    color: var(--color-panna);
+    border: 1px solid var(--color-bitter);
+    font-size: var(--text-body);
+    padding: 1rem 2.5rem;
+    margin-top: 0;
+  }
+
+  .btn--final:hover {
+    background-color: var(--color-bitter-500);
+    border-color: var(--color-bitter-500);
+  }
+
+  /* ── COME FUNZIONA ────────────────────────────────────────── */
+  .s-how {
+    background-color: var(--color-fumo);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .how-bg-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 45% at 85% 15%, color-mix(in srgb, var(--color-bitter) 9%, transparent), transparent),
+      radial-gradient(ellipse 45% 55% at 5% 85%, color-mix(in srgb, var(--color-basilico) 18%, transparent), transparent);
+  }
+
+  .s-how .wrap { position: relative; z-index: 2; }
+
+  .how-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 60px;
+    color: var(--color-panna);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 30px;
+  }
+
+  .how-steps-wrap { position: relative; margin-bottom: 30px; }
+
+  .how-connector {
+    position: absolute;
+    top: 0.9rem;
+    left: calc(100% / 6);
+    right: calc(100% / 6);
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-bitter) 55%, transparent) 20%, color-mix(in srgb, var(--color-bitter) 55%, transparent) 80%, transparent);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    position: relative;
+    z-index: 1;
+  }
+
+  .how-card {
+    background-color: color-mix(in srgb, var(--color-panna) 5%, var(--color-mora));
+    border: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.35s ease;
+  }
+
+  .how-card.is-visible { opacity: 1; transform: translateY(0); }
+  .how-card:nth-child(2) { transition-delay: 0.1s; }
+  .how-card:nth-child(3) { transition-delay: 0.2s; }
+
+  .how-card:hover {
+    box-shadow: 0 24px 64px color-mix(in srgb, var(--color-mora) 70%, transparent), 0 0 48px color-mix(in srgb, var(--color-bitter) 12%, transparent);
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-bitter) 25%, transparent);
+  }
+
+  .how-card.is-visible:hover { transform: translateY(-6px); }
+
+  .how-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs); }
+
+  .how-card-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--color-bitter);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .how-card-icon {
+    color: var(--color-panna);
+    opacity: 0.45;
+    flex-shrink: 0;
+    width: clamp(1.5rem, 3vw, 2rem);
+    height: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .how-card-icon :global(svg) { width: 100%; height: 100%; }
+
+  .how-card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body-lg);
+    color: var(--color-panna);
+    letter-spacing: 0.01em;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .how-card-desc-box {
+    margin-top: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background-color: color-mix(in srgb, var(--color-panna) 6%, transparent);
+    border-left: 1.5px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .how-card-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .how-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    padding-top: var(--space-md);
+    border-top: var(--border-hairline-dark);
+  }
+
+  .how-strap {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-h3);
+    color: var(--color-panna);
+    line-height: 1.2;
+    margin: 0;
+    flex: 1;
+  }
+
+  .how-cta { margin-top: 0; flex-shrink: 0; }
+
+  /* ── EARLY BIRD ───────────────────────────────────────────── */
+  .s-why {
+    background: var(--color-panna);
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 0.5px solid var(--color-panna-300);
+    border-bottom: 0.5px solid var(--color-panna-300);
+  }
+
+  .why-texture {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, color-mix(in srgb, var(--color-basilico) 5%, transparent) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+  }
+
+  .why-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    flex-wrap: wrap;
+  }
+
+  .why-editorial { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .why-kicker {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-basilico);
+    opacity: 0.55;
+    margin: 0;
+  }
+
+  .why-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    color: var(--color-mora);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .why-em { font-style: italic; font-weight: 700; color: var(--color-bitter); }
+
+  .why-body { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); line-height: 1.5; margin: 0.25rem 0 0; }
+
+  .why-price-block { flex-shrink: 0; border-left: 0.5px solid var(--color-panna-300); border-right: 0.5px solid var(--color-panna-300); padding: 0 clamp(1.5rem, 3vw, 3rem); }
+
+  .panel-price { display: flex; align-items: baseline; gap: 0.5rem; }
+
+  .price-from { font-family: var(--font-body); font-size: var(--text-small); font-weight: 500; color: var(--color-inchiostro-500); }
+
+  .price-main { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--color-bitter); line-height: 1; letter-spacing: -0.03em; }
+
+  .price-was { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-inchiostro-300); text-decoration: line-through; text-decoration-thickness: 1px; opacity: 0.55; align-self: center; }
+
+  .why-action { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+
+  .why-proof { display: flex; align-items: center; gap: var(--space-sm); }
+
+  .proof-avatars { display: flex; }
+
+  .avatar { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--color-panna); margin-left: -8px; }
+  .av-1 { background: var(--color-bitter-500); margin-left: 0; }
+  .av-2 { background: var(--color-basilico); }
+  .av-3 { background: var(--color-mora-300); }
+
+  .proof-copy { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); margin: 0; }
+  .proof-n { color: var(--color-mora); font-weight: 700; }
+
+  /* ── WHO IT'S FOR ─────────────────────────────────────────── */
+  .s-perchi { background-color: var(--color-basilico); overflow: hidden; }
+
+  .perchi-layout { display: grid; grid-template-columns: 1fr 0.9fr; min-height: 600px; }
+
+  .perchi-content {
+    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-sm);
+    max-width: 600px;
+    margin-left: clamp(0px, 15vw, 330px);
+  }
+
+  .perchi-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 4vw, 56px); color: var(--color-panna); line-height: 0.97; margin: 0; letter-spacing: -0.025em; max-width: 1000px; }
+
+  .perchi-lead { font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--color-pesco-300); line-height: 1.7; margin: 0; max-width: 1000px; opacity: 0.85; }
+
+  .perchi-occasions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); }
+
+  .perchi-occasion { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-panna); font-style: italic; line-height: 1.5; padding: 0.65rem 0; border-bottom: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent); opacity: 0.85; }
+
+  .perchi-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .perchi-reveal:nth-child(2) { transition-delay: 0.1s; }
+  .perchi-reveal:nth-child(3) { transition-delay: 0.2s; }
+  .perchi-reveal:nth-child(4) { transition-delay: 0.32s; }
+  .perchi-reveal.is-visible { opacity: 1; transform: none; }
+
+  .perchi-img-reveal { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.15s; }
+  .perchi-img-reveal.is-visible { opacity: 1; transform: scale(1); }
+
+  .perchi-image-wrap { position: absolute; inset: 0; }
+  .perchi-image-col { position: relative; overflow: hidden; }
+  .perchi-img { width: 100%; height: 100%; object-fit: cover; object-position: left; display: block; transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+  .perchi-image-col:hover .perchi-img { transform: scale(1.04); }
+
+  .perchi-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--color-basilico) 0%, color-mix(in srgb, var(--color-basilico) 82%, transparent) 18%, color-mix(in srgb, var(--color-basilico) 48%, transparent) 35%, color-mix(in srgb, var(--color-basilico) 14%, transparent) 50%, transparent 65%);
+    opacity: 1;
+    box-shadow: -18px 1px 8px 2px #2e4a36;
+  }
+
+  /* ── PARTNER BARS ─────────────────────────────────────────── */
+  .s-bars { background-color: var(--color-avorio); padding: clamp(1.75rem, 3.5vw, 2.5rem) 0; }
+
+  .bars-header { display: flex; align-items: baseline; gap: clamp(1.5rem, 4vw, 3rem); margin-bottom: var(--space-md); flex-wrap: wrap; }
+
+  .bars-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 2.25rem); color: var(--color-mora); line-height: 1.05; margin: 0; flex: 1; min-width: 220px; }
+
+  .bars-lead { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); line-height: 1.65; margin: 0; flex: 1; min-width: 220px; }
+
+  .criteria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); margin-bottom: var(--space-md); }
+
+  .criterion-card { border-radius: var(--radius-md); overflow: hidden; background-color: var(--color-panna); border: 0.5px solid var(--color-panna-300); display: flex; flex-direction: column; transition: box-shadow 0.25s ease, transform 0.25s ease; }
+
+  .criterion-card:hover { box-shadow: 0 12px 40px color-mix(in srgb, var(--color-mora) 12%, transparent); transform: translateY(-4px); }
+
+  .criterion-img-wrap { aspect-ratio: 4 / 3; overflow: hidden; background-color: var(--color-panna-300); }
+
+  .criterion-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .criterion-card:hover .criterion-img { transform: scale(1.05); }
+
+  .criterion-body { padding: var(--space-sm) var(--space-sm) var(--space-md); border-top: 2px solid var(--color-basilico); flex: 1; }
+
+  .criterion-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-body); color: var(--color-mora); margin: 0 0 var(--space-xs); }
+
+  .criterion-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); line-height: 1.65; margin: 0; }
+
+  .bars-cta { margin-top: 0; }
+
+  /* ── APP ──────────────────────────────────────────────────── */
+  .s-app { background-color: var(--color-fumo); padding: clamp(2rem, 5vw, 4rem) 0; }
+
+  .app-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--space-lg); align-items: center; }
+
+  .app-mock { display: flex; justify-content: center; align-items: center; }
+
+  .mockup-img { max-width: 260px; width: 100%; height: auto; display: block; }
+
+  .app-content { display: flex; flex-direction: column; gap: var(--space-md); }
+
+  .app-h2 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h1); color: var(--color-panna); line-height: 1.05; margin: 0; }
+
+  .app-sub { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-pesco-300); line-height: 1.6; margin: 0; opacity: 0.85; }
+
+  .app-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+
+  .app-card { background-color: color-mix(in srgb, var(--color-panna) 6%, transparent); border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); border-radius: var(--radius-sm); padding: var(--space-md); transition: background-color 0.25s ease, border-color 0.25s ease; }
+
+  .app-card:hover { background-color: color-mix(in srgb, var(--color-panna) 9%, transparent); border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent); }
+
+  .app-card--wide { grid-column: 1 / -1; }
+
+  .app-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs); }
+
+  .app-card-icon { font-size: 1.25rem; line-height: 1; }
+
+  .app-card-step { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--color-bitter); opacity: 0.3; line-height: 1; letter-spacing: -0.04em; }
+  .app-card:hover .app-card-step { opacity: 0.6; }
+
+  .app-card-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-small); color: var(--color-panna); margin: 0 0 var(--space-xs); letter-spacing: 0.02em; }
+
+  .app-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); line-height: 1.65; margin: 0; opacity: 0.85; }
+
+  /* ── QUOTES ───────────────────────────────────────────────── */
+  .s-quotes { background-color: var(--color-panna-100); padding: clamp(2rem, 5vw, 4rem) 0; overflow: hidden; }
+
+  .quotes-header { margin-bottom: var(--space-md); display: flex; align-items: baseline; gap: var(--space-md); flex-wrap: wrap; }
+
+  .quotes-h2 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h2); color: var(--color-mora); margin: 0; }
+
+  .quotes-counter { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); margin: 0; }
+
+  .quotes-counter .counter-num { font-size: var(--text-body); color: var(--color-basilico); }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .quotes-outer { overflow: hidden; padding: 0 0 var(--space-sm); mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); }
+
+  .quotes-track { display: flex; gap: var(--space-md); width: max-content; animation: marquee 40s linear infinite; }
+
+  .quotes-outer:hover .quotes-track { animation-play-state: paused; }
+
+  @media (prefers-reduced-motion: reduce) { .quotes-track { animation: none; } .quotes-outer { overflow-x: auto; } }
+
+  .quote-card { flex: 0 0 min(320px, 80vw); background-color: var(--color-panna); border: 0.5px solid var(--color-panna-300); border-radius: var(--radius-md); padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
+
+  .quote-text { font-family: var(--font-body); font-style: italic; font-size: var(--text-body); color: var(--color-mora); line-height: 1.65; quotes: none; margin: 0; }
+
+  .quote-author { font-family: var(--font-body); font-size: var(--text-label); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-inchiostro-700); }
+
+  /* ── CTA FINALE ───────────────────────────────────────────── */
+  .s-cta-final { position: relative; overflow: hidden; min-height: clamp(400px, 60vh, 700px); display: flex; align-items: center; }
+
+  .cta-bg { position: absolute; inset: 0; z-index: 0; }
+
+  .cta-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center calc(35% - 100px); display: block; }
+
+  .cta-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, color-mix(in srgb, var(--color-mora) 40%, transparent) 0%, color-mix(in srgb, var(--color-mora) 20%, transparent) 50%, transparent 100%); }
+
+  .cta-final-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); margin-left: 10px; margin-right: 10px; }
+
+  .cta-final-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.5rem, 9vw, 8rem); color: var(--color-panna); line-height: 0.9; margin: 0; letter-spacing: -0.03em; }
+
+  .cta-trust { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); opacity: 0.65; margin: 0; font-style: italic; }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+  .s-faq { background-color: var(--color-panna); padding: clamp(3rem, 6vw, 5rem) 0; }
+
+  .faq-wrap { display: grid; grid-template-columns: 0.6fr 1fr; gap: clamp(3rem, 7vw, 7rem); align-items: start; }
+
+  .faq-header { position: sticky; top: 5rem; }
+
+  .faq-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--color-mora); line-height: 0.97; margin: 0; letter-spacing: -0.03em; }
+
+  .faq-list { display: flex; flex-direction: column; }
+
+  .faq-item { border-top: 0.5px solid var(--color-panna-300); }
+  .faq-item:last-child { border-bottom: 0.5px solid var(--color-panna-300); }
+
+  .faq-q { display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); padding: var(--space-md) 0; cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: var(--text-body); color: var(--color-mora); list-style: none; user-select: none; }
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-icon { color: var(--color-bitter); flex-shrink: 0; transition: transform 0.25s ease; font-size: 0.9em; }
+  details[open] .faq-icon { transform: rotate(45deg); }
+
+  .faq-a { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-inchiostro); line-height: 1.75; margin: 0; padding: 0 var(--space-lg) var(--space-md) 0; }
+
+  /* ── FORM ─────────────────────────────────────────────────── */
+  .s-lista { background-color: var(--color-fumo); padding: clamp(2rem, 5vw, 4rem) 0; scroll-margin-top: 64px; }
+
+  .lista-h2 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h1); color: var(--color-panna); line-height: 1.05; margin: 0 0 var(--space-sm); }
+
+  .lista-h2 span { font-size: 0.5em; vertical-align: middle; opacity: 0.5; }
+
+  .lista-intro { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-pesco-300); line-height: 1.65; max-width: 560px; margin: 0 0 var(--space-lg); opacity: 0.85; }
+
+  .tally-wrap { max-width: 760px; }
+
+  /* ── REVEALS ──────────────────────────────────────────────── */
+  section { position: relative; z-index: 0; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .how-card, .perchi-reveal, .perchi-img-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* Vignette */
+  .s-how::before, .s-why::before, .s-perchi::before, .s-bars::before, .s-app::before, .s-quotes::before, .s-cta-final::before, .s-lista::before, .s-faq::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent); pointer-events: none; z-index: 2;
+  }
+
+  .s-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); pointer-events: none; z-index: 1; }
+  .hero-inner { z-index: 3; }
+
+  .s-how .wrap { position: relative; z-index: 3; }
+  .why-wrap { position: relative; z-index: 3; }
+  .perchi-layout { position: relative; z-index: 3; }
+  .s-bars .wrap { position: relative; z-index: 3; }
+  .app-inner { position: relative; z-index: 3; }
+  .quotes-header, .quotes-outer { position: relative; z-index: 3; }
+  .s-lista .wrap { position: relative; z-index: 3; }
+  .faq-wrap { position: relative; z-index: 3; }
+
+  .s-quotes { background-image: radial-gradient(ellipse 60% 50% at 85% 55%, color-mix(in srgb, var(--color-pesco) 6%, transparent), transparent), radial-gradient(ellipse 40% 60% at 12% 40%, color-mix(in srgb, var(--color-basilico) 5%, transparent), transparent); }
+
+  .btn { transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px color-mix(in srgb, var(--color-bitter) 24%, transparent); }
+  .btn:active { transform: translateY(0); }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .how-steps { grid-template-columns: 1fr; }
+    .how-connector { display: none; }
+    .why-wrap { grid-template-columns: 1fr; }
+    .criteria-grid { grid-template-columns: 1fr; }
+    .bars-header { flex-direction: column; gap: var(--space-sm); }
+    .perchi-layout { grid-template-columns: 1fr; min-height: 0; height: auto; }
+    .perchi-content { margin-left: 0; max-width: 100%; }
+    .perchi-image-col { height: 420px; position: relative; }
+    .perchi-img-reveal { position: relative; height: 100%; }
+    .faq-wrap { grid-template-columns: 1fr; }
+    .faq-header { position: static; }
+    .app-inner { grid-template-columns: 1fr; }
+    .app-mock { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .s-hero { min-height: 100svh; padding: var(--space-lg) 0; }
+    .hero-inner { width: 100%; max-width: 100%; padding: 28px 20px; }
+    .hero-overlay { background: color-mix(in srgb, var(--color-mora) 70%, transparent); opacity: 1; }
+    .hero-h1 { font-size: clamp(1.75rem, 8vw, 3rem); }
+    .how-h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
+    .how-footer { flex-direction: column; align-items: flex-start; }
+    .quotes-header { flex-direction: column; gap: var(--space-xs); }
+    .app-cards { grid-template-columns: 1fr; }
+    .app-card--wide { grid-column: auto; }
+    .cta-final-h2 { font-size: clamp(2.5rem, 12vw, 5rem); }
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 1rem; }
+    .hero-inner { padding: 20px 16px; }
+    .hero-logo { max-width: min(380px, 90%); }
+    .bars-h2 { min-width: 0; font-size: clamp(1.3rem, 7vw, 1.8rem); }
+    .bars-lead { min-width: 0; }
+    .how-card { padding: var(--space-sm); }
+    .cta-final-inner { padding: var(--space-lg) var(--space-sm); }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if ((detail as HTMLDetailsElement).open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== detail) (other as HTMLDetailsElement).open = false;
+        });
+      }
+    });
+  });
+
+  function makeVisible(el: Element) { el.classList.add('is-visible'); }
+
+  requestAnimationFrame(() => {
+    const perchiSection = document.querySelector('.s-perchi');
+    if (perchiSection) {
+      const perchiRevealEls = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
+      const perchiObs = new IntersectionObserver(
+        entries => { if (entries[0].isIntersecting) { perchiRevealEls.forEach(makeVisible); perchiObs.disconnect(); } },
+        { threshold: 0.1 }
+      );
+      perchiObs.observe(perchiSection);
+    }
+
+    const howCards = document.querySelectorAll('.how-card');
+    if (howCards.length) {
+      const io = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); io.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      howCards.forEach(c => io.observe(c));
+    }
+
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+      const revealObs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { makeVisible(e.target); revealObs.unobserve(e.target); } }),
+        { threshold: 0.05 }
+      );
+      revealEls.forEach(el => revealObs.observe(el));
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible), .how-card:not(.is-visible), .perchi-reveal:not(.is-visible), .perchi-img-reveal:not(.is-visible)').forEach(makeVisible);
+      }, 2500);
+    }
+  });
+
+  const heroBgImg = document.querySelector<HTMLImageElement>('.hero-bg img');
+  if (heroBgImg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('scroll', () => {
+      heroBgImg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+    }, { passive: true });
+  }
+</script>

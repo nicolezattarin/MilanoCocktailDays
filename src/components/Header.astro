@@ -1,37 +1,55 @@
 ---
 /**
- * Header — navigazione principale MCD
- * Desktop: logo · nav links · CTA "ISCRIVITI"
- * Mobile: hamburger CSS-only, nessun JS
+ * Header — main navigation MCD
+ * Desktop: logo · nav links · lang switcher · CTA
+ * Mobile: CSS-only hamburger, no JS
  */
-
-const navLinks = [
-  { href: '/bar',      label: 'Bar Partner' },
-  { href: '/sponsor',  label: 'Sponsor' },
-];
+import { getLang, getAlternateUrl } from '../i18n/utils';
 
 const currentPath = Astro.url.pathname;
+const lang        = getLang(currentPath);
+const isEn        = lang === 'en';
+const altUrl      = getAlternateUrl(currentPath);
+
+const navLinks = isEn
+  ? [
+      { href: '/bar',         label: 'Bar Partners' },
+      { href: '/en/sponsor',  label: 'Sponsor' },
+    ]
+  : [
+      { href: '/bar',      label: 'Bar Partner' },
+      { href: '/sponsor',  label: 'Sponsor' },
+    ];
+
+const ctaHref       = isEn ? '/en/#lista' : '/#lista';
+const ctaLabel      = isEn ? 'Join' : 'Partecipa';
+const ctaAriaLabel  = isEn ? 'Join the Milan Cocktail Days waitlist' : "Entra in lista d'attesa Milan Cocktail Days";
+const logoAriaLabel = isEn ? 'Milan Cocktail Days — back to home' : 'Milan Cocktail Days — torna alla home';
+const menuAriaLabel = isEn ? 'Open navigation menu' : 'Apri il menu di navigazione';
+
+// IT link href: if on EN → altUrl; if on IT → currentPath
+const itHref = isEn ? altUrl : currentPath;
+const enHref = isEn ? currentPath : altUrl;
 ---
 
 <header class="site-header">
-  <!-- Checkbox nascosta: gestisce apertura menu mobile via CSS -->
   <input type="checkbox" id="menu-toggle" class="menu-toggle-input" aria-hidden="true" />
 
   <div class="header-inner">
     <!-- Logo -->
-    <a href="/" class="site-logo" aria-label="Milan Cocktail Days — torna alla home">
+    <a href={isEn ? '/en/' : '/'} class="site-logo" aria-label={logoAriaLabel}>
       <img src="/logos/logo_3_v.FINAL/Inchiostro.svg" alt="Milan Cocktail Days" class="site-logo-img" />
     </a>
 
-    <!-- Hamburger (visibile solo mobile) -->
-    <label for="menu-toggle" class="hamburger" aria-label="Apri il menu di navigazione">
+    <!-- Hamburger (mobile only) -->
+    <label for="menu-toggle" class="hamburger" aria-label={menuAriaLabel}>
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </label>
 
-    <!-- Nav principale + CTA -->
-    <nav class="site-nav" aria-label="Navigazione principale">
+    <!-- Nav + CTA -->
+    <nav class="site-nav" aria-label={isEn ? 'Main navigation' : 'Navigazione principale'}>
       <ul class="nav-list" role="list">
         {navLinks.map(({ href, label }) => (
           <li class="nav-item">
@@ -44,16 +62,31 @@ const currentPath = Astro.url.pathname;
             </a>
           </li>
         ))}
-        <!-- CTA visibile nel menu mobile -->
+        <!-- CTA mobile only -->
         <li class="nav-item nav-item--cta-mobile">
-          <a href="/#lista" class="nav-cta-mobile">Partecipa</a>
+          <a href={ctaHref} class="nav-cta-mobile">{ctaLabel}</a>
+        </li>
+        <!-- Lang switcher mobile -->
+        <li class="nav-item nav-item--lang-mobile">
+          <div class="lang-switch-mobile" aria-label={isEn ? 'Language' : 'Lingua'}>
+            <a href={itHref} class:list={['lang-btn', { 'lang-btn--active': !isEn }]} hreflang="it" lang="it">IT</a>
+            <span class="lang-sep" aria-hidden="true">|</span>
+            <a href={enHref} class:list={['lang-btn', { 'lang-btn--active': isEn }]} hreflang="en" lang="en">EN</a>
+          </div>
         </li>
       </ul>
     </nav>
 
-    <!-- CTA bottone desktop -->
-    <a href="/#lista" class="nav-cta" aria-label="Entra in lista d'attesa Milan Cocktail Days">
-      Partecipa
+    <!-- Lang switcher desktop -->
+    <div class="lang-switch" aria-label={isEn ? 'Language' : 'Lingua'}>
+      <a href={itHref} class:list={['lang-btn', { 'lang-btn--active': !isEn }]} hreflang="it" lang="it" aria-current={!isEn ? 'true' : undefined}>IT</a>
+      <span class="lang-sep" aria-hidden="true">|</span>
+      <a href={enHref} class:list={['lang-btn', { 'lang-btn--active': isEn }]} hreflang="en" lang="en" aria-current={isEn ? 'true' : undefined}>EN</a>
+    </div>
+
+    <!-- CTA desktop -->
+    <a href={ctaHref} class="nav-cta" aria-label={ctaAriaLabel}>
+      {ctaLabel}
     </a>
   </div>
 </header>
@@ -130,6 +163,43 @@ const currentPath = Astro.url.pathname;
   .nav-link.is-active::after { width: 100%; }
   .nav-link.is-active { color: var(--color-panna); }
 
+  /* ---- Lang switcher --------------------------------------- */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+
+  .lang-sep {
+    font-size: 10px;
+    color: var(--color-panna);
+    opacity: 0.25;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .lang-btn {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-panna);
+    text-decoration: none;
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+    padding: 2px 2px;
+    line-height: 1;
+  }
+
+  .lang-btn:hover { opacity: 0.8; }
+
+  .lang-btn--active {
+    opacity: 1;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-panna) 60%, transparent);
+  }
+
   /* ---- CTA desktop ----------------------------------------- */
   .nav-cta {
     display: inline-flex;
@@ -180,13 +250,15 @@ const currentPath = Astro.url.pathname;
     transform-origin: center;
   }
 
-  /* Animazione hamburger → X */
+  /* Hamburger → X animation */
   .menu-toggle-input:checked ~ .header-inner .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .menu-toggle-input:checked ~ .header-inner .bar:nth-child(2) { opacity: 0; }
   .menu-toggle-input:checked ~ .header-inner .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* CTA mobile nascosto in desktop */
-  .nav-item--cta-mobile { display: none; }
+  /* Mobile-only items hidden on desktop */
+  .nav-item--cta-mobile  { display: none; }
+  .nav-item--lang-mobile { display: none; }
+
   .nav-cta-mobile {
     display: inline-flex;
     padding: 8px 20px;
@@ -201,6 +273,13 @@ const currentPath = Astro.url.pathname;
     border-radius: var(--radius-sm);
   }
 
+  .lang-switch-mobile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: var(--space-sm) 0;
+  }
+
   /* ---- Mobile ≤ 768px ------------------------------------- */
   @media (max-width: 480px) {
     .header-inner { padding: 0 1rem; }
@@ -208,8 +287,9 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 768px) {
-    .hamburger { display: flex; }
-    .nav-cta   { display: none; }
+    .hamburger  { display: flex; }
+    .nav-cta    { display: none; }
+    .lang-switch { display: none; }
 
     .site-nav {
       position: absolute;
@@ -240,11 +320,26 @@ const currentPath = Astro.url.pathname;
     }
 
     .nav-item:last-child { border-bottom: none; }
-    .nav-item--cta-mobile { display: block; padding: var(--space-sm) 0; }
+    .nav-item--cta-mobile  { display: block; padding: var(--space-sm) 0; }
+    .nav-item--lang-mobile { display: block; }
 
     .nav-link {
       display: block;
       padding: var(--space-sm) 0;
+    }
+
+    .lang-switch-mobile .lang-btn {
+      font-size: 13px;
+      opacity: 0.5;
+    }
+
+    .lang-switch-mobile .lang-btn--active {
+      opacity: 1;
+    }
+
+    .lang-switch-mobile .lang-sep {
+      opacity: 0.3;
+      font-size: 12px;
     }
   }
 </style>
