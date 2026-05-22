@@ -17,6 +17,8 @@ const IT_TO_EN: Record<string, string> = {
   '/grazie/':           '/en/grazie/',
   '/grazie-partner':    '/en/grazie-partner/',
   '/grazie-partner/':   '/en/grazie-partner/',
+  '/bar':               '/en/bar/',
+  '/bar/':              '/en/bar/',
 };
 
 const EN_TO_IT: Record<string, string> = {
@@ -32,6 +34,8 @@ const EN_TO_IT: Record<string, string> = {
   '/en/grazie/':        '/grazie/',
   '/en/grazie-partner': '/grazie-partner/',
   '/en/grazie-partner/':'/grazie-partner/',
+  '/en/bar':            '/bar/',
+  '/en/bar/':           '/bar/',
 };
 
 export function getAlternateUrl(pathname: string): string {
