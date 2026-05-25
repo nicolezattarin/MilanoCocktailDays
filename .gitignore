@@ -22,3 +22,4 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.claude/worktrees/agent-a57adb2d0122075ce/
