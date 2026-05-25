@@ -71,6 +71,27 @@ const appFeatures = [
   },
 ];
 
+const perchiCards = [
+  {
+    title: 'Gli amanti del cocktail',
+    desc: 'Per chi ordina sempre qualcosa di nuovo e vuole scoprire cosa sanno fare i migliori bar di Milano.',
+    img: '/images/Clear Wine Glass Photo.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-7 9-7-9z"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>`,
+  },
+  {
+    title: 'Le serate con gli amici',
+    desc: 'Per una serata diversa dal solito, con i cocktail giusti e la voglia di girovagare per quartieri.',
+    img: '/images/Szymon Fischer.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    title: 'I curiosi',
+    desc: 'Per chi vuole scoprire nuovi bar e quartieri di Milano, un bicchiere alla volta.',
+    img: '/images/bartender_1.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+  },
+];
+
 const quotes = [
   { text: 'Finalmente un evento come la London Cocktail Week a Milano!', name: 'Giulia', age: 25 },
   { text: 'Cocktail a €6 è già abbastanza per comprare il biglietto', name: 'Marco', age: 24 },
@@ -250,35 +271,27 @@ const faqs = [
 
   <!-- S05 · PER CHI È ────────────────────────────────────────── -->
   <section class="s-perchi" aria-labelledby="perchi-h2">
-    <div class="perchi-layout">
+    <div class="wrap">
 
-      <div class="perchi-content">
-        <p class="section-kicker section-kicker--light perchi-reveal">Per chi è</p>
-        <h2 id="perchi-h2" class="perchi-h2 perchi-reveal">
-          Per chi ama<br />Milano.<br />E per chi vuole<br />conoscerla un cocktail alla volta.
+      <div class="perchi-header perchi-reveal">
+        <p class="section-kicker section-kicker--light">Per chi è</p>
+        <h2 id="perchi-h2" class="perchi-h2">
+          Per chi ama Milano.<br />E per chi vuole conoscerla un cocktail alla volta.
         </h2>
-        <p class="perchi-lead perchi-reveal">
-        È per chi ama stare davanti al bancone, per chi ordina il solito o vuole farsi sorprendere, e ha voglia di un giro di cocktail che valga davvero la pena.
-        </p>
-
-        <ul class="perchi-occasions perchi-reveal" role="list">
-          <li class="perchi-occasion">Per il venerdì sera con la tua persona preferita, brindando al weekend.</li>
-          <li class="perchi-occasion">Per una serata diversa, con i cocktail giusti e gli amici di sempre.</li>
-          <li class="perchi-occasion">Per chi è curioso, ha sete di novità e non sa mai cosa ordinare.</li>
-        </ul>
       </div>
 
-      <div class="perchi-image-col" aria-hidden="true">
-        <div class="perchi-image-wrap perchi-img-reveal">
-          <img
-            src="/images/Photo by Mediha Ekici copy.jpg"
-            alt=""
-            class="perchi-img"
-            loading="lazy"
-            width="1000" height="1000"
-          />
-          <div class="perchi-image-overlay"></div>
-        </div>
+      <div class="perchi-cards">
+        {perchiCards.map(({ title, desc, img, icon }) => (
+          <article class="perchi-card perchi-reveal">
+            <img src={img} alt="" class="perchi-card-img" loading="lazy" />
+            <div class="perchi-card-overlay"></div>
+            <div class="perchi-card-body">
+              <div class="perchi-card-icon" set:html={icon} />
+              <h3 class="perchi-card-title">{title}</h3>
+              <p class="perchi-card-desc">{desc}</p>
+            </div>
+          </article>
+        ))}
       </div>
 
     </div>
@@ -946,65 +959,115 @@ const faqs = [
   /* ── PER CHI È ────────────────────────────────────────────── */
   .s-perchi {
     background-color: var(--color-basilico);
+    padding: clamp(3rem, 6vw, 5rem) 0;
     overflow: hidden;
+    position: relative;
   }
 
-  .perchi-layout {
-    display: grid;
-    grid-template-columns: 1fr 0.9fr;
-    min-height: 600px;
-  }
-
-  .perchi-content {
-    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-sm);
-    max-width: 600px;
-    margin-left: clamp(0px, 15vw, 330px);
+  .perchi-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   .perchi-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(40px, 4vw, 56px);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     color: var(--color-panna);
-    line-height: 0.97;
-    margin: 0;
+    line-height: 1.05;
+    margin: 0.5rem 0 0;
     letter-spacing: -0.025em;
-    max-width: 1000px;
   }
 
-  .perchi-lead {
-    font-family: var(--font-body);
-    font-size: var(--text-body-lg);
-    color: var(--color-pesco-300);
-    line-height: 1.7;
-    margin: 0;
-    max-width: 1000px;
-    opacity: 0.85;
+  .perchi-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
   }
 
-  .perchi-occasions {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .perchi-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    border: 1px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    cursor: default;
+  }
+
+  .perchi-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .perchi-card:hover .perchi-card-img {
+    transform: scale(1.05);
+  }
+
+  .perchi-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-inchiostro) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 40%,
+      color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 70%,
+      transparent 100%
+    );
+  }
+
+  .perchi-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md);
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent);
+    gap: var(--space-xs);
   }
 
-  .perchi-occasion {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
+  .perchi-card-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-bitter);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--color-panna);
-    font-style: italic;
-    line-height: 1.5;
-    padding: 0.65rem 0;
-    border-bottom: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent);
-    opacity: 0.85;
+    padding: 0.5rem;
+    margin-bottom: var(--space-xs);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--color-bitter) 45%, transparent);
+    flex-shrink: 0;
+  }
+
+  .perchi-card-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .perchi-card-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-h5);
+    color: var(--color-panna);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .perchi-card-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-pesco-300);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* scroll-reveal states */
@@ -1015,63 +1078,9 @@ const faqs = [
   }
   .perchi-reveal:nth-child(2) { transition-delay: 0.1s; }
   .perchi-reveal:nth-child(3) { transition-delay: 0.2s; }
-  .perchi-reveal:nth-child(4) { transition-delay: 0.32s; }
   .perchi-reveal.is-visible {
     opacity: 1;
     transform: none;
-  }
-
-  .perchi-img-reveal {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: scale(1.06);
-    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: 0.15s;
-  }
-  .perchi-img-reveal.is-visible {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .perchi-image-wrap {
-    position: absolute;
-    inset: 0;
-  }
-
-  .perchi-image-col {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .perchi-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: left;
-    display: block;
-    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .perchi-image-col:hover .perchi-img {
-    transform: scale(1.04);
-  }
-
-  .perchi-image-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to right,
-      var(--color-basilico) 0%,
-      color-mix(in srgb, var(--color-basilico) 82%, transparent) 18%,
-      color-mix(in srgb, var(--color-basilico) 48%, transparent) 35%,
-      color-mix(in srgb, var(--color-basilico) 14%, transparent) 50%,
-      transparent 65%
-    );
-    opacity: 1;
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: -18px 1px 8px 2px #2e4a36;
   }
 
   /* ── BAR PARTNER ──────────────────────────────────────────── */
@@ -1595,8 +1604,7 @@ const faqs = [
   @media (prefers-reduced-motion: reduce) {
     .reveal,
     .how-card,
-    .perchi-reveal,
-    .perchi-img-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .perchi-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
   /* ── CINEMATIC VIGNETTE — top shadow on all non-hero sections  */
@@ -1671,10 +1679,8 @@ const faqs = [
     .why-panel        { animation: none; }
     .criteria-grid    { grid-template-columns: 1fr; }
     .bars-header      { flex-direction: column; gap: var(--space-sm); }
-    .perchi-layout    { grid-template-columns: 1fr; min-height: 0; height: auto; }
-    .perchi-content   { margin-left: 0; max-width: 100%; }
-    .perchi-image-col { height: 420px; position: relative; }
-    .perchi-img-reveal { position: relative; height: 100%; }
+    .perchi-cards     { grid-template-columns: 1fr; }
+    .perchi-card      { aspect-ratio: 4 / 3; }
     .faq-wrap         { grid-template-columns: 1fr; }
     .faq-header       { position: static; }
     .app-inner        { grid-template-columns: 1fr; }
