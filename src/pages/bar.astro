@@ -774,10 +774,8 @@ const faqs = [
 
   .req-inner {
     display: grid;
-    grid-template-columns: minmax(auto, 180px) 1fr;
+    grid-template-columns: minmax(160px, 200px) minmax(0, 1fr);
     gap: clamp(var(--space-md), 5vw, var(--space-lg));
-    margin-right: auto;
-    margin-left: auto;
     align-items: start;
   }
 
@@ -785,17 +783,14 @@ const faqs = [
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
+    min-width: 0;
   }
 
   .req-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
-    margin-left: auto;
-    flex-grow: 1;
-    width: auto;
-    align-items: flex-start;
-    justify-content: flex-start;
+    min-width: 0;
   }
 
   .req-item {
@@ -1290,11 +1285,14 @@ const faqs = [
     display: block;
   }
 
+  @media (max-width: 1024px) {
+    .req-inner      { grid-template-columns: 1fr; gap: var(--space-md); }
+    .req-grid       { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
   @media (max-width: 900px) {
     .benefits-inner { grid-template-columns: 1fr; }
     .criteria-inner { grid-template-columns: 1fr; }
-    .req-inner      { grid-template-columns: 1fr; gap: var(--space-md); }
-    .req-grid       { grid-template-columns: repeat(2, 1fr); }
     .req-val        { font-size: clamp(1.6rem, 6vw, 3rem); }
     .app-inner      { grid-template-columns: 1fr; }
     .app-mock       { display: none; }
