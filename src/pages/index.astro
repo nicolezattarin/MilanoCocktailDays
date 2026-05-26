@@ -1202,7 +1202,8 @@ const faqs = [
     opacity: 0.15;
     pointer-events: none;
     z-index: 1;
-    clip-path: polygon(0 0, 0 100%, 100% 100%);
+    -webkit-mask-image: linear-gradient(to top right, black 25%, transparent 65%);
+    mask-image: linear-gradient(to top right, black 25%, transparent 65%);
   }
 
   .app-inner {
