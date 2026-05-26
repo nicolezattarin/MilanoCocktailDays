@@ -1612,7 +1612,6 @@ const faqs = [
   /* ── CINEMATIC VIGNETTE — top shadow on all non-hero sections  */
   /* Only rgba black — works regardless of adjacent section color */
   .s-how::before,
-  .s-why::before,
   .s-perchi::before,
   .s-bars::before,
   .s-cta-final::before,
@@ -1623,6 +1622,16 @@ const faqs = [
     top: 0; left: 0; right: 0;
     height: 80px;
     background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .s-why::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.06), transparent);
     pointer-events: none;
     z-index: 2;
   }
