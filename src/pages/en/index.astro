@@ -71,6 +71,27 @@ const appFeatures = [
   },
 ];
 
+const perchiCards = [
+  {
+    title: 'Cocktail lovers',
+    desc: 'For anyone who always orders something new and wants to see what the best bars in Milan can do.',
+    img: '/images/Clear Wine Glass Photo.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-7 9-7-9z"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>`,
+  },
+  {
+    title: 'Nights out with friends',
+    desc: 'For a different kind of evening — the right cocktails and the urge to wander between neighbourhoods.',
+    img: '/images/Szymon Fischer.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    title: 'The curious',
+    desc: 'For anyone who wants to discover new bars and neighbourhoods across Milan, one drink at a time.',
+    img: '/images/bartender_1.jpg',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+  },
+];
+
 const quotes = [
   { text: "Finally an event like London Cocktail Week, right here in Milan.", name: 'Giulia', age: 25 },
   { text: "A cocktail at €6 is already enough reason to buy the pass.", name: 'Marco', age: 24 },
@@ -249,35 +270,27 @@ const faqs = [
 
   <!-- S05 · WHO IT'S FOR -->
   <section class="s-perchi" aria-labelledby="perchi-h2">
-    <div class="perchi-layout">
+    <div class="wrap">
 
-      <div class="perchi-content">
-        <p class="section-kicker section-kicker--light perchi-reveal">Who it's for</p>
-        <h2 id="perchi-h2" class="perchi-h2 perchi-reveal">
-          For people who love<br />Milan.<br />And those who want to<br />know it, one cocktail at a time.
+      <div class="perchi-header perchi-reveal">
+        <p class="section-kicker section-kicker--light">Who it's for</p>
+        <h2 id="perchi-h2" class="perchi-h2">
+          For people who love Milan.<br />And those who want to know it, one cocktail at a time.
         </h2>
-        <p class="perchi-lead perchi-reveal">
-          For anyone who likes to sit at the bancone, order what they always order or try something new — and wants a round of drinks worth making a night of.
-        </p>
-
-        <ul class="perchi-occasions perchi-reveal" role="list">
-          <li class="perchi-occasion">Friday night with the person you want to drink with. A proper toast to the weekend.</li>
-          <li class="perchi-occasion">A different kind of evening. The right cocktails, the right company.</li>
-          <li class="perchi-occasion">For the curious. The ones who never know what to order — and love it that way.</li>
-        </ul>
       </div>
 
-      <div class="perchi-image-col" aria-hidden="true">
-        <div class="perchi-image-wrap perchi-img-reveal">
-          <img
-            src="/images/Photo by Mediha Ekici copy.jpg"
-            alt=""
-            class="perchi-img"
-            loading="lazy"
-            width="1000" height="1000"
-          />
-          <div class="perchi-image-overlay"></div>
-        </div>
+      <div class="perchi-cards">
+        {perchiCards.map(({ title, desc, img, icon }) => (
+          <article class="perchi-card perchi-reveal">
+            <img src={img} alt="" class="perchi-card-img" loading="lazy" />
+            <div class="perchi-card-overlay"></div>
+            <div class="perchi-card-body">
+              <div class="perchi-card-icon" set:html={icon} />
+              <h3 class="perchi-card-title">{title}</h3>
+              <p class="perchi-card-desc">{desc}</p>
+            </div>
+          </article>
+        ))}
       </div>
 
     </div>
@@ -546,7 +559,7 @@ const faqs = [
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 38px;
     color: var(--color-pesco-300);
     line-height: 1.6;
     margin: 0;
@@ -608,8 +621,9 @@ const faqs = [
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(ellipse 55% 45% at 85% 15%, color-mix(in srgb, var(--color-bitter) 9%, transparent), transparent),
-      radial-gradient(ellipse 45% 55% at 5% 85%, color-mix(in srgb, var(--color-basilico) 18%, transparent), transparent);
+      radial-gradient(ellipse 55% 45% at 85% 15%, color-mix(in srgb, var(--color-bitter) 22%, transparent), transparent),
+      radial-gradient(ellipse 45% 55% at 5% 85%, color-mix(in srgb, var(--color-basilico) 35%, transparent), transparent),
+      radial-gradient(ellipse 40% 40% at 50% 50%, color-mix(in srgb, var(--color-mora) 25%, transparent), transparent);
   }
 
   .s-how .wrap { position: relative; z-index: 2; }
@@ -628,11 +642,12 @@ const faqs = [
 
   .how-connector {
     position: absolute;
-    top: 0.9rem;
+    top: 1.5rem;
     left: calc(100% / 6);
     right: calc(100% / 6);
-    height: 0.5px;
-    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-bitter) 55%, transparent) 20%, color-mix(in srgb, var(--color-bitter) 55%, transparent) 80%, transparent);
+    height: 1px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-bitter) 80%, transparent) 20%, color-mix(in srgb, var(--color-bitter) 80%, transparent) 80%, transparent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--color-bitter) 40%, transparent);
     z-index: 0;
     pointer-events: none;
   }
@@ -646,16 +661,17 @@ const faqs = [
   }
 
   .how-card {
-    background-color: color-mix(in srgb, var(--color-panna) 5%, var(--color-mora));
-    border: 0.5px solid color-mix(in srgb, var(--color-panna) 10%, transparent);
+    background-color: color-mix(in srgb, var(--color-panna) 8%, var(--color-mora));
+    border: 1.5px solid color-mix(in srgb, var(--color-bitter) 35%, transparent);
     border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md) var(--space-md);
+    padding: var(--space-md) var(--space-md) var(--space-md);
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.35s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    box-shadow: 0 4px 24px color-mix(in srgb, var(--color-inchiostro) 40%, transparent);
   }
 
   .how-card.is-visible { opacity: 1; transform: translateY(0); }
@@ -663,9 +679,9 @@ const faqs = [
   .how-card:nth-child(3) { transition-delay: 0.2s; }
 
   .how-card:hover {
-    box-shadow: 0 24px 64px color-mix(in srgb, var(--color-mora) 70%, transparent), 0 0 48px color-mix(in srgb, var(--color-bitter) 12%, transparent);
+    box-shadow: 0 24px 64px color-mix(in srgb, var(--color-mora) 70%, transparent), 0 0 60px color-mix(in srgb, var(--color-bitter) 30%, transparent), 0 0 0 1px color-mix(in srgb, var(--color-bitter) 60%, transparent);
     transform: translateY(-6px);
-    border-color: color-mix(in srgb, var(--color-bitter) 25%, transparent);
+    border-color: color-mix(in srgb, var(--color-bitter) 70%, transparent);
   }
 
   .how-card.is-visible:hover { transform: translateY(-6px); }
@@ -675,26 +691,34 @@ const faqs = [
   .how-card-num {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     color: var(--color-bitter);
     line-height: 1;
     letter-spacing: -0.03em;
+    text-shadow: 0 0 20px color-mix(in srgb, var(--color-bitter) 50%, transparent);
   }
 
   .how-card-icon {
     color: var(--color-panna);
-    opacity: 0.45;
+    opacity: 1;
     flex-shrink: 0;
-    width: clamp(1.5rem, 3vw, 2rem);
-    height: clamp(1.5rem, 3vw, 2rem);
+    width: 2.4rem;
+    height: 2.4rem;
+    background: var(--color-bitter);
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--color-bitter) 50%, transparent);
   }
 
   .how-card-icon :global(svg) { width: 100%; height: 100%; }
 
   .how-card-title {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-body-lg);
+    font-weight: 900;
+    font-size: var(--text-h3);
     color: var(--color-panna);
     letter-spacing: 0.01em;
     margin: 0;
@@ -704,8 +728,8 @@ const faqs = [
   .how-card-desc-box {
     margin-top: var(--space-xs);
     padding: var(--space-xs) var(--space-sm);
-    background-color: color-mix(in srgb, var(--color-panna) 6%, transparent);
-    border-left: 1.5px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
+    background-color: color-mix(in srgb, var(--color-panna) 10%, transparent);
+    border-left: 2px solid color-mix(in srgb, var(--color-bitter) 75%, transparent);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
@@ -715,7 +739,7 @@ const faqs = [
     color: var(--color-pesco-300);
     line-height: 1.6;
     margin: 0;
-    opacity: 0.85;
+    opacity: 1;
   }
 
   .how-footer {
@@ -819,48 +843,44 @@ const faqs = [
   .proof-n { color: var(--color-mora); font-weight: 700; }
 
   /* ── WHO IT'S FOR ─────────────────────────────────────────── */
-  .s-perchi { background-color: var(--color-basilico); overflow: hidden; }
-
-  .perchi-layout { display: grid; grid-template-columns: 1fr 0.9fr; min-height: 600px; }
-
-  .perchi-content {
-    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-sm);
-    max-width: 600px;
-    margin-left: clamp(0px, 15vw, 330px);
+  .s-perchi {
+    background-color: var(--color-basilico);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    overflow: hidden;
+    position: relative;
   }
 
-  .perchi-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 4vw, 56px); color: var(--color-panna); line-height: 0.97; margin: 0; letter-spacing: -0.025em; max-width: 1000px; }
+  .perchi-header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
 
-  .perchi-lead { font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--color-pesco-300); line-height: 1.7; margin: 0; max-width: 1000px; opacity: 0.85; }
+  .perchi-h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--color-panna); line-height: 1.05; margin: 0.5rem 0 0; letter-spacing: -0.025em; }
 
-  .perchi-occasions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); }
+  .perchi-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); }
 
-  .perchi-occasion { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-panna); font-style: italic; line-height: 1.5; padding: 0.65rem 0; border-bottom: 0.5px solid color-mix(in srgb, var(--color-panna) 12%, transparent); opacity: 0.85; }
+  .perchi-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3 / 4; border: 1px solid color-mix(in srgb, var(--color-panna) 15%, transparent); cursor: default; }
+
+  .perchi-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  .perchi-card:hover .perchi-card-img { transform: scale(1.05); }
+
+  .perchi-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, color-mix(in srgb, var(--color-inchiostro) 90%, transparent) 0%, color-mix(in srgb, var(--color-inchiostro) 55%, transparent) 40%, color-mix(in srgb, var(--color-inchiostro) 15%, transparent) 70%, transparent 100%);
+  }
+
+  .perchi-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-xs); }
+
+  .perchi-card-icon { width: 2.5rem; height: 2.5rem; background: var(--color-bitter); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-panna); padding: 0.5rem; margin-bottom: var(--space-xs); box-shadow: 0 0 16px color-mix(in srgb, var(--color-bitter) 45%, transparent); flex-shrink: 0; }
+
+  .perchi-card-icon :global(svg) { width: 100%; height: 100%; }
+
+  .perchi-card-title { font-family: var(--font-display); font-weight: 800; font-size: var(--text-h5); color: var(--color-panna); text-transform: uppercase; letter-spacing: 0.04em; margin: 0; line-height: 1.2; }
+
+  .perchi-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); line-height: 1.6; margin: 0; }
 
   .perchi-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .perchi-reveal:nth-child(2) { transition-delay: 0.1s; }
   .perchi-reveal:nth-child(3) { transition-delay: 0.2s; }
-  .perchi-reveal:nth-child(4) { transition-delay: 0.32s; }
   .perchi-reveal.is-visible { opacity: 1; transform: none; }
-
-  .perchi-img-reveal { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.15s; }
-  .perchi-img-reveal.is-visible { opacity: 1; transform: scale(1); }
-
-  .perchi-image-wrap { position: absolute; inset: 0; }
-  .perchi-image-col { position: relative; overflow: hidden; }
-  .perchi-img { width: 100%; height: 100%; object-fit: cover; object-position: left; display: block; transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
-  .perchi-image-col:hover .perchi-img { transform: scale(1.04); }
-
-  .perchi-image-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--color-basilico) 0%, color-mix(in srgb, var(--color-basilico) 82%, transparent) 18%, color-mix(in srgb, var(--color-basilico) 48%, transparent) 35%, color-mix(in srgb, var(--color-basilico) 14%, transparent) 50%, transparent 65%);
-    opacity: 1;
-    box-shadow: -18px 1px 8px 2px #2e4a36;
-  }
 
   /* ── PARTNER BARS ─────────────────────────────────────────── */
   .s-bars { background-color: var(--color-avorio); padding: clamp(1.75rem, 3.5vw, 2.5rem) 0; }
