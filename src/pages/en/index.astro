@@ -911,7 +911,21 @@ const faqs = [
   .bars-cta { margin-top: 0; }
 
   /* ── APP ──────────────────────────────────────────────────── */
-  .s-app { background-color: var(--color-fumo); padding: clamp(2rem, 5vw, 4rem) 0; }
+  .s-app { background-color: var(--color-fumo); padding: clamp(2rem, 5vw, 4rem) 0; position: relative; overflow: hidden; }
+
+  .s-app::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/pattern2.svg');
+    background-repeat: repeat;
+    background-size: 180px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to top right, black 25%, transparent 65%);
+    mask-image: linear-gradient(to top right, black 25%, transparent 65%);
+  }
 
   .app-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--space-lg); align-items: center; }
 
@@ -945,7 +959,21 @@ const faqs = [
   .app-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); line-height: 1.65; margin: 0; opacity: 0.85; }
 
   /* ── QUOTES ───────────────────────────────────────────────── */
-  .s-quotes { background-color: var(--color-panna-100); padding: clamp(2rem, 5vw, 4rem) 0; overflow: hidden; }
+  .s-quotes { background-color: var(--color-panna-100); padding: clamp(2rem, 5vw, 4rem) 0; overflow: hidden; border-top: 0.5px solid var(--color-panna-300); border-bottom: 0.5px solid var(--color-panna-300); position: relative; }
+
+  .s-quotes::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/pattern2.svg');
+    background-repeat: repeat;
+    background-size: 180px;
+    opacity: 0.09;
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to bottom right, black 25%, transparent 65%);
+    mask-image: linear-gradient(to bottom right, black 25%, transparent 65%);
+  }
 
   .quotes-header { margin-bottom: var(--space-md); display: flex; align-items: baseline; gap: var(--space-md); flex-wrap: wrap; }
 
@@ -1033,7 +1061,7 @@ const faqs = [
   }
 
   /* Vignette */
-  .s-how::before, .s-why::before, .s-perchi::before, .s-bars::before, .s-app::before, .s-quotes::before, .s-cta-final::before, .s-lista::before, .s-faq::before {
+  .s-how::before, .s-why::before, .s-perchi::before, .s-bars::before, .s-app::before, .s-cta-final::before, .s-lista::before, .s-faq::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, rgba(0,0,0,0.22), transparent); pointer-events: none; z-index: 2;
   }
 
