@@ -1636,6 +1636,20 @@ const faqs = [
     z-index: 2;
   }
 
+  .s-why::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background-image: url('/images/pattern2.svg');
+    background-repeat: repeat;
+    background-size: 180px;
+    opacity: 0.09;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   /* Hero: bottom darkens toward the how section below */
   .s-hero::after {
     content: '';
