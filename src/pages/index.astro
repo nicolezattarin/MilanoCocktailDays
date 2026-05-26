@@ -1188,6 +1188,21 @@ const faqs = [
   .s-app {
     background-color: var(--color-panna);
     padding: clamp(2rem, 5vw, 4rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s-app::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/pattern2.svg');
+    background-repeat: repeat;
+    background-size: 180px;
+    opacity: 0.09;
+    pointer-events: none;
+    z-index: 1;
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
   }
 
   .app-inner {
@@ -1636,19 +1651,6 @@ const faqs = [
     z-index: 2;
   }
 
-  .s-why::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 55%;
-    height: 100%;
-    background-image: url('/images/pattern2.svg');
-    background-repeat: repeat;
-    background-size: 180px;
-    opacity: 0.09;
-    pointer-events: none;
-    z-index: 1;
-  }
 
   /* Hero: bottom darkens toward the how section below */
   .s-hero::after {
