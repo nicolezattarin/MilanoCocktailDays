@@ -925,22 +925,22 @@ const faqs = [
 
   .app-sub { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-pesco-300); line-height: 1.6; margin: 0; opacity: 0.85; }
 
-  .app-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+  .app-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); position: relative; }
 
-  .app-card { background-color: color-mix(in srgb, var(--color-panna) 6%, transparent); border: 0.5px solid color-mix(in srgb, var(--color-panna) 15%, transparent); border-radius: var(--radius-sm); padding: var(--space-md); transition: background-color 0.25s ease, border-color 0.25s ease; }
+  .app-card { background-color: color-mix(in srgb, var(--color-panna) 7%, transparent); border: 1.5px solid color-mix(in srgb, var(--color-bitter) 50%, transparent); border-radius: var(--radius-lg); padding: var(--space-md); transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; position: relative; z-index: 1; }
 
-  .app-card:hover { background-color: color-mix(in srgb, var(--color-panna) 9%, transparent); border-color: color-mix(in srgb, var(--color-bitter) 35%, transparent); }
+  .app-card:hover { background-color: color-mix(in srgb, var(--color-panna) 11%, transparent); border-color: var(--color-bitter); box-shadow: 0 0 24px color-mix(in srgb, var(--color-bitter) 20%, transparent); }
 
   .app-card--wide { grid-column: 1 / -1; }
 
   .app-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs); }
 
-  .app-card-icon { font-size: 1.25rem; line-height: 1; }
+  .app-card-icon { font-size: 2.2rem; line-height: 1; display: block; margin-bottom: var(--space-xs); }
 
-  .app-card-step { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--color-bitter); opacity: 0.3; line-height: 1; letter-spacing: -0.04em; }
-  .app-card:hover .app-card-step { opacity: 0.6; }
+  .app-card-step { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--color-bitter); opacity: 0.5; line-height: 1; letter-spacing: -0.04em; }
+  .app-card:hover .app-card-step { opacity: 0.85; }
 
-  .app-card-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-small); color: var(--color-panna); margin: 0 0 var(--space-xs); letter-spacing: 0.02em; }
+  .app-card-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h5); color: var(--color-panna); margin: 0 0 var(--space-xs); letter-spacing: 0.02em; }
 
   .app-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); line-height: 1.65; margin: 0; opacity: 0.85; }
 
@@ -1029,7 +1029,7 @@ const faqs = [
   .reveal-d3 { transition-delay: 0.38s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .how-card, .perchi-reveal, .perchi-img-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .reveal, .how-card, .perchi-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
   /* Vignette */
@@ -1042,7 +1042,7 @@ const faqs = [
 
   .s-how .wrap { position: relative; z-index: 3; }
   .why-wrap { position: relative; z-index: 3; }
-  .perchi-layout { position: relative; z-index: 3; }
+  .s-perchi .wrap { position: relative; z-index: 3; }
   .s-bars .wrap { position: relative; z-index: 3; }
   .app-inner { position: relative; z-index: 3; }
   .quotes-header, .quotes-outer { position: relative; z-index: 3; }
@@ -1062,10 +1062,8 @@ const faqs = [
     .why-wrap { grid-template-columns: 1fr; }
     .criteria-grid { grid-template-columns: 1fr; }
     .bars-header { flex-direction: column; gap: var(--space-sm); }
-    .perchi-layout { grid-template-columns: 1fr; min-height: 0; height: auto; }
-    .perchi-content { margin-left: 0; max-width: 100%; }
-    .perchi-image-col { height: 420px; position: relative; }
-    .perchi-img-reveal { position: relative; height: 100%; }
+    .perchi-cards { grid-template-columns: 1fr; }
+    .perchi-card { aspect-ratio: 4 / 3; }
     .faq-wrap { grid-template-columns: 1fr; }
     .faq-header { position: static; }
     .app-inner { grid-template-columns: 1fr; }
@@ -1112,7 +1110,7 @@ const faqs = [
   requestAnimationFrame(() => {
     const perchiSection = document.querySelector('.s-perchi');
     if (perchiSection) {
-      const perchiRevealEls = perchiSection.querySelectorAll('.perchi-reveal, .perchi-img-reveal');
+      const perchiRevealEls = perchiSection.querySelectorAll('.perchi-reveal');
       const perchiObs = new IntersectionObserver(
         entries => { if (entries[0].isIntersecting) { perchiRevealEls.forEach(makeVisible); perchiObs.disconnect(); } },
         { threshold: 0.1 }
@@ -1137,7 +1135,7 @@ const faqs = [
       );
       revealEls.forEach(el => revealObs.observe(el));
       setTimeout(() => {
-        document.querySelectorAll('.reveal:not(.is-visible), .how-card:not(.is-visible), .perchi-reveal:not(.is-visible), .perchi-img-reveal:not(.is-visible)').forEach(makeVisible);
+        document.querySelectorAll('.reveal:not(.is-visible), .how-card:not(.is-visible), .perchi-reveal:not(.is-visible)').forEach(makeVisible);
       }, 2500);
     }
   });
