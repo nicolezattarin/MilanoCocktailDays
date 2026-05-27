@@ -2,6 +2,24 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+/** Converts Astro-generated CSS links to non-blocking preload+onload pattern. */
+const nonBlockingCss = () => ({
+  name: 'non-blocking-css',
+  apply: /** @type {'build'} */ ('build'),
+  transformIndexHtml: {
+    order: /** @type {'post'} */ ('post'),
+    /** @param {string} html */
+    handler(html) {
+      return html.replace(
+        /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g,
+        (_, href) =>
+          `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+          `<noscript><link rel="stylesheet" href="${href}"></noscript>`
+      );
+    },
+  },
+});
+
 const SITE = 'https://milancocktaildays.it';
 
 /** @type {Record<string, { priority: number; changefreq: any }>} */
@@ -34,4 +52,5 @@ export default defineConfig({
     }),
   ],
   compressHTML: true,
+  vite: { plugins: [nonBlockingCss()] },
 });

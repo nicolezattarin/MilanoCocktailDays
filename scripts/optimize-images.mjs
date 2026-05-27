@@ -12,7 +12,7 @@ const jobs = [
   // Hero background — full viewport, served at up to 1920w
   {
     input: `${PUBLIC}/bar_photo1.jpg`,
-    widths: [640, 1024, 1920],
+    widths: [500, 1024, 1920],
     outputBase: `${PUBLIC}/bar_photo1`,
   },
   // Card images — displayed ~400px wide

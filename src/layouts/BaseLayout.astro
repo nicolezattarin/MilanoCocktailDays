@@ -92,33 +92,59 @@ const jsonLdOrg = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2E4A36" />
 
-    <!-- 2. CRITICAL INLINE CSS: prevent FOUC -->
+    <!-- 2. CRITICAL INLINE CSS: design tokens + above-fold layout -->
     <style>
       *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-      html{scroll-behavior:smooth}
-      body{background:#F7F2E5;color:#1A1416;font-family:Arial,sans-serif}
-      .skip-link{position:absolute;top:-100%;left:1rem;background:#B83A2E;color:#F7F2E5;padding:.5rem 1rem;font-weight:700;font-size:.875rem;text-decoration:none;z-index:9999;transition:top .2s}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{overflow-x:hidden;background:#F7F2E5;color:#1A1416;font-family:'Montserrat','Gill Sans',Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+      img,picture,video,canvas,svg{display:block;max-width:100%}
+      :root{
+        --color-basilico:#2E4A36;--color-panna:#F7F2E5;--color-bitter:#B83A2E;
+        --color-mora:#4A2540;--color-pesco:#D97A91;--color-inchiostro:#1A1416;
+        --color-panna-100:#FBF7EC;--color-panna-300:#E6DCC0;--color-panna-400:#C9BD99;
+        --color-basilico-600:#3D6048;--color-bitter-500:#D4503F;
+        --color-mora-300:#8A5A7A;--color-pesco-300:#F2C5CD;
+        --color-inchiostro-300:#A89BA0;--color-inchiostro-500:#6B5C61;--color-inchiostro-700:#3A2E32;
+        --color-avorio:var(--color-panna);--color-fumo:var(--color-mora);
+        --font-display:'Jost','Futura','Century Gothic','Trebuchet MS',sans-serif;
+        --font-body:'Montserrat','Gill Sans','Gill Sans MT',Arial,sans-serif;
+        --text-hero:clamp(3rem,8vw,7rem);--text-h1:clamp(2.2rem,5vw,4rem);
+        --text-h2:clamp(1.6rem,3.5vw,2.75rem);--text-h3:clamp(1.2rem,2vw,2rem);
+        --text-h4:1.5rem;--text-h5:1.25rem;--text-body-lg:1.125rem;
+        --text-body:1rem;--text-small:.875rem;--text-label:.75rem;
+        --container:1200px;--section-py:clamp(4rem,8vw,8rem);
+        --space-xs:.5rem;--space-sm:1rem;--space-md:2rem;--space-lg:4rem;--space-xl:8rem;
+        --radius-sm:4px;--radius-md:8px;--radius-lg:16px;
+        --border-hairline:.5px solid var(--color-basilico);
+        --border-hairline-dark:.5px solid color-mix(in srgb,var(--color-panna) 35%,transparent);
+      }
+      /* Sticky header visible immediately */
+      .site-header{position:sticky;top:0;z-index:100;background-color:var(--color-basilico);border-bottom:.5px solid var(--color-basilico-600)}
+      .header-inner{max-width:var(--container);margin:0 auto;padding:0 2rem;height:64px;display:flex;align-items:center;gap:2rem}
+      /* Hero: correct sizing so the LCP image covers the section */
+      .s-hero{position:relative;min-height:885px;display:flex;align-items:center;overflow:hidden;background-color:var(--color-mora)}
+      .hero-bg{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
+      .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:80% center;display:block}
+      @media(max-width:768px){.s-hero{min-height:100svh}}
+      /* Skip link */
+      .skip-link{position:absolute;top:-100%;left:1rem;background:var(--color-bitter);color:var(--color-panna);padding:.5rem 1rem;font-weight:700;font-size:.875rem;text-decoration:none;z-index:9999;transition:top .2s}
       .skip-link:focus{top:1rem}
     </style>
 
     <!-- 3. PRECONNECT — fonts + third parties -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link rel="preconnect" href="https://cdn.iubenda.com" />
     <link rel="preconnect" href="https://cs.iubenda.com" />
+    <link rel="preconnect" href="https://idb.iubenda.com" />
     <link rel="preconnect" href="https://tally.so" />
 
-    <!-- 4. GOOGLE FONTS — non-blocking (print → all on load) -->
+    <!-- 4. GOOGLE FONTS — non-blocking preload (rel switches to stylesheet on load) -->
     <link
       rel="preload"
       as="style"
       href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap"
-      media="print"
-      onload="this.media='all'"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
@@ -165,12 +191,12 @@ const jsonLdOrg = {
     }
 
     <!-- ============================================================
-         TRACKING — Fase 4
-         Ordine critico: iubenda PRIMA di GTM
+         TRACKING — iubenda config inline (tiny), scripts loaded after
+         first user interaction so they never block initial render.
+         Order preserved: iubenda CS fires before GTM.
          ============================================================ -->
 
-    <!-- iubenda Cookie Solution — DEVE precedere GTM -->
-    <!-- Sostituire YOUR_SITE_ID con il Site ID del progetto iubenda -->
+    <!-- iubenda config: must be set before iubenda_cs.js executes -->
     <script is:inline type="text/javascript">
       var _iub = _iub || [];
       _iub.csConfiguration = {
@@ -209,16 +235,46 @@ const jsonLdOrg = {
         googleAdditionalConsentMode: false,
       };
     </script>
-    <script is:inline type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" defer></script>
-    <!-- Fine iubenda Cookie Solution -->
 
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KRJ9XDPV');</script>
-    <!-- End Google Tag Manager -->
+    <!-- iubenda CS + GTM: loaded on first interaction or after 5s -->
+    <script is:inline>
+      (function () {
+        var fired = false;
+        function loadTracking() {
+          if (fired) return;
+          fired = true;
+          // Unregister all listeners
+          ['scroll', 'click', 'keydown', 'touchstart'].forEach(function (e) {
+            window.removeEventListener(e, loadTracking);
+          });
+          // iubenda Cookie Solution (config already in _iub above)
+          var iu = document.createElement('script');
+          iu.src = '//cdn.iubenda.com/cs/iubenda_cs.js';
+          iu.charset = 'UTF-8';
+          iu.async = true;
+          document.head.appendChild(iu);
+          // Google Tag Manager
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0];
+            var j = d.createElement(s);
+            var dl = l !== 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-KRJ9XDPV');
+        }
+        // Fire on first user interaction
+        ['scroll', 'click', 'keydown', 'touchstart'].forEach(function (e) {
+          window.addEventListener(e, loadTracking, { once: true, passive: true });
+        });
+        // Fallback: 5s after page load in case of no interaction
+        window.addEventListener('load', function () {
+          setTimeout(loadTracking, 5000);
+        }, { once: true });
+      })();
+    </script>
 
     <slot name="head-scripts" />
   </head>
