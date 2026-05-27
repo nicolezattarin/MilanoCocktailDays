@@ -1021,19 +1021,6 @@ const faqs = [
   /* ── QUOTES ───────────────────────────────────────────────── */
   .s-quotes { background-color: var(--color-panna-100); padding: clamp(2rem, 5vw, 4rem) 0; overflow: hidden; border-top: 0.5px solid var(--color-panna-300); border-bottom: 0.5px solid var(--color-panna-300); position: relative; }
 
-  .s-quotes::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('/images/pattern2.svg');
-    background-repeat: repeat;
-    background-size: 180px;
-    opacity: 0.09;
-    pointer-events: none;
-    z-index: 1;
-    -webkit-mask-image: linear-gradient(to bottom right, black 25%, transparent 65%);
-    mask-image: linear-gradient(to bottom right, black 25%, transparent 65%);
-  }
 
   .quotes-header { margin-bottom: var(--space-md); display: flex; align-items: baseline; gap: var(--space-md); flex-wrap: wrap; }
 
