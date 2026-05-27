@@ -107,6 +107,21 @@ const quotes = [
   { text: "Curious to see which bars make the cut.", name: 'Filippo', age: 27 },
 ];
 
+const imgSources: Record<string, { avif: string; webp: string }> = {
+  '/images/Clear Wine Glass Photo.jpg': {
+    avif: '/images/clear-wine-glass-400.avif 400w, /images/clear-wine-glass-800.avif 800w',
+    webp: '/images/clear-wine-glass-400.webp 400w, /images/clear-wine-glass-800.webp 800w',
+  },
+  '/images/Szymon Fischer.jpg': {
+    avif: '/images/szymon-fischer-400.avif 400w, /images/szymon-fischer-800.avif 800w',
+    webp: '/images/szymon-fischer-400.webp 400w, /images/szymon-fischer-800.webp 800w',
+  },
+  '/images/bartender_1.jpg': {
+    avif: '/images/bartender-1-500.avif 500w, /images/bartender-1-1000.avif 1000w',
+    webp: '/images/bartender-1-500.webp 500w, /images/bartender-1-1000.webp 1000w',
+  },
+};
+
 const faqs = [
   {
     q: 'What is Milano Cocktail Days?',
@@ -160,6 +175,16 @@ const faqs = [
   <!-- S01 · HERO -->
   <section class="s-hero" aria-labelledby="home-h1">
     <picture class="hero-bg" aria-hidden="true">
+      <source
+        type="image/avif"
+        srcset="/images/bar_photo1-640.avif 640w, /images/bar_photo1-1024.avif 1024w, /images/bar_photo1-1920.avif 1920w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/images/bar_photo1-640.webp 640w, /images/bar_photo1-1024.webp 1024w, /images/bar_photo1-1920.webp 1920w"
+        sizes="100vw"
+      />
       <img
         src="/images/bar_photo1.jpg"
         alt=""
@@ -170,7 +195,7 @@ const faqs = [
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <div class="wrap hero-inner">
-      <img src="/logos/logo_3_v.FINAL/Panna.svg" alt="Milan Cocktail Days" class="hero-logo" />
+      <img src="/logos/logo_3_v.FINAL/Panna.svg" alt="Milan Cocktail Days" class="hero-logo" width="500" height="125" />
 
       <p class="hero-overline">
         Milano <span aria-hidden="true">✶</span> May 2027 <span aria-hidden="true">✶</span> First Edition
@@ -197,6 +222,7 @@ const faqs = [
     <div class="wrap">
 
       <h2 id="how-h2" class="how-h2 reveal">Three things.<br />That's it.</h2>
+      <p class="how-sub reveal">One ticket gives you access to all 30 bars and every cocktail.</p>
 
       <div class="how-steps-wrap">
         <div class="how-connector" aria-hidden="true"></div>
@@ -282,7 +308,15 @@ const faqs = [
       <div class="perchi-cards">
         {perchiCards.map(({ title, desc, img, icon }) => (
           <article class="perchi-card perchi-reveal">
-            <img src={img} alt="" class="perchi-card-img" loading="lazy" />
+            {imgSources[img] ? (
+              <picture>
+                <source type="image/avif" srcset={imgSources[img].avif} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
+                <source type="image/webp" srcset={imgSources[img].webp} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
+                <img src={img} alt="" class="perchi-card-img" loading="lazy" />
+              </picture>
+            ) : (
+              <img src={img} alt="" class="perchi-card-img" loading="lazy" />
+            )}
             <div class="perchi-card-overlay"></div>
             <div class="perchi-card-body">
               <div class="perchi-card-icon" set:html={icon} />
@@ -310,7 +344,15 @@ const faqs = [
         {criteria.map(({ title, desc, img }, i) => (
           <div class:list={['criterion-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
             <div class="criterion-img-wrap">
-              <img src={img} alt="" class="criterion-img" loading="lazy" />
+              {imgSources[img] ? (
+                <picture>
+                  <source type="image/avif" srcset={imgSources[img].avif} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
+                  <source type="image/webp" srcset={imgSources[img].webp} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
+                  <img src={img} alt="" class="criterion-img" loading="lazy" />
+                </picture>
+              ) : (
+                <img src={img} alt="" class="criterion-img" loading="lazy" />
+              )}
             </div>
             <div class="criterion-body">
               <h3 class="criterion-title">{title}</h3>
@@ -559,7 +601,7 @@ const faqs = [
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: 38px;
+    font-size: clamp(1.1rem, 2.5vw, 2.375rem);
     color: var(--color-pesco-300);
     line-height: 1.6;
     margin: 0;
@@ -631,10 +673,17 @@ const faqs = [
   .how-h2 {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 60px;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
     color: var(--color-panna);
     line-height: 0.95;
     letter-spacing: -0.02em;
+    margin: 0 0 16px;
+  }
+  .how-sub {
+    font-size: var(--text-h4);
+    font-weight: 700;
+    color: var(--color-panna);
+    opacity: 0.7;
     margin: 0 0 30px;
   }
 
@@ -858,7 +907,10 @@ const faqs = [
 
   .perchi-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3 / 4; border: 1px solid color-mix(in srgb, var(--color-panna) 15%, transparent); cursor: default; }
 
-  .perchi-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .perchi-card > .perchi-card-img,
+  .perchi-card picture { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+  .perchi-card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 
   .perchi-card:hover .perchi-card-img { transform: scale(1.05); }
 
@@ -899,6 +951,8 @@ const faqs = [
 
   .criterion-img-wrap { aspect-ratio: 4 / 3; overflow: hidden; background-color: var(--color-panna-300); }
 
+  .criterion-img-wrap picture { display: block; width: 100%; height: 100%; }
+
   .criterion-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .criterion-card:hover .criterion-img { transform: scale(1.05); }
 
@@ -911,7 +965,7 @@ const faqs = [
   .bars-cta { margin-top: 0; }
 
   /* ── APP ──────────────────────────────────────────────────── */
-  .s-app { background-color: var(--color-fumo); padding: clamp(2rem, 5vw, 4rem) 0; position: relative; overflow: hidden; }
+  .s-app { background-color: var(--color-panna); padding: clamp(2rem, 5vw, 4rem) 0; position: relative; overflow: hidden; }
 
   .s-app::after {
     content: '';
@@ -935,15 +989,15 @@ const faqs = [
 
   .app-content { display: flex; flex-direction: column; gap: var(--space-md); }
 
-  .app-h2 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h1); color: var(--color-panna); line-height: 1.05; margin: 0; }
+  .app-h2 { font-family: var(--font-display); font-weight: 900; font-size: var(--text-h1); color: var(--color-inchiostro); line-height: 1.05; margin: 0; }
 
-  .app-sub { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-pesco-300); line-height: 1.6; margin: 0; opacity: 0.85; }
+  .app-sub { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-inchiostro-500); line-height: 1.6; margin: 0; opacity: 0.85; }
 
   .app-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); position: relative; }
 
-  .app-card { background-color: color-mix(in srgb, var(--color-panna) 7%, transparent); border: 1.5px solid color-mix(in srgb, var(--color-bitter) 50%, transparent); border-radius: var(--radius-lg); padding: var(--space-md); transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; position: relative; z-index: 1; }
+  .app-card { background-color: color-mix(in srgb, var(--color-inchiostro) 5%, var(--color-panna)); border: 1.5px solid color-mix(in srgb, var(--color-bitter) 35%, transparent); border-radius: var(--radius-lg); padding: var(--space-md); transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; position: relative; z-index: 1; }
 
-  .app-card:hover { background-color: color-mix(in srgb, var(--color-panna) 11%, transparent); border-color: var(--color-bitter); box-shadow: 0 0 24px color-mix(in srgb, var(--color-bitter) 20%, transparent); }
+  .app-card:hover { background-color: color-mix(in srgb, var(--color-inchiostro) 9%, var(--color-panna)); border-color: var(--color-bitter); box-shadow: 0 0 24px color-mix(in srgb, var(--color-bitter) 15%, transparent); }
 
   .app-card--wide { grid-column: 1 / -1; }
 
@@ -954,9 +1008,9 @@ const faqs = [
   .app-card-step { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--color-bitter); opacity: 0.5; line-height: 1; letter-spacing: -0.04em; }
   .app-card:hover .app-card-step { opacity: 0.85; }
 
-  .app-card-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h5); color: var(--color-panna); margin: 0 0 var(--space-xs); letter-spacing: 0.02em; }
+  .app-card-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h5); color: var(--color-inchiostro); margin: 0 0 var(--space-xs); letter-spacing: 0.02em; }
 
-  .app-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-pesco-300); line-height: 1.65; margin: 0; opacity: 0.85; }
+  .app-card-desc { font-family: var(--font-body); font-size: var(--text-small); color: var(--color-inchiostro-500); line-height: 1.65; margin: 0; opacity: 0.85; }
 
   /* ── QUOTES ───────────────────────────────────────────────── */
   .s-quotes { background-color: var(--color-panna-100); padding: clamp(2rem, 5vw, 4rem) 0; overflow: hidden; border-top: 0.5px solid var(--color-panna-300); border-bottom: 0.5px solid var(--color-panna-300); position: relative; }
@@ -1087,15 +1141,21 @@ const faqs = [
   @media (max-width: 900px) {
     .how-steps { grid-template-columns: 1fr; }
     .how-connector { display: none; }
-    .why-wrap { grid-template-columns: 1fr; }
-    .criteria-grid { grid-template-columns: 1fr; }
+    .why-wrap { flex-direction: column; align-items: stretch; }
+    .why-price-block { border-left: none; border-right: none; border-top: 0.5px solid var(--color-panna-300); border-bottom: 0.5px solid var(--color-panna-300); padding: var(--space-sm) 0; }
+    .criteria-grid { grid-template-columns: repeat(2, 1fr); }
     .bars-header { flex-direction: column; gap: var(--space-sm); }
-    .perchi-cards { grid-template-columns: 1fr; }
-    .perchi-card { aspect-ratio: 4 / 3; }
+    .perchi-cards { grid-template-columns: repeat(2, 1fr); }
     .faq-wrap { grid-template-columns: 1fr; }
     .faq-header { position: static; }
     .app-inner { grid-template-columns: 1fr; }
     .app-mock { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .perchi-cards { grid-template-columns: 1fr; }
+    .perchi-card { aspect-ratio: 4 / 3; }
+    .criteria-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
@@ -1103,7 +1163,6 @@ const faqs = [
     .hero-inner { width: 100%; max-width: 100%; padding: 28px 20px; }
     .hero-overlay { background: color-mix(in srgb, var(--color-mora) 70%, transparent); opacity: 1; }
     .hero-h1 { font-size: clamp(1.75rem, 8vw, 3rem); }
-    .how-h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
     .how-footer { flex-direction: column; align-items: flex-start; }
     .quotes-header { flex-direction: column; gap: var(--space-xs); }
     .app-cards { grid-template-columns: 1fr; }
@@ -1119,6 +1178,8 @@ const faqs = [
     .bars-lead { min-width: 0; }
     .how-card { padding: var(--space-sm); }
     .cta-final-inner { padding: var(--space-lg) var(--space-sm); }
+    .how-sub { font-size: var(--text-body-lg); }
+    .perchi-h2 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
   }
 </style>
 
