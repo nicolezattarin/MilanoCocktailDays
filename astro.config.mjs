@@ -56,6 +56,9 @@ export default defineConfig({
   site: SITE,
   integrations: [
     sitemap({
+      filter: (page) =>
+        !page.includes('/grazie') &&
+        !page.includes('/grazie-partner'),
       serialize(item) {
         const meta = pagePriority[item.url];
         if (meta) {
