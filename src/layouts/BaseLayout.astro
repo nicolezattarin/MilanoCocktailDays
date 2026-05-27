@@ -24,11 +24,11 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl   = 'https://milancocktaildays.it';
+const siteUrl   = 'https://milanococktaildays.it';
 const lang      = Astro.url.pathname.startsWith('/en') ? 'en' : 'it';
-const fullTitle = title.includes('Milan Cocktail Days')
+const fullTitle = title.includes('Milano Cocktail Days') || title.includes('Milan Cocktail Days')
   ? title
-  : `${title} | Milan Cocktail Days 2027`;
+  : `${title} | Milano Cocktail Days 2027`;
 const canonical = canonicalUrl
   ? (canonicalUrl.startsWith('http') ? canonicalUrl : `${siteUrl}${canonicalUrl}`)
   : `${siteUrl}${Astro.url.pathname}`;

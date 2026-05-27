@@ -39,7 +39,7 @@ const nonBlockingCss = () => ({
   },
 });
 
-const SITE = 'https://milancocktaildays.it';
+const SITE = 'https://milanococktaildays.it';
 
 /** @type {Record<string, { priority: number; changefreq: any }>} */
 const pagePriority = {

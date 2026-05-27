@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://milancocktaildays.it/sitemap-index.xml
+Sitemap: https://milanococktaildays.it/sitemap-index.xml
 
 # Block AI scrapers
 User-agent: GPTBot
