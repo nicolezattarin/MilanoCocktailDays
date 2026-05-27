@@ -7,8 +7,6 @@ export function getLang(pathname: string): Lang {
 // Pages that have EN equivalents
 const IT_TO_EN: Record<string, string> = {
   '/':                  '/en/',
-  '/festival':          '/en/festival/',
-  '/festival/':         '/en/festival/',
   '/sponsor':           '/en/sponsor/',
   '/sponsor/':          '/en/sponsor/',
   '/contatti':          '/en/contatti/',
@@ -24,8 +22,6 @@ const IT_TO_EN: Record<string, string> = {
 const EN_TO_IT: Record<string, string> = {
   '/en':                '/',
   '/en/':               '/',
-  '/en/festival':       '/festival/',
-  '/en/festival/':      '/festival/',
   '/en/sponsor':        '/sponsor/',
   '/en/sponsor/':       '/sponsor/',
   '/en/contatti':       '/contatti/',
