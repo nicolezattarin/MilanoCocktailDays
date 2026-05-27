@@ -12,8 +12,12 @@ const jobs = [
   // Hero background — full viewport, served at up to 1920w
   {
     input: `${PUBLIC}/bar_photo1.jpg`,
-    widths: [500, 1024, 1920],
+    widths: [430, 500, 1024, 1920],
     outputBase: `${PUBLIC}/bar_photo1`,
+    formats: [
+      { ext: 'avif', options: { quality: 50 } },
+      { ext: 'webp', options: { quality: 80 } },
+    ],
   },
   // Card images — displayed ~400px wide
   {
@@ -33,7 +37,7 @@ const jobs = [
   },
 ];
 
-const formats = [
+const defaultFormats = [
   { ext: 'avif', options: { quality: 60 } },
   { ext: 'webp', options: { quality: 80 } },
 ];
@@ -41,7 +45,7 @@ const formats = [
 let generated = 0;
 let skipped = 0;
 
-for (const { input, widths, outputBase } of jobs) {
+for (const { input, widths, outputBase, formats = defaultFormats } of jobs) {
   const src = sharp(input);
   const meta = await src.metadata();
 

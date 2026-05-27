@@ -2,20 +2,39 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-/** Converts Astro-generated CSS links to non-blocking preload+onload pattern. */
+/**
+ * Converts Astro-generated CSS links to non-blocking preload+onload after build.
+ * Must run as an Astro integration (not a Vite plugin) because Astro injects
+ * CSS <link> tags in its own finalization step, after Vite's transformIndexHtml.
+ */
 const nonBlockingCss = () => ({
   name: 'non-blocking-css',
-  apply: /** @type {'build'} */ ('build'),
-  transformIndexHtml: {
-    order: /** @type {'post'} */ ('post'),
-    /** @param {string} html */
-    handler(html) {
-      return html.replace(
-        /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g,
-        (_, href) =>
-          `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
-          `<noscript><link rel="stylesheet" href="${href}"></noscript>`
-      );
+  hooks: {
+    'astro:build:done': async ({ dir }) => {
+      const { readdir, readFile, writeFile } = await import('node:fs/promises');
+      const { join } = await import('node:path');
+      const { fileURLToPath } = await import('node:url');
+
+      async function processDir(dirPath) {
+        const entries = await readdir(dirPath, { withFileTypes: true });
+        for (const entry of entries) {
+          const fullPath = join(dirPath, entry.name);
+          if (entry.isDirectory()) {
+            await processDir(fullPath);
+          } else if (entry.name.endsWith('.html')) {
+            const html = await readFile(fullPath, 'utf8');
+            const transformed = html.replace(
+              /<link rel="stylesheet" href="(\/_astro\/[^"]+\.css)">/g,
+              (_, href) =>
+                `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+                `<noscript><link rel="stylesheet" href="${href}"></noscript>`
+            );
+            if (transformed !== html) await writeFile(fullPath, transformed, 'utf8');
+          }
+        }
+      }
+
+      await processDir(fileURLToPath(dir));
     },
   },
 });
@@ -50,7 +69,7 @@ export default defineConfig({
         return item;
       },
     }),
+    nonBlockingCss(),
   ],
   compressHTML: true,
-  vite: { plugins: [nonBlockingCss()] },
 });

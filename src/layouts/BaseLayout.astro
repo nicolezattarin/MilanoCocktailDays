@@ -190,10 +190,27 @@ const jsonLdOrg = {
       : <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLdOrg)} />
     }
 
+    <slot name="head-scripts" />
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRJ9XDPV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a href="#main-content" class="skip-link">{skipLabel}</a>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <!-- Tally embed widget — deferred so it doesn't block render -->
+    <script is:inline defer src="https://tally.so/widgets/embed.js"></script>
+
     <!-- ============================================================
-         TRACKING — iubenda config inline (tiny), scripts loaded after
-         first user interaction so they never block initial render.
-         Order preserved: iubenda CS fires before GTM.
+         TRACKING — moved to body so these inline scripts don't block
+         initial paint. iubenda config runs before loadTracking IIFE.
          ============================================================ -->
 
     <!-- iubenda config: must be set before iubenda_cs.js executes -->
@@ -243,17 +260,13 @@ const jsonLdOrg = {
         function loadTracking() {
           if (fired) return;
           fired = true;
-          // Unregister all listeners
           ['scroll', 'click', 'keydown', 'touchstart'].forEach(function (e) {
             window.removeEventListener(e, loadTracking);
           });
-          // iubenda Cookie Solution (config already in _iub above)
           var iu = document.createElement('script');
           iu.src = '//cdn.iubenda.com/cs/iubenda_cs.js';
-          iu.charset = 'UTF-8';
           iu.async = true;
           document.head.appendChild(iu);
-          // Google Tag Manager
           (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -265,34 +278,15 @@ const jsonLdOrg = {
             f.parentNode.insertBefore(j, f);
           })(window, document, 'script', 'dataLayer', 'GTM-KRJ9XDPV');
         }
-        // Fire on first user interaction
         ['scroll', 'click', 'keydown', 'touchstart'].forEach(function (e) {
           window.addEventListener(e, loadTracking, { once: true, passive: true });
         });
-        // Fallback: 5s after page load in case of no interaction
         window.addEventListener('load', function () {
           setTimeout(loadTracking, 5000);
         }, { once: true });
       })();
     </script>
 
-    <slot name="head-scripts" />
-  </head>
-
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRJ9XDPV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <a href="#main-content" class="skip-link">{skipLabel}</a>
-    <Header />
-    <main id="main-content" tabindex="-1">
-      <slot />
-    </main>
-    <Footer />
-    <!-- Tally embed widget — deferred so it doesn't block render -->
-    <script is:inline defer src="https://tally.so/widgets/embed.js"></script>
     <slot name="body-scripts" />
   </body>
 </html>
