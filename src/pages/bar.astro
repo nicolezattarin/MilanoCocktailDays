@@ -40,12 +40,23 @@ const faqs = [
   { q: 'Come funzionano le prenotazioni?',     a: 'I partecipanti prenotano via app MCD uno slot nel tuo bar. Ricevi le prenotazioni con 24h di anticipo. Tu decidi quanti slot mettere a disposizione per serata.' },
   { q: 'Chi seleziona i bar?',                 a: 'Il team MCD fa una selezione qualitativa. Non c\'è un numero fisso di bar. Cerchiamo qualità e diversità geografica nei quartieri di Milano.' },
 ];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Bar Partner"
   description="Candida il tuo bar a Milan Cocktail Days 2027. €0 fee, €6 fisso, traffico qualificato di appassionati di cocktail. Selezione aperta."
 >
+  <script is:inline slot="head-scripts" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="bar-h1">

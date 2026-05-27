@@ -39,14 +39,13 @@ const skipLabel   = lang === 'en' ? 'Skip to main content' : 'Vai al contenuto p
 const jsonLdEvent = {
   '@context': 'https://schema.org',
   '@type': 'Event',
-  name: 'Milan Cocktail Days 2027',
-  alternateName: 'MCD 2027',
-  description: 'La prima settimana dedicata alla cultura del cocktail a Milano. 10 serate, i migliori bar della città, cocktail signature esclusivi.',
-  startDate: '2027-04-01',
-  endDate: '2027-05-31',
+  name: 'Milano Cocktail Days',
+  description: 'Il festival diffuso dei cocktail bar di Milano. 10 giorni tra aprile e maggio 2027 per scoprire i migliori bar della città.',
+  startDate: '2027-04-25T18:00',
+  endDate: '2027-05-04T23:59',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  image: `${siteUrl}/og-default.jpg`,
+  image: `${siteUrl}/og-image.jpg`,
   url: siteUrl,
   location: {
     '@type': 'City',
@@ -58,11 +57,10 @@ const jsonLdEvent = {
       addressCountry: 'IT',
     },
   },
-  organizer: {
-    '@type': 'Organization',
-    name: 'Milan Cocktail Days',
-    url: siteUrl,
-  },
+  organizer: [
+    { '@type': 'Person', name: 'Luca Ferrara' },
+    { '@type': 'Person', name: 'Nicole Zattarin' },
+  ],
   offers: {
     '@type': 'Offer',
     name: 'Pass Festival',

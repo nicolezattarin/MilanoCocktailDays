@@ -51,12 +51,23 @@ const faqs = [
   { q: 'Entro quando chiudere la partnership?',    a: 'Le partnership principali vanno chiuse entro dicembre 2026 per essere integrate in tutta la comunicazione pre-festival.' },
   { q: "Qual è l'investimento minimo?",            a: "Non c'è un listino pubblico. La call serve a capire gli obiettivi del brand e costruire un pacchetto con senso. Parliamone." },
 ];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Sponsor"
   description="Diventa sponsor di Milan Cocktail Days 2027. Partnership per brand beverage, tech e mobility. Pubblico premium 25-40, esclusiva di categoria."
 >
+  <script is:inline slot="head-scripts" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <!-- HERO -------------------------------------------------- -->
   <section class="s-hero" aria-labelledby="sponsor-h1">
