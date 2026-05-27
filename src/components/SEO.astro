@@ -1,4 +1,9 @@
 ---
+interface Alternate {
+  hreflang: string;
+  href: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -6,6 +11,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   noindex?: boolean;
+  alternates?: Alternate[];
 }
 
 const {
@@ -15,6 +21,7 @@ const {
   ogImage = '/og-image.jpg',
   ogType = 'website',
   noindex = false,
+  alternates = [],
 } = Astro.props;
 ---
 
@@ -22,6 +29,9 @@ const {
 <meta name="description" content={description} />
 <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
 <link rel="canonical" href={canonical} />
+{alternates.map(({ hreflang, href }) => (
+  <link rel="alternate" hreflang={hreflang} href={href} />
+))}
 
 <meta property="og:site_name" content="Milan Cocktail Days" />
 <meta property="og:type" content={ogType} />

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import { getAlternateUrl } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -35,6 +36,21 @@ const canonical = canonicalUrl
 const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const ogLocale    = lang === 'en' ? 'en_US' : 'it_IT';
 const skipLabel   = lang === 'en' ? 'Skip to main content' : 'Vai al contenuto principale';
+
+// hreflang alternates — computed from current path + i18n map
+const normalPath   = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const alternateUrl = getAlternateUrl(normalPath); // opposite-lang path, or fallback root
+
+// For EN pages: alternateUrl === '/' means either the explicit /en/→/ mapping (home)
+// or the fallback "no IT page exists" (e.g. /en/festival/). Distinguish by checking the path.
+const hasItPage = lang === 'it' || (lang === 'en' && (normalPath === '/en/' || alternateUrl !== '/'));
+const itHref = lang === 'it' ? `${siteUrl}${normalPath}` : (hasItPage ? `${siteUrl}${alternateUrl}` : '');
+const enHref = lang === 'en' ? `${siteUrl}${normalPath}` : `${siteUrl}${alternateUrl}`;
+const alternates = [
+  ...(itHref ? [{ hreflang: 'it', href: itHref }] : []),
+  { hreflang: 'en', href: enHref },
+  { hreflang: 'x-default', href: itHref || enHref },
+];
 
 const jsonLdEvent = {
   '@context': 'https://schema.org',
@@ -160,6 +176,7 @@ const jsonLdOrg = {
       ogImage={ogImageAbsolute}
       ogType={ogType}
       noindex={noindex}
+      alternates={alternates}
     />
     <meta name="author" content="Milan Cocktail Days" />
     <meta name="generator" content={Astro.generator} />
