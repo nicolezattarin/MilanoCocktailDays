@@ -77,6 +77,7 @@ const perchiCards = [
     desc: 'Per chi ordina sempre qualcosa di nuovo e vuole scoprire cosa sanno fare i migliori cocktail bar di Milano, da Navigli a Brera.',
     altText: 'calice di cocktail in un cocktail bar di Milano',
     img: '/images/Clear Wine Glass Photo.jpg',
+    width: 2624, height: 3936,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-7 9-7-9z"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>`,
   },
   {
@@ -84,6 +85,7 @@ const perchiCards = [
     desc: 'Per una serata diversa dal solito, con i cocktail giusti e la voglia di girovagare tra Isola, Porta Romana e i quartieri di tutta Milano.',
     altText: 'serata con amici in un cocktail bar milanese',
     img: '/images/Szymon Fischer.jpg',
+    width: 2480, height: 3251,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
   },
   {
@@ -91,6 +93,7 @@ const perchiCards = [
     desc: 'Per chi vuole scoprire nuovi bar e quartieri di tutta Milano, un bicchiere alla volta.',
     altText: 'bartender al bancone in un cocktail bar di Milano',
     img: '/images/bartender_1.jpg',
+    width: 1295, height: 864,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
   },
 ];
@@ -325,16 +328,16 @@ const faqJsonLd = {
       </div>
 
       <div class="perchi-cards">
-        {perchiCards.map(({ title, desc, img, icon, altText }) => (
+        {perchiCards.map(({ title, desc, img, icon, altText, width, height }) => (
           <article class="perchi-card perchi-reveal">
             {imgSources[img] ? (
               <picture>
                 <source type="image/avif" srcset={imgSources[img].avif} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
                 <source type="image/webp" srcset={imgSources[img].webp} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" />
-                <img src={img} alt={altText} class="perchi-card-img" loading="lazy" />
+                <img src={img} alt={altText} width={width} height={height} class="perchi-card-img" loading="lazy" />
               </picture>
             ) : (
-              <img src={img} alt={altText} class="perchi-card-img" loading="lazy" />
+              <img src={img} alt={altText} width={width} height={height} class="perchi-card-img" loading="lazy" />
             )}
             <div class="perchi-card-overlay"></div>
             <div class="perchi-card-body">
@@ -386,6 +389,7 @@ const faqJsonLd = {
         <img
           src="/images/Google Pixel 4 Mockup/app_user-portrait.png"
           alt=""
+          width="1280" height="2680"
           class="mockup-img"
           loading="lazy"
         />
