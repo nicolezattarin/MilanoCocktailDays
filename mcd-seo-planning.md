@@ -273,7 +273,7 @@ Se non appare nulla dopo 7gg dalla richiesta, ri-invia la sitemap e controlla ro
 ---
 
 ### ⬜ Collega Search Console a GA4
-🟡 `ANALYTICS` · *Da fare*
+🟡 `ANALYTICS` · *Fatto*
 
 GA4 → Admin → Search Console Links. Vedi quali query portano click e il comportamento post-landing.
 
@@ -349,7 +349,7 @@ Show all files modified.
 ---
 
 ### ⬜ Configura Meta Pixel in GTM come Custom HTML tag
-🔴 `ANALYTICS` · *Da fare*
+🔴 `ANALYTICS` · *Fatto*
 
 Il Pixel NON va nel codice Astro — va in GTM con trigger consenso ad_storage. GTM-KRJ9XDPV è già attivo sul sito.
 
@@ -437,7 +437,7 @@ In GTM container GTM-KRJ9XDPV:
 ---
 
 ### ⬜ Configura evento ViewContent su /festival/
-🟡 `ANALYTICS` · *Da fare*
+🟡 `ANALYTICS` · *Fatto*
 
 fbq ViewContent + GA4 event per segmentare interesse al festival.
 
@@ -474,7 +474,7 @@ In GTM container GTM-KRJ9XDPV:
 ---
 
 ### ⬜ Crea Custom Audience "Visitatori sito 30gg" su Meta
-🟡 `SOCIAL` · *Da fare*
+🟡 `SOCIAL` · *Fatto*
 
 Meta Business → Audiences → Custom Audience → Website Traffic. Per retargeting vendita pass.
 
@@ -483,7 +483,7 @@ Meta Business → Audiences → Custom Audience → Website Traffic. Per retarge
 ---
 
 ### ⬜ Testa Pixel con Meta Pixel Helper — PageView verde
-🔴 `ANALYTICS` · *Da fare*
+🔴 `ANALYTICS` · *Fatto*
 
 Installa estensione Chrome, accetta cookie sul sito, verifica PageView verde.
 
@@ -500,7 +500,7 @@ Proprietà "Milano Cocktail Days" già creata su analytics.google.com. Measureme
 ---
 
 ### ⬜ Aggiungi tag GA4 in GTM — usa G-SC0R1MQGH9
-🔴 `ANALYTICS` · *Da fare*
+🔴 `ANALYTICS` · *Fatto*
 
 **Questo è il prossimo passo concreto.** GTM-KRJ9XDPV è attivo, GA4 è pronto. Manca il collegamento tra i due in GTM.
 
@@ -616,7 +616,7 @@ In GA4 → mark "partner_inquiry" as a Key Event.
 ---
 
 ### ⬜ Scroll Depth 50% — misura engagement contenuto
-🟡 `ANALYTICS` · *Da fare*
+🟡 `ANALYTICS` · *Fatto*
 
 GTM Trigger Scroll Depth → GA4 event. Capisce se gli utenti leggono /festival/ fino in fondo.
 
