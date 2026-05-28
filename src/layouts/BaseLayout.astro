@@ -77,13 +77,30 @@ const jsonLdEvent = {
     { '@type': 'Person', name: 'Luca Ferrara' },
     { '@type': 'Person', name: 'Nicole Zattarin' },
   ],
-  offers: {
-    '@type': 'Offer',
-    name: 'Pass Festival',
-    availability: 'https://schema.org/InStock',
-    validFrom: '2026-01-01',
-    url: `${siteUrl}/contatti`,
-  },
+performer: [
+  { '@type': 'Person', name: 'Luca Ferrara' },
+  { '@type': 'Person', name: 'Nicole Zattarin' },
+],
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Early Bird',
+      price: '15',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      validFrom: '2026-01-01',
+      url: `${siteUrl}/contatti`,
+    },
+    {
+      '@type': 'Offer',
+      name: 'Standard',
+      price: '30',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      validFrom: '2026-01-01',
+      url: `${siteUrl}/contatti`,
+    },
+],
 };
 
 const jsonLdOrg = {
