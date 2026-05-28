@@ -34,8 +34,8 @@ const social = [
   <div class="footer-inner">
     <!-- Colonna sinistra: logo + tagline -->
     <div class="footer-col footer-col--brand">
-      <a href="/" class="footer-logo" aria-label="Milan Cocktail Days">
-        <img src="/logos/logo_1_v.FINAL/Inchiostro.svg" alt="Milan Cocktail Days" class="footer-logo-img" width="140" height="140" />
+      <a href="/" class="footer-logo" aria-label={isEn ? "Milan Cocktail Days" : "Milano Cocktail Days"}>
+        <img src="/logos/logo_1_v.FINAL/Inchiostro.svg" alt={isEn ? "Milan Cocktail Days" : "Milano Cocktail Days"} class="footer-logo-img" width="140" height="140" />
       </a>
       <p class="footer-tagline">Milano ✶ {isEn ? 'May 2027' : 'Maggio 2027'}</p>
       <p class="footer-desc">

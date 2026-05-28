@@ -24,7 +24,7 @@ const navLinks = isEn
 const ctaHref       = isEn ? '/en/#lista' : '/#lista';
 const ctaLabel      = isEn ? 'Join' : 'Partecipa';
 const ctaAriaLabel  = isEn ? 'Join the Milan Cocktail Days waitlist' : "Entra in lista d'attesa Milan Cocktail Days";
-const logoAriaLabel = isEn ? 'Milan Cocktail Days — back to home' : 'Milan Cocktail Days — torna alla home';
+const logoAriaLabel = isEn ? 'Milan Cocktail Days — back to home' : 'Milano Cocktail Days — torna alla home';
 const menuAriaLabel = isEn ? 'Open navigation menu' : 'Apri il menu di navigazione';
 
 // IT link href: if on EN → altUrl; if on IT → currentPath
@@ -38,7 +38,7 @@ const enHref = isEn ? currentPath : altUrl;
   <div class="header-inner">
     <!-- Logo -->
     <a href={isEn ? '/en/' : '/'} class="site-logo" aria-label={logoAriaLabel}>
-      <img src="/logos/logo_3_v.FINAL/Inchiostro.svg" alt="Milan Cocktail Days" class="site-logo-img" width="208" height="52" />
+      <img src="/logos/logo_3_v.FINAL/Inchiostro.svg" alt={isEn ? "Milan Cocktail Days" : "Milano Cocktail Days"} class="site-logo-img" width="208" height="52" />
     </a>
 
     <!-- Hamburger (mobile only) -->
