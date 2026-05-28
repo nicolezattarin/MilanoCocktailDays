@@ -734,8 +734,8 @@ Cerca "Milano Cocktail Days 2027". Se Google ti mostra ma Perplexity no: problem
 ## Fase 08 — Performance — Lighthouse
 *Score attuale 62/100 · LCP 20.9s → target < 2.5s* · 0/4 completate
 
-### ⬜ Converti immagini in WebP/AVIF con Sharp — LCP CRITICO
-🔴 `⚠ CRITICAL` · *Da fare*
+### ✅ Converti immagini in WebP/AVIF con Sharp — LCP CRITICO
+🔴 `⚠ CRITICAL` · *fatto*
 
 bar_photo1.jpg (3.19MB) deve diventare WebP/AVIF a più risoluzioni. Risparmio stimato 6.333 KiB.
 
@@ -765,8 +765,8 @@ Output: bar_photo1-430.webp, bar_photo1-430.avif, etc. in public/images/
 
 ---
 
-### ⬜ Aggiorna `<picture>` tags con srcset WebP/AVIF
-🔴 `CODE` · *Da fare*
+### ✅ Aggiorna `<picture>` tags con srcset WebP/AVIF
+🔴 `CODE` · *fatto*
 
 Dopo conversione immagini. Hero usa già fetchpriority="high" e loading="eager" — mantenere.
 
@@ -804,8 +804,7 @@ Dashboard Vercel → Analytics → Enable. LCP, CLS, FID reali. Gratis su piano 
 
 ---
 
-### ⏳ Re-run Lighthouse — target ≥90 dopo fix immagini
-🔴 `ANALYTICS` · *In attesa*
+### ✅ Re-run Lighthouse — target ≥90 dopo fix immagini
 
 Le fix immagini da sole portano il score da 62 a ~85–90.
 
