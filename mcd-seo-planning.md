@@ -394,6 +394,7 @@ Accept cookies → should see green PageView event.
 🔴 `ANALYTICS` · *Da fare*
 
 Traccia compilazione form Tally. Si attiva su redirect a /grazie. KPI principale pre-vendita.
+#### fatto la parte astro
 
 <details>
 <summary>📋 Prompt Claude Code</summary>
