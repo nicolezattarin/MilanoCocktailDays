@@ -658,7 +658,7 @@ GA4 → Configure → DebugView. Visita sito con ?gtm_debug=x, accetta cookie an
 *Gemini · ChatGPT · Perplexity · Google AI Overview* · 0/6 completate
 
 ### ⬜ Google Business Profile — crea profilo "Milano Cocktail Days"
-🔴 `GEO` · *Da fare — PRIORITÀ MASSIMA*
+🔴 `GEO` · *Fatto* --> In verifica da Google
 
 Segnale primario Gemini per eventi locali. Categoria: Festival. URL sito. È la cosa più immediata per apparire su Gemini.
 
@@ -959,7 +959,7 @@ Show all files created or modified.
 ---
 
 ### ⬜ Profili social con nome esatto "Milano Cocktail Days"
-🔴 `SOCIAL` · *Da fare*
+🔴 `SOCIAL` · *Fatto*
 
 Instagram, Facebook, LinkedIn. Nome identico su tutte le piattaforme = segnale entità AI.
 
