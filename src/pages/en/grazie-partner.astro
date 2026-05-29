@@ -32,6 +32,11 @@ import SocialLinks from '../../components/SocialLinks.astro';
       </div>
     </div>
   </section>
+
+  <script is:inline slot="body-scripts">
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'form_submit', form_type: 'contatto_partner' });
+  </script>
 </BaseLayout>
 
 <style>

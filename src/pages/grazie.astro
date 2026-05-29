@@ -29,6 +29,11 @@ import SocialLinks from '../components/SocialLinks.astro';
       <a href="/" class="grazie-back">← Torna alla home</a>
     </div>
   </section>
+
+  <script is:inline slot="body-scripts">
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'form_submit', form_type: 'iscrizione_lista' });
+  </script>
 </BaseLayout>
 
 <style>
